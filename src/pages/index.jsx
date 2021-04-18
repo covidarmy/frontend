@@ -7,7 +7,6 @@ import clsx from "clsx"
 /**
  * @typedef {Object} Tweet
  * @property {string} id
- * @property {any} ast
  * @property {string} city
  */
 
@@ -77,8 +76,8 @@ export default function Home({ tweets }) {
       </div>
       <div className="text-2xl font-semibold">Tweets</div>
       <div className="lg:grid lg:grid-cols-3 w-4/5 py-8">
-        {filtered.map(({ ast, id }) => {
-          return <Tweet id={id} ast={ast} />
+        {filtered.map(({ id }) => {
+          return <Tweet id={id} />
         })}
       </div>
     </div>
