@@ -14,7 +14,9 @@ export default async (req, res) => {
   })
   switch (req.method) {
     case "GET": {
-      const data = Object.keys((await store.doc("main/cities").get()).data())
+      const data = Object.keys(
+        (await store.doc("main/cities").get()).data()
+      ).sort()
       if (data) {
         return res.status(204).send(data)
       } else {

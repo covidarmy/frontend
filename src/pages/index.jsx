@@ -47,13 +47,9 @@ export default function Home({ tweets: initialTweets, cities: initialCities }) {
   const [currentFilter, setCurrentFilter] = React.useState("all")
 
   React.useEffect(() => {
-    console.log(tweets, cities)
-  }, [tweets, cities])
-
-  React.useEffect(() => {
     if (router.query.city) {
       setFiltered(
-        initialTweets.filter((i) =>
+        tweets.filter((i) =>
           Object.keys(i.city).includes(
             /** @type {string} */ (router.query.city)
           )
@@ -61,7 +57,7 @@ export default function Home({ tweets: initialTweets, cities: initialCities }) {
       )
       setCurrentFilter(/** @type {string} */ (router.query.city))
     } else {
-      setFiltered(initialTweets)
+      setFiltered(tweets)
       setCurrentFilter("all")
     }
   }, [router.query])
@@ -88,7 +84,7 @@ export default function Home({ tweets: initialTweets, cities: initialCities }) {
                 All
               </div>
             </Link>
-            {initialCities.map((i) => {
+            {cities.map((i) => {
               return (
                 <button
                   key={i}
