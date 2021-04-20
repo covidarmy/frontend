@@ -1,8 +1,8 @@
 import * as firebaseAdmin from "firebase-admin"
+import { projectId } from "./firebase"
 
-const privateKey = process.env["FIREBASE_PRIVATE_KEY"]
-const clientEmail = process.env["FIREBASE_CLIENT_EMAIL"]
-const projectId = process.env["FIREBASE_PROJECT_ID"]
+const privateKey = process.env.FB_PRIVATE_KEY
+const clientEmail = process.env.FB_CLIENT_EMAIL
 
 if (!privateKey || !clientEmail || !projectId) {
   console.log(
