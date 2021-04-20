@@ -1,6 +1,6 @@
-import * as firebaseAdmin from "firebase-admin"
-import { projectId } from "./firebase"
+const admin = require("firebase-admin")
 
+const projectId = process.env.NEXT_PUBLIC_FB_PROJECT_ID
 const privateKey = process.env.FB_PRIVATE_KEY
 const clientEmail = process.env.FB_CLIENT_EMAIL
 
@@ -10,15 +10,19 @@ if (!privateKey || !clientEmail || !projectId) {
   )
 }
 
-if (!firebaseAdmin.apps.length) {
-  firebaseAdmin.initializeApp({
-    credential: firebaseAdmin.credential.cert({
+if (!admin.apps.length) {
+  admin.initializeApp({
+    credential: admin.credential.cert({
       privateKey: privateKey,
       clientEmail,
       projectId,
     }),
+    projectId,
     databaseURL: `https://${projectId}.firebaseio.com`,
   })
 }
 
-export { firebaseAdmin }
+const store = admin.firestore()
+
+module.exports.firebaseAdmin = admin
+module.exports.store = store

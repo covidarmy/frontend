@@ -4,9 +4,11 @@ import "inter-ui/inter.css"
 import { initFirebase } from "~/utils/firebase"
 import { DefaultSeo } from "next-seo"
 import { defaultSeoProps } from "~/seo.config"
+import { isProduction } from "~/constants"
 import NextGA from "~/components/NextGA"
+import "react-static-tweets/styles.css"
 
-function MyApp({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   React.useEffect(() => {
     initFirebase()
   }, [])
@@ -22,4 +24,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+export default App
