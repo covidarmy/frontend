@@ -1,9 +1,8 @@
 import chromium from "chrome-aws-lambda"
+import puppeteer from "puppeteer-core"
 import qs from "querystring"
 import { store } from "./firebase-admin"
 import { subDays, format } from "date-fns"
-
-const puppeteer = chromium.puppeteer
 
 const exePath =
   "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
