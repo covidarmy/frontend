@@ -4,6 +4,7 @@ import { useRouter } from "next/router"
 import Link from "next/link"
 import clsx from "clsx"
 import { store } from "~/utils/firebase-admin"
+import useSWR from "swr"
 
 /**
  * @typedef {Object} Tweet
@@ -24,7 +25,23 @@ import { store } from "~/utils/firebase-admin"
 /**
  * @param {Props} props
  */
-export default function Home({ tweets, cities }) {
+export default function Home({ tweets: initialTweets, cities: initialCities }) {
+  const { data: tweets } = useSWR(
+    "tweets",
+    () => fetch("/api/tweets").then((res) => res.json()),
+    {
+      refreshInterval: 10,
+      initialData: initialTweets,
+    }
+  )
+  const { data: cities } = useSWR(
+    "tweets",
+    () => fetch("/api/cities").then((res) => res.json()),
+    {
+      refreshInterval: 10,
+      initialData: initialCities,
+    }
+  )
   const router = useRouter()
   const [filtered, setFiltered] = React.useState(tweets)
   const [currentFilter, setCurrentFilter] = React.useState("all")
@@ -32,7 +49,7 @@ export default function Home({ tweets, cities }) {
   React.useEffect(() => {
     if (router.query.city) {
       setFiltered(
-        tweets.filter((i) =>
+        initialTweets.filter((i) =>
           Object.keys(i.city).includes(
             /** @type {string} */ (router.query.city)
           )
@@ -40,7 +57,7 @@ export default function Home({ tweets, cities }) {
       )
       setCurrentFilter(/** @type {string} */ (router.query.city))
     } else {
-      setFiltered(tweets)
+      setFiltered(initialTweets)
       setCurrentFilter("all")
     }
   }, [router.query])
