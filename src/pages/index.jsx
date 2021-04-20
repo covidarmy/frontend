@@ -68,7 +68,6 @@ export default function Home({ tweets, cities }) {
               </div>
             </Link>
             {cities.map((i) => {
-              console.log(i)
               return (
                 <button
                   className={clsx([
