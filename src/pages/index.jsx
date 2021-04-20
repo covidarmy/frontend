@@ -47,17 +47,9 @@ export default function Home({ tweets, cities }) {
 
   return (
     <>
-      <style jsx>{`
-        #page-wrapper {
-          overflow-x: hidden !important;
-        }
-      `}</style>
-      <div
-        id="page-wrapper"
-        className="w-screen min-h-screen overflow-hidden flex flex-col items-center justify-start space-y-12 pt-12 pb-12"
-      >
+      <div className="w-screen min-h-screen overflow-hidden flex flex-col items-center justify-start space-y-12 pt-12 pb-12">
         <h1 className="text-2xl font-bold text-center">
-          Covid Twitter Resources (Remdesivir/Oxygen)
+          Covid India Twitter Resources
         </h1>
         <div className="flex flex-col lg:flex-row items-center justify-center space-y-6 lg:space-y-0 lg:space-x-16">
           <span className="text-lg font-semibold">Filters</span>
@@ -76,19 +68,19 @@ export default function Home({ tweets, cities }) {
               </div>
             </Link>
             {cities.map((i) => {
+              console.log(i)
               return (
-                <Link key={`city-${i}`} href={`/?city=${i}`}>
-                  <div
-                    className={clsx([
-                      "rounded-md px-4 py-1 flex items-center justify-center shadow-md border border-gray-200 select-none transition duration-100 ease-in-out font-medium",
-                      currentFilter === i
-                        ? "bg-gray-600 text-white"
-                        : "bg-white hover:bg-gray-300",
-                    ])}
-                  >
-                    {i}
-                  </div>
-                </Link>
+                <button
+                  className={clsx([
+                    "rounded-md px-4 py-1 flex items-center justify-center shadow-md border border-gray-200 select-none transition duration-100 ease-in-out font-medium cursor-pointer focus:outline-none",
+                    currentFilter === i
+                      ? "bg-gray-600 text-white"
+                      : "bg-white hover:bg-gray-300",
+                  ])}
+                  onClick={() => router.push(`/?city=${i}`)}
+                >
+                  {i}
+                </button>
               )
             })}
           </span>
@@ -111,7 +103,7 @@ export default function Home({ tweets, cities }) {
 /**
  * @type {import("next").GetStaticProps}
  */
-export const getStaticProps = async () => {
+export const getStaticProps = async (ctx) => {
   const { cities, tweets } = await getTweets()
   const filteredTweets = Object.entries(tweets)
     .map(([id, metadata]) => {

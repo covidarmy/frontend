@@ -1,18 +1,12 @@
-// @ts-check
-const chrome = require("chrome-aws-lambda")
-const qs = require("query-string")
-const { store } = require("./firebase-admin")
-const { subDays, format } = require("date-fns")
+import chromium from "chrome-aws-lambda"
+import qs from "querystring"
+import { store } from "./firebase-admin"
+import { subDays, format } from "date-fns"
 
-/** @type {typeof import("puppeteer") | typeof import ("puppeteer-core")} */
-let puppeteer
-const isLocal = typeof process.env.VERCEL_REGION === "undefined"
+const puppeteer = chromium.puppeteer
 
-if (isLocal) {
-  puppeteer = require("puppeteer")
-} else {
-  puppeteer = require("puppeteer-core")
-}
+const exePath =
+  "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
 
 // https://www.bannerbear.com/blog/ways-to-speed-up-puppeteer-screenshots/
 const minimal_args = [
@@ -56,23 +50,25 @@ const minimal_args = [
 const blocked_domains = ["googlesyndication.com", "adservice.google.com"]
 
 const launchPuppeteer = async () => {
-  const browser = await puppeteer.launch(
-    isLocal
-      ? {
-          args: minimal_args,
-          headless: true,
-        }
-      : {
-          args: chrome.args,
-          executablePath: await chrome.executablePath,
-        }
-  )
-
+  process.env.AWS_LAMBDA_FUNCTION_NAME =
+    process.env.AWS_LAMBDA_FUNCTION_NAME ?? "dummy"
+  const options = process.env.AWS_REGION
+    ? {
+        args: chromium.args,
+        executablePath: await chromium.executablePath,
+        headless: chromium.headless,
+        ignoreHTTPSErrors: true,
+      }
+    : {
+        args: minimal_args,
+        executablePath: exePath,
+      }
+  const browser = await puppeteer.launch(options)
   return browser
 }
 
 /**
- * @param {import('puppeteer-core').Browser | import("puppeteer").Browser} browser
+ * @param {import("puppeteer-core").Browser} browser
  */
 const newPage = async (browser) => {
   const page = await browser.newPage()
@@ -101,7 +97,7 @@ const getDataFromTweetUrl = (tweetUrl) => {
   return { username, tweetId, tweetUrl }
 }
 
-const getTweets = async () => {
+export const getTweets = async () => {
   const browser = await launchPuppeteer()
   const since = format(subDays(new Date(), 2), "yyyy-MM-dd")
   const cities = (await store.doc("main/cities").get()).data()
@@ -161,5 +157,3 @@ const getTweets = async () => {
   await browser.close()
   return { tweets: (await tweetsDoc.get()).data(), cities }
 }
-
-module.exports.getTweets = getTweets
