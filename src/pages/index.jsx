@@ -3,7 +3,7 @@ import { Tweet } from "react-static-tweets"
 import { useRouter } from "next/router"
 import Link from "next/link"
 import clsx from "clsx"
-import { store } from "~/utils/firebase-admin"
+import { getTweets } from "~/utils/puppeteer"
 
 /**
  * @typedef {Object} Tweet
@@ -18,14 +18,13 @@ import { store } from "~/utils/firebase-admin"
 /**
  * @typedef {Object} Props
  * @property {Tweet[]} tweets
+ * @property {string[]} cities
  */
-
-const cities = ["Delhi", "Mumbai", "Kolkata"]
 
 /**
  * @param {Props} props
  */
-export default function Home({ tweets }) {
+export default function Home({ tweets, cities }) {
   const router = useRouter()
   const [filtered, setFiltered] = React.useState(tweets)
   const [currentFilter, setCurrentFilter] = React.useState("all")
@@ -113,17 +112,19 @@ export default function Home({ tweets }) {
  * @type {import("next").GetStaticProps}
  */
 export const getStaticProps = async () => {
-  const tweets = Object.entries(
-    (await store.doc("main/tweets").get()).data()
-  ).map(([id, metadata]) => {
-    return {
-      id,
-      ...metadata,
-    }
-  })
+  const { cities, tweets } = await getTweets()
+  const filteredTweets = Object.entries(tweets)
+    .map(([id, metadata]) => {
+      return {
+        id,
+        ...metadata,
+      }
+    })
+    .filter((i) => i.show)
+  const citiesList = Object.keys(cities)
 
   return {
-    props: { tweets },
-    revalidate: 15,
+    props: { tweets: filteredTweets, cities: citiesList },
+    revalidate: 75,
   }
 }

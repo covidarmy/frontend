@@ -1,6 +1,8 @@
 // @ts-check
 const chrome = require("chrome-aws-lambda")
 const qs = require("query-string")
+const { store } = require("./firebase-admin")
+const { subDays, format } = require("date-fns")
 
 /** @type {typeof import("puppeteer") | typeof import ("puppeteer-core")} */
 let puppeteer
@@ -58,7 +60,7 @@ const launchPuppeteer = async () => {
     isLocal
       ? {
           args: minimal_args,
-          headless: false,
+          headless: true,
         }
       : {
           args: chrome.args,
@@ -69,8 +71,10 @@ const launchPuppeteer = async () => {
   return browser
 }
 
-const newPage = async () => {
-  const browser = await launchPuppeteer()
+/**
+ * @param {import('puppeteer-core').Browser | import("puppeteer").Browser} browser
+ */
+const newPage = async (browser) => {
   const page = await browser.newPage()
   await page.setViewport({ width: 1920, height: 1080 })
   await page.setRequestInterception(true)
@@ -83,20 +87,79 @@ const newPage = async () => {
     }
   })
 
-  return page
+  return { page }
 }
 
 /**
- * @param {string} city
+ * @param {string} tweetUrl
  */
-const getTweets = async (city) => {
-  const page = await newPage()
-  await page.goto(
-    `https://twitter.com/search?${qs.stringify({
-      q: `${city} (remdesivir OR oxygen) since:2021-04-15 until:2021-04-18 min_faves:20 -filter:replies -need -required -needed -getting -help`,
-      src: "typed_query",
-    })}`
-  )
+const getDataFromTweetUrl = (tweetUrl) => {
+  const urlWithoutHttps = tweetUrl.replace("https://", "")
+  const split = urlWithoutHttps.split("/")
+  const username = split[1]
+  const tweetId = split[split.length - 1]
+  return { username, tweetId, tweetUrl }
 }
 
-getTweets("delhi")
+const getTweets = async () => {
+  const browser = await launchPuppeteer()
+  const since = format(subDays(new Date(), 2), "yyyy-MM-dd")
+  const cities = (await store.doc("main/cities").get()).data()
+  const tweetsDoc = store.doc("main/tweets")
+  const tweetsData = (await tweetsDoc.get()).data()
+  for (const city of Object.keys(cities)) {
+    const { page } = await newPage(browser)
+    await page.goto(
+      `https://twitter.com/search?${qs.stringify({
+        q: `"${city}" (remdesivir OR remdesvir) since:${since} min_retweets:10 -filter:replies -requirement -needed -needs -need -required -from:IndiaToday -from:ANI -from:PTI_NEWS -from:TOIMumbai`,
+        src: "typed_query",
+        f: "live",
+      })}`,
+      {
+        waitUntil: "networkidle2",
+      }
+    )
+    const tweets = await page.evaluate(async () => {
+      return await new Promise((resolve) => {
+        let links = new Set()
+        let timeIncrement = 5000
+        let timesToScroll = 2
+        for (let i = 0; i <= timesToScroll; i++) {
+          setTimeout(() => {
+            scrollBy(0, 1000)
+            Array.from(document.querySelectorAll("div.r-1d09ksm > a"))
+              .filter((x) => x.href !== undefined)
+              .forEach((x) => links.add(x.href))
+            if (i === timesToScroll) {
+              resolve(Array.from(links))
+            }
+          }, timeIncrement * i)
+        }
+      })
+    })
+    const setObject = {}
+    for (const tweetUrl of tweets) {
+      const metadata = getDataFromTweetUrl(tweetUrl)
+      setObject[metadata.tweetId] = {
+        ...metadata,
+        city: {
+          [city]: true,
+        },
+        for: {
+          Remdesivir: true,
+        },
+        show: true,
+        status: "available",
+        votes: 0,
+      }
+    }
+    await tweetsDoc.set(setObject, {
+      merge: true,
+    })
+    await page.close()
+  }
+  await browser.close()
+  return { tweets: (await tweetsDoc.get()).data(), cities }
+}
+
+module.exports.getTweets = getTweets
