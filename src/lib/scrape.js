@@ -1,5 +1,5 @@
 const qs = require("querystringify")
-const { store } = require("./firebase-admin")
+const { store, firebaseAdmin } = require("./firebase-admin")
 
 const exePath =
   "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
@@ -57,11 +57,11 @@ const getDataFromTweetUrl = (tweetUrl) => {
 }
 
 const getTweets = async () => {
-  console.time("getTweets")
   const browser = isLocal
     ? await require("playwright-core").chromium.launch({
         executablePath: exePath,
         args: minimal_args,
+        headless: true,
       })
     : await require("playwright-aws-lambda").launchChromium({ headless: true })
 
@@ -114,14 +114,19 @@ const getTweets = async () => {
               }
               scrollBy(0, 1000)
               Array.from(document.querySelectorAll("div.r-1d09ksm > a"))
-                .filter((x) => x.href !== undefined)
-                .forEach((x) => links.add(x.href))
+                .filter((node) => node.href !== undefined)
+                .forEach((node) =>
+                  links.add({
+                    tweetUrl: node.href,
+                    time: Array.from(node.childNodes)[0].dateTime,
+                  })
+                )
             }, 100 * i)
           }
         })
       })
 
-      for (const tweetUrl of tweets) {
+      for (const { tweetUrl, time } of tweets) {
         const metadata = getDataFromTweetUrl(tweetUrl)
         setObject[metadata.tweetId] = {
           ...metadata,
@@ -138,6 +143,7 @@ const getTweets = async () => {
           show: true,
           status: "available",
           votes: 0,
+          postedAt: new Date(time),
           createdAt: new Date(),
         }
       }
@@ -149,7 +155,6 @@ const getTweets = async () => {
     merge: true,
   })
   await browser.close()
-  console.timeEnd("getTweets")
   return { tweets: (await tweetsDoc.get()).data(), cities }
 }
 

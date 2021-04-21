@@ -6,4 +6,5 @@ export type Tweet = {
   tweetUrl: string
   username: string
   votes: number
+  postedAt: string
 }

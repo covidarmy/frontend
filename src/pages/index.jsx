@@ -3,7 +3,6 @@ import { Tweet } from "react-static-tweets"
 import { useRouter } from "next/router"
 import Link from "next/link"
 import clsx from "clsx"
-import { store } from "~/lib/firebase-admin"
 import {
   HiArrowDown,
   HiArrowUp,
@@ -127,43 +126,45 @@ export default function Home({ tweets, cities }) {
         <div className="flex flex-col space-y-12 w-5/6">
           {React.useMemo(
             () =>
-              filtered.map(({ tweetId, votes: voteCount }) => {
-                return (
-                  <div
-                    key={tweetId}
-                    className="w-full flex flex-col items-center justify-center space-y-4"
-                  >
-                    <Tweet id={tweetId} />
-                    <div className="flex w-full items-center justify-center h-12 gap-4 lg:w-1/3">
-                      <div className="text-lg px-4 flex items-center justify-center">
-                        <span>{voteCount}</span>
-                      </div>
-                      <div className="flex w-full items-center justify-center flex-grow gap-2">
-                        <button
-                          className={clsx([
-                            "flex items-center w-full justify-center border-green-500 h-12 border rounded-md gap-2 focus:outline-none",
-                            votes[tweetId] === true && "bg-green-500",
-                          ])}
-                          disabled={typeof votes[tweetId] !== "undefined"}
-                          onClick={vote(tweetId, true)}
-                        >
-                          <HiArrowUp className="h-5 w-5" />
-                        </button>
-                        <button
-                          className={clsx([
-                            "flex w-full items-center justify-center border-red-500 h-12 border rounded-md gap-2 focus:outline-none",
-                            votes[tweetId] === false && "bg-red-400",
-                          ])}
-                          disabled={typeof votes[tweetId] === "undefined"}
-                          onClick={vote(tweetId, false)}
-                        >
-                          <HiArrowDown className="h-5 w-5" />
-                        </button>
+              filtered
+                .sort((a, b) => -a.postedAt.localeCompare(b.postedAt))
+                .map(({ tweetId, votes: voteCount }) => {
+                  return (
+                    <div
+                      key={tweetId}
+                      className="w-full flex flex-col items-center justify-center space-y-4"
+                    >
+                      <Tweet id={tweetId} />
+                      <div className="flex w-full items-center justify-center h-12 gap-4 lg:w-1/3">
+                        <div className="text-lg px-4 flex items-center justify-center">
+                          <span>{voteCount}</span>
+                        </div>
+                        <div className="flex w-full items-center justify-center flex-grow gap-2">
+                          <button
+                            className={clsx([
+                              "flex items-center w-full justify-center border-green-500 h-12 border rounded-md gap-2 focus:outline-none",
+                              votes[tweetId] === true && "bg-green-500",
+                            ])}
+                            disabled={typeof votes[tweetId] !== "undefined"}
+                            onClick={vote(tweetId, true)}
+                          >
+                            <HiArrowUp className="h-5 w-5" />
+                          </button>
+                          <button
+                            className={clsx([
+                              "flex w-full items-center justify-center border-red-500 h-12 border rounded-md gap-2 focus:outline-none",
+                              votes[tweetId] === false && "bg-red-400",
+                            ])}
+                            disabled={typeof votes[tweetId] === "undefined"}
+                            onClick={vote(tweetId, false)}
+                          >
+                            <HiArrowDown className="h-5 w-5" />
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )
-              }),
+                  )
+                }),
             [filtered]
           )}
         </div>
