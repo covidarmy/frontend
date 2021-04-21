@@ -6,6 +6,7 @@ import clsx from "clsx"
 import {
   HiArrowDown,
   HiArrowUp,
+  HiChevronDoubleDown,
   HiOutlineInformationCircle,
 } from "react-icons/hi"
 import { getCities, getTweets } from "~/lib/db"
@@ -24,6 +25,7 @@ export default function Home({ tweets, cities }) {
   const [filtered, setFiltered] = React.useState(tweets)
   const [currentFilter, setCurrentFilter] = React.useState("all")
   const [votes, setVotes] = React.useState({})
+  const [limit, setLimit] = React.useState(20)
 
   React.useEffect(() => {
     const savedVotes = localStorage.getItem("votes")
@@ -52,6 +54,14 @@ export default function Home({ tweets, cities }) {
     }
   }, [router.query])
 
+  const showMore = () => {
+    if (limit + 20 < filtered.length) {
+      setLimit((prev) => prev + 20)
+    } else if (limit + 20 > filtered.length && limit < filtered.length) {
+      setLimit((prev) => prev + (filtered.length - prev))
+    }
+  }
+
   /**
    * @param {string} tweetId
    * @param {boolean} vote
@@ -63,11 +73,11 @@ export default function Home({ tweets, cities }) {
     if (vote && votes[tweetId] === true) {
       delete savedVotes[tweetId]
       vote = false
-    }
-
-    if (!vote && votes[tweetId] === false) {
+    } else if (!vote && votes[tweetId] === false) {
       delete savedVotes[tweetId]
       vote = true
+    } else {
+      savedVotes[tweetId] = vote
     }
 
     fetch(vote ? "/api/upvote" : "/api/downvote", {
@@ -83,10 +93,7 @@ export default function Home({ tweets, cities }) {
 
     localStorage.setItem(
       "votes",
-      JSON.stringify({
-        ...(typeof savedVotes === "object" ? savedVotes : {}),
-        [tweetId]: vote,
-      })
+      JSON.stringify(typeof savedVotes === "object" ? savedVotes : {})
     )
     setVotes(JSON.parse(localStorage.getItem("votes")))
   }
@@ -148,6 +155,7 @@ export default function Home({ tweets, cities }) {
             () =>
               filtered
                 .sort((a, b) => -a.postedAt.localeCompare(b.postedAt))
+                .slice(0, limit + 1)
                 .map(({ tweetId, votes: voteCount }) => {
                   return (
                     <div
@@ -193,9 +201,19 @@ export default function Home({ tweets, cities }) {
                     </div>
                   )
                 }),
-            [filtered]
+            [filtered, limit]
           )}
         </div>
+        {limit + 20 < filtered.length && (
+          <button
+            onClick={showMore}
+            className="bg-indigo-200 text-indigo-700 flex items-center justify-center px-4 py-2 rounded-md gap-2 shadow-md"
+            disabled={limit + 20 > filtered.length}
+          >
+            <HiChevronDoubleDown />
+            Show more
+          </button>
+        )}
       </div>
     </>
   )
