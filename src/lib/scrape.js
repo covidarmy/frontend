@@ -169,7 +169,7 @@ const getTweets = async (cities, resources, filterAccounts) => {
       await page.close()
     }
     done += 1
-    console.log("Tweets added: ", Object.keys(newTweets).length)
+    console.log("Tweets added: ", newTweets)
     console.log("Cities to go: ", cityArr.length - done)
   }
   await browser.close()
