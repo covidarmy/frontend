@@ -35,7 +35,7 @@ export default function Home({ tweets: initialTweets, cities: initialCities }) {
     }
   )
   const { data: cities } = useSWR(
-    "tweets",
+    "cities",
     () => fetch("/api/cities").then((res) => res.json()),
     {
       refreshInterval: 10,
@@ -43,8 +43,12 @@ export default function Home({ tweets: initialTweets, cities: initialCities }) {
     }
   )
   const router = useRouter()
-  const [filtered, setFiltered] = React.useState(tweets)
+  const [filtered, setFiltered] = React.useState(initialTweets)
   const [currentFilter, setCurrentFilter] = React.useState("all")
+
+  React.useEffect(() => {
+    console.log(tweets, cities)
+  }, [tweets, cities])
 
   React.useEffect(() => {
     if (router.query.city) {
@@ -84,9 +88,10 @@ export default function Home({ tweets: initialTweets, cities: initialCities }) {
                 All
               </div>
             </Link>
-            {cities.map((i) => {
+            {initialCities.map((i) => {
               return (
                 <button
+                  key={i}
                   className={clsx([
                     "rounded-md px-4 py-1 flex items-center justify-center shadow-md border border-gray-200 select-none transition duration-100 ease-in-out font-medium cursor-pointer focus:outline-none",
                     currentFilter === i
@@ -104,11 +109,7 @@ export default function Home({ tweets: initialTweets, cities: initialCities }) {
         <div className="text-2xl font-semibold">Tweets</div>
         <div className="flex flex-col space-y-12">
           {filtered.map(({ tweetId }) => {
-            return (
-              <>
-                <Tweet id={tweetId} />
-              </>
-            )
+            return <Tweet key={tweetId} id={tweetId} />
           })}
         </div>
       </div>
