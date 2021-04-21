@@ -10,6 +10,7 @@ import {
   HiOutlineInformationCircle,
 } from "react-icons/hi"
 import { getCities, getTweets } from "~/lib/db"
+import { store } from "~/lib/firebase-admin"
 
 /**
  * @typedef {Object} Props
@@ -223,7 +224,8 @@ export default function Home({ tweets, cities }) {
  * @type {import("next").GetStaticProps<Props>}
  */
 export const getStaticProps = async () => {
-  const tweets = await getTweets()
+  const tweets = (await store.doc("main/old").get()).data()
+  // const tweets = await getTweets()
   const cities = await getCities()
 
   return {

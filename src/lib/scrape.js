@@ -82,7 +82,6 @@ const getTweets = async (cities, resources, filterAccounts) => {
   for (const city of cityArr) {
     console.log(`Scraping data for ${city}`)
     for (const [title, searchTerm] of Object.entries(resources)) {
-      console.log(`Scraping data for ${city} - ${title}`)
       const page = await browser.newPage({
         viewport: {
           width: 1920,
@@ -90,46 +89,52 @@ const getTweets = async (cities, resources, filterAccounts) => {
         },
       })
 
-      await page.goto(
+      const url =
         `https://twitter.com/search?` +
-          qs.stringify({
-            q: [
-              `"${city}"`,
-              searchTerm,
-              "Verified",
-              `since:${since}`,
-              "min_retweets:10 -filter:replies -requirement -needed -needs -need -required",
-              filterAccounts.map((account) => `-from:${account}`).join(" "),
-            ].join(" "),
-            src: "typed_query",
-            f: "live",
-          }),
-        {
-          waitUntil: "networkidle",
-        }
-      )
+        qs.stringify({
+          q: [
+            "verified",
+            city,
+            searchTerm,
+            `since:${since}`,
+            'min_retweets:10 -filter:replies -"requirement" -"needed" -"needs" -"need" -"not verified" -"unverified" -"required"',
+            filterAccounts.map((account) => `-from:${account}`).join(" "),
+          ].join(" "),
+          src: "typed_query",
+          f: "live",
+        })
+
+      await page.goto(url, {
+        waitUntil: "networkidle",
+      })
+
+      console.log(`Scraping data for ${city} - ${title} - ${url}`)
 
       const tweets = await page.evaluate(async () => {
         return await new Promise((resolve) => {
           let links = new Set()
-          const timeIncrement = 2000
-          const totalScroll = 3
-          for (let i = 0; i < totalScroll; i++) {
-            if (links.size === 0) break
+          const timeIncrement = 500
+          const timesToScroll = 2
+          for (let i = 0; i <= timesToScroll; i++) {
+            console.log(i, timesToScroll)
             setTimeout(() => {
-              if (i === totalScroll) {
-                resolve(Array.from(links))
+              if (i === timesToScroll) {
+                resolve(Array.from(new Set(Array.from(links))))
               }
-              console.log("testing")
               scrollBy(0, 1000)
               Array.from(document.querySelectorAll("div.r-1d09ksm > a"))
                 .filter((node) => node.href !== undefined)
-                .forEach((node) =>
-                  links.add({
-                    tweetUrl: node.href,
-                    time: Array.from(node.childNodes)[0].dateTime,
-                  })
-                )
+                .forEach((node) => {
+                  if (
+                    Array.from(links).filter((i) => i.tweetUrl === node.href)
+                      .length === 0
+                  ) {
+                    links.add({
+                      tweetUrl: node.href,
+                      time: Array.from(node.childNodes)[0].dateTime,
+                    })
+                  }
+                })
             }, timeIncrement * i)
           }
         })
@@ -159,9 +164,10 @@ const getTweets = async (cities, resources, filterAccounts) => {
       await page.close()
     }
     done += 1
+    console.log("Tweets added: ", Object.keys(newTweets).length)
     console.log("Cities to go: ", cityArr.length - done)
   }
-  await context.close()
+  await browser.close()
   return newTweets
 }
 
