@@ -105,16 +105,16 @@ const getTweets = async (cities, resources, filterAccounts) => {
           f: "live",
         })
 
+      console.log(`Scraping data for ${city} - ${title} - ${url}`)
+
       await page.goto(url, {
         waitUntil: "networkidle",
       })
 
-      console.log(`Scraping data for ${city} - ${title} - ${url}`)
-
       const tweets = await page.evaluate(async () => {
         return await new Promise((resolve) => {
           let links = new Set()
-          const timeIncrement = 500
+          const timeIncrement = 100
           const timesToScroll = 1
           for (let i = 0; i <= timesToScroll; i++) {
             console.log(i, timesToScroll)

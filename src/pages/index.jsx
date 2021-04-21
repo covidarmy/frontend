@@ -48,6 +48,7 @@ export default function Home({ tweets: initialTweets, cities }) {
   const [limit, setLimit] = React.useState(20)
 
   React.useEffect(() => {
+    mutate()
     const savedVotes = localStorage.getItem("votes")
     if (!savedVotes) {
       localStorage.setItem("votes", JSON.stringify({}))
