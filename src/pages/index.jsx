@@ -3,53 +3,26 @@ import { Tweet } from "react-static-tweets"
 import { useRouter } from "next/router"
 import Link from "next/link"
 import clsx from "clsx"
-import useSWR from "swr"
-import { getTweets } from "~/lib/scrape"
-import { isProduction } from "~/constants"
 import { store } from "~/lib/firebase-admin"
 import {
   HiArrowDown,
   HiArrowUp,
   HiOutlineInformationCircle,
 } from "react-icons/hi"
-/**
- * @typedef {Object} Tweet
- * @property {string} id
- * @property {Record<string, boolean>} city
- * @property {Record<string, boolean>} for
- * @property {string} tweetId
- * @property {string} tweetUrl
- * @property {string} username
- */
+import { Tweet as TweetType } from "../types"
 
 /**
  * @typedef {Object} Props
- * @property {Tweet[]} tweets
+ * @property {TweetType[]} tweets
  * @property {string[]} cities
  */
 
 /**
  * @param {Props} props
  */
-export default function Home({ tweets: initialTweets, cities: initialCities }) {
-  const { data: tweets, mutate } = useSWR(
-    "tweets",
-    () => fetch("/api/tweets").then((res) => res.json()),
-    {
-      refreshInterval: 10,
-      initialData: initialTweets,
-    }
-  )
-  const { data: cities } = useSWR(
-    "cities",
-    () => fetch("/api/cities").then((res) => res.json()),
-    {
-      refreshInterval: 10,
-      initialData: initialCities,
-    }
-  )
+export default function Home({ tweets, cities }) {
   const router = useRouter()
-  const [filtered, setFiltered] = React.useState(initialTweets)
+  const [filtered, setFiltered] = React.useState(tweets)
   const [currentFilter, setCurrentFilter] = React.useState("all")
   const [votes, setVotes] = React.useState({})
 
@@ -86,7 +59,6 @@ export default function Home({ tweets: initialTweets, cities: initialCities }) {
         [tweetId]: vote,
       })
     )
-    console.log(localStorage.getItem("votes"))
     setVotes(JSON.parse(localStorage.getItem("votes")))
     fetch(vote ? "/api/upvote" : "/api/downvote", {
       method: "post",
@@ -98,10 +70,6 @@ export default function Home({ tweets: initialTweets, cities: initialCities }) {
         tweetId,
       }),
     })
-      .then(() => {
-        mutate()
-      })
-      .catch((err) => console.log(err))
   }
 
   return (
@@ -133,18 +101,18 @@ export default function Home({ tweets: initialTweets, cities: initialCities }) {
                 All
               </div>
             </Link>
-            {cities.sort().map((i) => {
+            {cities.sort().map((city) => {
               return (
-                <Link key={i} href={`/?city=${i}`}>
+                <Link key={city} href={`/?city=${city}`}>
                   <div
                     className={clsx([
                       "rounded-md px-4 py-1 flex items-center justify-center shadow-md border border-gray-200 select-none transition duration-100 ease-in-out font-medium cursor-pointer focus:outline-none",
-                      currentFilter === i
+                      currentFilter === city
                         ? "bg-gray-600 text-white"
                         : "bg-white hover:bg-gray-300",
                     ])}
                   >
-                    {i}
+                    {city}
                   </div>
                 </Link>
               )
@@ -159,7 +127,7 @@ export default function Home({ tweets: initialTweets, cities: initialCities }) {
         <div className="flex flex-col space-y-12 w-5/6">
           {React.useMemo(
             () =>
-              filtered.map(({ tweetId, votes: count }) => {
+              filtered.map(({ tweetId, votes: voteCount }) => {
                 return (
                   <div
                     key={tweetId}
@@ -168,7 +136,7 @@ export default function Home({ tweets: initialTweets, cities: initialCities }) {
                     <Tweet id={tweetId} />
                     <div className="flex w-full items-center justify-center h-12 gap-4 lg:w-1/3">
                       <div className="text-lg px-4 flex items-center justify-center">
-                        <span>{count}</span>
+                        <span>{voteCount}</span>
                       </div>
                       <div className="flex w-full items-center justify-center flex-grow gap-2">
                         <button
@@ -208,25 +176,21 @@ export default function Home({ tweets: initialTweets, cities: initialCities }) {
  * @type {import("next").GetStaticProps}
  */
 export const getStaticProps = async (ctx) => {
-  if (isProduction) {
-    var { cities, tweets } = await getTweets()
-  } else {
-    var tweets = (await store.doc("main/tweets").get()).data()
-    var cities = (await store.doc("main/cities").get()).data()
-  }
-
-  const filteredTweets = Object.entries(tweets)
-    .map(([id, metadata]) => {
-      return {
-        id,
-        ...metadata,
-      }
-    })
-    .filter((i) => i.show)
-  const citiesList = Object.keys(cities)
+  const tweets = (await store.doc("main/tweets").get()).data()
+  const cities = (await store.doc("main/cities").get()).data()
 
   return {
-    props: { tweets: filteredTweets, cities: citiesList },
+    props: {
+      tweets: Object.entries(tweets)
+        .map(([id, metadata]) => {
+          return {
+            id,
+            ...metadata,
+          }
+        })
+        .filter((tweet) => tweet.show),
+      cities: Object.keys(cities),
+    },
     revalidate: 600,
   }
 }

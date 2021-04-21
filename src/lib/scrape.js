@@ -57,6 +57,7 @@ const getDataFromTweetUrl = (tweetUrl) => {
 }
 
 const getTweets = async () => {
+  console.time("getTweets")
   const browser = isLocal
     ? await require("playwright-core").chromium.launch({
         executablePath: exePath,
@@ -69,13 +70,16 @@ const getTweets = async () => {
     .slice(0, 10)
     .split("-")
     .map((i) => parseInt(i))
-  const since = `${year}-${month}-${date - 2}`
+  const since = `${year}-${month}-${date - 1}`
   const cities = (await store.doc("main/cities").get()).data()
   const tweetsDoc = store.doc("main/tweets")
+  const setObject = {}
+
   for (const city of Object.keys(cities)) {
     const resources = {
       Remdesivir: "(remdesivir OR redesvir)",
       "Oxygen Bed": "oxygen bed",
+      Oxygen: "(oxygen OR oxygen cylinder)",
       Fabiflu: "fabiflu",
       Tocilizumab: "Tocilizumab",
       Favipiravir: "Favipiravir",
@@ -99,6 +103,7 @@ const getTweets = async () => {
           waitUntil: "networkidle",
         }
       )
+
       const tweets = await page.evaluate(async () => {
         return await new Promise((resolve) => {
           let links = new Set()
@@ -115,8 +120,6 @@ const getTweets = async () => {
           }
         })
       })
-
-      const setObject = {}
 
       for (const tweetUrl of tweets) {
         const metadata = getDataFromTweetUrl(tweetUrl)
@@ -137,14 +140,15 @@ const getTweets = async () => {
           votes: 0,
         }
       }
-
-      await tweetsDoc.set(setObject, {
-        merge: true,
-      })
       await page.close()
     }
   }
+
+  await tweetsDoc.set(setObject, {
+    merge: true,
+  })
   await browser.close()
+  console.timeEnd("getTweets")
   return { tweets: (await tweetsDoc.get()).data(), cities }
 }
 
