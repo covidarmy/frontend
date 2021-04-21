@@ -1,6 +1,6 @@
 export type Tweet = {
   id: string
-  city: Record<string, boolean>
+  location: Record<string, boolean>
   for: Record<string, boolean>
   tweetId: string
   tweetUrl: string

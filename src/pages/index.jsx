@@ -9,11 +9,11 @@ import {
   HiArrowUp,
   HiOutlineInformationCircle,
 } from "react-icons/hi"
-import { Tweet as TweetType } from "../types"
+import { getTweets } from "~/lib/db"
 
 /**
  * @typedef {Object} Props
- * @property {TweetType[]} tweets
+ * @property {any} tweets
  * @property {string[]} cities
  */
 
@@ -38,7 +38,7 @@ export default function Home({ tweets, cities }) {
     if (router.query.city) {
       setFiltered(
         tweets.filter((i) =>
-          Object.keys(i.city).includes(
+          Object.keys(i.location).includes(
             /** @type {string} */ (router.query.city)
           )
         )
@@ -176,17 +176,14 @@ export default function Home({ tweets, cities }) {
  * @type {import("next").GetStaticProps}
  */
 export const getStaticProps = async (ctx) => {
-  const tweets = (await store.doc("main/tweets").get()).data()
+  const tweets = await getTweets()
   const cities = (await store.doc("main/cities").get()).data()
 
   return {
     props: {
       tweets: Object.entries(tweets)
-        .map(([id, metadata]) => {
-          return {
-            id,
-            ...metadata,
-          }
+        .map(([_, data]) => {
+          return data
         })
         .filter((tweet) => tweet.show),
       cities: Object.keys(cities),

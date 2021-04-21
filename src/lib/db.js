@@ -49,3 +49,16 @@ export const voteTweet = async (tweetId, downvote) => {
     )
   }
 }
+
+export const getTweets = async () => {
+  const ref = store.doc("main/tweets")
+  const tweets = (await ref.get()).data()
+  return Object.entries(tweets).reduce((acc, [id, metadata]) => {
+    const createdAt = /** @type {import("firebase").default.firestore.Timestamp} */ (metadata.createdAt)
+    acc[id] = {
+      ...metadata,
+      createdAt: createdAt.toDate().toISOString(),
+    }
+    return acc
+  }, {})
+}

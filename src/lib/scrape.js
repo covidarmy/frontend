@@ -125,7 +125,7 @@ const getTweets = async () => {
         const metadata = getDataFromTweetUrl(tweetUrl)
         setObject[metadata.tweetId] = {
           ...metadata,
-          city: {
+          location: {
             [city]: true,
           },
           for: {
@@ -138,6 +138,7 @@ const getTweets = async () => {
           show: true,
           status: "available",
           votes: 0,
+          createdAt: new Date(),
         }
       }
       await page.close()
