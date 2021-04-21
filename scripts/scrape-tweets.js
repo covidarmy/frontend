@@ -6,6 +6,7 @@ const resources = {
   Remdesivir: "(remdesivir OR redesvir)",
   "Oxygen Bed": "oxygen bed",
   Oxygen: "(oxygen OR oxygen cylinder)",
+  Ventilator: '("ventilator" OR "ventilator bed")',
   Fabiflu: "fabiflu",
   Tocilizumab: "Tocilizumab",
   Favipiravir: "Favipiravir",

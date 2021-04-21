@@ -65,7 +65,7 @@ const getTweets = async (cities, resources, filterAccounts) => {
     ? await require("playwright-core").chromium.launch({
         executablePath: exePath,
         args: minimal_args,
-        headless: true,
+        headless: process.env.HEADLESS === "false" ? false : true,
       })
     : await require("playwright-aws-lambda").launchChromium({ headless: true })
 
@@ -76,9 +76,13 @@ const getTweets = async (cities, resources, filterAccounts) => {
     .map((i) => parseInt(i))
   const since = `${year}-${month}-${date - 1}`
   const newTweets = {}
+  let done = 0
+  const cityArr = Object.keys(cities).sort()
 
-  for (const city of Object.keys(cities)) {
+  for (const city of cityArr) {
+    console.log(`Scraping data for ${city}`)
     for (const [title, searchTerm] of Object.entries(resources)) {
+      console.log(`Scraping data for ${city} - ${title}`)
       const page = await browser.newPage({
         viewport: {
           width: 1920,
@@ -92,6 +96,7 @@ const getTweets = async (cities, resources, filterAccounts) => {
             q: [
               `"${city}"`,
               searchTerm,
+              "Verified",
               `since:${since}`,
               "min_retweets:10 -filter:replies -requirement -needed -needs -need -required",
               filterAccounts.map((account) => `-from:${account}`).join(" "),
@@ -107,11 +112,15 @@ const getTweets = async (cities, resources, filterAccounts) => {
       const tweets = await page.evaluate(async () => {
         return await new Promise((resolve) => {
           let links = new Set()
-          for (let i = 0; i <= 1; i++) {
+          const timeIncrement = 2000
+          const totalScroll = 3
+          for (let i = 0; i < totalScroll; i++) {
+            if (links.size === 0) break
             setTimeout(() => {
-              if (i === 1) {
+              if (i === totalScroll) {
                 resolve(Array.from(links))
               }
+              console.log("testing")
               scrollBy(0, 1000)
               Array.from(document.querySelectorAll("div.r-1d09ksm > a"))
                 .filter((node) => node.href !== undefined)
@@ -121,7 +130,7 @@ const getTweets = async (cities, resources, filterAccounts) => {
                     time: Array.from(node.childNodes)[0].dateTime,
                   })
                 )
-            }, 100 * i)
+            }, timeIncrement * i)
           }
         })
       })
@@ -134,10 +143,10 @@ const getTweets = async (cities, resources, filterAccounts) => {
             [city]: true,
           },
           for: {
-            Remdesivir: false,
-            "Oxygen Bed": false,
-            Fabiflue: false,
-            Tocilizumab: false,
+            ...cityArr.reduce((acc, cur) => {
+              acc[cur] = false
+              return acc
+            }, {}),
             [title]: true,
           },
           show: true,
@@ -149,8 +158,10 @@ const getTweets = async (cities, resources, filterAccounts) => {
       }
       await page.close()
     }
+    done += 1
+    console.log("Cities to go: ", cityArr.length - done)
   }
-  await browser.close()
+  await context.close()
   return newTweets
 }
 
