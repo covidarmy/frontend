@@ -114,7 +114,7 @@ const getTweets = async (cities, resources, filterAccounts) => {
         return await new Promise((resolve) => {
           let links = new Set()
           const timeIncrement = 500
-          const timesToScroll = 2
+          const timesToScroll = 1
           for (let i = 0; i <= timesToScroll; i++) {
             console.log(i, timesToScroll)
             setTimeout(() => {
