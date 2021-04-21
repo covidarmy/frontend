@@ -60,15 +60,11 @@ export default function Home({ tweets: initialTweets, cities }) {
   React.useEffect(() => {
     if (router.query.city) {
       setFiltered(
-        tweets
-          .filter((i) =>
-            Object.keys(i.location).includes(
-              /** @type {string} */ (router.query.city)
-            )
+        tweets.filter((i) =>
+          Object.keys(i.location).includes(
+            /** @type {string} */ (router.query.city)
           )
-          .sort((a, b) => {
-            return -a.postedAt.localeCompare(b.postedAt)
-          })
+        )
       )
       setCurrentFilter(/** @type {string} */ (router.query.city))
     } else {
@@ -178,6 +174,9 @@ export default function Home({ tweets: initialTweets, cities }) {
           {React.useMemo(
             () =>
               filtered
+                .sort((a, b) => {
+                  return -a.postedAt.localeCompare(b.postedAt)
+                })
                 .slice(0, limit + 1)
                 .map(({ tweetId, votes: voteCount }) => {
                   return (
