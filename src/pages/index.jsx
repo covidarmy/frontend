@@ -220,9 +220,9 @@ export default function Home({ tweets, cities }) {
 }
 
 /**
- * @type {import("next").GetStaticProps}
+ * @type {import("next").GetStaticProps<Props>}
  */
-export const getStaticProps = async (ctx) => {
+export const getStaticProps = async () => {
   const tweets = await getTweets()
   const cities = await getCities()
 

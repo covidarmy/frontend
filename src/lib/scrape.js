@@ -1,5 +1,4 @@
 const qs = require("querystringify")
-const { store, firebaseAdmin } = require("./firebase-admin")
 
 const exePath =
   "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
@@ -56,7 +55,12 @@ const getDataFromTweetUrl = (tweetUrl) => {
   return { username, tweetId, tweetUrl }
 }
 
-const getTweets = async () => {
+/**
+ * @param {import("~/types").Cities} cities
+ * @param {import("~/types").Resources} resources
+ * @param {string[]} filterAccounts
+ */
+const getTweets = async (cities, resources, filterAccounts) => {
   const browser = isLocal
     ? await require("playwright-core").chromium.launch({
         executablePath: exePath,
@@ -71,20 +75,9 @@ const getTweets = async () => {
     .split("-")
     .map((i) => parseInt(i))
   const since = `${year}-${month}-${date - 1}`
-  const cities = (await store.doc("main/cities").get()).data()
-  const tweetsDoc = store.doc("main/tweets")
-  const setObject = {}
+  const newTweets = {}
 
   for (const city of Object.keys(cities)) {
-    const resources = {
-      Remdesivir: "(remdesivir OR redesvir)",
-      "Oxygen Bed": "oxygen bed",
-      Oxygen: "(oxygen OR oxygen cylinder)",
-      Fabiflu: "fabiflu",
-      Tocilizumab: "Tocilizumab",
-      Favipiravir: "Favipiravir",
-    }
-
     for (const [title, searchTerm] of Object.entries(resources)) {
       const page = await browser.newPage({
         viewport: {
@@ -94,11 +87,18 @@ const getTweets = async () => {
       })
 
       await page.goto(
-        `https://twitter.com/search?${qs.stringify({
-          q: `"${city}" ${searchTerm} since:${since} min_retweets:10 -filter:replies -requirement -needed -needs -need -required -from:IndiaToday -from:LiveLawIndia -from:ANI -from:PTI_NEWS -from:TOIMumbai -from:BDUTT -from:VtvGujarati`,
-          src: "typed_query",
-          f: "live",
-        })}`,
+        `https://twitter.com/search?` +
+          qs.stringify({
+            q: [
+              `"${city}"`,
+              searchTerm,
+              `since:${since}`,
+              "min_retweets:10 -filter:replies -requirement -needed -needs -need -required",
+              filterAccounts.map((account) => `-from:${account}`).join(" "),
+            ].join(" "),
+            src: "typed_query",
+            f: "live",
+          }),
         {
           waitUntil: "networkidle",
         }
@@ -128,7 +128,7 @@ const getTweets = async () => {
 
       for (const { tweetUrl, time } of tweets) {
         const metadata = getDataFromTweetUrl(tweetUrl)
-        setObject[metadata.tweetId] = {
+        newTweets[metadata.tweetId] = {
           ...metadata,
           location: {
             [city]: true,
@@ -150,12 +150,8 @@ const getTweets = async () => {
       await page.close()
     }
   }
-
-  await tweetsDoc.set(setObject, {
-    merge: true,
-  })
   await browser.close()
-  return { tweets: (await tweetsDoc.get()).data(), cities }
+  return newTweets
 }
 
 module.exports.getTweets = getTweets

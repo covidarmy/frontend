@@ -1,6 +1,6 @@
 const admin = require("firebase-admin")
 
-const projectId = process.env.NEXT_PUBLIC_FB_PROJECT_ID
+const projectId = process.env.FB_PROJECT_ID
 const privateKey = process.env.FB_PRIVATE_KEY
 const clientEmail = process.env.FB_CLIENT_EMAIL
 

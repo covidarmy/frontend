@@ -12,7 +12,7 @@ function App({ Component, pageProps }) {
       <DefaultSeo {...defaultSeoProps} />
       <NextGA
         disabled={!isProduction}
-        trackingId={process.env.NEXT_PUBLIC_FB_MEASUREMENT_ID}
+        trackingId={process.env.NEXT_PUBLIC_GA_TRACKING_ID}
       >
         <Component {...pageProps} />
       </NextGA>

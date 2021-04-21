@@ -54,8 +54,10 @@ export const getTweets = async () => {
   const ref = store.doc("main/tweets")
   const tweets = (await ref.get()).data()
   return Object.entries(tweets).reduce((acc, [id, metadata]) => {
-    const createdAt = /** @type {import("firebase").default.firestore.Timestamp} */ (metadata.createdAt)
-    const postedAt = /** @type {import("firebase").default.firestore.Timestamp} */ (metadata.postedAt)
+    /** @type {import("firebase").default.firestore.Timestamp} */
+    const createdAt = metadata.createdAt
+    /** @type {import("firebase").default.firestore.Timestamp} */
+    const postedAt = metadata.postedAt
     acc[id] = {
       ...metadata,
       createdAt: createdAt.toDate().toISOString(),

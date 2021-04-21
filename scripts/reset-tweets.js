@@ -1,10 +1,5 @@
 require("dotenv").config()
 const { store, firebaseAdmin } = require("../src/lib/firebase-admin")
-const {
-  default: {
-    firestore: { Timestamp },
-  },
-} = require("firebase")
 
 ;(async () => {
   const doc = store.doc("main/tweets")
@@ -14,6 +9,5 @@ const {
     if (!metadata.postedAt)
       filtered[id] = firebaseAdmin.firestore.FieldValue.delete()
   }
-  //   doc.update(filtered)
-  console.log((await doc.get()).data())
+  doc.update(filtered)
 })()

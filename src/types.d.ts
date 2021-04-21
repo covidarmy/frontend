@@ -8,3 +8,6 @@ export type Tweet = {
   votes: number
   postedAt: string
 }
+
+export type Cities = Record<string, boolean>
+export type Resources = Record<string, string>
