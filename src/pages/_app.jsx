@@ -8,12 +8,15 @@ import "react-static-tweets/styles.css"
 
 function App({ Component, pageProps }) {
   return (
-    <NextGA
-      disabled={!isProduction}
-      trackingId={process.env.NEXT_PUBLIC_FB_MEASUREMENT_ID}
-    >
-      <Component {...pageProps} />
-    </NextGA>
+    <>
+      <DefaultSeo {...defaultSeoProps} />
+      <NextGA
+        disabled={!isProduction}
+        trackingId={process.env.NEXT_PUBLIC_FB_MEASUREMENT_ID}
+      >
+        <Component {...pageProps} />
+      </NextGA>
+    </>
   )
 }
 
