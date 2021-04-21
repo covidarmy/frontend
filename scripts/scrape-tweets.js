@@ -25,16 +25,5 @@ const filterAccounts = [
 ;(async () => {
   /** @type {import("../src/types").Cities} */
   const cities = (await store.doc("main/cities").get()).data()
-  const newTweets = await getTweets(cities, resources, filterAccounts)
-  for (const city of Object.keys(cities)) {
-    const filtered = Object.entries(newTweets).reduce((acc, [id, data]) => {
-      if (cur.location[city] === true) {
-        acc[id] = data
-      }
-      return acc
-    }, {})
-    await store.doc("data/" + city).set(filtered, {
-      merge: true,
-    })
-  }
+  await getTweets(cities, resources, filterAccounts)
 })()

@@ -1,4 +1,5 @@
 const qs = require("querystringify")
+const { store } = require("./firebase-admin")
 
 const exePath =
   "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
@@ -142,24 +143,27 @@ const getTweets = async (cities, resources, filterAccounts) => {
 
       for (const { tweetUrl, time } of tweets) {
         const metadata = getDataFromTweetUrl(tweetUrl)
-        newTweets[metadata.tweetId] = {
-          ...metadata,
-          location: {
-            [city]: true,
+        await store.doc("main/tweets").set(
+          {
+            [metadata.tweetId]: {
+              ...metadata,
+              location: {
+                [city]: true,
+              },
+              for: {
+                [title]: true,
+              },
+              show: true,
+              status: "available",
+              votes: 0,
+              postedAt: new Date(time),
+              createdAt: new Date(),
+            },
           },
-          for: {
-            ...cityArr.reduce((acc, cur) => {
-              acc[cur] = false
-              return acc
-            }, {}),
-            [title]: true,
-          },
-          show: true,
-          status: "available",
-          votes: 0,
-          postedAt: new Date(time),
-          createdAt: new Date(),
-        }
+          {
+            merge: true,
+          }
+        )
       }
       await page.close()
     }
@@ -168,7 +172,6 @@ const getTweets = async (cities, resources, filterAccounts) => {
     console.log("Cities to go: ", cityArr.length - done)
   }
   await browser.close()
-  return newTweets
 }
 
 module.exports.getTweets = getTweets
