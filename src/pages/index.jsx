@@ -235,6 +235,6 @@ export const getStaticProps = async () => {
         .filter((tweet) => tweet.show),
       cities: Object.keys(cities),
     },
-    revalidate: 600,
+    revalidate: 300,
   }
 }
