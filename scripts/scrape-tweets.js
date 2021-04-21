@@ -25,5 +25,9 @@ const filterAccounts = [
 ;(async () => {
   /** @type {import("../src/types").Cities} */
   const cities = (await store.doc("main/cities").get()).data()
-  await getTweets(cities, resources, filterAccounts)
+  await getTweets(
+    process.env.CITY ? { [process.env.CITY]: true } : cities,
+    resources,
+    filterAccounts
+  )
 })()

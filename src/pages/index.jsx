@@ -9,6 +9,7 @@ import {
   HiChevronDoubleDown,
   HiOutlineInformationCircle,
 } from "react-icons/hi"
+import useSWR from "swr"
 
 /**
  * @typedef {Object} Props
@@ -19,9 +20,16 @@ import {
 /**
  * @param {Props} props
  */
-export default function Home({ tweets, cities }) {
+export default function Home({ tweets: initialTweets, cities }) {
   const router = useRouter()
-  const [filtered, setFiltered] = React.useState(tweets)
+  const { data: tweets } = useSWR(
+    "tweets",
+    () => fetch("/api/tweets").then((res) => res.json()),
+    {
+      refreshInterval: 60,
+    }
+  )
+  const [filtered, setFiltered] = React.useState(initialTweets)
   const [currentFilter, setCurrentFilter] = React.useState("all")
   const [votes, setVotes] = React.useState({})
   const [limit, setLimit] = React.useState(20)
