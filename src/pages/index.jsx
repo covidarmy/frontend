@@ -17,18 +17,31 @@ import useSWR from "swr"
  * @property {string[]} cities
  */
 
+const tweetsFetcher = (url) =>
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      if (url === "/api/tweets") {
+        return data.map((item) => {
+          item.postedAt = new Date(item.postedAt._seconds * 1000).toISOString()
+          item.createdAt = new Date(
+            item.createdAt._seconds * 1000
+          ).toISOString()
+          return item
+        })
+      }
+      return data
+    })
+
 /**
  * @param {Props} props
  */
 export default function Home({ tweets: initialTweets, cities }) {
   const router = useRouter()
-  const { data: tweets } = useSWR(
-    "tweets",
-    () => fetch("/api/tweets").then((res) => res.json()),
-    {
-      refreshInterval: 60,
-    }
-  )
+  const { data: tweets, mutate } = useSWR("/api/tweets", tweetsFetcher, {
+    refreshInterval: 60,
+    initialData: initialTweets,
+  })
   const [filtered, setFiltered] = React.useState(initialTweets)
   const [currentFilter, setCurrentFilter] = React.useState("all")
   const [votes, setVotes] = React.useState({})
@@ -36,7 +49,6 @@ export default function Home({ tweets: initialTweets, cities }) {
 
   React.useEffect(() => {
     const savedVotes = localStorage.getItem("votes")
-    console.log(savedVotes)
     if (!savedVotes) {
       localStorage.setItem("votes", JSON.stringify({}))
       setVotes({})
@@ -48,18 +60,22 @@ export default function Home({ tweets: initialTweets, cities }) {
   React.useEffect(() => {
     if (router.query.city) {
       setFiltered(
-        tweets.filter((i) =>
-          Object.keys(i.location).includes(
-            /** @type {string} */ (router.query.city)
+        tweets
+          .filter((i) =>
+            Object.keys(i.location).includes(
+              /** @type {string} */ (router.query.city)
+            )
           )
-        )
+          .sort((a, b) => {
+            return -a.postedAt.localeCompare(b.postedAt)
+          })
       )
       setCurrentFilter(/** @type {string} */ (router.query.city))
     } else {
       setFiltered(tweets)
       setCurrentFilter("all")
     }
-  }, [router.query])
+  }, [router.query, tweets])
 
   const showMore = () => {
     if (limit + 20 < filtered.length) {
@@ -103,6 +119,7 @@ export default function Home({ tweets: initialTweets, cities }) {
       JSON.stringify(typeof savedVotes === "object" ? savedVotes : {})
     )
     setVotes(JSON.parse(localStorage.getItem("votes")))
+    mutate()
   }
 
   return (
@@ -161,7 +178,6 @@ export default function Home({ tweets: initialTweets, cities }) {
           {React.useMemo(
             () =>
               filtered
-                .sort((a, b) => -a.postedAt.localeCompare(b.postedAt))
                 .slice(0, limit + 1)
                 .map(({ tweetId, votes: voteCount }) => {
                   return (

@@ -76,7 +76,7 @@ const getTweets = async (cities, resources, filterAccounts) => {
     .split("-")
     .map((i) => parseInt(i))
   const since = `${year}-${month}-${date - 1}`
-  const newTweets = {}
+  let newTweets = 0
   let done = 0
   const cityArr = Object.keys(cities).sort()
 
@@ -164,6 +164,7 @@ const getTweets = async (cities, resources, filterAccounts) => {
             merge: true,
           }
         )
+        newTweets += 1
       }
       await page.close()
     }
