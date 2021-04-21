@@ -28,7 +28,7 @@ export const requestCity = async (city) => {
  * @param {boolean} downvote
  */
 export const voteTweet = async (tweetId, downvote) => {
-  const doc = store.doc("tweets")
+  const doc = store.doc("main/tweets")
   const data = (await doc.get()).data()
   const tweet = Object.entries(data).filter(
     ([id, metadata]) => metadata.tweetId === tweetId

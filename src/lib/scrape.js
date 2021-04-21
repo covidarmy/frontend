@@ -61,7 +61,6 @@ const getTweets = async () => {
     ? await require("playwright-core").chromium.launch({
         executablePath: exePath,
         args: minimal_args,
-        headless: false,
       })
     : await require("playwright-aws-lambda").launchChromium({ headless: true })
 
@@ -92,7 +91,7 @@ const getTweets = async () => {
 
       await page.goto(
         `https://twitter.com/search?${qs.stringify({
-          q: `"${city}" ${searchTerm} since:${since} min_retweets:10 -filter:replies -requirement -needed -needs -need -required -from:IndiaToday -from:LiveLawIndia -from:ANI -from:PTI_NEWS -from:TOIMumbai`,
+          q: `"${city}" ${searchTerm} since:${since} min_retweets:10 -filter:replies -requirement -needed -needs -need -required -from:IndiaToday -from:LiveLawIndia -from:ANI -from:PTI_NEWS -from:TOIMumbai -from:BDUTT -from:VtvGujarati`,
           src: "typed_query",
           f: "live",
         })}`,
