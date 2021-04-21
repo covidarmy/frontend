@@ -1,4 +1,4 @@
-import { store } from "~/utils/firebase-admin"
+import { store } from "~/lib/firebase-admin"
 
 /**
  * @param {import("next").NextApiRequest} req

@@ -1,4 +1,4 @@
-import { voteTweet } from "~/utils/db"
+import { voteTweet } from "~/lib/db"
 
 /**
  * @param {import("next").NextApiRequest} req

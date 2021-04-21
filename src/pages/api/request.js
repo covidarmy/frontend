@@ -1,4 +1,4 @@
-import { requestCity } from "~/utils/db"
+import { requestCity } from "~/lib/db"
 
 /**
  * @param {import("next").NextApiRequest} req

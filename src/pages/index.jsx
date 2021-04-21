@@ -3,8 +3,8 @@ import { Tweet } from "react-static-tweets"
 import { useRouter } from "next/router"
 import Link from "next/link"
 import clsx from "clsx"
-import { store } from "~/utils/firebase-admin"
 import useSWR from "swr"
+import { getTweets } from "~/lib/scrape"
 
 /**
  * @typedef {Object} Tweet
@@ -120,9 +120,7 @@ export default function Home({ tweets: initialTweets, cities: initialCities }) {
  * @type {import("next").GetStaticProps}
  */
 export const getStaticProps = async (ctx) => {
-  const cities = (await store.doc("main/cities").get()).data()
-  const tweetsDoc = store.doc("main/tweets")
-  const tweets = (await tweetsDoc.get()).data()
+  const { cities, tweets } = await getTweets()
   const filteredTweets = Object.entries(tweets)
     .map(([id, metadata]) => {
       return {

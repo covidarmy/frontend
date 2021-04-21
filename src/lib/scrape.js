@@ -1,8 +1,5 @@
-import chromium from "chrome-aws-lambda"
-import puppeteer from "puppeteer-core"
-import qs from "querystring"
-import { store } from "./firebase-admin"
-import { subDays, format } from "date-fns"
+const qs = require("querystringify")
+const { store } = require("./firebase-admin")
 
 const exePath =
   "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
@@ -46,44 +43,7 @@ const minimal_args = [
   "--use-mock-keychain",
 ]
 
-const blocked_domains = ["googlesyndication.com", "adservice.google.com"]
-
-const launchPuppeteer = async () => {
-  process.env.AWS_LAMBDA_FUNCTION_NAME =
-    process.env.AWS_LAMBDA_FUNCTION_NAME ?? "dummy"
-  const options = process.env.AWS_REGION
-    ? {
-        args: chromium.args,
-        executablePath: await chromium.executablePath,
-        headless: chromium.headless,
-        ignoreHTTPSErrors: true,
-      }
-    : {
-        args: minimal_args,
-        executablePath: exePath,
-      }
-  const browser = await puppeteer.launch(options)
-  return browser
-}
-
-/**
- * @param {import("puppeteer-core").Browser} browser
- */
-const newPage = async (browser) => {
-  const page = await browser.newPage()
-  await page.setViewport({ width: 1920, height: 1080 })
-  await page.setRequestInterception(true)
-  page.on("request", (request) => {
-    const url = request.url()
-    if (blocked_domains.some((domain) => url.includes(domain))) {
-      request.abort()
-    } else {
-      request.continue()
-    }
-  })
-
-  return { page }
-}
+const isLocal = typeof process.env.AWS_REGION === "undefined"
 
 /**
  * @param {string} tweetUrl
@@ -96,14 +56,30 @@ const getDataFromTweetUrl = (tweetUrl) => {
   return { username, tweetId, tweetUrl }
 }
 
-export const getTweets = async () => {
-  const browser = await launchPuppeteer()
-  const since = format(subDays(new Date(), 2), "yyyy-MM-dd")
+const getTweets = async () => {
+  const browser = isLocal
+    ? await require("playwright-core").chromium.launch({
+        executablePath: exePath,
+        args: minimal_args,
+      })
+    : await require("playwright-aws-lambda").launchChromium({ headless: true })
+
+  const [year, month, date] = new Date()
+    .toISOString()
+    .slice(0, 10)
+    .split("-")
+    .map((i) => parseInt(i))
+  const since = `${year}-${month}-${date - 2}`
   const cities = (await store.doc("main/cities").get()).data()
   const tweetsDoc = store.doc("main/tweets")
   const tweetsData = (await tweetsDoc.get()).data()
   for (const city of Object.keys(cities)) {
-    const { page } = await newPage(browser)
+    const page = await browser.newPage({
+      viewport: {
+        width: 1920,
+        height: 1080,
+      },
+    })
     await page.goto(
       `https://twitter.com/search?${qs.stringify({
         q: `"${city}" (remdesivir OR remdesvir) since:${since} min_retweets:10 -filter:replies -requirement -needed -needs -need -required -from:IndiaToday -from:ANI -from:PTI_NEWS -from:TOIMumbai`,
@@ -111,7 +87,7 @@ export const getTweets = async () => {
         f: "live",
       })}`,
       {
-        waitUntil: "networkidle2",
+        waitUntil: "networkidle",
       }
     )
     const tweets = await page.evaluate(async () => {
@@ -156,3 +132,6 @@ export const getTweets = async () => {
   await browser.close()
   return { tweets: (await tweetsDoc.get()).data(), cities }
 }
+
+module.exports.getTweets = getTweets
+getTweets().catch((err) => console.log(err))
