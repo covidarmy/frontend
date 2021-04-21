@@ -71,7 +71,7 @@ export default function Home({ tweets: initialTweets, cities: initialCities }) {
         <div className="flex flex-col lg:flex-row items-center justify-center space-y-6 lg:space-y-0 lg:space-x-16">
           <span className="text-lg font-semibold">Filters</span>
           <div className="h-8 border-r hidden lg:block border-gray-600" />
-          <span className="flex items-center justify-center space-x-6">
+          <span className="flex items-center justify-center gap-6 flex-wrap">
             <Link href="/">
               <div
                 className={clsx([
@@ -86,18 +86,18 @@ export default function Home({ tweets: initialTweets, cities: initialCities }) {
             </Link>
             {cities.map((i) => {
               return (
-                <button
-                  key={i}
-                  className={clsx([
-                    "rounded-md px-4 py-1 flex items-center justify-center shadow-md border border-gray-200 select-none transition duration-100 ease-in-out font-medium cursor-pointer focus:outline-none",
-                    currentFilter === i
-                      ? "bg-gray-600 text-white"
-                      : "bg-white hover:bg-gray-300",
-                  ])}
-                  onClick={() => router.push(`/?city=${i}`)}
-                >
-                  {i}
-                </button>
+                <Link key={i} href={`/?city=${i}`}>
+                  <div
+                    className={clsx([
+                      "rounded-md px-4 py-1 flex items-center justify-center shadow-md border border-gray-200 select-none transition duration-100 ease-in-out font-medium cursor-pointer focus:outline-none",
+                      currentFilter === i
+                        ? "bg-gray-600 text-white"
+                        : "bg-white hover:bg-gray-300",
+                    ])}
+                  >
+                    {i}
+                  </div>
+                </Link>
               )
             })}
           </span>
