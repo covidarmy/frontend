@@ -9,7 +9,7 @@ import {
   HiArrowUp,
   HiOutlineInformationCircle,
 } from "react-icons/hi"
-import { getTweets } from "~/lib/db"
+import { getCities, getTweets } from "~/lib/db"
 
 /**
  * @typedef {Object} Props
@@ -177,7 +177,7 @@ export default function Home({ tweets, cities }) {
  */
 export const getStaticProps = async (ctx) => {
   const tweets = await getTweets()
-  const cities = (await store.doc("main/cities").get()).data()
+  const cities = await getCities()
 
   return {
     props: {

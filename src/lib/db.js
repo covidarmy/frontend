@@ -62,3 +62,7 @@ export const getTweets = async () => {
     return acc
   }, {})
 }
+
+export const getCities = async () => {
+  return (await store.doc("main/cities").get()).data()
+}

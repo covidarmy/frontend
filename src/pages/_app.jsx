@@ -9,11 +9,12 @@ import "react-static-tweets/styles.css"
 function App({ Component, pageProps }) {
   return (
     <>
-      {isProduction && (
-        <NextGA trackingId={process.env.NEXT_PUBLIC_GA_TRACKING_ID} />
-      )}
-      <DefaultSeo {...defaultSeoProps} />
-      <Component {...pageProps} />
+      <NextGA
+        disabled={!isProduction}
+        trackingId={process.env.NEXT_PUBLIC_GA_TRACKING_ID}
+      >
+        <Component {...pageProps} />
+      </NextGA>
     </>
   )
 }
