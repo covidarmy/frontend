@@ -27,9 +27,12 @@ export default function Home({ tweets, cities }) {
 
   React.useEffect(() => {
     const savedVotes = localStorage.getItem("votes")
+    console.log(savedVotes)
     if (!savedVotes) {
       localStorage.setItem("votes", JSON.stringify({}))
       setVotes({})
+    } else {
+      setVotes(JSON.parse(savedVotes))
     }
   }, [])
 
@@ -49,16 +52,24 @@ export default function Home({ tweets, cities }) {
     }
   }, [router.query])
 
+  /**
+   * @param {string} tweetId
+   * @param {boolean} vote
+   */
   const vote = (tweetId, vote = true) => () => {
-    const savedVotes = localStorage.getItem("votes")
-    localStorage.setItem(
-      "votes",
-      JSON.stringify({
-        ...JSON.parse(savedVotes ?? "{}"),
-        [tweetId]: vote,
-      })
-    )
-    setVotes(JSON.parse(localStorage.getItem("votes")))
+    let savedVotes = localStorage.getItem("votes")
+    savedVotes = JSON.parse(savedVotes)
+
+    if (vote && votes[tweetId] === true) {
+      delete savedVotes[tweetId]
+      vote = false
+    }
+
+    if (!vote && votes[tweetId] === false) {
+      delete savedVotes[tweetId]
+      vote = true
+    }
+
     fetch(vote ? "/api/upvote" : "/api/downvote", {
       method: "post",
       headers: {
@@ -69,6 +80,15 @@ export default function Home({ tweets, cities }) {
         tweetId,
       }),
     })
+
+    localStorage.setItem(
+      "votes",
+      JSON.stringify({
+        ...(typeof savedVotes === "object" ? savedVotes : {}),
+        [tweetId]: vote,
+      })
+    )
+    setVotes(JSON.parse(localStorage.getItem("votes")))
   }
 
   return (
@@ -137,16 +157,25 @@ export default function Home({ tweets, cities }) {
                       <Tweet id={tweetId} />
                       <div className="flex w-full items-center justify-center h-12 gap-4 lg:w-1/3">
                         <div className="text-lg px-4 flex items-center justify-center">
-                          <span>{voteCount}</span>
+                          <span>
+                            {typeof votes[tweetId] === "undefined"
+                              ? voteCount
+                              : votes[tweetId] === true
+                              ? voteCount + 1
+                              : votes[tweetId] === false
+                              ? voteCount - 1
+                              : voteCount}
+                          </span>
                         </div>
                         <div className="flex w-full items-center justify-center flex-grow gap-2">
                           <button
                             className={clsx([
                               "flex items-center w-full justify-center border-green-500 h-12 border rounded-md gap-2 focus:outline-none",
-                              votes[tweetId] === true && "bg-green-500",
+                              typeof votes[tweetId] === "boolean" &&
+                                votes[tweetId] === true &&
+                                "bg-green-500",
                             ])}
-                            disabled={typeof votes[tweetId] !== "undefined"}
-                            onClick={vote(tweetId, true)}
+                            onClick={vote(tweetId, false)}
                           >
                             <HiArrowUp className="h-5 w-5" />
                           </button>
@@ -155,8 +184,7 @@ export default function Home({ tweets, cities }) {
                               "flex w-full items-center justify-center border-red-500 h-12 border rounded-md gap-2 focus:outline-none",
                               votes[tweetId] === false && "bg-red-400",
                             ])}
-                            disabled={typeof votes[tweetId] === "undefined"}
-                            onClick={vote(tweetId, false)}
+                            onClick={vote(tweetId, true)}
                           >
                             <HiArrowDown className="h-5 w-5" />
                           </button>

@@ -11,7 +11,12 @@ export default async (req, res) => {
   switch (req.method) {
     case "POST": {
       const tweetId = /** @type {string} */ (req.body.tweetId)
-      return await voteTweet(tweetId, false)
+      const test = await voteTweet(tweetId, false)
+      if (test) {
+        res.status(204).end()
+      } else {
+        res.status(500).end()
+      }
     }
     default:
       res.status(405).end()
