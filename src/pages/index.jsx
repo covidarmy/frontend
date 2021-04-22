@@ -60,6 +60,7 @@ export default function Home({ tweets: initialTweets, cities }) {
 
   React.useEffect(() => {
     if (router.query.city) {
+      mutate()
       setFiltered(
         tweets.filter((i) =>
           Object.keys(i.location).includes(

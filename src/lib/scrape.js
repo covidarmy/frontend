@@ -135,7 +135,7 @@ const getTweets = async (cities, resources, filterAccounts) => {
 
       for (const { tweetUrl, time } of tweets) {
         const metadata = getDataFromTweetUrl(tweetUrl)
-        await store.doc("main/tweets").set(
+        await store.doc(`tweets/${year}-${month}-${date}`).set(
           {
             [metadata.tweetId]: {
               ...metadata,

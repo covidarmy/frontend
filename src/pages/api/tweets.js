@@ -1,7 +1,7 @@
 import NextCors from "nextjs-cors"
 import { isProduction } from "~/constants"
 import { store } from "~/lib/firebase-admin"
-import { getCities } from "~/lib/db"
+import { getCities, getTweets } from "~/lib/db"
 
 /**
  * @param {import("next").NextApiRequest} req
@@ -17,14 +17,7 @@ export default async (req, res) => {
     case "GET": {
       const city = req.query?.city
       const resource = req.query?.resource
-      let tweets = Object.entries((await store.doc("main/tweets").get()).data())
-        .map(([id, metadata]) => {
-          return {
-            id,
-            ...metadata,
-          }
-        })
-        .filter((i) => i.show)
+      let tweets = Object.values(await getTweets())
       if (typeof city === "string") {
         const cities = await getCities()
         if (typeof cities[city])
