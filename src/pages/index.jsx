@@ -63,10 +63,6 @@ export default function Home({
   }, [])
 
   React.useEffect(() => {
-    console.log(cityResources)
-  }, [cityResources])
-
-  React.useEffect(() => {
     let _tweets = tweets
     if (router.query.city) {
       const city = /** @type {string} */ (router.query.city)
