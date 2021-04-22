@@ -132,8 +132,9 @@ export default function Home({
         <div className="w-full border-b lg:block border-gray-600" />
         <div className="text-2xl font-semibold">Additional Resources</div>
         <dl className="border border-b-0 overflow-hidden border-gray-400 rounded-md">
-          {Object.entries(cityResources.common).map(
-            ([title, link], index, arr) => {
+          {Object.entries(cityResources.common)
+            .sort()
+            .map(([title, link]) => {
               return (
                 <AdditionaResourceItem title={title}>
                   <a
@@ -145,11 +146,11 @@ export default function Home({
                   </a>
                 </AdditionaResourceItem>
               )
-            }
-          )}
+            })}
           {cityResources[locationFilter] &&
-            Object.entries(cityResources[locationFilter]).map(
-              ([title, link], index, arr) => {
+            Object.entries(cityResources[locationFilter])
+              .sort()
+              .map(([title, link]) => {
                 return (
                   <AdditionaResourceItem title={title}>
                     <a
@@ -161,8 +162,7 @@ export default function Home({
                     </a>
                   </AdditionaResourceItem>
                 )
-              }
-            )}
+              })}
         </dl>
         <div className="w-full border-b lg:block border-gray-600" />
         <div className="text-2xl font-semibold">Tweets</div>
