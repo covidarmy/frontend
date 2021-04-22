@@ -6,6 +6,7 @@ import { HiArrowDown, HiArrowUp, HiChevronDoubleDown } from "react-icons/hi"
 import useSWR, { mutate } from "swr"
 import LocationFilter from "~/components/LocationFilter"
 import ResourceFilter from "~/components/ResourceFilter"
+import AdditionaResourceItem from "~/components/AdditionalResourceItem"
 
 /**
  * @typedef {Object} Props
@@ -42,34 +43,31 @@ export default function Home({
 }) {
   const router = useRouter()
   const { data: tweets } = useSWR("/api/tweets", fetcher, {
-    refreshInterval: 60,
+    refreshInterval: 120,
     initialData: initialTweets,
+    revalidateOnFocus: false,
   })
   const { data: cityResources } = useSWR("/api/city-resources", fetcher, {
-    refreshInterval: 60,
+    refreshInterval: 120,
     initialData: initialCityResources,
+    revalidateOnFocus: false,
   })
   const [filtered, setFiltered] = React.useState(initialTweets)
   const [locationFilter, setLocationFilter] = React.useState("all")
   const [resourceFilter, setResourceFilter] = React.useState("all")
-  const [votes, setVotes] = React.useState({})
   const [limit, setLimit] = React.useState(20)
 
   React.useEffect(() => {
     mutate("/api/tweets")
     mutate("/api/city-resources")
-    const savedVotes = localStorage.getItem("votes")
-    if (!savedVotes) {
-      localStorage.setItem("votes", JSON.stringify({}))
-      setVotes({})
-    } else {
-      setVotes(JSON.parse(savedVotes))
-    }
   }, [])
 
   React.useEffect(() => {
+    console.log(cityResources)
+  }, [cityResources])
+
+  React.useEffect(() => {
     let _tweets = tweets
-    console.log(router.query)
     if (router.query.city) {
       const city = /** @type {string} */ (router.query.city)
       mutate("/api/tweets")
@@ -87,7 +85,6 @@ export default function Home({
       /** @type {string} */
       const resource = router.query.resource
       _tweets = _tweets.filter((tweet) => {
-        console.log(tweet.for)
         return tweet.for[resource] === true
       })
       setResourceFilter(/** @type {string} */ (router.query.resource))
@@ -132,6 +129,41 @@ export default function Home({
         <LocationFilter filter={locationFilter} data={cities} />
         <div className="w-full border-b lg:block border-gray-600" />
         <ResourceFilter filter={resourceFilter} data={resources} />
+        <div className="w-full border-b lg:block border-gray-600" />
+        <div className="text-2xl font-semibold">Additional Resources</div>
+        <dl className="border border-b-0 overflow-hidden border-gray-400 rounded-md">
+          {Object.entries(cityResources.common).map(
+            ([title, link], index, arr) => {
+              return (
+                <AdditionaResourceItem title={title}>
+                  <a
+                    target="_blank"
+                    href={link}
+                    className="text-blue-600 hover:underline"
+                  >
+                    {link}
+                  </a>
+                </AdditionaResourceItem>
+              )
+            }
+          )}
+          {cityResources[locationFilter] &&
+            Object.entries(cityResources[locationFilter]).map(
+              ([title, link], index, arr) => {
+                return (
+                  <AdditionaResourceItem title={title}>
+                    <a
+                      target="_blank"
+                      href={link}
+                      className="text-blue-600 hover:underline"
+                    >
+                      {link}
+                    </a>
+                  </AdditionaResourceItem>
+                )
+              }
+            )}
+        </dl>
         <div className="w-full border-b lg:block border-gray-600" />
         <div className="text-2xl font-semibold">Tweets</div>
         <div className="flex flex-col space-y-12 w-5/6">
