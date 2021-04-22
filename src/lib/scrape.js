@@ -58,7 +58,6 @@ const getDataFromTweetUrl = (tweetUrl) => {
  */
 const getTweets = async (cities, resources, filterAccounts) => {
   const browser = await require("playwright").chromium.launch({
-    executablePath: exePath,
     args: minimal_args,
     headless: process.env.HEADLESS === "false" ? false : true,
   })
