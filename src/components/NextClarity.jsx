@@ -1,16 +1,9 @@
-import * as React from "react"
-import "../styles/index.css"
-import "inter-ui/inter.css"
-import { DefaultSeo } from "next-seo"
-import { defaultSeoProps, isProduction } from "~/constants"
-import NextGA from "~/components/NextGA"
-import "react-static-tweets/styles.css"
 import Head from "next/head"
+import { isProduction } from "~/constants"
 
-function App({ Component, pageProps }) {
+export default function NextClarity() {
   return (
     <>
-      <DefaultSeo {...defaultSeoProps} />
       {isProduction && (
         <Head>
           <script
@@ -25,14 +18,6 @@ function App({ Component, pageProps }) {
           ></script>
         </Head>
       )}
-      <NextGA
-        disabled={!isProduction}
-        trackingId={process.env.NEXT_PUBLIC_GA_TRACKING_ID}
-      >
-        <Component {...pageProps} />
-      </NextGA>
     </>
   )
 }
-
-export default App
