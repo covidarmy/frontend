@@ -189,7 +189,9 @@ export default function Home({
           )}
         </button>
         <div className="w-full border-b lg:block border-gray-600" />
-        <div className="text-2xl font-semibold">Tweets</div>
+        <div id="tweets" className="text-2xl font-semibold">
+          Tweets
+        </div>
         <div className="flex flex-col space-y-12 w-5/6">
           {React.useMemo(
             () =>
