@@ -136,7 +136,7 @@ export default function Home({
             .sort()
             .map(([title, link]) => {
               return (
-                <AdditionaResourceItem title={title}>
+                <AdditionaResourceItem title={title} key={`${title}-${link}`}>
                   <a
                     target="_blank"
                     href={link}
@@ -152,7 +152,7 @@ export default function Home({
               .sort()
               .map(([title, link]) => {
                 return (
-                  <AdditionaResourceItem title={title}>
+                  <AdditionaResourceItem title={title} key={`${title}-${link}`}>
                     <a
                       target="_blank"
                       href={link}
