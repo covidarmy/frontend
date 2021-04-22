@@ -80,3 +80,11 @@ export const getTweets = async () => {
 export const getCities = async () => {
   return (await store.doc("main/cities").get()).data()
 }
+
+export const getResources = async () => {
+  return (await store.doc("main/resources").get()).data()
+}
+
+export const getCityResources = async () => {
+  return (await store.doc("main/city_resources").get()).data()
+}

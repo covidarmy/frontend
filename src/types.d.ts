@@ -11,3 +11,4 @@ export type Tweet = {
 
 export type Cities = Record<string, boolean>
 export type Resources = Record<string, string>
+export type CityResources = Record<string, Record<string, string>>
