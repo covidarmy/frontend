@@ -1,9 +1,6 @@
 const qs = require("querystringify")
 const { store } = require("./firebase-admin")
 
-const exePath =
-  "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
-
 // https://www.bannerbear.com/blog/ways-to-speed-up-puppeteer-screenshots/
 const minimal_args = [
   "--autoplay-policy=user-gesture-required",
@@ -43,8 +40,6 @@ const minimal_args = [
   "--use-mock-keychain",
 ]
 
-const isLocal = typeof process.env.AWS_REGION === "undefined"
-
 /**
  * @param {string} tweetUrl
  */
@@ -62,13 +57,11 @@ const getDataFromTweetUrl = (tweetUrl) => {
  * @param {string[]} filterAccounts
  */
 const getTweets = async (cities, resources, filterAccounts) => {
-  const browser = isLocal
-    ? await require("playwright-core").chromium.launch({
-        executablePath: exePath,
-        args: minimal_args,
-        headless: process.env.HEADLESS === "false" ? false : true,
-      })
-    : await require("playwright-aws-lambda").launchChromium({ headless: true })
+  const browser = await require("playwright").chromium.launch({
+    executablePath: exePath,
+    args: minimal_args,
+    headless: process.env.HEADLESS === "false" ? false : true,
+  })
 
   const [year, month, date] = new Date()
     .toISOString()
