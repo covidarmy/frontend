@@ -2,7 +2,13 @@ import * as React from "react"
 import { Tweet } from "react-static-tweets"
 import { useRouter } from "next/router"
 import clsx from "clsx"
-import { HiArrowDown, HiArrowUp, HiChevronDoubleDown } from "react-icons/hi"
+import {
+  HiArrowDown,
+  HiArrowUp,
+  HiChevronDoubleDown,
+  HiChevronDown,
+  HiChevronUp,
+} from "react-icons/hi"
 import useSWR, { mutate } from "swr"
 import LocationFilter from "~/components/LocationFilter"
 import ResourceFilter from "~/components/ResourceFilter"
@@ -56,6 +62,7 @@ export default function Home({
   const [locationFilter, setLocationFilter] = React.useState("all")
   const [resourceFilter, setResourceFilter] = React.useState("all")
   const [limit, setLimit] = React.useState(20)
+  const [showAdditional, setShowAdditional] = React.useState(false)
 
   React.useEffect(() => {
     mutate("/api/tweets")
@@ -127,24 +134,9 @@ export default function Home({
         <ResourceFilter filter={resourceFilter} data={resources} />
         <div className="w-full border-b lg:block border-gray-600" />
         <div className="text-2xl font-semibold">Additional Resources</div>
-        <dl className="border border-b-0 overflow-hidden border-gray-400 rounded-md">
-          {Object.entries(cityResources.common)
-            .sort()
-            .map(([title, link]) => {
-              return (
-                <AdditionaResourceItem title={title} key={`${title}-${link}`}>
-                  <a
-                    target="_blank"
-                    href={link}
-                    className="text-blue-600 hover:underline"
-                  >
-                    {link}
-                  </a>
-                </AdditionaResourceItem>
-              )
-            })}
-          {cityResources[locationFilter] &&
-            Object.entries(cityResources[locationFilter])
+        {showAdditional && (
+          <dl className="border border-b-0 overflow-hidden border-gray-400 rounded-md">
+            {Object.entries(cityResources.common)
               .sort()
               .map(([title, link]) => {
                 return (
@@ -159,7 +151,43 @@ export default function Home({
                   </AdditionaResourceItem>
                 )
               })}
-        </dl>
+            {cityResources[locationFilter] &&
+              Object.entries(cityResources[locationFilter])
+                .sort()
+                .map(([title, link]) => {
+                  return (
+                    <AdditionaResourceItem
+                      title={title}
+                      key={`${title}-${link}`}
+                    >
+                      <a
+                        target="_blank"
+                        href={link}
+                        className="text-blue-600 hover:underline"
+                      >
+                        {link}
+                      </a>
+                    </AdditionaResourceItem>
+                  )
+                })}
+          </dl>
+        )}
+        <button
+          onClick={() => setShowAdditional((prev) => !prev)}
+          className="text-indigo-600 bg-indigo-200 px-2 py-2 flex items-center justify-center rounded-md hover:bg-indigo-300 focus:outline-none transition duration-75 ease-in gap-2"
+        >
+          {!showAdditional ? (
+            <>
+              <HiChevronDown className="h-6 w-6" />
+              <span>Show additional resources</span>
+            </>
+          ) : (
+            <>
+              <HiChevronUp className="h-6 w-6" />
+              <span>Hide additional resources</span>
+            </>
+          )}
+        </button>
         <div className="w-full border-b lg:block border-gray-600" />
         <div className="text-2xl font-semibold">Tweets</div>
         <div className="flex flex-col space-y-12 w-5/6">
