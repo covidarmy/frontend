@@ -1,15 +1,7 @@
 import * as React from "react"
 import { Tweet } from "react-static-tweets"
 import { useRouter } from "next/router"
-import clsx from "clsx"
-import {
-  HiArrowDown,
-  HiArrowUp,
-  HiChevronDoubleDown,
-  HiChevronDown,
-  HiChevronUp,
-} from "react-icons/hi"
-import useSWR, { mutate } from "swr"
+import { HiChevronDoubleDown, HiChevronDown, HiChevronUp } from "react-icons/hi"
 import LocationFilter from "~/components/LocationFilter"
 import ResourceFilter from "~/components/ResourceFilter"
 import AdditionaResourceItem from "~/components/AdditionalResourceItem"
@@ -41,47 +33,22 @@ const fetcher = (url) =>
 /**
  * @param {Props} props
  */
-export default function Home({
-  tweets: initialTweets,
-  cities,
-  resources,
-  cityResources: initialCityResources,
-}) {
+export default function Home({ tweets, cities, resources, cityResources }) {
   const router = useRouter()
-  const { data: tweets } = useSWR("/api/tweets", fetcher, {
-    refreshInterval: 120,
-    initialData: initialTweets,
-    revalidateOnFocus: false,
-  })
-  const { data: cityResources } = useSWR("/api/city-resources", fetcher, {
-    refreshInterval: 120,
-    initialData: initialCityResources,
-    revalidateOnFocus: false,
-  })
-  const [filtered, setFiltered] = React.useState(initialTweets)
+  const [filtered, setFiltered] = React.useState(tweets)
   const [locationFilter, setLocationFilter] = React.useState("all")
   const [resourceFilter, setResourceFilter] = React.useState("all")
   const [limit, setLimit] = React.useState(20)
   const [showAdditional, setShowAdditional] = React.useState(false)
 
   React.useEffect(() => {
-    mutate("/api/tweets")
-    mutate("/api/city-resources")
-  }, [])
-
-  React.useEffect(() => {
     let _tweets = tweets
     if (router.query.city) {
       const city = /** @type {string} */ (router.query.city)
-      mutate("/api/tweets")
       _tweets = _tweets.filter((i) => Object.keys(i.location).includes(city))
       setLocationFilter(/** @type {string} */ (router.query.city))
     } else {
       setLocationFilter("all")
-    }
-    if (router.query.resource) {
-      mutate("/api/city-resources")
-    } else {
     }
 
     if (typeof router.query.resource === "string") {
@@ -95,9 +62,7 @@ export default function Home({
       setResourceFilter("all")
     }
 
-    if (_tweets !== tweets) {
-      setFiltered(_tweets)
-    }
+    setFiltered(_tweets)
   }, [router.query, tweets])
 
   const showMore = () => {
@@ -110,11 +75,11 @@ export default function Home({
 
   return (
     <>
-      <div className="w-screen min-h-screen overflow-hidden flex flex-col items-center justify-start space-y-8 pt-6 pb-6">
+      <div className="w-screen min-h-screen overflow-hidden flex flex-col items-center justify-start space-y-4 lg:space-y-8 pt-6 pb-6">
         <h1 className="text-2xl font-bold text-center">
           Covid India Twitter Resources
         </h1>
-        <span className="lg:text-lg mx-4 lg:mx-0">
+        <span className="lg:text-lg mx-4 lg:mx-0 text-sm">
           Tweets are updated every 10 minutes. If you can't find your
           location/city/resource here or want to report a bug: please reach out
           on Twitter{" "}
@@ -133,7 +98,7 @@ export default function Home({
         <div className="w-full border-b lg:block border-gray-600" />
         <ResourceFilter filter={resourceFilter} data={resources} />
         <div className="w-full border-b lg:block border-gray-600" />
-        <div className="text-2xl font-semibold">Additional Resources</div>
+        <div className="text-lg font-semibold">Additional Resources</div>
         {showAdditional && (
           <dl className="border border-b-0 overflow-hidden border-gray-400 rounded-md">
             {Object.entries(cityResources.common)
@@ -174,7 +139,7 @@ export default function Home({
         )}
         <button
           onClick={() => setShowAdditional((prev) => !prev)}
-          className="text-indigo-600 bg-indigo-200 px-2 py-2 flex items-center justify-center rounded-md hover:bg-indigo-300 focus:outline-none transition duration-75 ease-in gap-2"
+          className="text-indigo-600 bg-indigo-200 px-0.5 py-0.5 lg:px-2 lg:py-2 flex items-center justify-center rounded-md focus:outline-none transition duration-75 ease-in gap-2"
         >
           {!showAdditional ? (
             <>
@@ -189,7 +154,9 @@ export default function Home({
           )}
         </button>
         <div className="w-full border-b lg:block border-gray-600" />
-        <div className="text-2xl font-semibold">Tweets</div>
+        <div id="tweets" className="text-xl font-semibold">
+          Tweets
+        </div>
         <div className="flex flex-col space-y-12 w-5/6">
           {React.useMemo(
             () =>
@@ -250,7 +217,7 @@ export const getStaticProps = async () => {
     getTweets,
     getResources,
     getCityResources,
-  } = require("../lib/db")
+  } = require("../lib/db.js")
   const tweets = await getTweets()
   const cities = await getCities()
   const resources = await getResources()

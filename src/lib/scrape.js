@@ -133,31 +133,30 @@ const getTweets = async (cities, resources, filterAccounts) => {
         })
       })
 
+      const setObject = {}
       for (const { tweetUrl, time } of tweets) {
         const metadata = getDataFromTweetUrl(tweetUrl)
-        await store.doc(`tweets/${time.slice(0, 10)}`).set(
-          {
-            [metadata.tweetId]: {
-              ...metadata,
-              location: {
-                [city]: true,
-              },
-              for: {
-                [title]: true,
-              },
-              show: true,
-              status: "available",
-              votes: 0,
-              postedAt: new Date(time),
-              createdAt: new Date(),
-            },
+        setObject[metadata.tweetId] = {
+          ...metadata,
+          location: {
+            [city]: true,
           },
-          {
-            merge: true,
-          }
-        )
+          for: {
+            [title]: true,
+          },
+          show: true,
+          status: "available",
+          votes: 0,
+          postedAt: new Date(time),
+          createdAt: new Date(),
+        }
         newTweets += 1
       }
+
+      await store.doc(`tweets/${year}-${month}-${date}`).set(setObject, {
+        merge: true,
+      })
+
       console.log("Tweets added: ", newTweets)
       newTweets = 0
       await page.close()

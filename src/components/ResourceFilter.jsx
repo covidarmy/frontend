@@ -1,6 +1,8 @@
+import * as React from "react"
 import clsx from "clsx"
 import { useRouter } from "next/router"
 import Link from "next/link"
+import FilterButton from "./FilterButton"
 
 export default function ResourceFilter({ filter, data }) {
   const router = useRouter()
@@ -19,16 +21,7 @@ export default function ResourceFilter({ filter, data }) {
             query,
           }}
         >
-          <div
-            className={clsx([
-              "rounded-md px-4 py-1 flex items-center justify-center shadow-md border border-gray-200 select-none transition duration-100 ease-in-out font-medium",
-              filter === "all"
-                ? "bg-gray-600 text-white"
-                : "bg-white hover:bg-gray-300",
-            ])}
-          >
-            All
-          </div>
+          <FilterButton active={filter === "all"}>All</FilterButton>
         </Link>
         {Object.keys(data)
           .sort()
@@ -44,16 +37,9 @@ export default function ResourceFilter({ filter, data }) {
                   },
                 }}
               >
-                <div
-                  className={clsx([
-                    "rounded-md px-2 lg:px-4 py-1 flex items-center justify-center shadow-md border border-gray-200 select-none transition duration-100 ease-in-out font-medium cursor-pointer focus:outline-none",
-                    filter === resource
-                      ? "bg-gray-600 text-white"
-                      : "bg-white hover:bg-gray-300",
-                  ])}
-                >
+                <FilterButton active={filter === resource}>
                   {resource}
-                </div>
+                </FilterButton>
               </Link>
             )
           })}

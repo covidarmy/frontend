@@ -1,4 +1,5 @@
 require("dotenv").config()
+
 const { store } = require("../src/lib/firebase-admin")
 const { getTweets } = require("../src/lib/scrape")
 

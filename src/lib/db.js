@@ -1,10 +1,10 @@
-import uuid from "uuid"
-import { store } from "./firebase-admin"
+const uuid = require("uuid")
+const { store } = require("./firebase-admin")
 
 /**
  * @param {string} city
  */
-export const requestCity = async (city) => {
+const requestCity = async (city) => {
   const doc = store.doc("requested")
   const data = Object.values((await doc.get()).data())
 
@@ -27,7 +27,7 @@ export const requestCity = async (city) => {
  * @param {string} tweetId
  * @param {boolean} downvote
  */
-export const voteTweet = async (tweetId, downvote) => {
+const voteTweet = async (tweetId, downvote) => {
   const doc = store.doc("main/tweets")
   const data = (await doc.get()).data()
   const tweet = Object.entries(data).filter(
@@ -50,7 +50,7 @@ export const voteTweet = async (tweetId, downvote) => {
   }
 }
 
-export const getTweets = async () => {
+const getTweets = async () => {
   const ref = await store.collection("tweets").get()
   const tweets = ref.docs.reduce((acc, doc) => {
     acc = {
@@ -77,14 +77,23 @@ export const getTweets = async () => {
   }, {})
 }
 
-export const getCities = async () => {
+const getCities = async () => {
   return (await store.doc("main/cities").get()).data()
 }
 
-export const getResources = async () => {
+const getResources = async () => {
   return (await store.doc("main/resources").get()).data()
 }
 
-export const getCityResources = async () => {
+const getCityResources = async () => {
   return (await store.doc("main/city_resources").get()).data()
+}
+
+module.exports = {
+  getCities,
+  getCityResources,
+  getResources,
+  getTweets,
+  voteTweet,
+  requestCity,
 }
