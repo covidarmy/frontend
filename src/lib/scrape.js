@@ -153,7 +153,7 @@ const getTweets = async (cities, resources, filterAccounts) => {
         newTweets += 1
       }
 
-      await store.doc(`tweets/${time.slice(0, 10)}`).set(setObject, {
+      await store.doc(`tweets/${year}-${month}-${date}`).set(setObject, {
         merge: true,
       })
 

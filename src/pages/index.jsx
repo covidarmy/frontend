@@ -110,7 +110,7 @@ export default function Home({
 
   return (
     <>
-      <div className="w-screen min-h-screen overflow-hidden flex flex-col items-center justify-start space-y-8 pt-6 pb-6">
+      <div className="w-screen min-h-screen overflow-hidden flex flex-col items-center justify-start space-y-4 lg:space-y-8 pt-6 pb-6">
         <h1 className="text-2xl font-bold text-center">
           Covid India Twitter Resources
         </h1>
@@ -133,7 +133,7 @@ export default function Home({
         <div className="w-full border-b lg:block border-gray-600" />
         <ResourceFilter filter={resourceFilter} data={resources} />
         <div className="w-full border-b lg:block border-gray-600" />
-        <div className="text-2xl font-semibold">Additional Resources</div>
+        <div className="text-lg font-semibold">Additional Resources</div>
         {showAdditional && (
           <dl className="border border-b-0 overflow-hidden border-gray-400 rounded-md">
             {Object.entries(cityResources.common)
@@ -174,7 +174,7 @@ export default function Home({
         )}
         <button
           onClick={() => setShowAdditional((prev) => !prev)}
-          className="text-indigo-600 bg-indigo-200 px-2 py-2 flex items-center justify-center rounded-md hover:bg-indigo-300 focus:outline-none transition duration-75 ease-in gap-2"
+          className="text-indigo-600 bg-indigo-200 px-0.5 py-0.5 lg:px-2 lg:py-2 flex items-center justify-center rounded-md focus:outline-none transition duration-75 ease-in gap-2"
         >
           {!showAdditional ? (
             <>
@@ -189,7 +189,7 @@ export default function Home({
           )}
         </button>
         <div className="w-full border-b lg:block border-gray-600" />
-        <div id="tweets" className="text-2xl font-semibold">
+        <div id="tweets" className="text-xl font-semibold">
           Tweets
         </div>
         <div className="flex flex-col space-y-12 w-5/6">

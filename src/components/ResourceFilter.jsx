@@ -1,3 +1,4 @@
+import * as React from "react"
 import clsx from "clsx"
 import { useRouter } from "next/router"
 import Link from "next/link"
@@ -37,7 +38,7 @@ export default function ResourceFilter({ filter, data }) {
               <Link
                 key={resource}
                 href={{
-                  pathname: "/#tweets",
+                  href: "/#tweets",
                   query: {
                     resource,
                     ...query,
