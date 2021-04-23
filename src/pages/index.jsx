@@ -79,10 +79,6 @@ export default function Home({
     } else {
       setLocationFilter("all")
     }
-    if (router.query.resource) {
-      mutate("/api/city-resources")
-    } else {
-    }
 
     if (typeof router.query.resource === "string") {
       /** @type {string} */
