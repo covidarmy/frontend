@@ -21,7 +21,7 @@ export default function LocationFilter({ filter, data }) {
         <Link
           key={city}
           href={{
-            pathname: "/#tweets",
+            pathname: "/",
             query: {
               city,
               ...query,

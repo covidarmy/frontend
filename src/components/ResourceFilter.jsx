@@ -38,7 +38,7 @@ export default function ResourceFilter({ filter, data }) {
               <Link
                 key={resource}
                 href={{
-                  href: "/#tweets",
+                  pathname: "/",
                   query: {
                     resource,
                     ...query,
