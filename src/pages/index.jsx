@@ -1,15 +1,7 @@
 import * as React from "react"
 import { Tweet } from "react-static-tweets"
 import { useRouter } from "next/router"
-import clsx from "clsx"
-import {
-  HiArrowDown,
-  HiArrowUp,
-  HiChevronDoubleDown,
-  HiChevronDown,
-  HiChevronUp,
-} from "react-icons/hi"
-import useSWR, { mutate } from "swr"
+import { HiChevronDoubleDown, HiChevronDown, HiChevronUp } from "react-icons/hi"
 import LocationFilter from "~/components/LocationFilter"
 import ResourceFilter from "~/components/ResourceFilter"
 import AdditionaResourceItem from "~/components/AdditionalResourceItem"
@@ -50,15 +42,9 @@ export default function Home({ tweets, cities, resources, cityResources }) {
   const [showAdditional, setShowAdditional] = React.useState(false)
 
   React.useEffect(() => {
-    mutate("/api/tweets")
-    mutate("/api/city-resources")
-  }, [])
-
-  React.useEffect(() => {
     let _tweets = tweets
     if (router.query.city) {
       const city = /** @type {string} */ (router.query.city)
-      mutate("/api/tweets")
       _tweets = _tweets.filter((i) => Object.keys(i.location).includes(city))
       setLocationFilter(/** @type {string} */ (router.query.city))
     } else {

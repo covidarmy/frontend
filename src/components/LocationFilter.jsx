@@ -13,7 +13,16 @@ export default function LocationFilter({ filter, data }) {
     let _data = data.sort()
 
     if (!showMore) {
-      _data = ["Delhi", "Bangalore", "Chennai", "Mumbai", "Kolkata"]
+      _data = [
+        "Delhi",
+        "Bangalore",
+        "Chennai",
+        "Mumbai",
+        "Kolkata",
+        "Lucknow",
+        "Noida",
+        "Gurgaon",
+      ]
       if (filter !== "all" && !_data.includes(filter)) {
         _data = [..._data, filter]
       }
