@@ -14,6 +14,9 @@ export default function LocationFilter({ filter, data }) {
 
     if (!showMore) {
       _data = ["Delhi", "Bangalore", "Chennai", "Mumbai", "Kolkata"]
+      if (filter !== "all" && !_data.includes(filter)) {
+        _data = [..._data, filter]
+      }
     }
 
     return _data.map((city) => {
@@ -58,7 +61,7 @@ export default function LocationFilter({ filter, data }) {
           {!showMore ? (
             <>
               <HiChevronDown className="h-6 w-6" />
-              <span>Show more filters (Total filters {data.length})</span>
+              <span>Show more locations (Total: {data.length})</span>
             </>
           ) : (
             <>
