@@ -1,33 +1,19 @@
 const uuid = require("uuid")
-const { store } = require("./firebase-admin")
+const { connectToDatabase } = require("./mongo")
 
 /**
  * @param {string} city
  */
-const requestCity = async (city) => {
-  const doc = store.doc("requested")
-  const data = Object.values((await doc.get()).data())
-
-  if (!data.filter((i) => i.city.toLowercase() === city.toLowerCase()).length) {
-    return await doc.set(
-      {
-        [uuid.v4()]: {
-          city,
-          status: "requested",
-        },
-      },
-      {
-        merge: true,
-      }
-    )
-  }
+module.exports.addCity = async (city) => {
+  const db = await connectToDatabase()
 }
 
 /**
  * @param {string} tweetId
  * @param {boolean} downvote
  */
-const voteTweet = async (tweetId, downvote) => {
+module.exports.voteTweet = async (tweetId, downvote) => {
+  const db = await connectToDatabase()
   const doc = store.doc("main/tweets")
   const data = (await doc.get()).data()
   const tweet = Object.entries(data).filter(
@@ -50,7 +36,8 @@ const voteTweet = async (tweetId, downvote) => {
   }
 }
 
-const getTweets = async () => {
+module.exports.getTweets = async () => {
+  const db = await connectToDatabase()
   const ref = await store.collection("tweets").get()
   const tweets = ref.docs.reduce((acc, doc) => {
     acc = {
@@ -77,23 +64,14 @@ const getTweets = async () => {
   }, {})
 }
 
-const getCities = async () => {
+module.exports.getCities = async () => {
   return (await store.doc("main/cities").get()).data()
 }
 
-const getResources = async () => {
+module.exports.getResources = async () => {
   return (await store.doc("main/resources").get()).data()
 }
 
-const getCityResources = async () => {
+module.exports.getCityResources = async () => {
   return (await store.doc("main/city_resources").get()).data()
-}
-
-module.exports = {
-  getCities,
-  getCityResources,
-  getResources,
-  getTweets,
-  voteTweet,
-  requestCity,
 }
