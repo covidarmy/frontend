@@ -110,7 +110,7 @@ export default function Home({
         <h1 className="text-2xl font-bold text-center">
           Covid India Twitter Resources
         </h1>
-        <span className="lg:text-lg mx-4 lg:mx-0">
+        <span className="lg:text-lg mx-4 lg:mx-0 text-sm">
           Tweets are updated every 10 minutes. If you can't find your
           location/city/resource here or want to report a bug: please reach out
           on Twitter{" "}

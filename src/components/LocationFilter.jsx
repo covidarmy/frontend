@@ -1,8 +1,8 @@
 import * as React from "react"
-import clsx from "clsx"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { HiChevronDown, HiChevronUp } from "react-icons/hi"
+import FilterButton from "./FilterButton"
 
 export default function LocationFilter({ filter, data }) {
   const router = useRouter()
@@ -27,17 +27,9 @@ export default function LocationFilter({ filter, data }) {
               ...query,
             },
           }}
+          passHref
         >
-          <div
-            className={clsx([
-              "rounded-md px-2 lg:px-4 py-0.5 lg:py-1 flex items-center justify-center shadow-md border border-gray-200 select-none transition duration-100 ease-in-out font-medium cursor-pointer focus:outline-none",
-              filter === city
-                ? "bg-gray-600 text-white"
-                : "bg-white hover:bg-gray-300",
-            ])}
-          >
-            {city}
-          </div>
+          <FilterButton active={filter === city}>{city}</FilterButton>
         </Link>
       )
     })
@@ -56,16 +48,7 @@ export default function LocationFilter({ filter, data }) {
             query,
           }}
         >
-          <div
-            className={clsx([
-              "rounded-md px-1 lg:px-4 py-0.5 flex items-center justify-center shadow-md border border-gray-200 select-none transition duration-100 ease-in-out font-medium focus:outline-none",
-              filter === "all"
-                ? "bg-gray-600 text-white"
-                : "bg-white hover:bg-gray-300",
-            ])}
-          >
-            All
-          </div>
+          <FilterButton active={filter === "all"}>All</FilterButton>
         </Link>
         {renderButtons()}
         <button
