@@ -231,7 +231,7 @@ export const getStaticProps = async () => {
     getTweets,
     getResources,
     getCityResources,
-  } = require("../lib/db")
+  } = require("../lib/db.js")
   const tweets = await getTweets()
   const cities = await getCities()
   const resources = await getResources()

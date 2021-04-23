@@ -1,0 +1,9 @@
+{
+    "Remdesivir": "(remdesivir OR redesvir)",
+    "Favipiravir": "Favipiravir",
+    "Fabiflu": "fabiflu",
+    "Oxygen": "(\"oxygen\" OR \"oxygen cylinder\" OR \"oxygen bed\")",
+    "Ventilator": "(\"ventilator\" OR \"ventilator bed\") -\"no ventilator\"",
+    "Plasma": "(\"plasma\" OR \"plasma donor\")",
+    "Tocilizumab": "Tocilizumab"
+}
