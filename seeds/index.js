@@ -1,11 +1,14 @@
 require("dotenv").config()
-const { store } = require("../src/utils/firebase-admin")
+const { connectToDatabase } = require("../src/lib/mongo")
+const Tweet = require("../src/schemas/tweet")
+const City = require("../src/schemas/resource")
+const Resource = require("../src/schemas/city")
 const cities = require("./cities.json")
-const requested = require("./requested.json")
 const tweets = require("./tweets.json")
 
 ;(async () => {
-  await store.doc("main/tweets").set(tweets)
-  await store.doc("main/cities").set(cities)
-  await store.doc("main/requested").set(requested)
+  const db = await connectToDatabase()
+  for (const { tweetId: id } of Object.values(tweets)) {
+  }
+  console.log(Object.keys(tweets).length)
 })()

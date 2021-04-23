@@ -14,22 +14,6 @@ import AdditionaResourceItem from "~/components/AdditionalResourceItem"
  * @property {import("~/types").CityResources} cityResources
  */
 
-const fetcher = (url) =>
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      if (url === "/api/tweets") {
-        return data.map((item) => {
-          item.postedAt = new Date(item.postedAt._seconds * 1000).toISOString()
-          item.createdAt = new Date(
-            item.createdAt._seconds * 1000
-          ).toISOString()
-          return item
-        })
-      }
-      return data
-    })
-
 /**
  * @param {Props} props
  */
@@ -212,16 +196,25 @@ export default function Home({ tweets, cities, resources, cityResources }) {
  * @type {import("next").GetStaticProps<Props>}
  */
 export const getStaticProps = async () => {
-  const {
-    getCities,
-    getTweets,
-    getResources,
-    getCityResources,
-  } = require("../lib/db.js")
-  const tweets = await getTweets()
-  const cities = await getCities()
-  const resources = await getResources()
-  const cityResources = await getCityResources()
+  let tweets, cities, resources, cityResources
+
+  if (process.env.LOCAL_MODE === "true") {
+    tweets = require("../../seeds/tweets.json")
+    cities = require("../../seeds/cities.json")
+    resources = require("../../seeds/resources.json")
+    cityResources = require("../../seeds/city-resources.json")
+  } else {
+    const {
+      getCities,
+      getTweets,
+      getResources,
+      getCityResources,
+    } = require("../lib/db.js")
+    tweets = await getTweets()
+    cities = await getCities()
+    resources = await getResources()
+    cityResources = await getCityResources()
+  }
 
   return {
     props: {
