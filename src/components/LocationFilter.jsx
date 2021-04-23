@@ -75,7 +75,7 @@ export default function LocationFilter({ filter, data }) {
           ) : (
             <>
               <HiChevronUp className="h-6 w-6" />
-              <span>Show only top 10 filters</span>
+              <span>Show only top locations</span>
             </>
           )}
         </button>
