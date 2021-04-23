@@ -41,24 +41,9 @@ const fetcher = (url) =>
 /**
  * @param {Props} props
  */
-export default function Home({
-  tweets: initialTweets,
-  cities,
-  resources,
-  cityResources: initialCityResources,
-}) {
+export default function Home({ tweets, cities, resources, cityResources }) {
   const router = useRouter()
-  const { data: tweets } = useSWR("/api/tweets", fetcher, {
-    refreshInterval: 120,
-    initialData: initialTweets,
-    revalidateOnFocus: false,
-  })
-  const { data: cityResources } = useSWR("/api/city-resources", fetcher, {
-    refreshInterval: 120,
-    initialData: initialCityResources,
-    revalidateOnFocus: false,
-  })
-  const [filtered, setFiltered] = React.useState(initialTweets)
+  const [filtered, setFiltered] = React.useState(tweets)
   const [locationFilter, setLocationFilter] = React.useState("all")
   const [resourceFilter, setResourceFilter] = React.useState("all")
   const [limit, setLimit] = React.useState(20)
