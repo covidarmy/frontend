@@ -76,9 +76,7 @@ export default function Home({ tweets, cities, resources, cityResources }) {
       setResourceFilter("all")
     }
 
-    if (_tweets !== tweets) {
-      setFiltered(_tweets)
-    }
+    setFiltered(_tweets)
   }, [router.query, tweets])
 
   const showMore = () => {
