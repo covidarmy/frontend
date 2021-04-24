@@ -60,7 +60,7 @@ const fetchTweets = async ({ newestID }) => {
                 [resourceKey]: true,
               },
             }
-            const newTweet = new Tweet(tweetObj)
+            const newTweet = new TweetModel(tweetObj)
             newTweet.save((err) => {
               if (err) console.log(err)
               console.log("Tweet Saved!")
