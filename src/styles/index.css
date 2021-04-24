@@ -5,3 +5,12 @@
 body {
     font-family: 'Open Sans', sans-serif;
 }
+
+@media (max-width: 700px) {
+    .navbar {
+        margin-left: 45px;
+    }
+    .menu-btn {
+        margin-left: 100px;
+    }
+}

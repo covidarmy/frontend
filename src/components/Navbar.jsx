@@ -16,7 +16,7 @@ export default function Navbar() {
         {({ open }) => (
           <>
             <div className="max-w-7xl mx-auto lg:px-0 sm:px-6 ">
-              <div className="flex flex-row row h-16">
+              <div className="flex flex-row row h-16 navbar">
                 <div className="flex items-center justify-between lg:mx-20">
                   <div className="flex-shrink-0 ">
                       <div className='lg:flex lg:ml-8 mr-20 sm:ml-10'>
@@ -66,7 +66,7 @@ export default function Navbar() {
                 </div>
                 <div className="-mr-2 flex md:hidden">
                   {/* Mobile menu button */}
-                  <Disclosure.Button className="bg-gray-800 inline-flex items-center justify-center m-2 p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                  <Disclosure.Button className=" menu-btn bg-gray-800 inline-flex items-center justify-center m-2 p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                     <span className="sr-only">Open main menu</span>
                     {open ? (
                       <XIcon className="block h-6 w-6" aria-hidden="true" />
