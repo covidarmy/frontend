@@ -1,16 +1,10 @@
-const { MongoClient } = require("mongodb")
+import mongoose from "mongoose"
 
-const { MONGODB_URI, MONGODB_DB } = process.env
+const { MONGODB_URI } = process.env
 
 if (!MONGODB_URI) {
   throw new Error(
     "Please define the MONGODB_URI environment variable inside .env.local"
-  )
-}
-
-if (!MONGODB_DB) {
-  throw new Error(
-    "Please define the MONGODB_DB environment variable inside .env.local"
   )
 }
 
@@ -19,13 +13,13 @@ if (!MONGODB_DB) {
  * in development. This prevents connections growing exponentially
  * during API Route usage.
  */
-let cached = global.mongo
+let cached = global.mongoose
 
 if (!cached) {
-  cached = global.mongo = { conn: null, promise: null }
+  cached = global.mongoose = { conn: null, promise: null }
 }
 
-async function connectToDatabase() {
+const connectToDatabase = async () => {
   if (cached.conn) {
     return cached.conn
   }
@@ -34,13 +28,14 @@ async function connectToDatabase() {
     const opts = {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      bufferCommands: false,
+      bufferMaxEntries: 0,
+      useFindAndModify: false,
+      useCreateIndex: true,
     }
 
-    cached.promise = MongoClient.connect(MONGODB_URI, opts).then((client) => {
-      return {
-        client,
-        db: client.db(MONGODB_DB),
-      }
+    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
+      return mongoose
     })
   }
   cached.conn = await cached.promise

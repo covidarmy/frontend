@@ -1,5 +1,5 @@
 const { connectToDatabase } = require("./mongo")
-const Tweet = require("~/schemas/tweet")
+const TweetModel = require("../schemas/tweet")
 
 if (!process.env.VERCEL) {
   const fetch = require("node-fetch")
@@ -7,23 +7,18 @@ if (!process.env.VERCEL) {
 
 /**
  * @param {Object} params
- * @param {import("~/types").Cities} params.cities
- * @param {import("~/types").Resources} params.resources
- * @param {string[]} params.filterAccounts
  * @param {any} params.newestID
  * @returns {Promise<void>}
  */
-module.exports.fetchTweets = async ({
-  cities,
-  resources,
-  filterAccounts,
-  newestID,
-}) => {
-  const MAX_RESULTS = 10
+const fetchTweets = async ({ newestID }) => {
+  const MAX_RESULTS = 20
   const NUM_CYCLES = 1
   const db = connectToDatabase()
   //Ref URL:
   //https://api.twitter.com/2/tweets/search/recent?query=verified mumbai (bed OR beds OR icu OR oxygen OR ventilator OR ventilators OR fabiflu OR remdesivir OR favipiravir OR tocilizumab OR plasma OR tiffin) -"not verified" -"unverified" -"needed" -"required" -"urgent" -"urgentlyrequired" -"help"&max_results=10&tweet.fields=created_at
+
+  const cities = require("../../seeds/cities.json")
+  const resources = require("../../seeds/resources.json")
 
   const baseUrl = newestID
     ? `https://api.twitter.com/2/tweets/search/recent?since_id=${newestID}&query=`
@@ -80,3 +75,6 @@ module.exports.fetchTweets = async ({
     }
   }
 }
+
+fetchTweets()
+module.exports.fetchTweets = fetchTweets
