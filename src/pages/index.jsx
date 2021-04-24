@@ -20,13 +20,7 @@ export default function Home({ cities, tweets, resources }) {
   return (
     <div className="container">
       <Navbar />
-      <Dashboard />
-      {/* <div className="w-screen min-h-screen overflow-hidden flex flex-col  justify-start space-y-4 lg:space-y-8 pb-6">
-        <div className="w-full border-b lg:block border-gray-600" />
-        <LocationFilter filter={locationFilter} data={cities} />
-        <div className="w-full border-b lg:block border-gray-600" />
-        <ResourceFilter filter={resourceFilter} data={resources} /> 
-       </div> */}
+      <Dashboard cities={cities} resources={resources} />
     </div>
   )
 }

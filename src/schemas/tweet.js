@@ -16,4 +16,6 @@ const schema = new mongoose.Schema(
   { timestamps: true }
 )
 
-module.exports = mongoose.model("Tweet", schema)
+const model = mongoose.model("Tweet", schema)
+
+module.exports = model
