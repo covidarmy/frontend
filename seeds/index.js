@@ -15,7 +15,16 @@ const resources = require("./resources.json")
         name,
         searchTerm: data,
       })
-      await newData.save()
+      
+      Resource.find({name: newData.name}, (err, docs) => {
+        if(!docs.length){
+          await newData.save()
+        }else{
+          console.log("Resource Already Exists:", this.name)
+          throw new Error("Resource Already Exists!")
+        }
+      })
+
     }
   }
 
@@ -25,7 +34,15 @@ const resources = require("./resources.json")
       const newData = new City({
         name,
       })
-      await newData.save()
+
+      City.find({name: newData.name}, (err, docs) => {
+        if(!docs.length){
+          await newData.save()
+        }else{
+          console.log("City Already Exists:", this.name)
+          throw new Error("City Already Exists!")
+        }
+      })
     }
   }
 
