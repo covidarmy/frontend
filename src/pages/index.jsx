@@ -1,10 +1,7 @@
 import * as React from "react"
-import { Tweet } from "react-static-tweets"
 import { useRouter } from "next/router"
-import { HiChevronDoubleDown, HiChevronDown, HiChevronUp } from "react-icons/hi"
 import LocationFilter from "~/components/LocationFilter"
 import ResourceFilter from "~/components/ResourceFilter"
-import AdditionaResourceItem from "~/components/AdditionalResourceItem"
 
 /**
  * @typedef {Object} Props
