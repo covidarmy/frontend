@@ -1,17 +1,23 @@
 const mongoose = require("mongoose")
 
-const tweetSchema = new mongoose.Schema(
+const schema = mongoose.Schema(
   {
     id: String,
-    show: Boolean,
+    show: { type: Boolean, default: true },
     url: String,
     postedAt: String,
-    status: String,
-    votes: Number,
+    authorId: String,
+    retweetCount: Number,
+    replyCount: Number,
+    status: {
+      available: Number,
+      busy: Number,
+      invalid: Number,
+    },
     location: mongoose.Schema.Types.Mixed,
     resource: mongoose.Schema.Types.Mixed,
   },
   { timestamps: true }
 )
 
-module.exports = mongoose.model("Tweet", tweetSchema)
+module.exports = mongoose.model("Tweet", schema)
