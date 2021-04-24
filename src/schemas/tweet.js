@@ -11,7 +11,7 @@ const schema = new mongoose.Schema(
     replyCount: Number,
     location: mongoose.Schema.Types.Mixed,
     resource: mongoose.Schema.Types.Mixed,
-    status: 0,
+    status: {type: Number, default: 0},
   },
   { timestamps: true }
 )
