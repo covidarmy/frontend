@@ -1,9 +1,9 @@
 {
-  "Remdesivir": "(remdesivir OR redesvir)",
-  "Favipiravir": "Favipiravir",
-  "Fabiflu": "fabiflu",
+  "Remdesivir": "(remdesivir OR remdesvir)",
+  "Favipiravir": "(Favipiravir OR Cipvir OR Favipill OR Favilow OR Avigan OR Araflu OR Fevindo OR Fluguard OR Faviblu OR Fapvir OR FabiFlu OR Faviflu)",
   "Oxygen": "(\"oxygen\" OR \"oxygen cylinder\" OR \"oxygen bed\")",
   "Ventilator": "(\"ventilator\" OR \"ventilator bed\") -\"no ventilator\"",
   "Plasma": "(\"plasma\" OR \"plasma donor\")",
-  "Tocilizumab": "Tocilizumab"
+  "Tocilizumab": "(tocilizumab OR tocilizuman OR itolizumab)",
+  "ICU": "(ICU or ICU beds)"
 }

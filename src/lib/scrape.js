@@ -98,8 +98,8 @@ const scrape = async ({ newestID = null }) => {
           if (retweetCount >= 10) {
             const tweetResources = []
             for (const key of searchTerm) {
-              const tweetText = tweet.text.replace(/#(S)/g, " ")
-              if (tweetText.text.includes(key)) {
+              tweet.text = tweet.text.replace(/#(S)/g, " ").toLowerCase().trim()
+              if (tweet.text.includes(key.trim().toLowerCase())) {
                 tweetResources.push(key.toLowerCase())
               }
             }
@@ -111,32 +111,23 @@ const scrape = async ({ newestID = null }) => {
         }
       newestID = json.meta.newest_id
     } catch (error) {
-      // if (response.status === 429) {
-      //   const json = await response.json()
-      //   await new Promise((resolve) => setTimeout(resolve, 1000))
-      //   if (json.data)
-      //     for (const tweet of json.data) {
-      //       const retweetCount = tweet.public_metrics.retweet_count
-      //       if (retweetCount >= 10) {
-      //         toSave.push(buildTweetObject(tweet, city, resourceKey))
-      //       }
-      //     }
-      // } else {
       console.log(`\n===Error!===\n${error}\n`)
       console.log("Response:", response)
-      // }
     }
-    console.log(toSave)
-    await TweetModel.insertMany(toSave, (err, docs) => {
-      if (err) {
-        console.log("Error Saving the Documents")
-      } else {
-        console.log("All Documents Saved!")
+    try {
+      let newTweets = 0
+      for (const tweet of toSave) {
+        const isSaved = await TweetModel.findOne({ id: tweet.id })
+        if (!isSaved) {
+          await TweetModel.create([tweet])
+          newTweets++
+        }
       }
-    })
+      console.log(`Saved ${newTweets} Documents`)
+    } catch {
+      console.log("Error Saving the Documents")
+    }
   }
-  if (!process.env.VERCEL) await db.disconnect()
 }
 
-scrape({})
-module.exports = scrape
+module.exports = { scrape }

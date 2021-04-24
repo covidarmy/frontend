@@ -1,22 +1,24 @@
 const CityPage = ({ tweets, resources, cities }) => {
-  return <></>
+  return <>{JSON.stringify(tweets)}</>
 }
 
 /**
  * @type {import("next").GetStaticProps<{}, { slug: Array<string> }>}
  */
 export const getStaticProps = async (ctx) => {
-  const CityModel = require("../schemas/city")
-  const ResourceModel = require("../schemas/resource")
+  const { connectToDatabase } = require("../lib/mongo")
+  await connectToDatabase()
   const TweetModel = require("../schemas/tweet")
-  const scrape = require("../lib/scrape")
-  const cities = await CityModel.find({})
-  const resources = await ResourceModel.find({})
+  const cities = require("seeds/cities.json")
+  const resources = require("seeds/resources.json")
   const { slug } = ctx.params
   /** @type {Object[]} */
   let tweets = await TweetModel.find({})
 
-  await scrape({})
+  tweets = tweets.map((item) => {
+    const { _id, __v, createdAt, updatedAt, ...doc } = item._doc
+    return doc
+  })
 
   // /city route
   if (slug.length === 1) {
@@ -29,7 +31,7 @@ export const getStaticProps = async (ctx) => {
   if (slug.length === 2) {
     tweets = Object.values(tweets).filter((tweet) => {
       return (
-        typeof tweet.for[slug[1]] !== "undefined" &&
+        typeof tweet.resource[slug[1]] !== "undefined" &&
         typeof tweet.location[slug[0]] !== "undefined"
       )
     })
@@ -41,14 +43,14 @@ export const getStaticProps = async (ctx) => {
       resources,
       cities,
     },
-    revalidate: 300,
+    revalidate: 60,
   }
 }
 
 /**
  * @type {import("next").GetStaticPaths}
  */
-export const getStaticPaths = async (ctx) => {
+export const getStaticPaths = async () => {
   const resources = require("seeds/resources.json")
   const cities = require("seeds/cities.json")
   const paths = []

@@ -26,17 +26,18 @@ export default function Home({ cities }) {
 }
 
 export const getStaticProps = async () => {
-  let cities
-  if (process.env.LOCAL === "true") {
-    cities = Object.keys(require("seeds/cities.json"))
-  } else {
-    const CityModel = require("../schemas/city")
-    cities = await CityModel.find({})
-  }
+  const { getAllTweets } = require("../lib/db")
+  const { scrape } = require("../lib/scrape")
+  const cities = Object.keys(require("seeds/cities.json"))
+
+  await scrape({})
+  const tweets = await getAllTweets()
+
   return {
     props: {
+      tweets,
       cities,
     },
-    revalidate: 60,
+    revalidate: 120,
   }
 }
