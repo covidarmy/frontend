@@ -12,6 +12,7 @@
     "@headlessui/react": "^1.0.0",
     "@heroicons/react": "^1.0.1",
     "bootstrap": "^4.6.0",
+    "clipboard": "^2.0.8",
     "clsx": "^1.1.1",
     "date-fns": "^2.21.1",
     "dotenv": "^8.2.0",
