@@ -1,1 +1,4 @@
-export default async () => {}
+/**
+ * @type {import("next").NextApiHandler}
+ */
+export default async (req, res) => {}
