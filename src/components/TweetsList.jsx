@@ -18,7 +18,7 @@ const TweetsList = React.memo(({ data }) => {
         return (
           <div
             key={tweetId}
-            className="w-full flex flex-col items-center justify-center space-y-4"
+            className="w-full flex flex-col items-center justify-center space-y-4 my-2"
           >
             <Tweet id={tweetId} />
           </div>
@@ -39,3 +39,5 @@ const TweetsList = React.memo(({ data }) => {
     </div>
   )
 })
+
+export default TweetsList
