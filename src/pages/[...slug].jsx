@@ -3,19 +3,31 @@ const CityPage = ({ tweets, resources, cities }) => {
 }
 
 /**
- * @type {import("next").GetStaticProps<{}, { city: string, resource: string }>}
+ * @type {import("next").GetStaticProps<{}, { slug: Array<string> }>}
  */
 export const getStaticProps = async (ctx) => {
-  console.log(ctx)
   const tweets = require("seeds/tweets.json")
   const resources = require("seeds/resources.json")
   const cities = require("seeds/cities.json")
-  const { resource, city } = ctx.params
-  const filtered = Object.values(tweets).filter(
-    (tweet) =>
-      typeof tweet.for[resource] !== "undefined" &&
-      typeof tweet.location[city] !== "undefined"
-  )
+  const { slug } = ctx.params
+  let filtered = []
+
+  // /city route
+  if (slug.length === 1) {
+    filtered = Object.values(tweets).filter(
+      (tweet) => typeof tweet.location[slug[0]] !== "undefined"
+    )
+  }
+
+  // Nested /city/resource route
+  if (slug.length === 2) {
+    filtered = Object.values(tweets).filter(
+      (tweet) =>
+        typeof tweet.for[slug[1]] !== "undefined" &&
+        typeof tweet.location[slug[0]] !== "undefined"
+    )
+  }
+
   return {
     props: {
       tweets: filtered,
@@ -46,8 +58,6 @@ export const getStaticPaths = async (ctx) => {
       })
     })
   })
-
-  console.log(paths)
 
   return {
     paths,
