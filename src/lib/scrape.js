@@ -98,7 +98,8 @@ const scrape = async ({ newestID = null }) => {
           if (retweetCount >= 10) {
             const tweetResources = []
             for (const key of searchTerm) {
-              if (tweet.text.includes(key)) {
+              const tweetText = tweet.text.replace(/#(S)/g, " ")
+              if (tweetText.text.includes(key)) {
                 tweetResources.push(key.toLowerCase())
               }
             }
@@ -126,7 +127,13 @@ const scrape = async ({ newestID = null }) => {
       // }
     }
     console.log(toSave)
-    // await TweetModel.create(toSave)
+    await TweetModel.insertMany(toSave, (err, docs) => {
+      if (err) {
+        console.log("Error Saving the Documents")
+      } else {
+        console.log("All Documents Saved!")
+      }
+    })
   }
   if (!process.env.VERCEL) await db.disconnect()
 }
