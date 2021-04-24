@@ -1,10 +1,12 @@
 import { useRouter } from "next/router"
 import * as React from "react"
+import ClipboardJS from "clipboard"
 import { Tweet } from "react-static-tweets"
 import {
   ThumbUpIcon,
   ThumbDownIcon,
   DuplicateIcon,
+  ShareIcon,
 } from "@heroicons/react/outline"
 
 /**
@@ -14,12 +16,35 @@ const TweetsList = React.memo(({ data }) => {
   const router = useRouter()
   const { slug } = router.query
 
+  let shareApiSupported = false
+  if (typeof window !== "undefined" && window.navigator?.share) {
+    shareApiSupported = true
+  }
+
+  const handleCopyOrShare = (link) => {
+    if (typeof window !== "undefined" && window.navigator?.share) {
+      navigator.share({
+        title: "Thanks for sharing!",
+        url: link,
+      })
+    } else {
+      const clipboard = new ClipboardJS(".copy-btn", {
+        text: function (trigger) {
+          return trigger.getAttribute("data-tweet-url")
+        },
+      })
+
+      clipboard.on("success", () => clipboard.destroy())
+      clipboard.on("error", () => clipboard.destroy())
+    }
+  }
+
   return data.length > 0 ? (
     data
       .sort((a, b) => {
         return -a.postedAt.localeCompare(b.postedAt)
       })
-      .map(({ tweetId, votes: voteCount }) => {
+      .map(({ tweetId, tweetUrl, votes: voteCount }) => {
         return (
           <div
             key={tweetId}
@@ -45,9 +70,22 @@ const TweetsList = React.memo(({ data }) => {
                 </div>
               </div>
               <div>
-                <div className="text-gray-500 text-xs text-center hover:cursor-pointer">
-                  <DuplicateIcon className="w-8" />
-                  <p className="text-gray-400 text-xs">Copy</p>
+                <div
+                  className="text-gray-500 text-xs text-center hover:cursor-pointer copy-btn"
+                  data-tweet-url={tweetUrl}
+                  onClick={() => handleCopyOrShare(tweetUrl)}
+                >
+                  {shareApiSupported ? (
+                    <>
+                      <ShareIcon className="w-8" />
+                      <p className="text-gray-400 text-xs">Share</p>
+                    </>
+                  ) : (
+                    <>
+                      <DuplicateIcon className="w-8" />
+                      <p className="text-gray-400 text-xs">Copy Link</p>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
