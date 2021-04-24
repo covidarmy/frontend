@@ -1,5 +1,15 @@
+import TweetsList from "~/components/TweetsList"
+
 const CityPage = ({ tweets, resources, cities }) => {
-  return <></>
+  return (
+    <div>
+      <div className="px-4 pt-6 pb-6 text-2xl border-b-2">
+        Showing <strong>{tweets?.length} Results</strong> for{" "}
+        <strong>{"Oxygen"}</strong> in <strong>{"Mumbai"}</strong>
+      </div>
+      <TweetsList data={tweets} />
+    </div>
+  )
 }
 
 /**
