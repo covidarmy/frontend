@@ -25,7 +25,7 @@ const fetchTweets = async ({ newestID = null }) => {
     for (const resourceKey in resources) {
       const url =
         baseUrl +
-        `verified ${city} ${resources[resourceKey]} -"requirement" -"needed" -"needs" -"need" -"not verified" -"unverified" -"required" -"urgent" -"urgentlyrequired" -"help"&max_results=${MAX_RESULTS}&tweet.fields=created_at,public_metrics&expansions=author_id`
+        `verified ${city} ${resources[resourceKey]} -"requirement" -"needed" -"needs" -"need" -"not verified" -"unverified" -"required" -"urgent" -"urgentlyrequired" -"help" -is:retweet -is:reply -is:quote&max_results=${MAX_RESULTS}&tweet.fields=created_at,public_metrics&expansions=author_id`
 
       const response = await fetch(url, {
         method: "GET",
