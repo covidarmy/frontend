@@ -7,11 +7,11 @@ const schema = new mongoose.Schema(
     url: String,
     postedAt: String,
     authorId: String,
-    retweetCount: Number,
-    replyCount: Number,
+    retweetCount: { type: Number, default: 0 },
+    replyCount: { type: Number, default: 0 },
+    status: { type: Number, default: 0 },
     location: mongoose.Schema.Types.Mixed,
     resource: mongoose.Schema.Types.Mixed,
-    status: 0,
   },
   { timestamps: true }
 )
