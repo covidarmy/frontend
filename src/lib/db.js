@@ -48,13 +48,13 @@ module.exports.getTweets = async (city, resource) => {
   await connectToDatabase()
   var query = {}
   if (typeof city === "string" && typeof resource === "string") {
-    let key1 = "location." + CityModel
+    let key1 = "location." + city
     query[key1] = true
 
     let key2 = "for." + resource
     query[key2] = true
   } else if (typeof city === "string") {
-    let key = "location." + CityModel
+    let key = "location." + city
     query[key] = true
   } else if (typeof resource === "string") {
     let key = "for." + resource
