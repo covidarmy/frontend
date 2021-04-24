@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const schema = mongoose.Schema(
+const schema = new mongoose.Schema(
   {
     id: String,
     show: { type: Boolean, default: true },
@@ -9,13 +9,9 @@ const schema = mongoose.Schema(
     authorId: String,
     retweetCount: Number,
     replyCount: Number,
-    status: {
-      available: Number,
-      busy: Number,
-      invalid: Number,
-    },
     location: mongoose.Schema.Types.Mixed,
     resource: mongoose.Schema.Types.Mixed,
+    status: 0,
   },
   { timestamps: true }
 )

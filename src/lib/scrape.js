@@ -35,12 +35,6 @@ module.exports.fetchTweets = async ({
         const url =
           baseUrl +
           `verified ${city} ${resources[resourceKey]} -"not verified" -"unverified" -"needed" -"required" -"urgent" -"urgentlyrequired" -"help"&max_results=${MAX_RESULTS}&tweet.fields=created_at,public_metrics&expansions=author_id`
-        console.log("======")
-        console.log("Newest ID:", newestID)
-        console.log("Total Fetched Tweets:", fetchedTweets)
-        console.log("Fetching:", url)
-        console.log("======")
-
         const response = await fetch(url, {
           method: "GET",
           headers: {
@@ -75,7 +69,6 @@ module.exports.fetchTweets = async ({
             newTweet.save((err) => {
               if (err) console.log(err)
               console.log("Tweet Saved!")
-              fetchedTweets++
             })
           }
           newestID = data.meta.newest_id
