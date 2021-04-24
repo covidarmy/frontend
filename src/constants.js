@@ -1,7 +1,9 @@
 export const isProduction = process.env.NODE_ENV === "production"
 export const corsOptions = {
   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-  origin: isProduction ? ["arnavgosain.com", "vercel.app"] : "localhost",
+  origin: isProduction
+    ? ["covid.army", "covidresources.vercel.app"]
+    : "localhost",
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
