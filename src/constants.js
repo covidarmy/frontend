@@ -1,4 +1,5 @@
 export const isProduction = process.env.NODE_ENV === "production"
+
 export const corsOptions = {
   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   origin: isProduction
@@ -9,8 +10,8 @@ export const corsOptions = {
 
 /** @type {import("next-seo").DefaultSeoProps} */
 export const defaultSeoProps = {
-  title: "Covid India Twitter Resources",
-  description: "Latest verified covid 19 information from Twitter",
+  title: "Covid.army",
+  description: "Verified Real Time List of COVID-19 Resources and Aid",
 }
 
 /** @type {import("next-seo").DefaultSeoProps} */

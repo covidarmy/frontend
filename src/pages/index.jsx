@@ -1,27 +1,33 @@
 import * as React from "react"
+import { useRouter } from "next/router"
+import LocationFilter from "~/components/LocationFilter"
+import ResourceFilter from "~/components/ResourceFilter"
+import Navbar from "~/components/Navbar"
+import { Dashboard } from "~/components/Dashboard"
 
-export default function Home({ cities }) {
+/**
+ * @typedef {Object} Props
+ * @property {any} tweets
+ * @property {string[]} cities
+ * @property {import("~/types").Resources} resources
+ * @property {import("~/types").CityResources} cityResources
+ */
+
+/**
+ * @param {Props} props
+ */
+export default function Home({ cities, tweets, resources }) {
   return (
-    <>
-      <div className="w-screen min-h-screen overflow-hidden flex flex-col items-center justify-start space-y-4 lg:space-y-8 pt-6 pb-6">
-        <h1 className="text-2xl font-bold text-center">
-          Covid India Twitter Resources
-        </h1>
-        <span className="lg:text-lg mx-4 lg:mx-0 text-sm">
-          Tweets are updated every 10 minutes. If you can't find your
-          location/city/resource here or want to report a bug: please reach out
-          on Twitter
-          <a
-            target="_blank"
-            href="https://twitter.com/arn4v"
-            className="text-blue-600"
-          >
-            @arn4v
-          </a>
-          .
-        </span>
-      </div>
-    </>
+    <div className="container">
+      <Navbar />
+      <Dashboard />
+      {/* <div className="w-screen min-h-screen overflow-hidden flex flex-col  justify-start space-y-4 lg:space-y-8 pb-6">
+        <div className="w-full border-b lg:block border-gray-600" />
+        <LocationFilter filter={locationFilter} data={cities} />
+        <div className="w-full border-b lg:block border-gray-600" />
+        <ResourceFilter filter={resourceFilter} data={resources} /> 
+       </div> */}
+    </div>
   )
 }
 
@@ -29,6 +35,7 @@ export const getStaticProps = async () => {
   const { getAllTweets } = require("../lib/db")
   const { scrape } = require("../lib/scrape")
   const cities = Object.keys(require("seeds/cities.json"))
+  const resources = Object.keys(require("seeds/resources.json"))
 
   await scrape({})
   const tweets = await getAllTweets()
@@ -37,6 +44,7 @@ export const getStaticProps = async () => {
     props: {
       tweets,
       cities,
+      resources,
     },
     revalidate: 120,
   }
