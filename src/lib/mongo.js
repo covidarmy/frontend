@@ -19,6 +19,9 @@ if (!cached) {
   cached = global.mongoose = { conn: null, promise: null }
 }
 
+/**
+ * @returns {Promise<typeof import("mongoose")>}
+ */
 const connectToDatabase = async () => {
   if (cached.conn) {
     return cached.conn

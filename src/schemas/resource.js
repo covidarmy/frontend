@@ -10,4 +10,4 @@ const schema = new mongoose.Schema(
   }
 )
 
-module.exports = mongoose.model("City", schema)
+module.exports = mongoose.model("Resource", schema)
