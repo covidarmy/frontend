@@ -37,7 +37,7 @@ export const getStaticProps = async () => {
   const cities = Object.keys(require("seeds/cities.json"))
   const resources = Object.keys(require("seeds/resources.json"))
 
-  await scrape({})
+  if (process.env.NODE_ENV === "production") await scrape({})
   const tweets = await getAllTweets()
 
   return {
