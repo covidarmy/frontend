@@ -13,13 +13,15 @@ import {
  * @type {React.NamedExoticComponent}
  */
 const TweetsList = React.memo(({ data }) => {
+  const [shareSupported, setShareSupported] = React.useState(false)
   const router = useRouter()
   const { slug } = router.query
 
-  let shareApiSupported = false
-  if (typeof window !== "undefined" && window.navigator?.share) {
-    shareApiSupported = true
-  }
+  React.useEffect(() => {
+    if (typeof window !== "undefined" && window.navigator?.share) {
+      setShareSupported(true)
+    }
+  }, [])
 
   const handleCopyOrShare = (link) => {
     if (typeof window !== "undefined" && window.navigator?.share) {
@@ -75,7 +77,7 @@ const TweetsList = React.memo(({ data }) => {
                   data-tweet-url={tweetUrl}
                   onClick={() => handleCopyOrShare(tweetUrl)}
                 >
-                  {shareApiSupported ? (
+                  {shareSupported ? (
                     <>
                       <ShareIcon className="w-8" />
                       <p className="text-gray-400 text-xs">Share</p>
