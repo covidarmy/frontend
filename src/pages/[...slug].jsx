@@ -6,34 +6,42 @@ const CityPage = ({ tweets, resources, cities }) => {
  * @type {import("next").GetStaticProps<{}, { slug: Array<string> }>}
  */
 export const getStaticProps = async (ctx) => {
-  const tweets = require("seeds/tweets.json")
-  const resources = require("seeds/resources.json")
-  const cities = require("seeds/cities.json")
+  const CityModel = require("../schemas/city")
+  const ResourceModel = require("../schemas/resource")
+  const TweetModel = require("../schemas/tweet")
+  const scrape = require("../lib/scrape")
+  const cities = await CityModel.find({})
+  const resources = await ResourceModel.find({})
   const { slug } = ctx.params
-  let filtered = []
+  /** @type {Object[]} */
+  let tweets = await TweetModel.find({})
+
+  await scrape({})
 
   // /city route
   if (slug.length === 1) {
-    filtered = Object.values(tweets).filter(
-      (tweet) => typeof tweet.location[slug[0]] !== "undefined"
-    )
+    tweets = Object.values(tweets).filter((tweet) => {
+      return typeof tweet.location[slug[0]] !== "undefined"
+    })
   }
 
   // Nested /city/resource route
   if (slug.length === 2) {
-    filtered = Object.values(tweets).filter(
-      (tweet) =>
+    tweets = Object.values(tweets).filter((tweet) => {
+      return (
         typeof tweet.for[slug[1]] !== "undefined" &&
         typeof tweet.location[slug[0]] !== "undefined"
-    )
+      )
+    })
   }
 
   return {
     props: {
-      tweets: filtered,
+      tweets,
       resources,
       cities,
     },
+    revalidate: 300,
   }
 }
 
