@@ -7,5 +7,5 @@
   "Tocilizumab": "(tocilizumab OR tocilizuman OR itolizumab)",
   "ICU": "(ICU OR \"ICU beds\")",
   "Beds": "(\"bed\" OR \"beds\")",
-  "Food/Tiffin/Meals": "(\"food\" OR \"tiffin\" OR \"meals\")"
+  "Food": "(\"food\" OR \"tiffin\" OR \"meals\")"
 }
