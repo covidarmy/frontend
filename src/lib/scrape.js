@@ -3,7 +3,7 @@ const TweetModel = require("../schemas/tweet")
 const fetch = require("node-fetch")
 
 const fetchSearchResults = async (newestID, city, searchTerm) => {
-  const MAX_RESULTS = 100
+  const MAX_RESULTS = 20
   const baseUrl = newestID
     ? `https://api.twitter.com/2/tweets/search/recent?since_id=${newestID}&query=`
     : `https://api.twitter.com/2/tweets/search/recent?query=`
@@ -24,68 +24,27 @@ const fetchSearchResults = async (newestID, city, searchTerm) => {
  * @param {Object} tweet
  */
 const buildTweetObject = (tweet, city, resource) => {
-  //Check if tweets with the same id exist in the db
-  TweetModel.find({ id: tweet.id }, async (err, docs) => {
-    //If not, create and return a new obj to be saved in the db
-    if (!docs.length || err) {
-      return {
-        id: tweet.id,
-        authorId: tweet.author_id,
-        url: `https:www.twitter.com/${tweet.author_id}/status/${tweet.id}`,
-        retweetCount: tweet.public_metrics.retweet_count,
-        replyCount: tweet.public_metrics.reply_count,
-        postedAt: tweet.created_at,
-        location: {
-          [city]: true,
-        },
-        resource: {
-          ...(Array.isArray(resource)
-            ? resource.reduce((acc, cur) => {
-                acc[cur] = true
-                return acc
-              }, {})
-            : {
-                [resource]: true,
-              }),
-        },
-      }
-      //If tweet with the same id does exist,
-    } else {
-      //Iterate through all found tweets
-      for (const tweetDoc of docs) {
-        //Update the existing doc's resource object to match the new tweet's resources
-        if (Array.isArray(resource)) {
-          for (const res of resource) {
-            if (!tweetDoc.resource.hasOwnProperty(res)) {
-              tweetDoc[res] = true
-              await tweetDoc.save()
-              console.log(
-                "Existing Tweet Found, Updating resources object to match"
-              )
-              return null
-            }
-          }
-        } else {
-          if (!tweetDoc.resource.hasOwnProperty(resource)) {
-            tweetDoc[resource] = true
-            await tweetDoc.save()
-            console.log(
-              "Existing Tweet Found, Updating resources object to match"
-            )
-            return null
-          }
-        }
-        //Update the existing doc's city object to match the new tweet's city
-        if (!tweetDoc.city.hasOwnProperty(city)) {
-          tweetDoc[city] = true
-          await tweetDoc.save()
-          console.log("Existing Tweet Found, Updating city object to match")
-          return null
-        }
-      }
-    }
-  })
-  return null
+  return {
+    id: tweet.id,
+    authorId: tweet.author_id,
+    url: `https:www.twitter.com/${tweet.author_id}/status/${tweet.id}`,
+    retweetCount: tweet.public_metrics.retweet_count,
+    replyCount: tweet.public_metrics.reply_count,
+    postedAt: tweet.created_at,
+    location: {
+      [city]: true,
+    },
+    resource: {
+      ...(Array.isArray(resource)
+        ? resource.reduce((acc, cur) => {
+            acc[cur] = true
+            return acc
+          }, {})
+        : {
+            [resource]: true,
+          }),
+    },
+  }
 }
 
 /**
@@ -133,7 +92,8 @@ const scrape = async ({ newestID = null }) => {
     const json = await response.json()
 
     try {
-      if (json.data)
+      if (json.data) {
+        console.log(`Found ${json.data.length} Tweets`)
         for (const tweet of json.data) {
           const retweetCount = tweet.public_metrics.retweet_count
           if (retweetCount >= 10) {
@@ -152,6 +112,7 @@ const scrape = async ({ newestID = null }) => {
             }
           }
         }
+      }
       newestID = json.meta.newest_id
     } catch (error) {
       console.log(`\n===Error!===\n${error}\n`)
@@ -160,7 +121,27 @@ const scrape = async ({ newestID = null }) => {
     try {
       let newTweets = 0
       for (const tweet of toSave) {
-        await TweetModel.create([tweet])
+        //Check if tweets with the same id exist in the db
+        const docs = await TweetModel.find({ id: tweet.id })
+        //If not, create and return a new obj to be saved in the db
+        if (!docs.length) {
+          const newTweet = new TweetModel(tweet)
+          await newTweet.save()
+        } else {
+          //Iterate through all found tweets
+          for (const tweetDoc of docs) {
+            //Update the existing doc's resource object to match the new tweet's resources
+            for (const res of Object.keys(tweet.resource)) {
+              if (!tweetDoc.resource.hasOwnProperty(res)) {
+                tweetDoc[res] = true
+                await tweetDoc.save()
+                console.log(
+                  "Existing Tweet Found, Updating resources object to match"
+                )
+              }
+            }
+          }
+        }
         newTweets++
       }
       console.log(`Saved ${newTweets} Documents`)
@@ -171,6 +152,7 @@ const scrape = async ({ newestID = null }) => {
 
   //Purge Duplicate documents
 
+  return
 }
 
 module.exports = { scrape }

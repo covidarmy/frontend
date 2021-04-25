@@ -28,7 +28,7 @@ export const getStaticProps = async () => {
   const cities = Object.keys(require("seeds/cities.json"))
   const resources = Object.keys(require("seeds/resources.json"))
 
-  if (!global.tweets) await TweetModel.find({})
+  if (!global.tweets) global.tweets = await TweetModel.find({})
   /** @type {Object[]} */
   let tweets = global.tweets
 
@@ -43,7 +43,7 @@ export const getStaticProps = async () => {
       resources,
       cities,
     },
-    revalidate: 180,
+    revalidate: 300,
   }
 }
 

@@ -31,24 +31,20 @@ export default function LocationFilter({ data, city, resource }) {
       .filter((i) => typeof i !== "boolean")
       .map((item) => {
         return (
-          <Link
+          <FilterButton
             key={item}
+            active={
+              typeof city === "string" &&
+              city.toLowerCase() === item.toLowerCase()
+            }
             href={
               resource === null
                 ? "/" + item.toString().toLowerCase()
                 : `/${item.toString().toLowerCase()}/${resource}`
             }
-            passHref
           >
-            <FilterButton
-              active={
-                typeof city === "string" &&
-                city.toLowerCase() === item.toLowerCase()
-              }
-            >
-              {item}
-            </FilterButton>
-          </Link>
+            {item}
+          </FilterButton>
         )
       })
   }
@@ -81,9 +77,6 @@ export default function LocationFilter({ data, city, resource }) {
         </p>
       </div>
       <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
-        <Link href="/">
-          <FilterButton active={typeof city !== "string"}>All</FilterButton>
-        </Link>
         {renderButtons()}
       </div>
       <div className="mt-2 ml-1">

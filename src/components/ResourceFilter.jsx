@@ -39,22 +39,20 @@ export default function ResourceFilter({ data, city, resource }) {
         </Link>
         {data.map((item) => {
           return (
-            <Link
+            <FilterButton
+              key={item}
+              active={
+                typeof resource === "string" &&
+                item.toLowerCase() === resource.toLowerCase()
+              }
               href={
                 city === null
                   ? `/${item.toLowerCase()}`
                   : `/${city}` + `/${item.toLowerCase()}`
               }
             >
-              <FilterButton
-                active={
-                  typeof resource === "string" &&
-                  item.toLowerCase() === resource.toLowerCase()
-                }
-              >
-                {item}
-              </FilterButton>
-            </Link>
+              {item}
+            </FilterButton>
           )
         })}
       </div>
