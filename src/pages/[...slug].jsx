@@ -47,6 +47,7 @@ const CityPage = ({ tweets, resources, cities, city, resource }) => {
  */
 export const getStaticProps = async (ctx) => {
   const { connectToDatabase } = require("../lib/mongo")
+  const { scrape } = require("../lib/scrape")
   await connectToDatabase()
   const TweetModel = require("../schemas/tweet")
   const cities = Object.keys(require("seeds/cities.json"))
@@ -54,6 +55,13 @@ export const getStaticProps = async (ctx) => {
   const { slug } = ctx.params
   let slug0type = "city"
 
+  if (
+    process.env.NODE_ENV === "production" &&
+    typeof process.env.VERCEL !== "undefined"
+  ) {
+    await scrape({})
+  }
+  
   if (!global.tweets) global.tweets = await TweetModel.find({})
   /** @type {Object[]} */
   let tweets = global.tweets
