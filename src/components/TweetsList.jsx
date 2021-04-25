@@ -213,10 +213,10 @@ const TweetsList = React.memo(({ data }) => {
       <br />
       <a
         target="_blank"
-        href="https://twitter.com/arn4v"
+        href="https://twitter.com/covid_army"
         className="text-blue-600"
       >
-        @arn4v
+        @covid_army
       </a>
     </div>
   )

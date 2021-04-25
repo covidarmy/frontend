@@ -39,7 +39,7 @@ export default function ResourceFilter({ data, city, resource }) {
         </Link>
         {data.map((item) => {
           return (
-            <Link
+            <a
               href={
                 city === null
                   ? `/${item.toLowerCase()}`
@@ -54,7 +54,7 @@ export default function ResourceFilter({ data, city, resource }) {
               >
                 {item}
               </FilterButton>
-            </Link>
+            </a>
           )
         })}
       </div>
