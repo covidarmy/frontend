@@ -24,6 +24,11 @@ const CityPage = ({ tweets, resources, cities, city, resource }) => {
           description: `Covid Resources Leads${
             title !== "" ? ` For ${title}` : ""
           }`,
+          images: [
+            {
+              url: "/static/og.png",
+            },
+          ],
         }}
       />
       <div className="w-screen overflow-x-hidden">
@@ -122,11 +127,9 @@ export const getStaticPaths = async () => {
   const cities = Object.keys(require("seeds/cities.json"))
   const paths = []
 
-  if (
-    process.env.NODE_ENV === "production" &&
-    typeof process.env.VERCEL !== "undefined"
-  ) {
+  if (!global.isScraped && process.env.NODE_ENV === "production") {
     await scrape({})
+    global.isScraped = true
   }
 
   paths.push({ params: { slug: ["/"] } })

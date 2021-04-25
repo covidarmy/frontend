@@ -2,12 +2,11 @@ let config = {
   future: {
     webpack5: true,
   },
-  async redirects() {
+  async rewrites() {
     return [
       {
         source: "/",
         destination: "/delhi",
-        permanent: false,
       },
     ]
   },
