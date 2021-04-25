@@ -1,10 +1,10 @@
 import { Dashboard } from "~/components/Dashboard"
 import Navbar from "~/components/Navbar"
-import TweetsList from "~/components/TweetsList"
 import { NextSeo } from "next-seo"
 import { useRouter } from "next/router"
+import { camelize } from "~/lib/utils"
 
-const CityPage = ({ tweets, resources, cities }) => {
+const CityPage = ({ tweets, resources, cities, city, resource }) => {
   const router = useRouter()
   const { slug } = router.query
   const title = Array.isArray(slug)
@@ -14,8 +14,6 @@ const CityPage = ({ tweets, resources, cities }) => {
         })
         .join(" - ")
     : ""
-
-  console.log(tweets)
 
   return (
     <>
@@ -30,8 +28,7 @@ const CityPage = ({ tweets, resources, cities }) => {
       />
       <div className="container">
         <Navbar />
-        <Dashboard cities={cities} resources={resources} />
-        <TweetsList data={tweets} />
+        <Dashboard data={{ tweets, resources, city, resource, cities }} />
       </div>
     </>
   )
@@ -89,13 +86,13 @@ export const getStaticProps = async (ctx) => {
     })
   }
 
-  console.log(tweets)
-
   return {
     props: {
       tweets,
       resources,
       cities,
+      city: camelize(slug[0]),
+      resource: typeof slug[1] === "string" ? camelize(slug[1]) : undefined,
     },
     revalidate: 180,
   }

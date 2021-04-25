@@ -1,9 +1,13 @@
+import * as React from "react"
 import LocationFilter from "./LocationFilter"
+import TweetsList from "./TweetsList"
 
-export const Dashboard = ({ cities, resources }) => {
+export const Dashboard = ({
+  data: { resources, cities, tweets, resource, city },
+}) => {
   return (
-    <div className="grid lg:grid-cols-2 sm:grid-col-1 gap-4 lg:mt-8 lg:mx-16 mx-4 mt-6">
-      <div className="grid rounded-md grid-col-1 gap-4">
+    <div className="flex flex-col mx-auto w-full items-center justify-center gap-4 lg:mt-8 mt-6">
+      <div className="grid rounded-md grid-col-1 lg:grid-cols-2 gap-4">
         <LocationFilter data={cities} />
         <div className="shadow-md border border-gray-200 rounded-md bg-white text-center box-border h-auto w-full p-6">
           <div className="flex">
@@ -45,9 +49,7 @@ export const Dashboard = ({ cities, resources }) => {
           </div>
         </div>
       </div>
-      <div className=" shadow-lg text-center box-border h-auto w-100% p-6">
-        3
-      </div>
+      <TweetsList data={tweets} />
     </div>
   )
 }

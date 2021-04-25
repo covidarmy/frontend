@@ -1,13 +1,19 @@
 import { Dashboard } from "~/components/Dashboard"
 import Navbar from "~/components/Navbar"
-import TweetsList from "~/components/TweetsList"
 
 const IndexPage = ({ tweets, resources, cities }) => {
   return (
-    <div>
+    <div className="container w-screen overflow-x-hidden lg:mx-16 mx-4">
       <Navbar />
-      <Dashboard cities={cities} resources={resources} />
-      <TweetsList data={tweets} />
+      <Dashboard
+        data={{
+          tweets,
+          resources,
+          cities,
+          city: undefined,
+          resource: undefined,
+        }}
+      />
     </div>
   )
 }
