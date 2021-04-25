@@ -63,25 +63,20 @@ export const getStaticProps = async (ctx) => {
     return doc
   })
 
-  console.log(slug)
-
   // /city route
   if (slug.length === 1) {
-    console.log(slug[0])
     if (cities.map((i) => i.toLowerCase()).includes(slug[0])) {
       tweets = tweets.filter((tweet) => {
-        return Object.keys(tweet.location)
-          .map((i) => i.toLowerCase)
-          .includes(slug[0])
+        const keys = Object.keys(tweet.location).map((i) => i.toLowerCase())
+        return keys.includes(slug[0])
       })
     }
 
     if (resources.map((i) => i.toLowerCase()).includes(slug[0])) {
       slug0type = "resource"
       tweets = tweets.filter((tweet) => {
-        return Object.keys(tweet.resource)
-          .map((i) => i.toLowerCase)
-          .includes(slug[0])
+        const keys = Object.keys(tweet.resource).map((i) => i.toLowerCase())
+        return keys.includes(slug[0])
       })
     }
   }
