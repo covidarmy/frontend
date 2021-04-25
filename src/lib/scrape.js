@@ -34,14 +34,15 @@ const buildTweetObject = (tweet, city, resource) => {
     location: {
       [city]: true,
     },
+    status: 0,
     resource: {
       ...(Array.isArray(resource)
         ? resource.reduce((acc, cur) => {
-            acc[cur] = true
+            acc[cur.toLowerCase()] = true
             return acc
           }, {})
         : {
-            [resource]: true,
+            [resource.toLowerCase()]: true,
           }),
     },
   }
@@ -117,11 +118,8 @@ const scrape = async ({ newestID = null }) => {
     try {
       let newTweets = 0
       for (const tweet of toSave) {
-        const isSaved = await TweetModel.findOne({ id: tweet.id })
-        if (!isSaved) {
-          await TweetModel.create([tweet])
-          newTweets++
-        }
+        await TweetModel.create([tweet])
+        newTweets++
       }
       console.log(`Saved ${newTweets} Documents`)
     } catch {

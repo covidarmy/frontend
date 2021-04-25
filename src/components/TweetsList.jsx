@@ -14,7 +14,7 @@ const TweetsList = React.memo(({ data }) => {
       .sort((a, b) => {
         return -a.postedAt.localeCompare(b.postedAt)
       })
-      .map(({ tweetId, votes: voteCount }) => {
+      .map(({ id: tweetId, status: voteCount }) => {
         return (
           <div
             key={tweetId}

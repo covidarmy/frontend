@@ -1,7 +1,6 @@
 import * as React from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { HiChevronDown, HiChevronUp } from "react-icons/hi"
 import FilterButton from "./FilterButton"
 
 export default function LocationFilter({ data }) {
@@ -28,19 +27,21 @@ export default function LocationFilter({ data }) {
       }
     }
 
-    return _data.map((city) => {
-      return (
-        <Link
-          key={city}
-          href={{
-            pathname: "/" + city.toLowerCase(),
-          }}
-          passHref
-        >
-          <FilterButton active={true}>{city}</FilterButton>
-        </Link>
-      )
-    })
+    return _data
+      .filter((i) => typeof i !== "boolean")
+      .map((item) => {
+        return (
+          <Link
+            key={item}
+            href={{
+              pathname: "/" + item.toString().toLowerCase(),
+            }}
+            passHref
+          >
+            <FilterButton active={true}>{item}</FilterButton>
+          </Link>
+        )
+      })
   }
 
   return (

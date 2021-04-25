@@ -15,10 +15,8 @@ import * as React from "react"
  * @type {React.ForwardRefExoticComponent<Props>}
  */
 const FilterButton = React.forwardRef(
-  ({ href, onClick, children, className = "" }, ref) => {
+  ({ active, href, onClick, children, className = "" }, ref) => {
     const { query } = useRouter()
-    let active = false
-    if (query.slug) active = query.slug[0] === children.toString()
 
     return (
       <a
