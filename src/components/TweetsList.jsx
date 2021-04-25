@@ -41,6 +41,88 @@ const TweetsList = React.memo(({ data }) => {
     }
   }
 
+  /**
+   * Update vote in local storage
+   * @param tweetId Id of tweet
+   * @param flag flag for requested vote type - Upvote = +ve number
+   * Downvote = -ve number
+   */
+  const updateVotedTweets = (tweetId, flag) => {
+    let votedTweets
+    try {
+      votedTweets = JSON.parse(localStorage.getItem("votedTweets"))
+    } catch (error) {
+      console.log(error)
+      votedTweets = {}
+    }
+
+    if (!votedTweets) votedTweets = {}
+
+    votedTweets[tweetId] = flag
+    localStorage.setItem("votedTweets", JSON.stringify(votedTweets))
+    console.log("Updated voted tweets")
+  }
+
+  /**
+   * Check if vote should be allowed
+   * @param tweetId Id of tweet
+   * @param flag flag for requested vote type - Upvote = +ve number
+   * Downvote = -ve number
+   */
+  const checkVoteAllowed = (tweetId, flag) => {
+    let allowVote = false
+
+    try {
+      const votedTweets = JSON.parse(localStorage.getItem("votedTweets"))
+
+      // No votes  were stored previously
+      if (!votedTweets) {
+        allowVote = true
+      } else {
+        // Allow vote only if requested vote type (upvote/downvote)
+        // is opposite of stored one
+        const prevFlag = votedTweets[tweetId]
+        allowVote = flag !== prevFlag
+      }
+    } catch (error) {
+      allowVote = true
+    }
+
+    return allowVote
+  }
+
+  const handleVote = (tweetId, flag) => {
+    const allowVote = checkVoteAllowed(tweetId, flag)
+    if (!allowVote) {
+      return
+    }
+
+    const config = {
+      method: "post",
+      body: JSON.stringify({ tweetId }),
+    }
+
+    if (flag < 0) {
+      fetch("/api/downvote", config)
+        .then((res) => {
+          if (!res.ok) throw Error(res.statusText)
+          updateVotedTweets(tweetId, flag)
+          return res.json()
+        })
+        .then((data) => console.log({ data }))
+        .catch((err) => console.log(err))
+    } else {
+      fetch("/api/upvote", config)
+        .then((res) => {
+          if (!res.ok) throw Error(res.statusText)
+          updateVotedTweets(tweetId, flag)
+          return res.json()
+        })
+        .then((data) => console.log({ data }))
+        .catch((err) => console.log(err))
+    }
+  }
+
   return data.length > 0 ? (
     data
       .sort((a, b) => {
@@ -55,7 +137,10 @@ const TweetsList = React.memo(({ data }) => {
             <Tweet id={tweetId} />
             <div className="w-full sm:w-1/2 lg:w-2/5 xl:w-1/3 px-4 sm:px-0 flex justify-between">
               <div className="flex justify-between space-x-8">
-                <div className="text-green-500 text-xs text-center hover:cursor-pointer">
+                <div
+                  className="text-green-500 text-xs text-center hover:cursor-pointer"
+                  onClick={() => handleVote(tweetId, 1)}
+                >
                   <div className="flex items-center">
                     <ThumbUpIcon className="w-8 sm" />
                     <p className="text-sm">{voteCount > 0 ? voteCount : 0}</p>
@@ -63,7 +148,10 @@ const TweetsList = React.memo(({ data }) => {
                   <p className="text-gray-400">Working</p>
                 </div>
 
-                <div className="text-red-500 text-xs text-center hover:cursor-pointer">
+                <div
+                  className="text-red-500 text-xs text-center hover:cursor-pointer"
+                  onClick={() => handleVote(tweetId, -1)}
+                >
                   <div className="flex items-center">
                     <ThumbDownIcon className="w-8" />
                     <p className="text-sm">{voteCount < 0 ? voteCount : 0}</p>
