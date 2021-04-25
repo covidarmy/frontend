@@ -5,5 +5,5 @@
   "Ventilator": "(\"ventilator\" OR \"ventilator bed\") -\"no ventilator\"",
   "Plasma": "(\"plasma\" OR \"plasma donor\")",
   "Tocilizumab": "(tocilizumab OR tocilizuman OR itolizumab)",
-  "ICU": "(ICU or ICU beds)"
+  "ICU": "(ICU OR \"ICU beds\")"
 }
