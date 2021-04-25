@@ -1,49 +1,63 @@
 import * as React from "react"
-import clsx from "clsx"
-import { useRouter } from "next/router"
 import Link from "next/link"
 import FilterButton from "./FilterButton"
 
-export default function ResourceFilter({ filter, data }) {
-  const router = useRouter()
-  const { resource: _, ...query } = router.query
-
+export default function ResourceFilter({ data, city, resource }) {
   return (
-    <div className="flex flex-col mx-auto lg:w-4/5 lg:grid lg:grid-cols-6 items-center justify-center space-y-6 lg:space-y-0 lg:space-x-16">
-      <div className="flex items-center justify-center space-x-6 lg:col-span-1">
-        <span className="text-lg font-semibold">Resource Filter</span>
-        <div className="h-8 border-r hidden lg:block border-gray-600" />
-      </div>
-      <span className="flex items-center justify-center gap-3 lg:gap-6 flex-wrap lg:col-span-5">
-        <Link
-          href={{
-            pathname: "/",
-            query,
-          }}
+    <div className="shadow-md border border-gray-200 rounded-md bg-white text-center box-border h-auto w-full p-3 lg:p-6">
+      <div className="flex">
+        <svg
+          className="mt-0.5"
+          width="18"
+          height="18"
+          viewBox="0 0 18 18"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <FilterButton active={filter === "all"}>All</FilterButton>
+          <path
+            d="M9 16.5C9 16.5 15 13.5 15 9V3.75L9 1.5L3 3.75V9C3 13.5 9 16.5 9 16.5Z"
+            fill="#4F46EF"
+          />
+          <path
+            d="M9 6V10"
+            stroke="white"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M7 8H11"
+            stroke="white"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <p className="text-strong mt-0 ml-1 font-bold">Choose Resources</p>
+      </div>
+      <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
+        <Link href={city === null ? "" : `/${city}`}>
+          <FilterButton active={typeof resource !== "string"}>All</FilterButton>
         </Link>
-        {Object.keys(data)
-          .sort()
-          .map((resource) => {
-            return (
-              <Link
-                key={resource}
-                href={{
-                  pathname: "/",
-                  query: {
-                    resource,
-                    ...query,
-                  },
-                }}
+        {data.map((item) => {
+          return (
+            <Link
+              href={
+                city === null
+                  ? `/${item.toLowerCase()}`
+                  : `/${city}` + `/${item.toLowerCase()}`
+              }
+            >
+              <FilterButton
+                active={
+                  typeof resource === "string" &&
+                  item.toLowerCase() === resource.toLowerCase()
+                }
               >
-                <FilterButton active={filter === resource}>
-                  {resource}
-                </FilterButton>
-              </Link>
-            )
-          })}
-      </span>
+                {item}
+              </FilterButton>
+            </Link>
+          )
+        })}
+      </div>
     </div>
   )
 }

@@ -26,9 +26,17 @@ const CityPage = ({ tweets, resources, cities, city, resource }) => {
           }`,
         }}
       />
-      <div className="container">
+      <div className="w-screen overflow-x-hidden">
         <Navbar />
-        <Dashboard data={{ tweets, resources, city, resource, cities }} />
+        <Dashboard
+          data={{
+            tweets,
+            resources,
+            cities,
+            city,
+            resource,
+          }}
+        />
       </div>
     </>
   )
@@ -44,6 +52,7 @@ export const getStaticProps = async (ctx) => {
   const cities = Object.keys(require("seeds/cities.json"))
   const resources = Object.keys(require("seeds/resources.json"))
   const { slug } = ctx.params
+  let slug0type = "city"
 
   if (!global.tweets) global.tweets = await TweetModel.find({})
   /** @type {Object[]} */
@@ -65,6 +74,7 @@ export const getStaticProps = async (ctx) => {
     }
 
     if (resources.map((i) => i.toLowerCase()).includes(slug[0])) {
+      slug0type = "resource"
       tweets = tweets.filter((tweet) => {
         return Object.keys(tweet.resource)
           .map((i) => i.toLowerCase)
@@ -91,8 +101,13 @@ export const getStaticProps = async (ctx) => {
       tweets,
       resources,
       cities,
-      city: camelize(slug[0]),
-      resource: typeof slug[1] === "string" ? camelize(slug[1]) : undefined,
+      city: slug0type === "city" ? camelize(slug[0]) : null,
+      resource:
+        slug0type === "resource"
+          ? camelize(slug[0])
+          : typeof slug[1] === "string"
+          ? camelize(slug[1])
+          : null,
     },
     revalidate: 180,
   }

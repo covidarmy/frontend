@@ -3,15 +3,15 @@ import Navbar from "~/components/Navbar"
 
 const IndexPage = ({ tweets, resources, cities }) => {
   return (
-    <div className="container w-screen overflow-x-hidden lg:mx-16 mx-4">
+    <div className="w-screen">
       <Navbar />
       <Dashboard
         data={{
           tweets,
           resources,
           cities,
-          city: undefined,
-          resource: undefined,
+          city: null,
+          resource: null,
         }}
       />
     </div>
