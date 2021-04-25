@@ -121,27 +121,28 @@ const scrape = async ({ newestID = null }) => {
     try {
       let newTweets = 0
       for (const tweet of toSave) {
-        //Check if tweets with the same id exist in the db
-        const docs = await TweetModel.find({ id: tweet.id })
-        //If not, create and return a new obj to be saved in the db
-        if (!docs.length) {
-          const newTweet = new TweetModel(tweet)
-          await newTweet.save()
-        } else {
-          //Iterate through all found tweets
-          for (const tweetDoc of docs) {
-            //Update the existing doc's resource object to match the new tweet's resources
-            for (const res of Object.keys(tweet.resource)) {
-              if (!tweetDoc.resource.hasOwnProperty(res)) {
-                tweetDoc[res] = true
-                await tweetDoc.save()
-                console.log(
-                  "Existing Tweet Found, Updating resources object to match"
-                )
-              }
-            }
-          }
-        }
+        // //Check if tweets with the same id exist in the db
+        // const docs = await TweetModel.find({ id: tweet.id })
+        // //If not, create and return a new obj to be saved in the db
+        // if (!docs.length) {
+        //   const newTweet = new TweetModel(tweet)
+        //   await newTweet.save()
+        // } else {
+        //   //Iterate through all found tweets
+        //   for (const tweetDoc of docs) {
+        //     //Update the existing doc's resource object to match the new tweet's resources
+        //     for (const res of Object.keys(tweet.resource)) {
+        //       if (!tweetDoc.resource.hasOwnProperty(res)) {
+        //         tweetDoc[res] = true
+        //         await tweetDoc.save()
+        //         console.log(
+        //           "Existing Tweet Found, Updating resources object to match"
+        //         )
+        //       }
+        //     }
+        //   }
+        // }
+        await TweetModel.create([tweet])
         newTweets++
       }
       console.log(`Saved ${newTweets} Documents`)
