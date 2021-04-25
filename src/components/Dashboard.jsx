@@ -1,6 +1,7 @@
 import * as React from "react"
 import LocationFilter from "./LocationFilter"
 import ResourceFilter from "./ResourceFilter"
+import TweetsList from "./TweetsList"
 
 export const Dashboard = ({
   data: { resources, cities, tweets, resource, city },
@@ -11,7 +12,7 @@ export const Dashboard = ({
         <LocationFilter data={cities} city={city} resource={resource} />
         <ResourceFilter data={resources} city={city} resource={resource} />
       </div>
-      {/* <TweetsList data={tweets} /> */}
+      <TweetsList data={tweets} />
     </div>
   )
 }
