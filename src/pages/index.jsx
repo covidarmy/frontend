@@ -1,7 +1,14 @@
+import { useRouter } from "next/router"
 import { Dashboard } from "~/components/Dashboard"
 import Navbar from "~/components/Navbar"
 
 const IndexPage = ({ tweets, resources, cities }) => {
+  const router = useRouter()
+
+  React.useEffect(() => {
+    router.push("/delhi")
+  }, [])
+
   return (
     <div className="w-screen">
       <Navbar />
