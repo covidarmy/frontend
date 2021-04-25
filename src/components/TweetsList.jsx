@@ -41,7 +41,7 @@ const TweetsList = React.memo(({ data }) => {
       })
     } else {
       const clipboard = new ClipboardJS(".copy-btn", {
-        text: function (trigger) {
+        text: () => {
           return link
         },
       })
@@ -101,35 +101,39 @@ const TweetsList = React.memo(({ data }) => {
     return allowVote
   }
 
-  const handleVote = (tweetId, flag) => {
-    const allowVote = checkVoteAllowed(tweetId, flag)
+  const handleVote = (id, flag) => {
+    const allowVote = checkVoteAllowed(id, flag)
     if (!allowVote) {
       return
     }
 
     const config = {
       method: "post",
-      body: JSON.stringify({ tweetId }),
+      body: JSON.stringify({ id }),
     }
 
     if (flag < 0) {
       fetch("/api/downvote", config)
         .then((res) => {
           if (!res.ok) throw Error(res.statusText)
-          updateVotedTweets(tweetId, flag)
           return res.json()
         })
         .then((data) => console.log({ data }))
         .catch((err) => console.log(err))
+        .finally(() => {
+          updateVotedTweets(id, flag)
+        })
     } else {
       fetch("/api/upvote", config)
         .then((res) => {
           if (!res.ok) throw Error(res.statusText)
-          updateVotedTweets(tweetId, flag)
           return res.json()
         })
         .then((data) => console.log({ data }))
         .catch((err) => console.log(err))
+        .finally(() => {
+          updateVotedTweets(id, flag)
+        })
     }
   }
 
