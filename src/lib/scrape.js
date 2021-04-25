@@ -24,28 +24,68 @@ const fetchSearchResults = async (newestID, city, searchTerm) => {
  * @param {Object} tweet
  */
 const buildTweetObject = (tweet, city, resource) => {
-  return {
-    id: tweet.id,
-    authorId: tweet.author_id,
-    url: `https:www.twitter.com/${tweet.author_id}/status/${tweet.id}`,
-    retweetCount: tweet.public_metrics.retweet_count,
-    replyCount: tweet.public_metrics.reply_count,
-    postedAt: tweet.created_at,
-    location: {
-      [city]: true,
-    },
-    status: 0,
-    resource: {
-      ...(Array.isArray(resource)
-        ? resource.reduce((acc, cur) => {
-            acc[cur.toLowerCase()] = true
-            return acc
-          }, {})
-        : {
-            [resource.toLowerCase()]: true,
-          }),
-    },
-  }
+  //Check if tweets with the same id exist in the db
+  TweetModel.find({ id: tweet.id }, async (err, docs) => {
+    //If not, create and return a new obj to be saved in the db
+    if (!docs.length || err) {
+      return {
+        id: tweet.id,
+        authorId: tweet.author_id,
+        url: `https:www.twitter.com/${tweet.author_id}/status/${tweet.id}`,
+        retweetCount: tweet.public_metrics.retweet_count,
+        replyCount: tweet.public_metrics.reply_count,
+        postedAt: tweet.created_at,
+        location: {
+          [city]: true,
+        },
+        resource: {
+          ...(Array.isArray(resource)
+            ? resource.reduce((acc, cur) => {
+                acc[cur] = true
+                return acc
+              }, {})
+            : {
+                [resource]: true,
+              }),
+        },
+      }
+      //If tweet with the same id does exist,
+    } else {
+      //Iterate through all found tweets
+      for (const tweetDoc of docs) {
+        //Update the existing doc's resource object to match the new tweet's resources
+        if (Array.isArray(resource)) {
+          for (const res of resource) {
+            if (!tweetDoc.resource.hasOwnProperty(res)) {
+              tweetDoc[res] = true
+              await tweetDoc.save()
+              console.log(
+                "Existing Tweet Found, Updating resources object to match"
+              )
+              return null
+            }
+          }
+        } else {
+          if (!tweetDoc.resource.hasOwnProperty(resource)) {
+            tweetDoc[resource] = true
+            await tweetDoc.save()
+            console.log(
+              "Existing Tweet Found, Updating resources object to match"
+            )
+            return null
+          }
+        }
+        //Update the existing doc's city object to match the new tweet's city
+        if (!tweetDoc.city.hasOwnProperty(city)) {
+          tweetDoc[city] = true
+          await tweetDoc.save()
+          console.log("Existing Tweet Found, Updating city object to match")
+          return null
+        }
+      }
+    }
+  })
+  return null
 }
 
 /**
@@ -105,8 +145,10 @@ const scrape = async ({ newestID = null }) => {
               }
             }
             const toSaveObject = buildTweetObject(tweet, city, tweetResources)
-            if (Object.keys(toSaveObject.resource).length > 0) {
-              toSave.push(toSaveObject)
+            if (toSaveObject) {
+              if (Object.keys(toSaveObject.resource).length > 0) {
+                toSave.push(toSaveObject)
+              }
             }
           }
         }

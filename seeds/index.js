@@ -20,7 +20,7 @@ const resources = require("./resources.json")
         if(!docs.length){
           await newData.save()
         }else{
-          console.log("Resource Already Exists:", this.name)
+          console.log("Resource Already Exists:", newData.name)
           throw new Error("Resource Already Exists!")
         }
       })
@@ -39,7 +39,7 @@ const resources = require("./resources.json")
         if(!docs.length){
           await newData.save()
         }else{
-          console.log("City Already Exists:", this.name)
+          console.log("City Already Exists:", newData.name)
           throw new Error("City Already Exists!")
         }
       })
