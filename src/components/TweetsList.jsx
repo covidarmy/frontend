@@ -2,6 +2,7 @@ import { useRouter } from "next/router"
 import * as React from "react"
 import ClipboardJS from "clipboard"
 import { Tweet } from "react-static-tweets"
+import { HiChevronDoubleDown } from "react-icons/hi"
 import {
   ThumbUpIcon,
   ThumbDownIcon,
@@ -16,6 +17,15 @@ const TweetsList = React.memo(({ data }) => {
   const [shareSupported, setShareSupported] = React.useState(false)
   const router = useRouter()
   const { slug } = router.query
+  const [limit, setLimit] = React.useState(20)
+
+  const showMore = () => {
+    if (limit + 20 < data.length) {
+      setLimit((prev) => prev + 20)
+    } else if (limit + 20 > data.length && limit < data.length) {
+      setLimit((prev) => prev + (data.length - prev))
+    }
+  }
 
   React.useEffect(() => {
     if (typeof window !== "undefined" && window.navigator?.share) {
@@ -124,65 +134,78 @@ const TweetsList = React.memo(({ data }) => {
   }
 
   return data.length > 0 ? (
-    data
-      .sort((a, b) => {
-        return -a.postedAt.localeCompare(b.postedAt)
-      })
-      .map(({ id: tweetId, url: tweetUrl, status: voteCount }) => {
-        return (
-          <div
-            key={tweetId}
-            className="w-full flex flex-col items-center justify-center space-y-4 my-8 px-2"
-          >
-            <Tweet id={tweetId} />
-            <div className="w-full sm:w-1/2 lg:w-2/5 xl:w-1/3 px-4 sm:px-0 flex justify-between">
-              <div className="flex justify-between space-x-8">
-                <div
-                  className="text-green-500 text-xs text-center hover:cursor-pointer"
-                  onClick={() => handleVote(tweetId, 1)}
-                >
-                  <div className="flex items-center">
-                    <ThumbUpIcon className="w-8 sm" />
-                    <p className="text-sm">{voteCount > 0 ? voteCount : 0}</p>
+    <>
+      {data
+        .sort((a, b) => {
+          return -a.postedAt.localeCompare(b.postedAt)
+        })
+        .slice(0, limit + 1)
+        .map(({ id: tweetId, url: tweetUrl, status: voteCount }) => {
+          return (
+            <div
+              key={tweetId}
+              className="w-full flex flex-col items-center justify-center space-y-4 my-8 px-2"
+            >
+              <Tweet id={tweetId} />
+              <div className="w-full sm:w-1/2 lg:w-2/5 xl:w-1/3 px-4 sm:px-0 flex justify-between">
+                <div className="flex justify-between space-x-8">
+                  <div
+                    className="text-green-500 text-xs text-center hover:cursor-pointer"
+                    onClick={() => handleVote(tweetId, 1)}
+                  >
+                    <div className="flex items-center">
+                      <ThumbUpIcon className="w-8 sm" />
+                      <p className="text-sm">{voteCount > 0 ? voteCount : 0}</p>
+                    </div>
+                    <p className="text-gray-400">Working</p>
                   </div>
-                  <p className="text-gray-400">Working</p>
-                </div>
 
-                <div
-                  className="text-red-500 text-xs text-center hover:cursor-pointer"
-                  onClick={() => handleVote(tweetId, -1)}
-                >
-                  <div className="flex items-center">
-                    <ThumbDownIcon className="w-8" />
-                    <p className="text-sm">{voteCount < 0 ? voteCount : 0}</p>
+                  <div
+                    className="text-red-500 text-xs text-center hover:cursor-pointer"
+                    onClick={() => handleVote(tweetId, -1)}
+                  >
+                    <div className="flex items-center">
+                      <ThumbDownIcon className="w-8" />
+                      <p className="text-sm">{voteCount < 0 ? voteCount : 0}</p>
+                    </div>
+                    <p className="text-gray-400">Not Working</p>
                   </div>
-                  <p className="text-gray-400">Not Working</p>
+                </div>
+                <div>
+                  <div
+                    className="text-gray-500 text-xs text-center hover:cursor-pointer copy-btn"
+                    data-tweet-url={tweetUrl}
+                    onClick={() => handleCopyOrShare(tweetUrl)}
+                  >
+                    {shareSupported ? (
+                      <>
+                        <ShareIcon className="w-8" />
+                        <p className="text-gray-400 text-xs">Share</p>
+                      </>
+                    ) : (
+                      <>
+                        <DuplicateIcon className="w-8" />
+                        <p className="text-gray-400 text-xs">Copy Link</p>
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
-              <div>
-                <div
-                  className="text-gray-500 text-xs text-center hover:cursor-pointer copy-btn"
-                  data-tweet-url={tweetUrl}
-                  onClick={() => handleCopyOrShare(tweetUrl)}
-                >
-                  {shareSupported ? (
-                    <>
-                      <ShareIcon className="w-8" />
-                      <p className="text-gray-400 text-xs">Share</p>
-                    </>
-                  ) : (
-                    <>
-                      <DuplicateIcon className="w-8" />
-                      <p className="text-gray-400 text-xs">Copy Link</p>
-                    </>
-                  )}
-                </div>
-              </div>
+              <hr className="w-1/6 h-0.5 border-none bg-gray-300" />
             </div>
-            <hr className="w-1/6 h-0.5 border-none bg-gray-300" />
-          </div>
-        )
-      })
+          )
+        })}
+      {limit + 20 < data.length && (
+        <button
+          onClick={showMore}
+          className="bg-indigo-200 text-indigo-700 flex items-center justify-center px-4 py-2 rounded-md gap-2 shadow-md"
+          disabled={limit + 20 > data.length}
+        >
+          <HiChevronDoubleDown />
+          Show more
+        </button>
+      )}
+    </>
   ) : (
     <div className="text-center">
       No tweets found for {slug[0]} & {slug[1]}. This might be a bug, please DM
