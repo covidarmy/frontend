@@ -1,14 +1,39 @@
 import { Dashboard } from "~/components/Dashboard"
 import Navbar from "~/components/Navbar"
 import TweetsList from "~/components/TweetsList"
+import { NextSeo } from "next-seo"
+import { useRouter } from "next/router"
 
 const CityPage = ({ tweets, resources, cities }) => {
+  const router = useRouter()
+  const { slug } = router.query
+  const title = Array.isArray(slug)
+    ? slug
+        .map((i) => {
+          return i[0].toUpperCase() + i.slice(1)
+        })
+        .join(" - ")
+    : ""
+
+  console.log(tweets)
+
   return (
-    <div>
-      <Navbar />
-      <Dashboard cities={cities} resources={resources} />
-      <TweetsList data={tweets} />
-    </div>
+    <>
+      <NextSeo
+        title={`Covid.army${title !== "" ? ` - ${title}` : ""}`}
+        openGraph={{
+          title: `Covid.army${title !== "" ? ` - ${title}` : ""}`,
+          description: `Covid Resources Leads${
+            title !== "" ? ` For ${title}` : ""
+          }`,
+        }}
+      />
+      <div className="container">
+        <Navbar />
+        <Dashboard cities={cities} resources={resources} />
+        <TweetsList data={tweets} />
+      </div>
+    </>
   )
 }
 
@@ -23,7 +48,7 @@ export const getStaticProps = async (ctx) => {
   const resources = Object.keys(require("seeds/resources.json"))
   const { slug } = ctx.params
 
-  if (!global.tweets) await TweetModel.find({})
+  if (!global.tweets) global.tweets = await TweetModel.find({})
   /** @type {Object[]} */
   let tweets = global.tweets
 
@@ -32,32 +57,39 @@ export const getStaticProps = async (ctx) => {
     return doc
   })
 
-  if (typeof slug !== "undefined" && Array.isArray(slug)) {
-    // /city route
-    if (slug.length === 1 && slug[0] !== "/") {
-      if (cities.map((i) => i.toLowerCase()).includes(slug[0])) {
-        tweets = Object.values(tweets).filter((tweet) => {
-          return typeof tweet.location[slug[0]] !== "undefined"
-        })
-      }
-
-      if (resources.map((i) => i.toLowerCase()).includes(slug[0])) {
-        tweets = Object.values(tweets).filter((tweet) => {
-          return typeof tweet.location[slug[0]] !== "undefined"
-        })
-      }
+  // /city route
+  if (slug.length === 1 && slug[0] !== "/") {
+    if (cities.map((i) => i.toLowerCase()).includes(slug[0])) {
+      tweets = tweets.filter((tweet) => {
+        return Object.keys(tweet.location)
+          .map((i) => i.toLowerCase)
+          .includes(slug[0])
+      })
     }
 
-    // Nested /city/resource route
-    if (slug.length === 2) {
-      tweets = Object.values(tweets).filter((tweet) => {
-        return (
-          typeof tweet.resource[slug[1]] !== "undefined" &&
-          typeof tweet.location[slug[0]] !== "undefined"
-        )
+    if (resources.map((i) => i.toLowerCase()).includes(slug[0])) {
+      tweets = tweets.filter((tweet) => {
+        return Object.keys(tweet.resource)
+          .map((i) => i.toLowerCase)
+          .includes(slug[0])
       })
     }
   }
+
+  // Nested /city/resource route
+  if (slug.length === 2) {
+    tweets = tweets.filter((tweet) => {
+      const locationArr = Object.keys(tweet.location).map((i) =>
+        i.toLowerCase()
+      )
+      const resourceArr = Object.keys(tweet.resource).map((i) =>
+        i.toLowerCase()
+      )
+      return locationArr.includes(slug[0]) && resourceArr.includes(slug[1])
+    })
+  }
+
+  console.log(tweets)
 
   return {
     props: {
