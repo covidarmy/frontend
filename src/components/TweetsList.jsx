@@ -42,7 +42,7 @@ const TweetsList = React.memo(({ data }) => {
     } else {
       const clipboard = new ClipboardJS(".copy-btn", {
         text: function (trigger) {
-          return trigger.getAttribute("data-tweet-url")
+          return link
         },
       })
 
@@ -174,7 +174,6 @@ const TweetsList = React.memo(({ data }) => {
                 <div>
                   <div
                     className="text-gray-500 text-xs text-center hover:cursor-pointer copy-btn"
-                    data-tweet-url={tweetUrl}
                     onClick={() => handleCopyOrShare(tweetUrl)}
                   >
                     {shareSupported ? (

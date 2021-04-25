@@ -31,23 +31,20 @@ export default function LocationFilter({ data, city, resource }) {
       .filter((i) => typeof i !== "boolean")
       .map((item) => {
         return (
-          <a
+          <FilterButton
             key={item}
+            active={
+              typeof city === "string" &&
+              city.toLowerCase() === item.toLowerCase()
+            }
             href={
               resource === null
                 ? "/" + item.toString().toLowerCase()
                 : `/${item.toString().toLowerCase()}/${resource}`
             }
           >
-            <FilterButton
-              active={
-                typeof city === "string" &&
-                city.toLowerCase() === item.toLowerCase()
-              }
-            >
-              {item}
-            </FilterButton>
-          </a>
+            {item}
+          </FilterButton>
         )
       })
   }
