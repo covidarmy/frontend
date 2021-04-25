@@ -152,6 +152,4 @@ const scrape = async ({ newestID = null }) => {
   return
 }
 
-scrape({})
-
 module.exports = { scrape }

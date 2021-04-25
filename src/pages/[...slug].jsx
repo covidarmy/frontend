@@ -63,8 +63,11 @@ export const getStaticProps = async (ctx) => {
     return doc
   })
 
+  console.log(slug)
+
   // /city route
-  if (slug.length === 1 && slug[0] !== "/") {
+  if (slug.length === 1) {
+    console.log(slug[0])
     if (cities.map((i) => i.toLowerCase()).includes(slug[0])) {
       tweets = tweets.filter((tweet) => {
         return Object.keys(tweet.location)
