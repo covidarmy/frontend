@@ -43,7 +43,7 @@ export const getStaticProps = async () => {
       resources,
       cities,
     },
-    revalidate: 180,
+    revalidate: 300,
   }
 }
 
