@@ -59,7 +59,6 @@ module.exports.getTweets = async (city, resource) => {
   }
 
   const result = await TweetModel.find(query).exec()
-  console.log(result.length)
   return result.map((item) => {
     const { _id, __v, createdAt, updatedAt, ...doc } = item._doc
     return doc

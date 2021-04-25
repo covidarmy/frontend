@@ -1,45 +1,44 @@
-import * as React from "react"
-import { useRouter } from "next/router"
-import LocationFilter from "~/components/LocationFilter"
-import ResourceFilter from "~/components/ResourceFilter"
-import Navbar from "~/components/Navbar"
 import { Dashboard } from "~/components/Dashboard"
+import Navbar from "~/components/Navbar"
+import TweetsList from "~/components/TweetsList"
 
-/**
- * @typedef {Object} Props
- * @property {any} tweets
- * @property {string[]} cities
- * @property {import("~/types").Resources} resources
- * @property {import("~/types").CityResources} cityResources
- */
-
-/**
- * @param {Props} props
- */
-export default function Home({ cities, tweets, resources }) {
+const IndexPage = ({ tweets, resources, cities }) => {
   return (
-    <div className="container">
+    <div>
       <Navbar />
       <Dashboard cities={cities} resources={resources} />
+      <TweetsList data={tweets} />
     </div>
   )
 }
 
+/**
+ * @type {import("next").GetStaticProps<{}, {}>}
+ */
 export const getStaticProps = async () => {
-  const { getAllTweets } = require("../lib/db")
-  const { scrape } = require("../lib/scrape")
+  const { connectToDatabase } = require("../lib/mongo")
+  await connectToDatabase()
+  const TweetModel = require("../schemas/tweet")
   const cities = Object.keys(require("seeds/cities.json"))
   const resources = Object.keys(require("seeds/resources.json"))
 
-  if (process.env.NODE_ENV === "production") await scrape({})
-  const tweets = await getAllTweets()
+  if (!global.tweets) await TweetModel.find({})
+  /** @type {Object[]} */
+  let tweets = global.tweets
+
+  tweets = tweets.map((item) => {
+    const { _id, __v, createdAt, updatedAt, ...doc } = item._doc
+    return doc
+  })
 
   return {
     props: {
       tweets,
-      cities,
       resources,
+      cities,
     },
-    revalidate: 120,
+    revalidate: 180,
   }
 }
+
+export default IndexPage
