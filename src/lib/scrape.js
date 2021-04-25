@@ -3,7 +3,7 @@ const TweetModel = require("../schemas/tweet")
 const fetch = require("node-fetch")
 
 const fetchSearchResults = async (newestID, city, searchTerm) => {
-  const MAX_RESULTS = 100
+  const MAX_RESULTS = 20
   const baseUrl = newestID
     ? `https://api.twitter.com/2/tweets/search/recent?since_id=${newestID}&query=`
     : `https://api.twitter.com/2/tweets/search/recent?query=`
