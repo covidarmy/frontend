@@ -24,12 +24,18 @@ const IndexPage = ({ tweets, resources, cities }) => {
  */
 export const getStaticProps = async () => {
   const { connectToDatabase } = require("../lib/mongo")
+  const { scrape } = require("../lib/scrape")
   await connectToDatabase()
   const TweetModel = require("../schemas/tweet")
   const cities = Object.keys(require("seeds/cities.json"))
   const resources = Object.keys(require("seeds/resources.json"))
 
-  if (!global.tweets) global.tweets = await TweetModel.find({})
+  if (!global.isScraped && process.env.NODE_ENV === "production") {
+    await scrape({})
+    //global.isScraped = true
+  }
+
+  /* if (!global.tweets) */ global.tweets = await TweetModel.find({})
   /** @type {Object[]} */
   let tweets = global.tweets
 
@@ -44,7 +50,7 @@ export const getStaticProps = async () => {
       resources,
       cities,
     },
-    revalidate: 300,
+    revalidate: 120,
   }
 }
 
