@@ -38,7 +38,7 @@ export const getStaticProps = async () => {
   const resources = Object.keys(require("seeds/resources.json"))
 
   if (!global.isScraped && process.env.NODE_ENV === "production") {
-    await scrape({})
+    await scrape()
     //global.isScraped = true
   }
 
