@@ -7,7 +7,7 @@ const IndexPage = ({ tweets, resources, cities }) => {
   const router = useRouter()
 
   React.useEffect(() => {
-    router.push("/dehi")
+    router.push("/delhi")
   }, [])
 
   return (
