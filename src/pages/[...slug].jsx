@@ -59,7 +59,7 @@ export const getStaticProps = async (ctx) => {
   const { slug } = ctx.params
   let slug0type = "city"
 
-  if (!global.tweets) global.tweets = await TweetModel.find({})
+  /*if (!global.tweets)*/ global.tweets = await TweetModel.find({})
   /** @type {Object[]} */
   let tweets = global.tweets
 
@@ -112,7 +112,7 @@ export const getStaticProps = async (ctx) => {
           ? camelize(slug[1])
           : null,
     },
-    revalidate: 180,
+    revalidate: 120,
   }
 }
 
@@ -126,11 +126,6 @@ export const getStaticPaths = async () => {
   const resources = Object.keys(require("seeds/resources.json"))
   const cities = Object.keys(require("seeds/cities.json"))
   const paths = []
-
-  if (!global.isScraped && process.env.NODE_ENV === "production") {
-    await scrape({})
-    global.isScraped = true
-  }
 
   paths.push({ params: { slug: ["/"] } })
 
