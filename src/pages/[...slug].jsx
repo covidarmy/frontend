@@ -121,7 +121,7 @@ export const getStaticProps = async (ctx) => {
  */
 export const getStaticPaths = async () => {
   const { connectToDatabase } = require("../lib/mongo")
-  const { scrape } = require("../lib/scrape")
+  // const { scrape } = require("../lib/scrape")
   await connectToDatabase()
   const resources = Object.keys(require("seeds/resources.json"))
   const cities = Object.keys(require("seeds/cities.json"))
