@@ -1,8 +1,14 @@
 const { connectToDatabase } = require("./mongo")
 const TweetModel = require("../schemas/tweet")
+const Meta = require("../schemas/meta")
 const fetch = require("node-fetch")
 
-const fetchSearchResults = async (newestID, city, searchTerm) => {
+const fetchSearchResults = async (city, searchTerm) => {
+  // Fetch sinceID from db
+  let newestID = null
+  const { sinceId } = await Meta.findOne({});
+  newestID = sinceId
+  
   const MAX_RESULTS = 20
   const baseUrl = newestID
     ? `https://api.twitter.com/2/tweets/search/recent?since_id=${newestID}&query=`
@@ -48,13 +54,20 @@ const buildTweetObject = (tweet, city, resource) => {
 }
 
 /**
- * @param {Object} params
- * @param {any} [params.newestID]
  * @returns {Promise<void>}
  */
-const scrape = async ({ newestID = null }) => {
+const scrape = async () => {
   const db = await connectToDatabase()
   let totalCalls = 0
+
+  //Init Since ID in the DB if it doesnt already exist
+  const doc = await Meta.findOne({});
+  if (!doc) {
+    console.log("Doc not found, Initializing...");
+
+    await new Meta({ sinceId: null }).save();
+    console.log("Since ID Initlized");
+  }
 
   //Ref URL:
   //https://api.twitter.com/2/tweets/search/recent?query=verified mumbai (bed OR beds OR icu OR oxygen OR ventilator OR ventilators OR fabiflu OR remdesivir OR favipiravir OR tocilizumab OR plasma OR tiffin) -"not verified" -"unverified" -"needed" -"required" -"urgent" -"urgentlyrequired" -"help"&max_results=10&tweet.fields=created_at
@@ -88,7 +101,7 @@ const scrape = async ({ newestID = null }) => {
     const validSearchTerm = `(${searchTerm
       .map((i) => i.toLowerCase())
       .join(" OR ")})`
-    const response = await fetchSearchResults(newestID, city, validSearchTerm)
+    const response = await fetchSearchResults(city, validSearchTerm)
     const json = await response.json()
 
     try {
@@ -113,7 +126,9 @@ const scrape = async ({ newestID = null }) => {
           }
         }
       }
-      newestID = json.meta.newest_id
+      //Update sinceId in the db
+      await Meta.updateOne({}, { sinceId: json.meta.newest_id });
+      console.log("Since ID updated!");
     } catch (error) {
       console.log(`\n===Error!===\n${error}\n`)
       console.log("Response:", response)
