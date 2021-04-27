@@ -52,22 +52,33 @@ const CityPage = ({ tweets, resources, cities, city, resource }) => {
  */
 export const getStaticProps = async (ctx) => {
   const { connectToDatabase } = require("../lib/mongo")
-  await connectToDatabase()
   const TweetModel = require("../schemas/tweet")
   const cities = Object.keys(require("seeds/cities.json"))
   const resources = Object.keys(require("seeds/resources.json"))
+  const fs = require("fs")
   const { slug } = ctx.params
   let slug0type = "city"
 
-  /*if (!global.tweets)*/ global.tweets = await TweetModel.find({})
   /** @type {Object[]} */
-  let tweets = global.tweets
+  let tweets;
+  console.log("Running ISR for [...slug].jsx...")
 
-  tweets = tweets.map((item) => {
-    const { _id, __v, createdAt, updatedAt, ...doc } = item._doc
-    return doc
-  })
+  if(fs.existsSync("tweets.json")) {
+    console.log("tweet.json found.")
+    tweets = JSON.parse(fs.readFileSync("tweets.json", "utf8"))
+  } else {
+    console.log("tweet.json not found. Reading from the database.")
+    await connectToDatabase()
+    tweets = await TweetModel.find({})
 
+    tweets = tweets.map((item) => {
+      const { _id, __v, createdAt, updatedAt, ...doc } = item._doc
+      return doc
+    })
+
+    fs.writeFileSync("tweets.json", JSON.stringify(tweets))
+  }
+ 
   // /city route
   if (slug.length === 1) {
     if (cities.map((i) => i.toLowerCase()).includes(slug[0])) {
@@ -112,7 +123,7 @@ export const getStaticProps = async (ctx) => {
           ? camelize(slug[1])
           : null,
     },
-    revalidate: 120,
+    revalidate: 180,
   }
 }
 
@@ -121,8 +132,6 @@ export const getStaticProps = async (ctx) => {
  */
 export const getStaticPaths = async () => {
   const { connectToDatabase } = require("../lib/mongo")
-  // const { scrape } = require("../lib/scrape")
-  await connectToDatabase()
   const resources = Object.keys(require("seeds/resources.json"))
   const cities = Object.keys(require("seeds/cities.json"))
   const paths = []
