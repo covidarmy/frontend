@@ -1,6 +1,6 @@
 # covid-resources - Covid 19 Twitter Resources Aggregator
 
-**covid-resources** scrapes tweets from Twitter's search page (using Twitter's advanced search feature) and collates them on one page.
+**covid-resources** scrapes tweets from Twitter's search page (using Twitter's advanced search feature) and collates them on one page
 
 Link - [https://covidresources.vercel.app](https://covidresources.vercel.app)
 
