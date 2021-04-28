@@ -9,8 +9,8 @@ import {
   DuplicateIcon,
   ShareIcon
 } from "@heroicons/react/outline"
-
 import { fetchTweets } from "../lib/api" 
+import Loader from "./Loader.svg";
 /**
  * @type {React.NamedExoticComponent}
  */
@@ -158,8 +158,8 @@ const TweetsList = React.memo(({ city: location, resource }) => {
   else if (loading) {
     // Loading results
     return (
-      <div>
-        Loading ... 
+      <div className="w-40 h-40">
+        <Loader />
       </div>
     )
   }
