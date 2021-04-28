@@ -16,20 +16,31 @@ import { fetchTweets } from "../lib/api"
  */
 const TweetsList = React.memo(({ city: location, resource }) => {
 
+  const [loading, setLoading] = React.useState(false);
   const [data, setData] = React.useState([]);
   const [shareSupported, setShareSupported] = React.useState(false)
   const [limit, setLimit] = React.useState(20)
 
   const showMore = async () => {
+    setLoading(true)
     const newTweets = await fetchTweets({ location, resource, limit: 20, offset: Math.floor(data.length) }) 
     setData((data) => data.concat(newTweets))
+    setLoading(false)
   }
 
   React.useEffect(() => {
     if (typeof window !== "undefined" && window.navigator?.share) {
       setShareSupported(true)
     }
-    fetchTweets({ location, resource }).then(setData);
+    if(location && resource){
+      setLoading(true)
+      fetchTweets({ location, resource })
+      .then((data) => {
+        setData(data)
+        setLoading(false)
+      });
+    }
+
   }, [])
 
   const handleCopyOrShare = (link) => {
@@ -136,8 +147,26 @@ const TweetsList = React.memo(({ city: location, resource }) => {
     }
   }
 
-  return data.length > 0 ? (
-    <>
+  if (!(location && resource)) {
+    // Return Please add location & resource
+    return (
+      <div>
+        Please select location and resource
+      </div>
+    )
+  }
+  else if (loading) {
+    // Loading results
+    return (
+      <div>
+        Loading ... 
+      </div>
+    )
+  }
+  else if (data.length > 0){
+    // Tweets
+    return (
+      <>
       {data 
         .map(({ id: tweetId, url: tweetUrl, status: voteCount }) => {
           return (
@@ -160,8 +189,12 @@ const TweetsList = React.memo(({ city: location, resource }) => {
         </button>
       )}
     </>
-  ) : (
-    <div className="text-center">
+    )
+  }
+  else {
+    // Error
+    return (
+      <div className="text-center">
       No tweets found { location ? " for " + location + (resource ? " & " + resource : "") : ""}. This might be a bug, please DM
       on Twitter to let me know.
       <br />
@@ -173,7 +206,8 @@ const TweetsList = React.memo(({ city: location, resource }) => {
         @covid_army
       </a>
     </div>
-  )
+    )
+  }
 })
 
 export default TweetsList
