@@ -50,16 +50,18 @@ const CityPage = ({ tweets, resources, cities, city, resource, lastUpdated }) =>
 /**
  * @type {import("next").GetStaticProps<{}, { slug: Array<string> }>}
  */
+
 export const getStaticProps = async (ctx) => {
-  const { connectToDatabase } = require("../lib/mongo")
-  const TweetModel = require("../schemas/tweet")
+  //const { connectToDatabase } = require("../lib/mongo")
+  //const TweetModel = require("../schemas/tweet")
   const cities = Object.keys(require("seeds/cities.json"))
   const resources = Object.keys(require("seeds/resources.json"))
-  const fs = require("fs")
+  //const fs = require("fs")
   const { slug } = ctx.params
   let slug0type = "city"
 
-  /** @type {Object[]} */
+  /** @type {Object[]} */ 
+  /*
   let tweets;
   console.log("Running ISR for [...slug].jsx...")
 
@@ -109,10 +111,10 @@ export const getStaticProps = async (ctx) => {
       return locationArr.includes(slug[0]) && resourceArr.includes(slug[1])
     })
   }
-
+  */
   return {
     props: {
-      tweets,
+      //tweets,
       resources,
       cities,
       city: slug0type === "city" ? camelize(slug[0]) : null,
@@ -124,7 +126,7 @@ export const getStaticProps = async (ctx) => {
           : null,
       lastUpdated: Date.now()
     },
-    revalidate: 180,
+    //revalidate: 180,
   }
 }
 

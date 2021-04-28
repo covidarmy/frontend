@@ -10,27 +10,26 @@ import {
   ShareIcon
 } from "@heroicons/react/outline"
 
+import { fetchTweets } from "../lib/api" 
 /**
  * @type {React.NamedExoticComponent}
  */
-const TweetsList = React.memo(({ data }) => {
+const TweetsList = React.memo(({ city: location, resource }) => {
+
+  const [data, setData] = React.useState([]);
   const [shareSupported, setShareSupported] = React.useState(false)
-  const router = useRouter()
-  const { slug } = router.query
   const [limit, setLimit] = React.useState(20)
 
-  const showMore = () => {
-    if (limit + 20 < data.length) {
-      setLimit((prev) => prev + 20)
-    } else if (limit + 20 > data.length && limit < data.length) {
-      setLimit((prev) => prev + (data.length - prev))
-    }
+  const showMore = async () => {
+    const newTweets = await fetchTweets({ location, resource, limit: 20, offset: Math.floor(data.length) }) 
+    setData((data) => data.concat(newTweets))
   }
 
   React.useEffect(() => {
     if (typeof window !== "undefined" && window.navigator?.share) {
       setShareSupported(true)
     }
+    fetchTweets({ location, resource }).then(setData);
   }, [])
 
   const handleCopyOrShare = (link) => {
@@ -139,11 +138,7 @@ const TweetsList = React.memo(({ data }) => {
 
   return data.length > 0 ? (
     <>
-      {data
-        .sort((a, b) => {
-          return -a.postedAt.localeCompare(b.postedAt)
-        })
-        .slice(0, limit + 1)
+      {data 
         .map(({ id: tweetId, url: tweetUrl, status: voteCount }) => {
           return (
             <div
@@ -154,11 +149,11 @@ const TweetsList = React.memo(({ data }) => {
             </div>
           )
         })}
-      {limit + 20 < data.length && (
+      {data.length % 20 == 0 && (
         <button
           onClick={showMore}
           className="bg-indigo-200 text-indigo-700 flex items-center justify-center px-4 py-2 rounded-md gap-2 shadow-md"
-          disabled={limit + 20 > data.length}
+          disabled={data.length % 20 !== 0}
         >
           <HiChevronDoubleDown />
           Show more
@@ -167,7 +162,7 @@ const TweetsList = React.memo(({ data }) => {
     </>
   ) : (
     <div className="text-center">
-      No tweets found for {slug[0]} & {slug[1]}. This might be a bug, please DM
+      No tweets found { location ? " for " + location + (resource ? " & " + resource : "") : ""}. This might be a bug, please DM
       on Twitter to let me know.
       <br />
       <a

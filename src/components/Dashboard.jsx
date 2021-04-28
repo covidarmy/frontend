@@ -4,7 +4,7 @@ import ResourceFilter from "./ResourceFilter"
 import TweetsList from "./TweetsList"
 
 export const Dashboard = ({
-  data: { resources, cities, tweets, resource, city },
+  data: { resources, cities, resource, city },
 }) => {
   return (
     <div className="flex flex-col justify-center px-4 overflow-hidden lg:flex-row lg:mt-6">
@@ -13,7 +13,7 @@ export const Dashboard = ({
         <ResourceFilter data={resources} city={city} resource={resource} />
       </div>
       <div className="h-auto overflow-y-auto">
-        <TweetsList data={tweets} />
+        <TweetsList city={city} resource={resource}/>
       </div>
     </div>
   )

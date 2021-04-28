@@ -24,15 +24,16 @@ const IndexPage = ({ tweets, resources, cities, lastUpdated }) => {
  * @type {import("next").GetStaticProps<{}, {}>}
  */
 export const getStaticProps = async () => {
-  const { connectToDatabase } = require("../lib/mongo")
-  const { scrape } = require("../lib/scrape")
-  await connectToDatabase()
-  const TweetModel = require("../schemas/tweet")
+  //const { connectToDatabase } = require("../lib/mongo")
+  //const { scrape } = require("../lib/scrape")
+  //await connectToDatabase()
+  //const TweetModel = require("../schemas/tweet")
   const cities = Object.keys(require("seeds/cities.json"))
   const resources = Object.keys(require("seeds/resources.json"))
-  const fs = require("fs")
+  //const fs = require("fs")
   
   /** @type {Object[]} */
+  /*
   let tweets = await TweetModel.find({}) 
 
   tweets = tweets.map((item) => {
@@ -41,10 +42,10 @@ export const getStaticProps = async () => {
   })
 
   fs.writeFileSync("tweets.json", JSON.stringify(tweets))
-
+  */
   return {
     props: {
-      tweets,
+      //tweets,
       resources,
       cities,
       lastUpdated: Date.now()
