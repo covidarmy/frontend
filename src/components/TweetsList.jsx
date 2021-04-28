@@ -167,7 +167,7 @@ const TweetsList = React.memo(({ data }) => {
     </>
   ) : (
     <div className="text-center">
-      No tweets found for {slug[0]} & {slug[1]}. This might be a bug, please DM
+      No tweets found { slug ? " for " + slug[0] + (slug[1] ? " & " + slug[1] : "") : ""}. This might be a bug, please DM
       on Twitter to let me know.
       <br />
       <a
