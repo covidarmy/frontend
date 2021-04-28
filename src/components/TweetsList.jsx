@@ -151,24 +151,6 @@ const TweetsList = React.memo(({ data }) => {
               className="w-full flex flex-col items-center justify-center space-y-4 my-8 px-2"
             >
               <Tweet id={tweetId} />
-              <div className="w-full sm:w-1/2 lg:w-2/5 xl:w-1/3 px-4 sm:px-0 flex justify-center">
-                <div
-                  className="text-gray-500 text-xs text-center hover:cursor-pointer copy-btn"
-                  onClick={() => handleCopyOrShare(tweetUrl)}
-                >
-                  {shareSupported ? (
-                    <>
-                      <ShareIcon className="w-8" />
-                      <p className="text-gray-400 text-xs">Share</p>
-                    </>
-                  ) : (
-                    <>
-                      <DuplicateIcon className="w-8" />
-                      <p className="text-gray-400 text-xs">Copy Link</p>
-                    </>
-                  )}
-                </div>
-              </div>
             </div>
           )
         })}
