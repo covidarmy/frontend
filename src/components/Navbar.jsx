@@ -3,7 +3,7 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline"
 
 const navigation = ["Home", "Share", "How it Works", "Contact Us"]
 
-export default function Navbar() {
+export default function Navbar({ lastUpdated }) {
   return (
     <Disclosure as="nav" className="shadow-lg bg-white w-full">
       {({ open }) => (
@@ -83,7 +83,14 @@ export default function Navbar() {
                 />
               </svg>
               <p className="lg:mx-6 sm:mx-1 sm:text-xs text-sm lg:pt-2 text-gray-400">
-                Last updated 5 minutes ago
+                Last updated {(() => {
+                  const minutes = Math.floor((Date.now() - lastUpdated)/60000)
+                    if(minutes > 0){
+                      return minutes + " minutes and"
+                    } else {
+                      return ""
+                    }
+		})()} {Math.floor((Date.now() - lastUpdated)/1000) % 60} seconds ago
               </p>
             </div>
             <div className="hidden md:block sm:ml-20 sm:mr-0 space-x-4 justify-end lg:ml-20">
