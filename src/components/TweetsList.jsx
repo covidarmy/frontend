@@ -148,7 +148,7 @@ const TweetsList = React.memo(({ data }) => {
           return (
             <div
               key={tweetId}
-              className="w-full flex flex-col items-center justify-center space-y-4 my-8 px-2"
+              className="w-full flex flex-col items-center justify-center space-y-4 my-2 px-2"
             >
               <Tweet id={tweetId} />
             </div>

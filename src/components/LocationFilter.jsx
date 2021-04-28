@@ -64,7 +64,7 @@ export default function LocationFilter({ data, city, resource }) {
 
   const cityNotSelected = () => {
     return (
-      <div className="shadow-md bg-white box-border h-auto w-full rounded-md p-3 lg:p-6 border border-gray-200">
+      <div className="shadow-md bg-white box-border h-auto w-full rounded-md my-2 p-3 lg:p-6 border border-gray-200">
         {/* ICON */}
         <div className="flex ml-1">
           <svg
@@ -155,7 +155,7 @@ export default function LocationFilter({ data, city, resource }) {
 
   const citySelected = () => {
     return (
-      <div className="shadow-md bg-white box-border h-auto w-full rounded-md p-3 lg:p-6 border border-gray-200">
+      <div className="shadow-md bg-white box-border h-auto w-full rounded-md my-2 p-3 lg:p-6 border border-gray-200">
 
         <div className="flex ml-1 justify-between">
           <div className="flex">

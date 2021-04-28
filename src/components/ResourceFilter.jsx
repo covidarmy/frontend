@@ -4,7 +4,7 @@ import FilterButton from "./FilterButton"
 
 export default function ResourceFilter({ data, city, resource }) {
   return (
-    <div className="shadow-md border border-gray-200 rounded-md bg-white text-center box-border h-auto w-full p-3 lg:p-6">
+    <div className="shadow-md border border-gray-200 rounded-md bg-white text-center box-border h-auto w-full my-2 p-3 lg:p-6">
       <div className="flex">
         <svg
           className="mt-0.5"
