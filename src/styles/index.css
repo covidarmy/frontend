@@ -1,3 +1,9 @@
+/* DEFINE CSS VARIABLES */
+:root {
+    --color-primary: #4F46EF;
+  }
+
+/* TAILWIND EXTENSIONS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
