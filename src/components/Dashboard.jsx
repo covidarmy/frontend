@@ -4,7 +4,7 @@ import ResourceFilter from "./ResourceFilter"
 import TweetsList from "./TweetsList"
 
 export const Dashboard = ({
-  data: { resources, cities, tweets, resource, city },
+  data: { resources, cities, resource, city },
 }) => {
   return (
     <div className="flex flex-col w-full items-center justify-center gap-4 lg:mt-8 mt-6 px-4 lg:px-0">
@@ -12,7 +12,7 @@ export const Dashboard = ({
         <LocationFilter data={cities} city={city} resource={resource} />
         <ResourceFilter data={resources} city={city} resource={resource} />
       </div>
-      <TweetsList data={tweets} />
+      <TweetsList city={city} resource={resource}/>
     </div>
   )
 }
