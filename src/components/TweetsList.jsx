@@ -25,11 +25,11 @@ const TweetsList = React.memo(({ city: location, resource }) => {
     setData((data) => data.concat(newTweets))
   }
 
-  React.useEffect(async () => {
+  React.useEffect(() => {
     if (typeof window !== "undefined" && window.navigator?.share) {
       setShareSupported(true)
     }
-    setData(await fetchTweets({ location, resource }));
+    fetchTweets({ location, resource }).then(setData);
   }, [])
 
   const handleCopyOrShare = (link) => {
