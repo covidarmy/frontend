@@ -4,7 +4,7 @@ import { NextSeo } from "next-seo"
 import { useRouter } from "next/router"
 import { camelize } from "~/lib/utils"
 
-const CityPage = ({ tweets, resources, cities, city, resource }) => {
+const CityPage = ({ tweets, resources, cities, city, resource, lastUpdated }) => {
   const router = useRouter()
   const { slug } = router.query
   const title = Array.isArray(slug)
@@ -32,7 +32,7 @@ const CityPage = ({ tweets, resources, cities, city, resource }) => {
         }}
       />
       <div className="w-screen overflow-x-hidden">
-        <Navbar />
+        <Navbar lastUpdated={lastUpdated}/>
         <Dashboard
           data={{
             tweets,
@@ -122,6 +122,7 @@ export const getStaticProps = async (ctx) => {
           : typeof slug[1] === "string"
           ? camelize(slug[1])
           : null,
+      lastUpdated: Date.now()
     },
     revalidate: 180,
   }

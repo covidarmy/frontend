@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import { Dashboard } from "~/components/Dashboard"
 import Navbar from "~/components/Navbar"
 
-const IndexPage = ({ tweets, resources, cities }) => {
+const IndexPage = ({ tweets, resources, cities, lastUpdated }) => {
   const router = useRouter()
 
   React.useEffect(() => {
@@ -12,7 +12,7 @@ const IndexPage = ({ tweets, resources, cities }) => {
 
   return (
     <div className="w-screen">
-      <Navbar />
+      <Navbar lastUpdated={lastUpdated}/>
       <Dashboard
         data={{
           tweets,
@@ -53,6 +53,7 @@ export const getStaticProps = async () => {
       tweets,
       resources,
       cities,
+      lastUpdated: Date.now()
     },
     revalidate: 300,
   }
