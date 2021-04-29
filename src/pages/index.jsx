@@ -9,6 +9,7 @@ const IndexPage = ({ tweets, resources, cities, lastUpdated }) => {
   React.useEffect(() => {
     router.push("/delhi")
   }, [])
+
   return (
     <div className="w-screen">
       <Navbar lastUpdated={lastUpdated}/>

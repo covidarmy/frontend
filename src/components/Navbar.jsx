@@ -1,17 +1,9 @@
 import { Disclosure } from "@headlessui/react"
 import { MenuIcon, XIcon } from "@heroicons/react/outline"
-import Link from "next/link"
-import Team from "../pages/team"
 
-const navigation = ["Home", "Share", "How it Works", "Team"]
+const navigation = ["Home", "Share", "How it Works", "Contact Us"]
 
 export default function Navbar({ lastUpdated }) {
-
-  function onClick(event) {
-    return (
-      console.log(event)
-    )
-  }
   return (
     <Disclosure as="nav" className="shadow-lg bg-white w-full">
       {({ open }) => (
@@ -95,23 +87,11 @@ export default function Navbar({ lastUpdated }) {
               </p>
             </div>
             <div className="hidden md:block sm:ml-20 sm:mr-0 space-x-4 justify-end lg:ml-20">
-              <Link href='/'>
-                <a className="hover:bg-gray-700 text-gray focus:bg-red hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
-              </Link>
-              <Link href='/coming'>
-                <a className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium">Blog</a>
-              </Link>
-              <Link href='/coming'>
-                <a className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium">Share</a>
-              </Link>
-              <Link href='/team'>
-                <a className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium">Team</a>
-              </Link>
-              {/* {navigation.map((item, itemIdx) =>
+              {navigation.map((item, itemIdx) =>
                 itemIdx === 0 ? (
                   <a
                     key={item}
-                    href={"/"+item.toLocaleLowerCase()}
+                    href="#"
                     className="bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
                     {item}
@@ -125,7 +105,7 @@ export default function Navbar({ lastUpdated }) {
                     {item}
                   </a>
                 )
-              )} */}
+              )}
             </div>
             <div className="-mr-2 flex md:hidden">
               {/* Mobile menu button */}
@@ -140,28 +120,16 @@ export default function Navbar({ lastUpdated }) {
             </div>
           </div>
           <Disclosure.Panel className="md:hidden">
-            <div className="px-2 grid pt-2 pb-3 space-y-1 sm:px-3">
-              {/* {navigation.map((item, itemIdx) => (
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              {navigation.map((item, itemIdx) => (
                 <a
                   key={item}
-                  href="/"
+                  href="#"
                   className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   {item}
                 </a>
-              ))} */}
-              <Link href='/'>
-                <a className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
-              </Link>
-              <Link href='/coming'>
-                <a className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium">Blog</a>
-              </Link>
-              <Link href='/coming'>
-                <a className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium">Share</a>
-              </Link>
-              <Link href='/team'>
-                <a className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium">Team</a>
-              </Link>
+              ))}
             </div>
           </Disclosure.Panel>
         </>
