@@ -82,9 +82,9 @@ export default function Navbar({ lastUpdated }) {
                   fill="#4F46EF"
                 />
               </svg>
-              <p className="lg:mx-6 sm:mx-1 sm:text-xs text-sm lg:pt-2 text-gray-400">
+	      {lastUpdated && <p className="lg:mx-6 sm:mx-1 sm:text-xs text-sm lg:pt-2 text-gray-400">
                 Last updated {Math.floor((Date.now() - lastUpdated)/60000)} minutes ago
-              </p>
+              </p>}
             </div>
             <div className="hidden md:block sm:ml-20 sm:mr-0 space-x-4 justify-end lg:ml-20">
               {navigation.map((item, itemIdx) =>
