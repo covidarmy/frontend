@@ -136,7 +136,7 @@ export default function ResourceFilter({ data, city, resource }) {
               stroke-linejoin="round"
             />
           </svg>
-          <p className="text-strong mt-0 ml-1 font-bold text-gray-500">Please select location first</p>
+          <p className="text-strong mt-0 ml-1 font-bold text-gray-500">Please select city first</p>
         </div>
       </div>
     )

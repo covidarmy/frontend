@@ -88,7 +88,7 @@ export default function LocationFilter({ data, city, resource }) {
             />
           </svg>
           <p className="text-strong ml-1 mt-0.5 font-bold">
-            Choose Your Location
+            Choose Your City
           </p>
         </div>
         {/* SEARCHBOX */}
@@ -97,7 +97,7 @@ export default function LocationFilter({ data, city, resource }) {
             className="border-2 w-full relative w-400 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
             type="search"
             name="search"
-            placeholder="Search"
+            placeholder="Search for your city or Select from below"
             onChange={({ currentTarget }) => setSearchValue(currentTarget.value)}
           />
           <button
@@ -131,6 +131,24 @@ export default function LocationFilter({ data, city, resource }) {
             <span>
               {showMore ? "Show only top locations" : "Show all locations"}
             </span>
+            {showMore &&
+            <svg
+              className="mt-1"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5 10L10 5L15 10"
+                stroke="#4F46EF"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>}
+            {!showMore &&
             <svg
               className="mt-1"
               width="20"
@@ -146,7 +164,8 @@ export default function LocationFilter({ data, city, resource }) {
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
-            </svg>
+            </svg>}
+            
           </button>
         </div>
       </div>

@@ -151,7 +151,7 @@ const TweetsList = React.memo(({ city: location, resource }) => {
     // Return Please add location & resource
     return (
       <div>
-        Please select location and resource
+        Please select city and resource
       </div>
     )
   }
