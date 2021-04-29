@@ -1,37 +1,42 @@
-## Welcome to GitHub Pages
+# covid.army/frontend
+## Welcome to our frontend project
 
-You can use the [editor on GitHub](https://github.com/covidarmy/frontend/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+This project is the frontend to our Twitter aggregator. Our `backend` project collects data from Twitter which is display here in this project. If you wish to contribute to this project, which we really encourage anyone to do, please clone both the `frontend` and `banckend` repositories to get a better overview.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Link - [https://covidresources.vercel.app](https://covidresources.vercel.app)
 
-### Markdown
+Want to contribute? Check the [Contributing](#contributing) section.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Get Started
 
-```markdown
-Syntax highlighted code block
+Set the variables in .env.example and move them to .env.local
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```
+npm install
+npm run build
+npm run dev
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+## Environment Variables
 
-### Jekyll Themes
+```bash
+FB_PRIVATE_KEY=           # Private key from firebase service account json
+FB_CLIENT_EMAIL=          # Client email from firebase service account json
+FB_PROJECT_ID=            # Your firebase project id
+NEXT_PUBLIC_CLARITY_ID=   # Microsoft Clarity ID
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/covidarmy/frontend/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+## Data Models
 
-### Support or Contact
+1. **Tweet & Tweets Document**
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+   ```typescript
+   type Tweet = {
+     tweetId: string
+     username: string
+     for: Record<string, boolean>
+     location: Record<string, boolean>
+   }
+
+   type Tweets = Record<string, Tweet>
+   ```
