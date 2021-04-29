@@ -5,6 +5,9 @@ module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx,vue,svelte}"],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    colors: {
+      primary: 'var(--color-primary)'
+    },
     extend: {
       colors: {
         ...colors,
