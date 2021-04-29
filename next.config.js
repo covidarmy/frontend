@@ -1,13 +1,4 @@
-
-
-module.exports = {
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ["@svgr/webpack"]
-    });
-    return config;
-  },
+let config = {
   future: {
     webpack5: true,
   },
@@ -15,3 +6,5 @@ module.exports = {
     domains: ["pbs.twimg.com", "abs.twimg.com"],
   },
 }
+
+module.exports = config

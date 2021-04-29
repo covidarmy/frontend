@@ -16,9 +16,7 @@ export const Dashboard = ({
         <LocationFilter data={cities} city={city} resource={resource} />
         <ResourceFilter data={resources} city={city} resource={resource} />
       </div>
-      <div className="h-auto overflow-y-auto flex flex-col items-center lg:w-6/12">
-        <TweetsList city={city} resource={resource}/>
-      </div>
+      <TweetsList city={city} resource={resource}/>
     </div>
   )
 }

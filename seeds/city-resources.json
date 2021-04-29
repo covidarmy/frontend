@@ -1,0 +1,49 @@
+{
+  "Bhopal": {
+    "Bhopal Covid Beds Website": "https://bhopalcovidbeds.in/"
+  },
+  "Delhi": {
+    "Delhi Fights Corona": "https://delhifightscorona.in/"
+  },
+  "common": {
+    "https://covid-resources-chi.vercel.app/": "https://covid-resources-chi.vercel.app/",
+    "Blood Bank India Instagram - Plasma Donors": "https://www.instagram.com/bloodbankindia",
+    "All India Covid 19 Helpline": "https://docs.google.com/document/d/16WeMKah7RXoB1gnqa9YXVTuWM4TR6hY9Qys48Pf8mCc/mobilebasic",
+    "covidresources.in Forum": "https://covidresources.in",
+    "Fridays for Future Covid Resources": "https://linktr.ee/FFFIndia",
+    "Covid Tools": "https://covidtools.in/full",
+    "COVID Meals Information": "https://http://bit.ly/Covidmeals"
+  },
+  "Nagpur": {
+    "Nagpur Fights Covid": "https://nagpurfightscovid.in/"
+  },
+  "Ahmedabad": {
+    "Ahmedabad Beds Live Dashboard": "https://ahna.org.in/covid19.html"
+  },
+  "Gurgaon": {
+    "Haryana Beds Availability": "https://www.coronaharyana.in/"
+  },
+  "Agra": {
+    "Agra Covid Resources": "https://docs.google.com/spreadsheets/d/1i96xLEbkH72Z3HobmMOdNiSYBIHYBgZlPcBs0xEaOSo/edit#gid=0"
+  },
+  "Hyderabad": {
+    "Hyd COVID Resources": "https://hydcovidresources.com/"
+  },
+  "Bangalore": {
+    "Covid Bangalore Instagram": "https://www.instagram.com/covidbangalore.support/",
+    "Bangalore Oxygen Information": "https://oxygenblr.in/",
+    "Covid Helpline Bangalore": "https://covidhelplinebangalore.com/"
+  },
+  "Kolkata": {
+    "Kolkata Covid Information Google Sheet": "https://docs.google.com/spreadsheets/u/0/d/1dy1DYjGb15bijab4vVAUyrdtw14va32NgWJqlo_2rcU/htmlview"
+  },
+  "Mumbai": {
+    "Mumbai Covid Helplines": "https://docs.google.com/spreadsheets/d/1wTlMq3jIExtsNBeAiGSSVpikNY5lqga2DoWxSuE6Zj4/htmlview"
+  },
+  "Thane": {
+    "Thane Beds Availability": "https://www.covidbedthane.in/"
+  },
+  "Haryana": {
+    "Haryana Beds Availability": "https://www.coronaharyana.in/"
+  }
+}

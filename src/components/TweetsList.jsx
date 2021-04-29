@@ -9,38 +9,27 @@ import {
   DuplicateIcon,
   ShareIcon
 } from "@heroicons/react/outline"
+
 import { fetchTweets } from "../lib/api" 
-import Loader from "./Loader.svg";
 /**
  * @type {React.NamedExoticComponent}
  */
 const TweetsList = React.memo(({ city: location, resource }) => {
 
-  const [loading, setLoading] = React.useState(false);
   const [data, setData] = React.useState([]);
   const [shareSupported, setShareSupported] = React.useState(false)
   const [limit, setLimit] = React.useState(20)
 
   const showMore = async () => {
-    setLoading(true)
     const newTweets = await fetchTweets({ location, resource, limit: 20, offset: Math.floor(data.length) }) 
     setData((data) => data.concat(newTweets))
-    setLoading(false)
   }
 
   React.useEffect(() => {
     if (typeof window !== "undefined" && window.navigator?.share) {
       setShareSupported(true)
     }
-    if(location && resource){
-      setLoading(true)
-      fetchTweets({ location, resource })
-      .then((data) => {
-        setData(data)
-        setLoading(false)
-      });
-    }
-
+    fetchTweets({ location, resource }).then(setData);
   }, [])
 
   const handleCopyOrShare = (link) => {
@@ -147,32 +136,14 @@ const TweetsList = React.memo(({ city: location, resource }) => {
     }
   }
 
-  if (!(location && resource)) {
-    // Return Please add location & resource
-    return (
-      <div>
-        Please select city and resource
-      </div>
-    )
-  }
-  else if (loading) {
-    // Loading results
-    return (
-      <div className="w-40 h-40">
-        <Loader />
-      </div>
-    )
-  }
-  else if (data.length > 0){
-    // Tweets
-    return (
-      <>
+  return data.length > 0 ? (
+    <>
       {data 
         .map(({ id: tweetId, url: tweetUrl, status: voteCount }) => {
           return (
             <div
               key={tweetId}
-              className="w-full flex flex-col items-center justify-center space-y-4 my-2 px-2"
+              className="w-full flex flex-col items-center justify-center space-y-4 my-8 px-2"
             >
               <Tweet id={tweetId} />
             </div>
@@ -189,12 +160,8 @@ const TweetsList = React.memo(({ city: location, resource }) => {
         </button>
       )}
     </>
-    )
-  }
-  else {
-    // Error
-    return (
-      <div className="text-center">
+  ) : (
+    <div className="text-center">
       No tweets found { location ? " for " + location + (resource ? " & " + resource : "") : ""}. This might be a bug, please DM
       on Twitter to let me know.
       <br />
@@ -206,8 +173,7 @@ const TweetsList = React.memo(({ city: location, resource }) => {
         @covid_army
       </a>
     </div>
-    )
-  }
+  )
 })
 
 export default TweetsList
