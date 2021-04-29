@@ -91,7 +91,7 @@ export default function Navbar({ lastUpdated }) {
                 />
               </svg>
               <p className="lg:mx-6 sm:mx-1 sm:text-xs text-sm lg:pt-2 text-gray-400">
-                Last updated {Math.floor((Date.now() - lastUpdated)/60000)} minutes ago
+                Last updated {5 || Math.floor((Date.now() - lastUpdated)/60000)} minutes ago
               </p>
             </div>
             <div className="hidden md:block sm:ml-20 sm:mr-0 space-x-4 justify-end lg:ml-20">
