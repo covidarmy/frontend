@@ -1,0 +1,29 @@
+{
+    "short_name": "Covid.army",
+    "name": "Covid.army",
+    "theme_color": "#4f46ef",
+    "background_color": "#fffff",
+    "display": "standalone",
+    "icons": [{
+            "src": "./assets/covidarmy_logo_48.png",
+            "type": "image/png",
+            "sizes": "48x48"
+        },
+        {
+            "src": "./assets/covidarmy_logo_96.png",
+            "type": "image/png",
+            "sizes": "96x96"
+        },
+        {
+            "src": "./assets/covidarmy_logo_144.png",
+            "type": "image/png",
+            "sizes": "144x144"
+        },
+        {
+            "src": "./assets/covidarmy_logo_192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        }
+    ],
+    "start_url": "/?utm_source=launcher"
+}
