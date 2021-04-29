@@ -3,63 +3,70 @@ import Fuse from "fuse.js"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import FilterButton from "./FilterButton"
-import {useState} from "react"
+import { useState } from "react"
 
 export default function LocationFilter({ data, city, resource }) {
-  const [cityState, setCityState] = useState(city ? true : false);
+  const [cityState, setCityState] = useState(city ? true : false)
   const router = useRouter()
   const filter = router.pathname === "/" && "all"
   const [showMore, setShowMore] = React.useState(false)
 
-  const [searchValue, setSearchValue] = React.useState("");
+  const [searchValue, setSearchValue] = React.useState("")
 
   const renderButtons = () => {
-    let _data = null;
+    let _data = null
 
-    if(searchValue){
-      const fuse = new Fuse(data.sort().filter(i => typeof i !== "boolean"), { includeScore: true })
+    if (searchValue) {
+      const fuse = new Fuse(
+        data.sort().filter((i) => typeof i !== "boolean"),
+        { includeScore: true }
+      )
 
       _data = fuse.search(searchValue).map(({ item }) => item)
     }
     if (!showMore) {
-      _data = _data !== null ? (_data.length > 8 ? _data.slice(0, 8) : _data) : [
-        "Delhi",
-        "Bangalore",
-        "Chennai",
-        "Mumbai",
-        "Kolkata",
-        "Lucknow",
-        "Noida",
-        "Gurgaon",
-      ]
+      _data =
+        _data !== null
+          ? _data.length > 8
+            ? _data.slice(0, 8)
+            : _data
+          : [
+              "Delhi",
+              "Bangalore",
+              "Chennai",
+              "Mumbai",
+              "Kolkata",
+              "Lucknow",
+              "Noida",
+              "Gurgaon",
+            ]
       if (filter !== "all" && !_data.includes(filter)) {
         _data = [..._data, filter]
       }
-    } else if(_data === null){
-       _data = data.sort()
+    } else if (_data === null) {
+      _data = data.sort()
     }
 
-   _data = _data.filter(i => typeof i !== "boolean");
+    _data = _data.filter((i) => typeof i !== "boolean")
 
-   return _data
-      .map((item) => {
-        return (
-          <FilterButton
-            key={item}
-            active={
-              typeof city === "string" &&
-              city.toLowerCase() === item.toLowerCase()
-            }
-            href={
-              resource === null
-                ? "/" + item.toString().toLowerCase()
-                : `/${item.toString().toLowerCase()}/${resource}`
-            }
-          >
-            {item}
-          </FilterButton>
-        )
-      })
+    return _data.map((item) => {
+      return (
+        <FilterButton
+          key={item}
+          active={
+            typeof city === "string" &&
+            city.toLowerCase() === item.toLowerCase()
+          }
+          href={
+            resource === null
+              ? "/" + item.toString().toLowerCase()
+              : `/${item.toString().toLowerCase()}/${resource}`
+          }
+        >
+          {item}
+        </FilterButton>
+      )
+    })
   }
 
   const cityNotSelected = () => {
@@ -83,13 +90,11 @@ export default function LocationFilter({ data, city, resource }) {
               d="M9 9.75C10.2426 9.75 11.25 8.74264 11.25 7.5C11.25 6.25736 10.2426 5.25 9 5.25C7.75736 5.25 6.75 6.25736 6.75 7.5C6.75 8.74264 7.75736 9.75 9 9.75Z"
               fill="#4F46EF"
               stroke="white"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
-          <p className="text-strong ml-1 mt-0.5 font-bold">
-            Choose Your City
-          </p>
+          <p className="text-strong ml-1 mt-0.5 font-bold">Choose Your City</p>
         </div>
         {/* SEARCHBOX */}
         <div className="pt-2 ml-1 flex justify-start relative text-gray-600">
@@ -98,7 +103,9 @@ export default function LocationFilter({ data, city, resource }) {
             type="search"
             name="search"
             placeholder="Search for your city or Select from below"
-            onChange={({ currentTarget }) => setSearchValue(currentTarget.value)}
+            onChange={({ currentTarget }) =>
+              setSearchValue(currentTarget.value)
+            }
           />
           <button
             type="submit"
@@ -131,41 +138,42 @@ export default function LocationFilter({ data, city, resource }) {
             <span>
               {showMore ? "Show only top locations" : "Show all locations"}
             </span>
-            {showMore &&
-            <svg
-              className="mt-1"
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M5 10L10 5L15 10"
-                stroke="#4F46EF"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>}
-            {!showMore &&
-            <svg
-              className="mt-1"
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M5 7.5L10 12.5L15 7.5"
-                stroke="#4F46EF"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>}
-            
+            {showMore && (
+              <svg
+                className="mt-1"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5 10L10 5L15 10"
+                  stroke="#4F46EF"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            )}
+            {!showMore && (
+              <svg
+                className="mt-1"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5 7.5L10 12.5L15 7.5"
+                  stroke="#4F46EF"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            )}
           </button>
         </div>
       </div>
@@ -175,7 +183,6 @@ export default function LocationFilter({ data, city, resource }) {
   const citySelected = () => {
     return (
       <div className="shadow-md bg-white box-border h-auto w-full rounded-md my-2 p-3 lg:p-6 border border-gray-200">
-
         <div className="flex ml-1 justify-between">
           <div className="flex">
             {/* ICON */}
@@ -195,10 +202,10 @@ export default function LocationFilter({ data, city, resource }) {
                 d="M9 9.75C10.2426 9.75 11.25 8.74264 11.25 7.5C11.25 6.25736 10.2426 5.25 9 5.25C7.75736 5.25 6.75 6.25736 6.75 7.5C6.75 8.74264 7.75736 9.75 9 9.75Z"
                 fill="#4F46EF"
                 stroke="white"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
-          </svg>
+            </svg>
             {/* CITY NAME */}
             <p className="text-strong ml-1 mt-0.5 font-bold capitalize">
               {city}
@@ -214,10 +221,9 @@ export default function LocationFilter({ data, city, resource }) {
     )
   }
 
-  if (cityState){
+  if (cityState) {
     return citySelected()
-  }
-  else {
+  } else {
     return cityNotSelected()
   }
 }
