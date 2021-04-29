@@ -4,7 +4,14 @@ import { NextSeo } from "next-seo"
 import { useRouter } from "next/router"
 import { camelize } from "~/lib/utils"
 
-const CityPage = ({ tweets, resources, cities, city, resource, lastUpdated }) => {
+const CityPage = ({
+  tweets,
+  resources,
+  cities,
+  city,
+  resource,
+  lastUpdated,
+}) => {
   const router = useRouter()
   const { slug } = router.query
   const title = Array.isArray(slug)
@@ -32,7 +39,7 @@ const CityPage = ({ tweets, resources, cities, city, resource, lastUpdated }) =>
         }}
       />
       <div className="w-screen overflow-x-hidden">
-        <Navbar lastUpdated={lastUpdated}/>
+        <Navbar lastUpdated={lastUpdated} />
         <Dashboard
           data={{
             tweets,
@@ -60,7 +67,7 @@ export const getStaticProps = async (ctx) => {
   const { slug } = ctx.params
   let slug0type = "city"
 
-  /** @type {Object[]} */ 
+  /** @type {Object[]} */
   /*
   let tweets;
   console.log("Running ISR for [...slug].jsx...")
@@ -124,7 +131,7 @@ export const getStaticProps = async (ctx) => {
           : typeof slug[1] === "string"
           ? camelize(slug[1])
           : null,
-      lastUpdated: Date.now()
+      lastUpdated: Date.now(),
     },
     //revalidate: 180,
   }
@@ -134,7 +141,6 @@ export const getStaticProps = async (ctx) => {
  * @type {import("next").GetStaticPaths}
  */
 export const getStaticPaths = async () => {
-  const { connectToDatabase } = require("../lib/mongo")
   const resources = Object.keys(require("seeds/resources.json"))
   const cities = Object.keys(require("seeds/cities.json"))
   const paths = []
