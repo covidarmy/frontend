@@ -1,17 +1,11 @@
 import * as React from "react"
-import { useRouter } from "next/router"
 import { Dashboard } from "~/components/Dashboard"
 import Navbar from "~/components/Navbar"
 
 const IndexPage = ({ tweets, resources, cities, lastUpdated }) => {
-  const router = useRouter()
-
-  React.useEffect(() => {
-    router.push("/delhi")
-  }, [])
 
   return (
-    <div className="w-screen">
+    <div className="w-screen h-screen flex flex-col">
       <Navbar lastUpdated={lastUpdated}/>
       <Dashboard
         data={{

@@ -1,3 +1,17 @@
+/* DEFINE CSS VARIABLES */
+:root {
+    --color-primary: #4F46EF;
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+/* TAILWIND EXTENSIONS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
