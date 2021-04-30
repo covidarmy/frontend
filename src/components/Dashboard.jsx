@@ -1,7 +1,10 @@
+import Link from "next/link"
 import * as React from "react"
 import LocationFilter from "./LocationFilter"
 import ResourceFilter from "./ResourceFilter"
+import Team from "../pages/team"
 import TweetsList from "./TweetsList"
+
 
 export const Dashboard = ({
   data: { resources, cities, resource, city },
