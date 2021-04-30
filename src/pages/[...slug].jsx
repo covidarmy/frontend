@@ -38,7 +38,7 @@ const CityPage = ({
           ],
         }}
       />
-      <div className="w-screen overflow-x-hidden">
+      <div className="w-screen h-screen flex flex-col">
         <Navbar lastUpdated={lastUpdated} />
         <Dashboard
           data={{
