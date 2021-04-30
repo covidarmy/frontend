@@ -1,6 +1,6 @@
 import fetch from "node-fetch"
 
-const BASE_URL = "https://covidarmy-backend.apoorvsingal.repl.co/api/tweets"
+const BASE_URL = "https://api.covid.army/api/tweets"
 
 export const fetchTweets = ({ location, resource, limit, offset }) => {
   let url = BASE_URL
