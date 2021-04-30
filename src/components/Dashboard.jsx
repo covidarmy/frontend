@@ -10,16 +10,14 @@ export const Dashboard = ({
   data: { resources, cities, resource, city },
 }) => {
   return (
-    <div className="flex flex-col w-full items-center justify-center gap-4 lg:mt-8 mt-6 px-4 lg:px-0">
-      <div className="rounded-md grid grid-cols-1 lg:grid-cols-2 gap-4 pb-4">
-      
+    <div className="flex flex-col justify-center px-4 overflow-hidden lg:flex-row lg:mt-6">
+      <div className="rounded-md flex flex-col lg:w-6/12">
         <LocationFilter data={cities} city={city} resource={resource} />
         <ResourceFilter data={resources} city={city} resource={resource} />
       </div>
-    {/* 
-      <div className="h-auto overflow-y-auto flex flex-col items-center lg:w-6/12"> */}
+      <div className="h-auto overflow-y-auto flex flex-col items-center lg:w-6/12">
         <TweetsList city={city} resource={resource}/>
-      {/*</div> */}
+      </div>
     </div>
   )
 }
