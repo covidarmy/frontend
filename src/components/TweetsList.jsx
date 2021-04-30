@@ -10,7 +10,7 @@ import {
   ShareIcon
 } from "@heroicons/react/outline"
 import { fetchTweets } from "../lib/api" 
-import Loader from "./Loader.svg";
+import Loader from "../assets/Loader.svg";
 /**
  * @type {React.NamedExoticComponent}
  */
