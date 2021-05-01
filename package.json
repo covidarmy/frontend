@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "format": "prettier --write ./src/**/*.{js,jsx,ts,tsx}"
+    "format": "prettier --write ./src/**/*.{js,jsx,ts,tsx,svg}"
   },
   "dependencies": {
     "@headlessui/react": "^1.0.0",
