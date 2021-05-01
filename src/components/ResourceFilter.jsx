@@ -2,11 +2,10 @@ import * as React from "react"
 import Link from "next/link"
 import FilterButton from "./FilterButton"
 import ResourceIcon from "../assets/Resource.svg"
-import ResourceIconDeactivated from "../assets/ResourceDeactivated.svg" 
+import ResourceIconDeactivated from "../assets/ResourceDeactivated.svg"
 
 export default function ResourceFilter({ data, city, resource }) {
-
-  const [changeResource, setChangeResource] = React.useState(false);
+  const [changeResource, setChangeResource] = React.useState(false)
 
   const citySelected = () => {
     return (
@@ -53,7 +52,7 @@ export default function ResourceFilter({ data, city, resource }) {
           </div>
 
           {/* CHANGE BUTTON */}
-          <button onClick={() => setChangeResource(!changeResource)} >
+          <button onClick={() => setChangeResource(!changeResource)}>
             <span className="font-bold text-primary">Change</span>
           </button>
         </div>
@@ -66,19 +65,19 @@ export default function ResourceFilter({ data, city, resource }) {
       <div className="shadow-md border border-gray-200 rounded-md bg-gray-100 text-center box-border h-auto w-full my-2 p-3 lg:p-6 cursor-not-allowed">
         <div className="flex">
           <ResourceIconDeactivated />
-          <p className="text-strong mt-0 ml-1 font-bold text-gray-500">Please select city first</p>
+          <p className="text-strong mt-0 ml-1 font-bold text-gray-500">
+            Please select city first
+          </p>
         </div>
       </div>
     )
   }
 
-  if(city && resource && !changeResource) {
+  if (city && resource && !changeResource) {
     return cityResourceSelected()
-  }
-  else if (city) {
+  } else if (city) {
     return citySelected()
-  }
-  else {
+  } else {
     return noneSelected()
   }
 }

@@ -8,7 +8,9 @@ const DisclaimerPage = ({ disclaimer }) => {
       <Navbar />
       <div className="container mx-auto py-10 px-4 lg:px-0">
         <h1 className="font-bold text-5xl mb-6">Disclaimer</h1>
-        {disclaimer.split("\n").map(x => <p className="my-8">{x}</p>)}
+        {disclaimer.split("\n").map((x) => (
+          <p className="my-8">{x}</p>
+        ))}
       </div>
     </div>
   )
