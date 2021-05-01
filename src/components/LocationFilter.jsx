@@ -73,7 +73,7 @@ export default function LocationFilter({ data, city, resource }) {
     })
   }
 
-  return cityState ? (
+  return !cityState ? (
     <div className="shadow-md bg-white box-border h-auto w-full rounded-md my-2 p-3 lg:p-6 border border-gray-200">
       {/* ICON */}
       <div className="flex ml-1">
