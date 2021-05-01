@@ -5,7 +5,7 @@ import Link from "next/link"
 import Team from "../pages/team"
 import Logo from "../assets/Logo.svg"
 
-export default function Navbar({ lastUpdated }) {
+export default function Navbar({ lastUpdated = 6 }) {
   return (
     <Disclosure as="nav" className="shadow-lg bg-white w-full">
       {({ open }) => (
