@@ -76,8 +76,8 @@ export default function LocationFilter({ data, city, resource }) {
   return !cityState ? (
     <div className="shadow-md bg-white box-border h-auto w-full rounded-md my-2 p-3 lg:p-6 border border-gray-200">
       {/* ICON */}
-      <div className="flex ml-1">
-        <LocationIcon />
+      <div className="flex ml-1 mb-1">
+        <LocationIcon className="h-5 w-5 mt-1" />
         <p className="text-strong ml-1 mt-0.5 font-bold">Choose Your City</p>
       </div>
       {/* SEARCHBOX */}
@@ -89,11 +89,7 @@ export default function LocationFilter({ data, city, resource }) {
           placeholder="Search for your city or Select from below"
           onChange={({ currentTarget }) => setSearchValue(currentTarget.value)}
         />
-        <button
-          type="submit"
-          className="relative mt-0 "
-          style={{ right: "30px" }}
-        >
+        <button type="submit" className="relative mt-0">
           <SearchIcon />
         </button>
       </div>

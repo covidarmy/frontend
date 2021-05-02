@@ -3,12 +3,6 @@ import * as React from "react"
 import ClipboardJS from "clipboard"
 import { Tweet } from "react-static-tweets"
 import { HiChevronDoubleDown } from "react-icons/hi"
-import {
-  ThumbUpIcon,
-  ThumbDownIcon,
-  DuplicateIcon,
-  ShareIcon,
-} from "@heroicons/react/outline"
 import { fetchTweets } from "../lib/api"
 import Loader from "../assets/Loader.svg"
 /**
@@ -85,78 +79,11 @@ const TweetsList = React.memo(({ city: location, resource }) => {
     console.log("Updated voted tweets")
   }
 
-  /**
-   * Check if vote should be allowed
-   * @param tweetId Id of tweet
-   * @param flag flag for requested vote type - Upvote = +ve number
-   * Downvote = -ve number
-   */
-  const checkVoteAllowed = (tweetId, flag) => {
-    let allowVote = false
-
-    try {
-      const votedTweets = JSON.parse(localStorage.getItem("votedTweets"))
-
-      // No votes  were stored previously
-      if (!votedTweets) {
-        allowVote = true
-      } else {
-        // Allow vote only if requested vote type (upvote/downvote)
-        // is opposite of stored one
-        const prevFlag = votedTweets[tweetId]
-        allowVote = flag !== prevFlag
-      }
-    } catch (error) {
-      allowVote = true
-    }
-
-    return allowVote
-  }
-
-  const handleVote = (id, flag) => {
-    const allowVote = checkVoteAllowed(id, flag)
-    if (!allowVote) {
-      return
-    }
-
-    const config = {
-      method: "post",
-      body: JSON.stringify({ id }),
-    }
-
-    if (flag < 0) {
-      fetch("/api/downvote", config)
-        .then((res) => {
-          if (!res.ok) throw Error(res.statusText)
-          return res.json()
-        })
-        .then((data) => console.log({ data }))
-        .catch((err) => console.log(err))
-        .finally(() => {
-          updateVotedTweets(id, flag)
-        })
-    } else {
-      fetch("/api/upvote", config)
-        .then((res) => {
-          if (!res.ok) throw Error(res.statusText)
-          return res.json()
-        })
-        .then((data) => console.log({ data }))
-        .catch((err) => console.log(err))
-        .finally(() => {
-          updateVotedTweets(id, flag)
-        })
-    }
-  }
-
   if (!(location && resource)) {
     // Return Please add location & resource
-    return <div>Please select city and resource</div>
-  } else if (loading) {
-    // Loading results
     return (
-      <div className="w-40 h-40">
-        <Loader />
+      <div className="py-4 text-xl font-bold">
+        Please select city and resource
       </div>
     )
   } else if (data.length > 0) {
@@ -173,14 +100,15 @@ const TweetsList = React.memo(({ city: location, resource }) => {
             </div>
           )
         })}
+        {loading && <Loader />}
         {data.length % 20 == 0 && (
           <button
             onClick={showMore}
-            className="bg-indigo-200 text-indigo-700 flex items-center justify-center px-4 py-2 rounded-md gap-2 shadow-md"
+            className="bg-indigo-200 text-indigo-700 flex items-center justify-center px-4 py-2 rounded-md gap-2 shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
             disabled={data.length % 20 !== 0}
           >
-            <HiChevronDoubleDown />
             Show more
+            <HiChevronDoubleDown />
           </button>
         )}
       </>
