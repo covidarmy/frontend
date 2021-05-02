@@ -5,9 +5,7 @@ import ResourceIcon from "../assets/Resource.svg"
 import ResourceIconDeactivated from "../assets/ResourceDeactivated.svg"
 
 export default function ResourceFilter({ data, city, resource }) {
-  const [changeResource, setChangeResource] = React.useState(false)
-
-  const citySelected = () => {
+  if (city) {
     return (
       <div className="shadow-md border border-gray-200 rounded-md bg-white text-center box-border h-auto w-full my-2 p-3 lg:p-6">
         <div className="flex">
@@ -36,31 +34,7 @@ export default function ResourceFilter({ data, city, resource }) {
         </div>
       </div>
     )
-  }
-
-  const cityResourceSelected = () => {
-    return (
-      <div className="shadow-md border border-gray-200 rounded-md bg-white text-center box-border h-auto w-full my-2 p-3 lg:p-6">
-        <div className="flex ml-1 justify-between">
-          <div className="flex">
-            {/* ICON */}
-            <ResourceIcon />
-            {/* CITY NAME */}
-            <p className="text-strong ml-1 mt-0.5 font-bold capitalize">
-              {resource}
-            </p>
-          </div>
-
-          {/* CHANGE BUTTON */}
-          <button onClick={() => setChangeResource(!changeResource)}>
-            <span className="font-bold text-primary">Change</span>
-          </button>
-        </div>
-      </div>
-    )
-  }
-
-  const noneSelected = () => {
+  } else {
     return (
       <div className="shadow-md border border-gray-200 rounded-md bg-gray-100 text-center box-border h-auto w-full my-2 p-3 lg:p-6 cursor-not-allowed">
         <div className="flex">
@@ -71,13 +45,5 @@ export default function ResourceFilter({ data, city, resource }) {
         </div>
       </div>
     )
-  }
-
-  if (city && resource && !changeResource) {
-    return cityResourceSelected()
-  } else if (city) {
-    return citySelected()
-  } else {
-    return noneSelected()
   }
 }
