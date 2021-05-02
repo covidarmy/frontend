@@ -64,6 +64,9 @@ const Team = ({ data }) => {
   )
 }
 
+/**
+ * @type {import("next").GetStaticProps<{ data: Array<Object> }>}
+ */
 export const getStaticProps = async () => {
   const data = await fetch(
     "https://notion-api.splitbee.io/v1/table/16b6dd8733794d7fbd6bfa77f7d361da",
@@ -72,6 +75,8 @@ export const getStaticProps = async () => {
 
   return {
     props: { data },
+    revalidate: 60,
   }
 }
+
 export default Team
