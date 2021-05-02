@@ -1,8 +1,6 @@
 import { Disclosure } from "@headlessui/react"
 import { MenuIcon, XIcon } from "@heroicons/react/outline"
 import Link from "next/link"
-
-import Team from "../pages/team"
 import Logo from "../assets/Logo.svg"
 
 export default function Navbar({ lastUpdated = 6 }) {
@@ -12,7 +10,11 @@ export default function Navbar({ lastUpdated = 6 }) {
         <>
           <div className="flex items-center justify-between w-full h-16 px-4 lg:px-20">
             <div className="lg:flex lg:ml-8 mr-20 sm:ml-10">
-              <Logo />
+              <Link href="/">
+                <a>
+                  <Logo />
+                </a>
+              </Link>
               <p className="lg:mx-6 sm:mx-1 sm:text-xs text-sm lg:pt-2 text-gray-400">
                 Last updated{" "}
                 {5 || Math.floor((Date.now() - lastUpdated) / 60000)} minutes
