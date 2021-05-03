@@ -3,6 +3,7 @@ import {
   TiSocialTwitter,
   TiSocialDribbble,
   TiSocialLinkedin,
+  TiGlobe,
 } from "react-icons/ti"
 
 const icons = {
@@ -30,7 +31,7 @@ const Team = ({ data }) => {
         </div>
         <div className="flex flex-wrap -mx-2 mb-8 mt-8">
           {data.map((element) => {
-            const SocialIcon = icons[element.social_type]
+            const SocialIcon = icons[element.social_type] ?? TiGlobe
 
             return (
               <div
@@ -64,6 +65,9 @@ const Team = ({ data }) => {
   )
 }
 
+/**
+ * @type {import("next").GetStaticProps<{ data: Array<Object> }>}
+ */
 export const getStaticProps = async () => {
   const data = await fetch(
     "https://notion-api.splitbee.io/v1/table/16b6dd8733794d7fbd6bfa77f7d361da",
@@ -72,6 +76,8 @@ export const getStaticProps = async () => {
 
   return {
     props: { data },
+    revalidate: 60,
   }
 }
+
 export default Team
