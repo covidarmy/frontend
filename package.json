@@ -46,7 +46,7 @@
     "playwright": "^1.10.0"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
+    "./src/**/*.{js,jsx,ts,tsx,svg}": [
       "npm run prettier --write"
     ]
   }
