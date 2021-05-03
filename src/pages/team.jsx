@@ -21,11 +21,8 @@ const Team = ({ data }) => {
           <div className="md:col-span-8 lg:col-span-6">
             <div className="mb-12">
               <h3 className="text-2xl text-[#4f46ef] mb-6 font-medium">
-                Our Team
+                Our Volunteers
               </h3>
-              <h2 className="title text-4xl font-bold">
-                Let's meet with our team members
-              </h2>
             </div>
           </div>
         </div>
