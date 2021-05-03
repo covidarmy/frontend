@@ -1,6 +1,11 @@
 export const API_BASE_URL = "https://api.covid.army"
 
-export const fetchTweets = ({ location, resource, limit, offset }) => {
+export const fetchTweets = ({
+  location,
+  resource,
+  limit = undefined,
+  offset = undefined,
+}) => {
   let url = API_BASE_URL + "/api/tweets"
 
   if (location) {
@@ -20,7 +25,6 @@ export const fetchTweets = ({ location, resource, limit, offset }) => {
   if (offset) {
     url += "&offset=" + offset
   }
-  console.log(url)
   return fetch(url).then((res) => res.json())
 }
 

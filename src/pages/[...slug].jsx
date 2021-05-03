@@ -3,7 +3,7 @@ import Navbar from "~/components/Navbar"
 import { NextSeo } from "next-seo"
 import { useRouter } from "next/router"
 import { camelize } from "~/lib/utils"
-import { API_BASE_URL, getCities, getResources } from "~/lib/api"
+import { API_BASE_URL, fetchTweets, getCities, getResources } from "~/lib/api"
 
 const CityPage = ({
   tweets,
@@ -66,9 +66,10 @@ export const getStaticProps = async (ctx) => {
 
   const tweets =
     slug.length === 2
-      ? await fetch(
-          API_BASE_URL + `/api/tweets/${slug[0]}/${slug[1]}?limit=20`
-        ).then((res) => res.json())
+      ? await fetchTweets({
+          location: slug[0],
+          resource: slug[1],
+        })
       : []
 
   return {

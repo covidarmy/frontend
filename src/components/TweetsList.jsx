@@ -31,18 +31,16 @@ const TweetsList = React.memo(
       // Tweets
       return (
         <>
-          {initialData.map(
-            ({ id: tweetId, url: tweetUrl, status: voteCount }) => {
-              return (
-                <div
-                  key={tweetId}
-                  className="w-full flex flex-col items-center justify-center space-y-4 my-2 px-2"
-                >
-                  <Tweet id={tweetId} />
-                </div>
-              )
-            }
-          )}
+          {data.map(({ id: tweetId, url: tweetUrl, status: voteCount }) => {
+            return (
+              <div
+                key={tweetId}
+                className="w-full flex flex-col items-center justify-center space-y-4 my-2 px-2"
+              >
+                <Tweet id={tweetId} />
+              </div>
+            )
+          })}
           {data.length % 20 == 0 && (
             <button
               onClick={showMore}
