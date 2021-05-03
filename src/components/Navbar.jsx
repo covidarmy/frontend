@@ -66,7 +66,9 @@ export default function Navbar({ lastUpdated = 6 }) {
                         "Verified Real Time List of COVID-19 Resources and Aid",
                       url: "https://covid.army",
                     })
-                  } catch (err) {}
+                  } catch (err) {
+                    console.log(err)
+                  }
                 }}
               >
                 <HiOutlineShare className="block h-6 w-6" />
