@@ -16,8 +16,6 @@ const IndexPage = ({ resources, cities, lastUpdated }) => {
           resource: null,
         }}
       />
-
-      <ABCD />
     </div>
   )
 }
