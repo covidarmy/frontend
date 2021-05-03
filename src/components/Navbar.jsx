@@ -52,7 +52,9 @@ export default function Navbar({ lastUpdated = 6 }) {
                 </a>
               </Link>
               <Link href="/team">
-                <a className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium"></a>
+                <a className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                  Team
+                </a>
               </Link>
             </div>
             {canShare ? (
