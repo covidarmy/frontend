@@ -4,10 +4,11 @@
   "private": false,
   "license": "MIT",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3007",
     "build": "next build",
     "start": "next start",
-    "format": "prettier --write ./src/**/*.{js,jsx,ts,tsx,svg}"
+    "format": "prettier --write ./src/**/*.{js,jsx,ts,tsx,svg}",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@headlessui/react": "^1.0.0",
@@ -35,11 +36,18 @@
     "@tailwindcss/jit": "^0.1.18",
     "@types/gtag.js": "0.0.4",
     "autoprefixer": "^10.2.5",
+    "husky": "^6.0.0",
+    "lint-staged": "^10.5.4",
     "postcss": "^8.2.10",
     "prettier": "^2.2.1",
     "tailwindcss": "^2.1.1"
   },
   "optionalDependencies": {
     "playwright": "^1.10.0"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "npm run prettier --write"
+    ]
   }
 }
