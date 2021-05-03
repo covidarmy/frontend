@@ -4,7 +4,7 @@ import ResourceFilter from "./ResourceFilter"
 import TweetsList from "./TweetsList"
 
 export const Dashboard = ({
-  data: { resources, tweets, cities, resource, city },
+  data: { resources, tweets = [], cities, resource, city },
 }) => {
   return (
     <>
