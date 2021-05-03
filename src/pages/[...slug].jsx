@@ -3,6 +3,7 @@ import Navbar from "~/components/Navbar"
 import { NextSeo } from "next-seo"
 import { useRouter } from "next/router"
 import { camelize } from "~/lib/utils"
+import { API_BASE_URL, getCities, getResources } from "~/lib/api"
 
 const CityPage = ({
   tweets,
@@ -59,26 +60,27 @@ const CityPage = ({
  */
 
 export const getStaticProps = async (ctx) => {
-  const cities = Object.keys(require("seeds/cities.json"))
-  const resources = Object.keys(require("seeds/resources.json"))
   const { slug } = ctx.params
-  let slug0type = "city"
+  const cities = await getCities()
+  const resources = await getResources()
+
+  const tweets =
+    slug.length === 2
+      ? await fetch(
+          API_BASE_URL + `/api/tweets/${slug[0]}/${slug[1]}?limit=20`
+        ).then((res) => res.json())
+      : []
 
   return {
     props: {
-      //tweets,
+      tweets,
       resources,
       cities,
-      city: slug0type === "city" ? camelize(slug[0]) : null,
-      resource:
-        slug0type === "resource"
-          ? camelize(slug[0])
-          : typeof slug[1] === "string"
-          ? camelize(slug[1])
-          : null,
+      city: camelize(slug[0]),
+      resource: typeof slug[1] === "string" ? camelize(slug[1]) : null,
       lastUpdated: Date.now(),
     },
-    //revalidate: 180,
+    revalidate: 20,
   }
 }
 
@@ -86,17 +88,11 @@ export const getStaticProps = async (ctx) => {
  * @type {import("next").GetStaticPaths}
  */
 export const getStaticPaths = async () => {
-  const resources = Object.keys(require("seeds/resources.json"))
-  const cities = Object.keys(require("seeds/cities.json"))
   const paths = []
-
-  paths.push({ params: { slug: ["/"] } })
+  const cities = await getCities()
+  const resources = await getResources()
 
   cities.forEach((/** @type {string} */ item) => {
-    paths.push({ params: { slug: [item.trim().toLowerCase()] } })
-  })
-
-  resources.forEach((item) => {
     paths.push({ params: { slug: [item.trim().toLowerCase()] } })
   })
 
