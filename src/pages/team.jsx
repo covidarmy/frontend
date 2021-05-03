@@ -3,8 +3,8 @@ import {
   TiSocialTwitter,
   TiSocialDribbble,
   TiSocialLinkedin,
-  TiGlobe,
 } from "react-icons/ti"
+import { HiGlobeAlt as HiGlobe } from "react-icons/hi"
 
 const icons = {
   twitter: TiSocialTwitter,
@@ -31,7 +31,7 @@ const Team = ({ data }) => {
         </div>
         <div className="flex flex-wrap -mx-2 mb-8 mt-8">
           {data.map((element) => {
-            const SocialIcon = icons[element.social_type] ?? TiGlobe
+            const SocialIcon = icons[element.social_type] ?? HiGlobe
 
             return (
               <div
