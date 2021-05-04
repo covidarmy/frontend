@@ -27,7 +27,7 @@ export default function LocationFilter({ city, resource }) {
   const [searchValue, setSearchValue] = useState("")
 
   if (error) return <div>failed to load</div>
-  if (!data) return <Skeleton count={5}/>
+  if (!data) return <Skeleton height={214}/>
 
   const renderButtons = () => {
     let _data = null

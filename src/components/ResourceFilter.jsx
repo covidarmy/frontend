@@ -10,7 +10,7 @@ export default function ResourceFilter({ city, resource }) {
   const { data, error } = useResources()
 
   if (error) return <div>failed to load</div>
-  if (!data) return <Skeleton count={5}/>
+  if (!data) return <Skeleton height={128}/>
 
   const resources = Object.keys(data)
 
