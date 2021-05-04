@@ -73,55 +73,52 @@ export default function LocationFilter({ data, city, resource }) {
     })
   }
 
-  return !cityState ? (
-    <div className="shadow-md bg-white box-border h-auto w-full rounded-md my-2 p-3 lg:p-6 border border-gray-200">
-      {/* ICON */}
-      <div className="flex ml-1 mb-1">
-        <LocationIcon className="h-5 w-5 mt-1" />
-        <p className="text-strong ml-1 mt-0.5 font-bold">Choose Your City</p>
+  if (!cityState)
+    return (
+      <div className="shadow-md bg-white box-border h-auto w-full rounded-md my-2 p-3 lg:p-6 border border-gray-200">
+        <div className="flex ml-1 mb-1">
+          <LocationIcon className="h-5 w-5 mt-1" />
+          <p className="text-strong ml-1 mt-0.5 font-bold">Choose Your City</p>
+        </div>
+        <div className="pt-2 ml-1 flex justify-start relative text-gray-600">
+          <input
+            className="border-2 w-full relative w-400 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+            type="search"
+            name="search"
+            placeholder="Search for your city or Select from below"
+            onChange={({ currentTarget }) =>
+              setSearchValue(currentTarget.value)
+            }
+          />
+          <button type="submit" className="relative mt-0">
+            <SearchIcon />
+          </button>
+        </div>
+        <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
+          {renderButtons()}
+        </div>
+        <div className="mt-2 ml-1">
+          <button
+            className="hover:text-underline flex text-indigo-600"
+            onClick={() => setShowMore((prev) => !prev)}
+          >
+            <span>
+              {showMore ? "Show only top locations" : "Show all locations"}
+            </span>
+            {showMore && <UpArrow />}
+            {!showMore && <DownArrow />}
+          </button>
+        </div>
       </div>
-      {/* SEARCHBOX */}
-      <div className="pt-2 ml-1 flex justify-start relative text-gray-600">
-        <input
-          className="border-2 w-full relative w-400 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-          type="search"
-          name="search"
-          placeholder="Search for your city or Select from below"
-          onChange={({ currentTarget }) => setSearchValue(currentTarget.value)}
-        />
-        <button type="submit" className="relative mt-0">
-          <SearchIcon />
-        </button>
-      </div>
-      {/* RENDER PELLETS */}
-      <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
-        {renderButtons()}
-      </div>
-      {/* SHOW MORE */}
-      <div className="mt-2 ml-1">
-        <button
-          className="hover:text-underline flex text-indigo-600"
-          onClick={() => setShowMore((prev) => !prev)}
-        >
-          <span>
-            {showMore ? "Show only top locations" : "Show all locations"}
-          </span>
-          {showMore && <UpArrow />}
-          {!showMore && <DownArrow />}
-        </button>
-      </div>
-    </div>
-  ) : (
+    )
+
+  return (
     <div className="shadow-md bg-white box-border h-auto w-full rounded-md my-2 p-3 lg:p-6 border border-gray-200">
       <div className="flex ml-1 justify-between">
         <div className="flex">
-          {/* ICON */}
           <LocationIcon />
-          {/* CITY NAME */}
           <p className="text-strong ml-1 mt-0.5 font-bold capitalize">{city}</p>
         </div>
-
-        {/* CHANGE BUTTON */}
         <button onClick={() => setCityState(!cityState)}>
           <span className="font-bold text-primary">Change</span>
         </button>

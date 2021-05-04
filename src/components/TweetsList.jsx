@@ -27,7 +27,9 @@ const TweetsList = React.memo(
           Please select city and resource
         </div>
       )
-    } else if (data.length > 0) {
+    }
+
+    if (data.length > 0) {
       // Tweets
       return (
         <>
@@ -53,26 +55,25 @@ const TweetsList = React.memo(
           )}
         </>
       )
-    } else {
-      // Error
-      return (
-        <div className="text-center">
-          No tweets found{" "}
-          {location
-            ? " for " + location + (resource ? " & " + resource : "")
-            : ""}
-          . This might be a bug, please DM on Twitter to let me know.
-          <br />
-          <a
-            target="_blank"
-            href="https://twitter.com/covid_army"
-            className="text-blue-600"
-          >
-            @covid_army
-          </a>
-        </div>
-      )
     }
+
+    return (
+      <div className="text-center">
+        No tweets found{" "}
+        {location
+          ? " for " + location + (resource ? " & " + resource : "")
+          : ""}
+        . This might be a bug, please DM on Twitter to let me know.
+        <br />
+        <a
+          target="_blank"
+          href="https://twitter.com/covid_army"
+          className="text-blue-600"
+        >
+          @covid_army
+        </a>
+      </div>
+    )
   }
 )
 
