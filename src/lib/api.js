@@ -1,6 +1,8 @@
+import useSWR from "swr"
+import fetcher from "./fetcher"
 export const API_BASE_URL = "https://api.covid.army"
 
-export const fetchTweets = ({
+export const useTweets = ({
   location,
   resource,
   limit = undefined,
@@ -25,14 +27,17 @@ export const fetchTweets = ({
   if (offset) {
     url += "&offset=" + offset
   }
-  return fetch(url).then((res) => res.json())
+  
+  const { data, error } = useSWR(url, fetcher)
+  return { data, error }
 }
 
-export const getCities = async () =>
-  await fetch(API_BASE_URL + "/api/cities")
-    .then((res) => res.json())
-    .then((data) => Object.keys(data))
-export const getResources = async () =>
-  await fetch(API_BASE_URL + "/api/resources")
-    .then((res) => res.json())
-    .then((data) => Object.keys(data))
+export const useCities = () => {
+  const { data, error } = useSWR(`${API_BASE_URL}/api/cities`, fetcher)
+  return { data, error }
+}
+
+export const useResources = () => {
+  const { data, error } = useSWR(`${API_BASE_URL}/api/resources`, fetcher)
+  return { data, error }
+}
