@@ -6,38 +6,30 @@ import { v4 as uuidv4 } from "uuid"
 import Skeleton from "react-loading-skeleton"
 
 const TweetsList = ({ city: location, resource }) => {
-  const { data, error } = useTweets({ location, resource })
-  const [tweets, setTweets] = useState(data)
-
-  useEffect(() => {
-    setTweets(data)
-  }, [data])
+  const [offset, setOffset] = useState(0)
+  const [limit, setLimit] = useState(20)
+  const { data, error } = useTweets({ location, resource, limit, offset })
 
   if (error) return <div>failed to load</div>
   if (!data) return <Skeleton count={40} />
 
   const showMore = () => {
-    const newTweets = useTweets({
-      location,
-      resource,
-      limit: 20,
-      offset: Math.floor(tweets.length),
-    })
-    setTweets((tweets) => tweets.concat(newTweets))
+    setLimit((limit) => limit + 20)
+    setOffset((offset) => offset + 20)
   }
 
-  if (!(tweets && location && resource)) {
+  if (!(data && location && resource)) {
     // Return Please add location & resource
     return (
       <div className="py-4 text-xl font-bold">
         Please select city and resource
       </div>
     )
-  } else if (tweets.length > 0) {
+  } else if (data.length > 0) {
     // Tweets
     return (
       <>
-        {tweets.map(({ id: tweetId, url: tweetUrl, status: voteCount }) => {
+        {data.map(({ id: tweetId, url: tweetUrl, status: voteCount }) => {
           return (
             <div
               key={uuidv4()}
@@ -47,11 +39,11 @@ const TweetsList = ({ city: location, resource }) => {
             </div>
           )
         })}
-        {tweets.length % 20 == 0 && (
+        {data.length % 20 == 0 && (
           <button
             onClick={showMore}
             className="bg-indigo-200 text-indigo-700 flex items-center justify-center px-4 py-2 rounded-md gap-2 shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            disabled={tweets.length % 20 !== 0}
+            disabled={data.length % 20 !== 0}
           >
             Show more
             <HiChevronDoubleDown />
