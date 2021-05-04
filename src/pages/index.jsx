@@ -7,7 +7,6 @@ const IndexPage = ({ resources, cities, lastUpdated }) => {
   return (
     <div className="w-screen h-screen flex flex-col">
       <Navbar lastUpdated={lastUpdated} />
-
       <Dashboard
         data={{
           resources,
