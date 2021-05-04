@@ -8,6 +8,10 @@ const CityPage = () => {
   const router = useRouter()
   const { slug } = router.query
 
+  if (slug === undefined) {
+    return <div>loading...</div>
+  }
+
   const city = camelize(slug[0])
   const resource = typeof slug[1] === "string" ? camelize(slug[1]) : null
 
@@ -18,7 +22,6 @@ const CityPage = () => {
         })
         .join(" - ")
     : ""
-
   return (
     <>
       <NextSeo
