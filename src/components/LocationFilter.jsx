@@ -29,8 +29,6 @@ export default function LocationFilter({ city, resource }) {
   if (error) return <div>failed to load</div>
   if (!data) return <Skeleton count={5}/>
 
-  console.log(data)
-
   const renderButtons = () => {
     let _data = null
 
