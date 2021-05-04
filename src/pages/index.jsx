@@ -7,9 +7,7 @@ const IndexPage = ({ resources, cities, lastUpdated }) => {
   return (
     <div className="w-screen h-screen flex flex-col">
       <Navbar lastUpdated={lastUpdated} />
-      <div className='mt-8 text-center'>
-        <p className='text-red-500 font-bold'> 🚨 Please beware of fraudsters 🚨</p>
-      </div>
+      
       <Dashboard
         data={{
           resources,
