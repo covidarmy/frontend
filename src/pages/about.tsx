@@ -1,22 +1,84 @@
-import Navbar from "~/components/Navbar"
+import { GetStaticProps } from "next"
+import Image from "next/image"
+
+// COMPONENTS
+import Navbar from "@/components/Navbar"
+import Footer from "@/components/Footer"
+
+// ICONS
 import {
   TiSocialTwitter,
   TiSocialDribbble,
   TiSocialLinkedin,
 } from "react-icons/ti"
 import { HiGlobeAlt as HiGlobe } from "react-icons/hi"
-import Footer from "~/components/Footer"
 
-const icons = {
+interface ObjectLiteral {
+  [key: string]: any
+}
+
+const icons: ObjectLiteral = {
   twitter: TiSocialTwitter,
   dribbble: TiSocialDribbble,
   linkedin: TiSocialLinkedin,
 }
 
-const Team = ({ data }) => {
+interface IPartner {
+  id: string
+  url: string
+  imageFileName: string
+  description?: string
+  name: string
+}
+
+interface IVolunteer {
+  id: string
+  image: string
+  social_link: string
+  social_type: string
+  name: string
+}
+
+interface Props {
+  partnerData: IPartner[]
+  volunteerData: IVolunteer[]
+}
+
+const About: React.FC<Props> = (props) => {
+  const { partnerData, volunteerData } = props
+
   return (
     <div>
       <Navbar />
+
+      <section className="p-6 bg-coolGray-100 text-coolGray-800">
+        <div className="container p-4 mx-auto text-center">
+          <h3 className="text-2xl text-[#4f46ef] mb-6 font-medium">
+            Our Partners
+          </h3>
+        </div>
+        <div className="container flex flex-wrap justify-center mx-auto text-coolGray-600">
+          {partnerData.map((partner) => (
+            <div
+              className="flex justify-center w-1/2 p-6 align-middle md:w-1/3 xl:w-1/4"
+              key={partner.id}
+            >
+              <a
+                href={partner.url}
+                target="_blank"
+                referrerPolicy="no-referrer"
+              >
+                <Image
+                  src={`/static/assets/${partner.imageFileName}`}
+                  height={150}
+                  width={150}
+                />
+              </a>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section id="team" className="container section-team mx-auto">
         <div className="row justify-center flex text-center my-20">
           <div className="md:col-span-8 lg:col-span-6">
@@ -28,7 +90,7 @@ const Team = ({ data }) => {
           </div>
         </div>
         <div className="flex flex-wrap -mx-2 mb-8 mt-8">
-          {data.map((element) => {
+          {volunteerData.map((element) => {
             const SocialIcon = icons[element.social_type] ?? HiGlobe
 
             return (
@@ -37,7 +99,7 @@ const Team = ({ data }) => {
                 className="w-full md:w-1/2 lg:w-1/3 px-2 mb-4"
               >
                 <div className="flex items-center justify-center">
-                  <div className="bg-white mt-10 py-12 px-16 text-center rounded-md shadow-lg transform -translate-y-20 sm:-translate-y-24 max-w-md mx-auto">
+                  <div className="bg-white mt-10 py-12 px-8 md:px-16 text-center rounded-md shadow-lg mx-auto">
                     <img
                       className="w-28 h-28 object-cover rounded-full mx-auto shadow-lg"
                       src={element.image}
@@ -64,19 +126,21 @@ const Team = ({ data }) => {
   )
 }
 
-/**
- * @type {import("next").GetStaticProps<{ data: Array<Object> }>}
- */
-export const getStaticProps = async () => {
-  const data = await fetch(
+export const getStaticProps: GetStaticProps = async () => {
+  const partnerData: IPartner[] = await fetch(
+    "https://notion-api.splitbee.io/v1/table/2dbc2f82b58944909448f24756debbef",
+    { method: "get" }
+  ).then((res) => res.json())
+
+  const volunteerData: IVolunteer[] = await fetch(
     "https://notion-api.splitbee.io/v1/table/16b6dd8733794d7fbd6bfa77f7d361da",
     { method: "get" }
   ).then((res) => res.json())
 
   return {
-    props: { data },
+    props: { volunteerData, partnerData },
     revalidate: 60,
   }
 }
 
-export default Team
+export default About
