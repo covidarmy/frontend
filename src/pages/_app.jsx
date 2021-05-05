@@ -7,10 +7,6 @@ import NextGA from "~/components/NextGA"
 import SlugProvider from "~/context/slug"
 import { DefaultSeo } from "next-seo"
 import { defaultSeoProps, isProduction } from "~/constants"
-import NextGA from "~/components/NextGA"
-import "react-static-tweets/styles.css"
-import SlugProvider from "../context/slug"
-import DataProvider from "../context/data"
 
 function App({ Component, pageProps }) {
   return (
