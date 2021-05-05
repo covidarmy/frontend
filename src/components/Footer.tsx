@@ -1,4 +1,6 @@
 import Link from "next/link"
+import Image from "next/image"
+
 // @ts-ignore
 import Logo from "../assets/Logo.svg"
 
@@ -7,7 +9,7 @@ import { AiFillGithub } from "react-icons/ai"
 const Footer = () => {
   return (
     <footer className="flex flex-col items-center justify-between px-6 py-2 bg-white dark:bg-gray-800 sm:flex-row border-t">
-      <div className="space-x-4 mb-4 md:mb-0">
+      {/* <div className="space-x-4 mb-4 md:mb-0">
         <Link href="/">
           <a className="hover:bg-gray-700 text-gray focus:bg-red hover:text-white px-3 py-2 rounded-md text-sm font-medium">
             Home
@@ -23,23 +25,38 @@ const Footer = () => {
             About
           </a>
         </Link>
-      </div>
+      </div> */}
 
-      <Link href="/">
+      {/* <Link href="/">
         <a className="text-xl font-bold text-gray-800 dark:text-white hover:text-gray-700 dark:hover:text-gray-300 mb-4 md:mb-0">
           <Logo />
         </a>
-      </Link>
+      </Link> */}
 
       <div className="flex -mx-2">
         <a
           href="https://github.com/covidarmy/frontend/issues"
-          className="mx-2 text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300"
+          className="mx-2 my-2  text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300"
           aria-label="Github"
           target="_blank"
           referrerPolicy="no-referrer"
         >
           <AiFillGithub className="text-2xl" />
+        </a>
+      </div>
+
+      {/* ------------- POWERED BY VERCEL -------------  */}
+      <div className="mt-2">
+        <a
+          href={`https://vercel.com/?utm_source=Covidarmy&utm_campaign=oss`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src="/static/assets/powered-by-vercel.svg"
+            width={212}
+            height={44}
+          />
         </a>
       </div>
     </footer>
