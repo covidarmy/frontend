@@ -62,6 +62,7 @@ const About: React.FC<Props> = (props) => {
             <div
               className="flex justify-center w-1/2 p-6 align-middle md:w-1/3 xl:w-1/4"
               key={partner.id}
+              title={partner?.description ?? partner.name}
             >
               <a
                 href={partner.url}
