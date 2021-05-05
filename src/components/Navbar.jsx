@@ -1,10 +1,16 @@
-import { Disclosure } from "@headlessui/react"
-import { MenuIcon, XIcon } from "@heroicons/react/outline"
+import * as React from "react"
 import Link from "next/link"
+
+// ASSETS
 // @ts-ignore
 import Logo from "../assets/Logo.svg"
+
+// HEADLESS UI
+import { Disclosure } from "@headlessui/react"
+
+// ICONS
+import { MenuIcon, XIcon } from "@heroicons/react/outline"
 import { HiOutlineShare } from "react-icons/hi"
-import * as React from "react"
 
 export default function Navbar({ lastUpdated = 6 }) {
   const [canShare, setCanShare] = React.useState(true)
