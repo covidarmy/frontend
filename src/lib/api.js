@@ -1,6 +1,6 @@
 export const API_BASE_URL = "https://api.covid.army"
 
-export const fetchTweets = ({
+export const fetchTweets = async ({
   location,
   resource,
   limit = undefined,
@@ -24,9 +24,7 @@ export const fetchTweets = ({
     url += "&offset=" + offset
   }
 
-  console.log(url)
-
-  return fetch(url).then((res) => res.json())
+  return await fetch(url).then((res) => res.json())
 }
 
 export const getCities = async () =>

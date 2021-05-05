@@ -20,7 +20,6 @@ const TweetsList = React.memo(() => {
             resource,
             limit: 20,
           })
-          console.log(data)
           setData(tweets)
         } catch (err) {
           console.log(err)
