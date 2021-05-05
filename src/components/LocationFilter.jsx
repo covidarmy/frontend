@@ -6,7 +6,7 @@ import LocationIcon from "../assets/Location.svg"
 import SearchIcon from "../assets/Search.svg"
 import { HiChevronDown as DownArrow } from "react-icons/hi"
 import { HiChevronUp as UpArrow } from "react-icons/hi"
-import { useCities } from "~/lib/api"
+import { useCities } from "~/hooks/useCities"
 import Skeleton from 'react-loading-skeleton'
 
 export default function LocationFilter({ city, resource }) {
