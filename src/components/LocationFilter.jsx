@@ -24,6 +24,8 @@ export default function LocationFilter() {
   React.useEffect(() => {
     if (typeof location !== "undefined") {
       setCityState(true)
+    } else {
+      setCityState(false)
     }
   }, [location])
 

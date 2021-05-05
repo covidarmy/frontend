@@ -7,12 +7,12 @@ const slugContext = React.createContext({
 })
 
 export default function SlugProvider({ children }) {
-  const { query } = useRouter()
+  const router = useRouter()
   const [location, setLocation] = React.useState(undefined)
   const [resource, setResource] = React.useState(undefined)
 
   React.useEffect(() => {
-    const { slug } = query
+    const { slug } = router.query
     if (Array.isArray(slug)) {
       if (slug.length === 2) {
         setLocation(slug[0])
@@ -21,7 +21,14 @@ export default function SlugProvider({ children }) {
         setLocation(slug[0])
       }
     }
-  }, [query])
+  }, [router.query.slug])
+
+  React.useEffect(() => {
+    if (router.pathname === "/") {
+      setLocation(undefined)
+      setResource(undefined)
+    }
+  }, [router.pathname])
 
   return (
     <slugContext.Provider value={{ location, resource }}>
