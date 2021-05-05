@@ -1,12 +1,14 @@
 import * as React from "react"
-import Footer from "./Footer"
+
+// COMPONENTS
 import LocationFilter from "./LocationFilter"
 import ResourceFilter from "./ResourceFilter"
 import TweetsList from "./TweetsList"
+import Footer from "./Footer"
 
 export const Dashboard = () => {
   return (
-    <div className="flex flex-col justify-between h-screen">
+    <div className="flex flex-col justify-between h-screen min-h-screen">
       <div>
         <div className="mt-4 lg:mt-8 text-center mb-4 md:mb-0">
           <p className="text-red-500 font-bold">
