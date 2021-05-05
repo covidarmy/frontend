@@ -13,7 +13,7 @@ const icons = {
   linkedin: TiSocialLinkedin,
 }
 
-const Team = ({ data }) => {
+const About = ({ data }) => {
   return (
     <div>
       <Navbar />
@@ -79,4 +79,4 @@ export const getStaticProps = async () => {
   }
 }
 
-export default Team
+export default About

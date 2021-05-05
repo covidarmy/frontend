@@ -57,9 +57,9 @@ export default function Navbar({ lastUpdated = 6 }) {
                   Disclaimer
                 </a>
               </Link>
-              <Link href="/team">
+              <Link href="/about">
                 <a className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                  Team
+                  About
                 </a>
               </Link>
             </div>
@@ -103,9 +103,9 @@ export default function Navbar({ lastUpdated = 6 }) {
                   Disclaimer
                 </a>
               </Link>
-              <Link href="/team">
+              <Link href="/about">
                 <a className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                  Team
+                  About
                 </a>
               </Link>
             </div>
