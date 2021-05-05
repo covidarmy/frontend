@@ -3,14 +3,7 @@ import Navbar from "~/components/Navbar"
 import { NextSeo } from "next-seo"
 import { useRouter } from "next/router"
 
-const CityPage = ({
-  tweets,
-  resources,
-  cities,
-  city,
-  resource,
-  lastUpdated,
-}) => {
+const CityPage = () => {
   const router = useRouter()
   const { slug } = router.query
   const title = Array.isArray(slug)
@@ -38,16 +31,8 @@ const CityPage = ({
         }}
       />
       <div className="w-screen h-screen flex flex-col">
-        <Navbar lastUpdated={lastUpdated} />
-        <Dashboard
-          data={{
-            tweets,
-            resources,
-            cities,
-            city,
-            resource,
-          }}
-        />
+        <Navbar />
+        <Dashboard />
       </div>
     </>
   )

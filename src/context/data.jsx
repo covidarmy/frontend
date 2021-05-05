@@ -17,7 +17,6 @@ export default function DataProvider({ children }) {
       try {
         const cities = await getCities()
         const resources = await getResources()
-
         setLocations(cities)
         setResources(resources)
       } finally {

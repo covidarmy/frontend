@@ -14,19 +14,15 @@ const TweetsList = React.memo(() => {
   React.useEffect(() => {
     if (location && resource) {
       ;(async () => {
-        try {
-          const tweets = await fetchTweets({
-            location,
-            resource,
-            limit: 20,
-          })
-          setData(tweets)
-        } catch (err) {
-          console.log(err)
-        }
+        const tweets = await fetchTweets({
+          location,
+          resource,
+          limit: 20,
+        })
+        setData(tweets)
       })()
     }
-  }, [])
+  }, [location, resource])
 
   const showMore = async () => {
     const newTweets = await fetchTweets({
@@ -51,10 +47,10 @@ const TweetsList = React.memo(() => {
     // Tweets
     return (
       <>
-        {data.map(({ tweet_object: { tweet_id: tweetId } }) => {
+        {data.map(({ tweet_object: { tweet_id: tweetId, _id } }) => {
           return (
             <div
-              key={tweetId}
+              key={_id}
               className="w-full flex flex-col items-center justify-center space-y-4 my-2 px-2"
             >
               <Tweet id={tweetId} />

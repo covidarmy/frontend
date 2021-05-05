@@ -14,12 +14,18 @@ import { useData } from "~/context/data"
 export default function LocationFilter() {
   const { location, resource } = useSlug()
   const { cities: data } = useData()
-  const [cityState, setCityState] = useState(location ? true : false)
+  const [cityState, setCityState] = useState(true)
   const router = useRouter()
   const filter = router.pathname === "/" && "all"
   const [showMore, setShowMore] = React.useState(false)
 
   const [searchValue, setSearchValue] = React.useState("")
+
+  React.useEffect(() => {
+    if (location) {
+      setCityState(true)
+    }
+  }, [location])
 
   const renderButtons = () => {
     let _data = null

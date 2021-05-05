@@ -1,5 +1,4 @@
 import * as React from "react"
-import Link from "next/link"
 import FilterButton from "./FilterButton"
 import ResourceIcon from "../assets/Resource.svg"
 import ResourceIconDeactivated from "../assets/ResourceDeactivated.svg"
