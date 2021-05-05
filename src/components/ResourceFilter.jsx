@@ -1,11 +1,17 @@
 import * as React from "react"
-import Link from "next/link"
 import FilterButton from "./FilterButton"
 import ResourceIcon from "../assets/Resource.svg"
 import ResourceIconDeactivated from "../assets/ResourceDeactivated.svg"
+import { useSlug } from "~/context/slug"
+import { useData } from "~/context/data"
 
-export default function ResourceFilter({ data, city, resource }) {
-  if (city)
+export default function ResourceFilter() {
+  const { location, resource } = useSlug()
+  const { resources: data } = useData()
+
+  if (!data) return null
+
+  if (location)
     return (
       <div className="shadow-md border border-gray-200 rounded-md bg-white text-center box-border h-auto w-full my-2 p-3 lg:p-6">
         <div className="flex">
@@ -14,17 +20,15 @@ export default function ResourceFilter({ data, city, resource }) {
         </div>
         <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
           {data.map((item) => {
+            const buttonResource = item.toLowerCase()
             return (
               <FilterButton
                 key={item}
-                active={
-                  typeof resource === "string" &&
-                  item.toLowerCase() === resource.toLowerCase()
-                }
+                active={resource === buttonResource}
                 href={
-                  city === null
-                    ? `/${item.toLowerCase()}`
-                    : `/${city}` + `/${item.toLowerCase()}`
+                  location === null
+                    ? `/${buttonResource}`
+                    : `/${location}` + `/${buttonResource}`
                 }
               >
                 {item}

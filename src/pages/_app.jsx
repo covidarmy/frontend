@@ -14,7 +14,11 @@ function App({ Component, pageProps }) {
         disabled={!isProduction}
         trackingId={process.env.NEXT_PUBLIC_GA_TRACKING_ID}
       >
-        <Component {...pageProps} />
+        <SlugProvider>
+          <DataProvider>
+            <Component {...pageProps} />
+          </DataProvider>
+        </SlugProvider>
       </NextGA>
     </>
   )
