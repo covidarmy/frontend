@@ -9,7 +9,12 @@ const CityPage = () => {
   const { slug } = router.query
 
   if (slug === undefined) {
-    return <div>loading...</div>
+    return (
+      <div className="w-screen h-screen flex flex-col">
+        <Navbar />
+        <Dashboard city={null} resource={null} />
+      </div>
+    )
   }
 
   const city = camelize(slug[0])
