@@ -35,12 +35,14 @@
   "devDependencies": {
     "@tailwindcss/jit": "^0.1.18",
     "@types/gtag.js": "0.0.4",
+    "@types/react": "^17.0.5",
     "autoprefixer": "^10.2.5",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
     "postcss": "^8.2.13",
     "prettier": "^2.2.1",
-    "tailwindcss": "^2.1.2"
+    "tailwindcss": "^2.1.2",
+    "typescript": "^4.2.4"
   },
   "optionalDependencies": {
     "playwright": "^1.10.0"

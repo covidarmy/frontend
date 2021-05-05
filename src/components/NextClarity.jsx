@@ -1,5 +1,5 @@
 import Head from "next/head"
-import { isProduction } from "~/constants"
+import { isProduction } from "@/constants"
 
 export default function NextClarity({ id }) {
   return (

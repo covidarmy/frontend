@@ -1,9 +1,9 @@
-import { Dashboard } from "~/components/Dashboard"
-import Navbar from "~/components/Navbar"
+import { Dashboard } from "@/components/Dashboard"
+import Navbar from "@/components/Navbar"
 import { NextSeo } from "next-seo"
 import { useRouter } from "next/router"
-import { camelize } from "~/lib/utils"
-import { API_BASE_URL, fetchTweets, getCities, getResources } from "~/lib/api"
+import { camelize } from "@/lib/utils"
+import { API_BASE_URL, fetchTweets, getCities, getResources } from "@/lib/api"
 
 const CityPage = ({
   tweets,

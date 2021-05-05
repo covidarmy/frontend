@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Tweet } from "react-static-tweets"
 import { HiChevronDoubleDown } from "react-icons/hi"
-import { fetchTweets } from "~/lib/api"
+import { fetchTweets } from "@/lib/api"
 
 /**
  * @type {React.NamedExoticComponent}
