@@ -99,7 +99,7 @@ const About: React.FC<Props> = (props) => {
                 className="w-full md:w-1/2 lg:w-1/3 px-2 mb-4"
               >
                 <div className="flex items-center justify-center">
-                  <div className="bg-white mt-10 py-12 px-16 text-center rounded-md shadow-lg transform -translate-y-20 sm:-translate-y-24 max-w-md mx-auto">
+                  <div className="bg-white mt-10 py-12 px-8 md:px-16 text-center rounded-md shadow-lg mx-auto">
                     <img
                       className="w-28 h-28 object-cover rounded-full mx-auto shadow-lg"
                       src={element.image}
