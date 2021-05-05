@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Dashboard } from "~/components/Dashboard"
+import Footer from "~/components/Footer"
 import Navbar from "~/components/Navbar"
 
 const DisclaimerPage = ({ disclaimer }) => {
@@ -12,6 +12,7 @@ const DisclaimerPage = ({ disclaimer }) => {
           <p className="my-8">{x}</p>
         ))}
       </div>
+      <Footer />
     </div>
   )
 }

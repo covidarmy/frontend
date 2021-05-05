@@ -5,6 +5,7 @@ import {
   TiSocialLinkedin,
 } from "react-icons/ti"
 import { HiGlobeAlt as HiGlobe } from "react-icons/hi"
+import Footer from "~/components/Footer"
 
 const icons = {
   twitter: TiSocialTwitter,
@@ -58,6 +59,7 @@ const Team = ({ data }) => {
           })}
         </div>
       </section>
+      <Footer />
     </div>
   )
 }
