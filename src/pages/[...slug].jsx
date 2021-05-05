@@ -92,7 +92,6 @@ export const getStaticPaths = async () => {
   const paths = []
   const cities = await getCities()
   const resources = await getResources()
-  console.log(cities, resources)
 
   cities.forEach((/** @type {string} */ item) => {
     paths.push({ params: { slug: [item.trim().toLowerCase()] } })
