@@ -33,7 +33,7 @@ const TweetsList = React.memo(
       // Tweets
       return (
         <>
-          {data.map(({ id: tweetId, url: tweetUrl, status: voteCount }) => {
+          {data.map(({ tweet_object: { tweet_id: tweetId } }) => {
             return (
               <div
                 key={tweetId}

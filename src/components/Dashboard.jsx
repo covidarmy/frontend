@@ -1,4 +1,5 @@
 import * as React from "react"
+import Footer from "./Footer"
 import LocationFilter from "./LocationFilter"
 import ResourceFilter from "./ResourceFilter"
 import TweetsList from "./TweetsList"
@@ -7,7 +8,9 @@ export const Dashboard = ({
   data: { resources, tweets = [], cities, resource, city },
 }) => {
   return (
-    <>
+    <div className='flex flex-col justify-between h-screen'>
+    <div>
+
       <div className="mt-4 lg:mt-8 text-center mb-4 md:mb-0">
         <p className="text-red-500 font-bold">
           🚨 Please beware of fraudsters 🚨
@@ -29,6 +32,12 @@ export const Dashboard = ({
         </div>
         <TweetsList city={city} resource={resource} data={tweets} />
       </div>
-    </>
+    </div>
+
+    <div>
+      <Footer />
+    </div>
+
+    </div>
   )
 }

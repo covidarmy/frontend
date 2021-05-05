@@ -40,12 +40,18 @@ export default function Navbar({ lastUpdated = 6 }) {
                 ago
               </p>
             </div>
-            <div className="hidden md:block sm:ml-20 sm:mr-0 space-x-4 justify-end lg:ml-20">
+            <div className="hidden md:block sm:ml-20 sm:mr-0 space-x-4 justify-between lg:ml-20">
               <Link href="/">
                 <a className="hover:bg-gray-700 text-gray focus:bg-red hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                   Home
                 </a>
               </Link>
+              <a
+                href="https://verifynum.herokuapp.com/"
+                className="hover:bg-gray-700 text-gray focus:bg-red hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Resource Verifier (Beta)
+              </a>
               <Link href="/disclaimer">
                 <a className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                   Disclaimer
@@ -76,7 +82,7 @@ export default function Navbar({ lastUpdated = 6 }) {
                 <HiOutlineShare className="block h-6 w-6" />
               </button>
             ) : (
-              <div className="h-1 w-1"></div>
+              <div className="h-1 w-1 lg:hidden"></div>
             )}
           </div>
           <Disclosure.Panel className="md:hidden">
@@ -86,6 +92,12 @@ export default function Navbar({ lastUpdated = 6 }) {
                   Home
                 </a>
               </Link>
+              <a
+                href="https://verifynum.herokuapp.com/"
+                className="hover:bg-gray-700 text-gray focus:bg-red hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Resource Verifier (Beta)
+              </a>
               <Link href="/disclaimer">
                 <a className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                   Disclaimer
