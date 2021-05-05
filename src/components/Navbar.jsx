@@ -1,9 +1,16 @@
-import { Disclosure } from "@headlessui/react"
-import { MenuIcon, XIcon } from "@heroicons/react/outline"
-import Link from "next/link"
-import Logo from "../assets/Logo.svg"
-import { HiOutlineShare } from "react-icons/hi"
 import * as React from "react"
+import Link from "next/link"
+
+// ASSETS
+// @ts-ignore
+import Logo from "../assets/Logo.svg"
+
+// HEADLESS UI
+import { Disclosure } from "@headlessui/react"
+
+// ICONS
+import { MenuIcon, XIcon } from "@heroicons/react/outline"
+import { HiOutlineShare } from "react-icons/hi"
 
 export default function Navbar({ lastUpdated = 6 }) {
   const [canShare, setCanShare] = React.useState(true)
@@ -57,9 +64,9 @@ export default function Navbar({ lastUpdated = 6 }) {
                   Disclaimer
                 </a>
               </Link>
-              <Link href="/team">
+              <Link href="/about">
                 <a className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                  Team
+                  About
                 </a>
               </Link>
             </div>
@@ -103,9 +110,9 @@ export default function Navbar({ lastUpdated = 6 }) {
                   Disclaimer
                 </a>
               </Link>
-              <Link href="/team">
+              <Link href="/about">
                 <a className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                  Team
+                  About
                 </a>
               </Link>
             </div>
