@@ -69,7 +69,7 @@ const About: React.FC<Props> = (props) => {
                 referrerPolicy="no-referrer"
               >
                 <Image
-                  src={`/static/assets/${partner.imageFileName}`}
+                  src={`/static/assets/partners/${partner.imageFileName}`}
                   height={150}
                   width={150}
                 />
