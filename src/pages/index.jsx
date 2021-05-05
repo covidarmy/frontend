@@ -1,7 +1,7 @@
 import * as React from "react"
-import { Dashboard } from "@/components/Dashboard"
-import Navbar from "@/components/Navbar"
-import { getCities, getResources } from "@/lib/api"
+import { Dashboard } from "~/components/Dashboard"
+import Navbar from "~/components/Navbar"
+import { getCities, getResources } from "~/lib/api"
 
 const IndexPage = ({ resources, cities, lastUpdated }) => {
   return (
