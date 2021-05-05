@@ -1,6 +1,6 @@
 import clsx from "clsx"
-import { useRouter } from "next/router"
 import * as React from "react"
+import Link from "next/link"
 
 /**
  * @typedef {Object} Props

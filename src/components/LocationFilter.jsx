@@ -8,9 +8,13 @@ import LocationIcon from "../assets/Location.svg"
 import SearchIcon from "../assets/Search.svg"
 import { HiChevronDown as DownArrow } from "react-icons/hi"
 import { HiChevronUp as UpArrow } from "react-icons/hi"
+import { useSlug } from "~/context/slug"
+import { useData } from "~/context/data"
 
-export default function LocationFilter({ data, city, resource }) {
-  const [cityState, setCityState] = useState(city ? true : false)
+export default function LocationFilter() {
+  const { location, resource } = useSlug()
+  const { cities: data } = useData()
+  const [cityState, setCityState] = useState(location ? true : false)
   const router = useRouter()
   const filter = router.pathname === "/" && "all"
   const [showMore, setShowMore] = React.useState(false)
@@ -54,17 +58,23 @@ export default function LocationFilter({ data, city, resource }) {
     _data = _data.filter((i) => typeof i !== "boolean")
 
     return _data.map((item) => {
+      /** Location provided by useSlug */
+      let currentLocation = location
+      /** Location where the FilterButton will route the user to */
+      const buttonLocation = item.replace(/\s+/g, "").toString().toLowerCase()
+
+      if (typeof currentLocation === "string") {
+        currentLocation = currentLocation.replace(/\s+/g, "").toLowerCase()
+      }
+
       return (
         <FilterButton
           key={item}
-          active={
-            typeof city === "string" &&
-            city.toLowerCase() === item.toLowerCase()
-          }
+          active={currentLocation === item.toLowerCase()}
           href={
-            resource === null
-              ? "/" + item.toString().toLowerCase()
-              : `/${item.toString().toLowerCase()}/${resource}`
+            resource === undefined
+              ? "/" + buttonLocation
+              : `/${buttonLocation}/${resource}`
           }
         >
           {item}
@@ -117,7 +127,9 @@ export default function LocationFilter({ data, city, resource }) {
       <div className="flex ml-1 justify-between">
         <div className="flex">
           <LocationIcon />
-          <p className="text-strong ml-1 mt-0.5 font-bold capitalize">{city}</p>
+          <p className="text-strong ml-1 mt-0.5 font-bold capitalize">
+            {location}
+          </p>
         </div>
         <button onClick={() => setCityState(!cityState)}>
           <span className="font-bold text-primary">Change</span>
