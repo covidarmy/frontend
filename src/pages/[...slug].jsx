@@ -92,6 +92,7 @@ export const getStaticPaths = async () => {
   const paths = []
   const cities = await getCities()
   const resources = await getResources()
+  console.log(cities, resources)
 
   cities.forEach((/** @type {string} */ item) => {
     paths.push({ params: { slug: [item.trim().toLowerCase()] } })
@@ -99,6 +100,9 @@ export const getStaticPaths = async () => {
 
   cities.forEach((/** @type {string} */ city) => {
     resources.map((resource) => {
+      /** Replace whitespaces */
+      if (resource.includes(" ")) resource = resource.replace(/ /g, "")
+
       paths.push({
         params: {
           slug: [city.trim().toLowerCase(), resource.trim().toLowerCase()],
