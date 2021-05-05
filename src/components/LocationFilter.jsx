@@ -89,7 +89,7 @@ export default function LocationFilter({ data, city, resource }) {
           placeholder="Search for your city or Select from below"
           onChange={({ currentTarget }) => setSearchValue(currentTarget.value)}
         />
-        <button type="submit" className="relative mt-0">
+        <button type="submit" className="relative h-7 w-7 ml-1 mt-2">
           <SearchIcon />
         </button>
       </div>
