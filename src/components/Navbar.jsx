@@ -1,6 +1,7 @@
 import { Disclosure } from "@headlessui/react"
 import { MenuIcon, XIcon } from "@heroicons/react/outline"
 import Link from "next/link"
+// @ts-ignore
 import Logo from "../assets/Logo.svg"
 import { HiOutlineShare } from "react-icons/hi"
 import * as React from "react"
