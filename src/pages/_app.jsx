@@ -1,10 +1,12 @@
-import * as React from "react"
 import "../styles/index.css"
 import "inter-ui/inter.css"
+import "react-static-tweets/styles.css"
+import * as React from "react"
+import DataProvider from "~/context/data"
+import NextGA from "~/components/NextGA"
+import SlugProvider from "~/context/slug"
 import { DefaultSeo } from "next-seo"
 import { defaultSeoProps, isProduction } from "~/constants"
-import NextGA from "~/components/NextGA"
-import "react-static-tweets/styles.css"
 
 function App({ Component, pageProps }) {
   return (

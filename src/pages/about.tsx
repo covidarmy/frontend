@@ -2,8 +2,8 @@ import { GetStaticProps } from "next"
 import Image from "next/image"
 
 // COMPONENTS
-import Navbar from "@/components/Navbar"
-import Footer from "@/components/Footer"
+import Navbar from "~/components/Navbar"
+import Footer from "~/components/Footer"
 
 // ICONS
 import {
