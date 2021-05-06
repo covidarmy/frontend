@@ -12,7 +12,7 @@ import { Disclosure } from "@headlessui/react"
 import { MenuIcon, XIcon } from "@heroicons/react/outline"
 import { HiOutlineShare } from "react-icons/hi"
 
-export default function Navbar({ lastUpdated = 6 }) {
+export default function Navbar() {
   const [canShare, setCanShare] = React.useState(true)
 
   React.useEffect(() => {
@@ -41,11 +41,6 @@ export default function Navbar({ lastUpdated = 6 }) {
                   <Logo />
                 </a>
               </Link>
-              <p className="lg:mx-6 sm:mx-1 sm:text-xs text-sm lg:pt-2 text-gray-400">
-                Last updated{" "}
-                {5 || Math.floor((Date.now() - lastUpdated) / 60000)} minutes
-                ago
-              </p>
             </div>
             <div className="hidden md:block sm:ml-20 sm:mr-0 space-x-4 justify-between lg:ml-20">
               <Link href="/">
