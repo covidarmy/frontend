@@ -56,6 +56,7 @@ export default function Navbar({ lastUpdated = 6 }) {
               <a
                 href="https://verifynum.herokuapp.com/"
                 className="hover:bg-gray-700 text-gray focus:bg-red hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                target="_blank"
               >
                 Resource Verifier (Beta)
               </a>
@@ -102,6 +103,7 @@ export default function Navbar({ lastUpdated = 6 }) {
               <a
                 href="https://verifynum.herokuapp.com/"
                 className="hover:bg-gray-700 text-gray focus:bg-red hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                target="_blank"
               >
                 Resource Verifier (Beta)
               </a>
