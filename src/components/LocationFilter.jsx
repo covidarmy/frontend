@@ -97,13 +97,13 @@ export default function LocationFilter() {
   if (!cityState)
     return (
       <div className="shadow-md bg-white box-border h-auto w-full rounded-md my-2 p-3 lg:p-6 border border-gray-200">
-        <div className="flex ml-1 mb-1">
+        <div className="flex items-center ml-1 mb-1">
           <LocationIcon className="h-5 w-5 mt-1" />
           <p className="text-strong ml-1 mt-0.5 font-bold">Choose Your City</p>
         </div>
         <div className="pt-2 ml-1 flex justify-start relative text-gray-600">
           <input
-            className="border-2 w-full relative w-400 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+            className="border-2 w-full relative w-400 border-gray-300 bg-white h-10 px-3 pr-16 rounded-lg text-sm focus:outline-none focus:ring focus:border-blue-300"
             type="search"
             name="search"
             placeholder="Search for your city or Select from below"
@@ -111,7 +111,7 @@ export default function LocationFilter() {
               setSearchValue(currentTarget.value)
             }
           />
-          <button type="submit" className="relative h-7 w-7 ml-1 mt-2">
+          <button type="submit" className="relative h-7 w-7 ml-2 mt-2">
             <SearchIcon />
           </button>
         </div>
@@ -120,7 +120,7 @@ export default function LocationFilter() {
         </div>
         <div className="mt-2 ml-1">
           <button
-            className="hover:text-underline flex text-indigo-600"
+            className="hover:underline flex items-center text-indigo-600 focus:outline-none focus:ring focus:border-blue-300"
             onClick={() => setShowMore((prev) => !prev)}
           >
             <span>
@@ -136,14 +136,12 @@ export default function LocationFilter() {
   return (
     <div className="shadow-md bg-white box-border h-auto w-full rounded-md my-2 p-3 lg:p-6 border border-gray-200">
       <div className="flex ml-1 justify-between">
-        <div className="flex">
+        <div className="flex items-center">
           <LocationIcon />
-          <p className="text-strong ml-1 mt-0.5 font-bold capitalize">
-            {location}
-          </p>
+          <p className="text-strong ml-1 font-bold capitalize">{location}</p>
         </div>
         <button onClick={() => setCityState(!cityState)}>
-          <span className="font-bold text-primary">Change</span>
+          <span className="font-bold text-primary hover:underline">Change</span>
         </button>
       </div>
     </div>

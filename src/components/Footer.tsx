@@ -13,7 +13,7 @@ const Footer = () => {
           target="_blank"
           referrerPolicy="no-referrer"
         >
-          <AiFillGithub className="text-2xl" />
+          <AiFillGithub className="text-3xl" />
         </a>
       </div>
 
