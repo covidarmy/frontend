@@ -32,9 +32,7 @@ export const Dashboard = () => {
           <TweetsList />
         </div>
       </div>
-      <div>
-        <Footer />
-      </div>
+      <Footer />
     </div>
   )
 }

@@ -1,15 +1,17 @@
-import * as React from "react"
 import FilterButton from "./FilterButton"
 import ResourceIcon from "../assets/Resource.svg"
 import ResourceIconDeactivated from "../assets/ResourceDeactivated.svg"
+import { useResources } from "~/hooks/useResources"
+import Skeleton from "react-loading-skeleton"
 import { useSlug } from "~/context/slug"
-import { useData } from "~/context/data"
 
 export default function ResourceFilter() {
   const { location, resource } = useSlug()
-  const { resources: data } = useData()
+  const [resources, error, isLoading] = useResources()
 
-  if (!data) return null
+  // we can add better error state later
+  if (error) return <div>failed to load</div>
+  if (isLoading) return <Skeleton height={128} />
 
   if (location)
     return (
@@ -19,7 +21,7 @@ export default function ResourceFilter() {
           <p className="text-strong mt-0 ml-1 font-bold">Choose Resources</p>
         </div>
         <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
-          {data.map((item) => {
+          {resources.map((item) => {
             const buttonResource = item.toLowerCase()
             return (
               <FilterButton

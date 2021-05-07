@@ -2,10 +2,21 @@ import { Dashboard } from "~/components/Dashboard"
 import Navbar from "~/components/Navbar"
 import { NextSeo } from "next-seo"
 import { useRouter } from "next/router"
+import { camelize } from "~/lib/utils"
 
 const CityPage = () => {
   const router = useRouter()
   const { slug } = router.query
+
+  if (slug === undefined) {
+    return (
+      <div className="w-screen h-screen flex flex-col">
+        <Navbar />
+        <Dashboard city={null} resource={null} />
+      </div>
+    )
+  }
+
   const title = Array.isArray(slug)
     ? slug
         .map((i) => {
@@ -13,6 +24,9 @@ const CityPage = () => {
         })
         .join(" - ")
     : ""
+
+  const city = camelize(slug[0])
+  const resource = typeof slug[1] === "string" ? camelize(slug[1]) : null
 
   return (
     <>
@@ -32,7 +46,7 @@ const CityPage = () => {
       />
       <div className="w-screen h-screen flex flex-col">
         <Navbar />
-        <Dashboard />
+        <Dashboard city={city} resource={resource} />
       </div>
     </>
   )

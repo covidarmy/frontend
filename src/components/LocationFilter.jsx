@@ -1,20 +1,20 @@
-import * as React from "react"
 import Fuse from "fuse.js"
-import Link from "next/link"
 import { useRouter } from "next/router"
 import FilterButton from "./FilterButton"
-import { useState } from "react"
+import * as React from "react"
 import LocationIcon from "../assets/Location.svg"
 import SearchIcon from "../assets/Search.svg"
 import { HiChevronDown as DownArrow } from "react-icons/hi"
 import { HiChevronUp as UpArrow } from "react-icons/hi"
+import { useCities } from "~/hooks/useCities"
+import Skeleton from "react-loading-skeleton"
 import { useSlug } from "~/context/slug"
-import { useData } from "~/context/data"
 
 export default function LocationFilter() {
   const { location, resource } = useSlug()
-  const { cities: data } = useData()
-  const [cityState, setCityState] = useState(false)
+  const [cities, error, isLoading] = useCities()
+  const [cityState, setCityState] = React.useState(false)
+
   const router = useRouter()
   const filter = router.pathname === "/" && "all"
   const [showMore, setShowMore] = React.useState(false)
@@ -29,12 +29,15 @@ export default function LocationFilter() {
     }
   }, [location])
 
+  if (error) return <div>failed to load</div>
+  if (isLoading) return <Skeleton height={214} />
+
   const renderButtons = () => {
     let _data = null
 
     if (searchValue) {
       const fuse = new Fuse(
-        data.sort().filter((i) => typeof i !== "boolean"),
+        cities.sort().filter((i) => typeof i !== "boolean"),
         { includeScore: true }
       )
 
@@ -60,7 +63,7 @@ export default function LocationFilter() {
         _data = [..._data, filter]
       }
     } else if (_data === null) {
-      _data = data.sort()
+      _data = cities.sort()
     }
 
     _data = _data.filter((i) => typeof i !== "boolean")

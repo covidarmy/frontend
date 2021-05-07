@@ -2,11 +2,10 @@ import "../styles/index.css"
 import "inter-ui/inter.css"
 import "react-static-tweets/styles.css"
 import * as React from "react"
-import DataProvider from "~/context/data"
 import NextGA from "~/components/NextGA"
-import SlugProvider from "~/context/slug"
 import { DefaultSeo } from "next-seo"
 import { defaultSeoProps, isProduction } from "~/constants"
+import SlugProvider from "~/context/slug"
 
 function App({ Component, pageProps }) {
   return (
@@ -17,9 +16,7 @@ function App({ Component, pageProps }) {
         trackingId={process.env.NEXT_PUBLIC_GA_TRACKING_ID}
       >
         <SlugProvider>
-          <DataProvider>
-            <Component {...pageProps} />
-          </DataProvider>
+          <Component {...pageProps} />
         </SlugProvider>
       </NextGA>
     </>

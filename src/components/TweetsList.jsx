@@ -1,41 +1,24 @@
-import * as React from "react"
 import { Tweet } from "react-static-tweets"
 import { HiChevronDoubleDown } from "react-icons/hi"
+import { useTweets } from "~/hooks/useTweets"
+import Skeleton from "react-loading-skeleton"
 import { useSlug } from "~/context/slug"
-import { fetchTweets } from "~/lib/api"
 
-/**
- * @type {React.NamedExoticComponent}
- */
-const TweetsList = React.memo(() => {
+const TweetsList = () => {
   const { location, resource } = useSlug()
-  const [data, setData] = React.useState([])
+  const { data, error, size, setSize } = useTweets({ location, resource })
 
-  React.useEffect(() => {
-    if (location && resource) {
-      ;(async () => {
-        const tweets = await fetchTweets({
-          location,
-          resource,
-          limit: 20,
-        })
-        setData(tweets)
-      })()
-    }
-  }, [location, resource])
+  if (error) return <div>failed to load</div>
+  if (!data) return <Skeleton count={40} />
 
-  const showMore = async () => {
-    const newTweets = await fetchTweets({
-      location,
-      resource,
-      limit: 20,
-      offset: Math.floor(data.length),
-    })
-    setData((data) => data.concat(newTweets))
+  const showMore = () => {
+    setSize(size + 1)
   }
 
+  const isEmpty = data?.[0]?.length === 0
+  const isReachingEnd = isEmpty || (data && data[data.length - 1]?.length < 20)
+
   if (!(location && resource)) {
-    // Return Please add location & resource
     return (
       <div className="py-4 text-xl font-bold">
         Please select city and resource
@@ -43,25 +26,27 @@ const TweetsList = React.memo(() => {
     )
   }
 
-  if (data.length > 0) {
-    // Tweets
+  if (data[0].length > 0) {
     return (
       <>
-        {data.map(({ tweet_object: { tweet_id: tweetId, _id } }) => {
-          return (
-            <div
-              key={_id}
-              className="w-full flex flex-col items-center justify-center space-y-4 my-2 px-2"
-            >
-              <Tweet id={tweetId} />
-            </div>
-          )
-        })}
-        {data.length % 20 == 0 && (
+        {
+          // Tweets
+          data.map((page) => {
+            return page.map(({ _id: key, tweet_object: tweetObj }) => (
+              <div
+                key={key}
+                className="w-full flex flex-col items-center justify-center space-y-4 my-2 px-2"
+              >
+                <Tweet id={tweetObj.tweet_id} />
+              </div>
+            ))
+          })
+        }
+        {!isReachingEnd && (
           <button
             onClick={showMore}
             className="bg-indigo-200 text-indigo-700 flex items-center justify-center px-4 py-2 rounded-md gap-2 shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            disabled={data.length % 20 !== 0}
+            disabled={data[0].length % 20 !== 0}
           >
             Show more
             <HiChevronDoubleDown />
@@ -72,11 +57,10 @@ const TweetsList = React.memo(() => {
   }
 
   return (
-    <div className="text-center">
+    <div className="text-center pt-2 md:px-10">
       No tweets found{" "}
-      {location ? " for " + location + (resource ? " & " + resource : "") : ""}
-      . This might be a bug, please DM on Twitter to let me know.
-      <br />
+      {location ? " for " + location + (resource ? " & " + resource : "") : ""}.
+      This might be a bug, please DM on Twitter to let me know.{" "}
       <a
         target="_blank"
         href="https://twitter.com/covid_army"
@@ -86,6 +70,6 @@ const TweetsList = React.memo(() => {
       </a>
     </div>
   )
-})
+}
 
 export default TweetsList
