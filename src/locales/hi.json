@@ -1,12 +1,15 @@
 {
-  "HOME": "Home",
-  "ABOUT": "About",
-  "RESOURCE_VERIFIED": "Resource Verified (Beta)",
-  "DISCLAIMER": "Disclaimer",
-  "FRAUDSTERS_DISCLAIMER": "Please beware of fraudsters",
-  "CHOOSE_LOCATION": "Choose Your City",
-  "CHOOSE_LOCATION_FIRST": "Please select your city first",
-  "SELECT_LOCATION_RESOURCE": "Please select city and resource",
-  "OUR_VOLUNTEERS": "Our Volunteers",
-  "OUR_PARTNERS": "Our Partners"
+  "HOME": "होम पेज",
+  "ABOUT": "परियोजना के बारे में",
+  "RESOURCE_VERIFIER": "संसाधन Verifier (Beta)",
+  "DISCLAIMER": "डिस्क्लेमर",
+  "FRAUDSTERS_DISCLAIMER": "कृपया धोखेबाजों से सावधान रहें",
+  "CHOOSE_LOCATION": "अपना शहर चुनें",
+  "CHOOSE_RESOURCES": "संसाधन चुनें",
+  "CHOOSE_LOCATION_FIRST": "कृपया पहले शहर चुने",
+  "SELECT_LOCATION_RESOURCE": "कृपया शहर और संसाधन चुने",
+  "OUR_VOLUNTEERS": "हमारे वालंटियर्स",
+  "OUR_PARTNERS": "हमारे सहयोगी",
+  "SHOW_MORE": "और दिखाए",
+  "CHANGE": "विकल्प बदलें"
 }
