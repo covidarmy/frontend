@@ -2,8 +2,10 @@ import { Tweet } from "react-static-tweets"
 import { HiChevronDoubleDown } from "react-icons/hi"
 import { useTweets } from "~/hooks/useTweets"
 import Skeleton from "react-loading-skeleton"
+import { useSlug } from "~/context/slug"
 
-const TweetsList = ({ city: location, resource }) => {
+const TweetsList = () => {
+  const { location, resource } = useSlug()
   const { data, error, size, setSize } = useTweets({ location, resource })
 
   if (error) return <div>failed to load</div>
@@ -12,8 +14,6 @@ const TweetsList = ({ city: location, resource }) => {
   const showMore = () => {
     setSize(size + 1)
   }
-
-  console.log(data)
 
   const isEmpty = data?.[0]?.length === 0
   const isReachingEnd = isEmpty || (data && data[data.length - 1]?.length < 20)
