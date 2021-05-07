@@ -46,7 +46,7 @@ export default function Navbar() {
               </Link>
               <a
                 href="https://verifynum.herokuapp.com/"
-                className="hover:bg-gray-700 text-gray focus:bg-red hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                className="hover:bg-gray-700 text-gray focus:bg-red hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -98,7 +98,7 @@ export default function Navbar() {
               </Link>
               <a
                 href="https://verifynum.herokuapp.com/"
-                className="hover:bg-gray-700 text-gray focus:bg-red hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                className="hover:bg-gray-700 text-gray focus:bg-red hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >

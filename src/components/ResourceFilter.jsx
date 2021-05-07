@@ -18,7 +18,7 @@ export default function ResourceFilter() {
   if (location)
     return (
       <div className="shadow-md border border-gray-200 rounded-md bg-white text-center box-border h-auto w-full my-2 p-3 lg:p-6">
-        <div className="flex">
+        <div className="flex items-center">
           <ResourceIcon />
           <p className="text-strong mt-0 ml-1 font-bold">
             {t("CHOOSE_RESOURCES")}
