@@ -24,7 +24,9 @@ const TweetsList = () => {
         Please select city and resource
       </div>
     )
-  } else if (data.length > 0) {
+  }
+
+  if (data[0].length > 0) {
     return (
       <>
         {
@@ -52,26 +54,22 @@ const TweetsList = () => {
         )}
       </>
     )
-  } else {
-    // Error
-    return (
-      <div className="text-center">
-        No tweets found{" "}
-        {location
-          ? " for " + location + (resource ? " & " + resource : "")
-          : ""}
-        . This might be a bug, please DM on Twitter to let me know.
-        <br />
-        <a
-          target="_blank"
-          href="https://twitter.com/covid_army"
-          className="text-blue-600"
-        >
-          @covid_army
-        </a>
-      </div>
-    )
   }
+
+  return (
+    <div className="text-center pt-2 md:px-10">
+      No tweets found{" "}
+      {location ? " for " + location + (resource ? " & " + resource : "") : ""}.
+      This might be a bug, please DM on Twitter to let me know.{" "}
+      <a
+        target="_blank"
+        href="https://twitter.com/covid_army"
+        className="text-blue-600"
+      >
+        @covid_army
+      </a>
+    </div>
+  )
 }
 
 export default TweetsList
