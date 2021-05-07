@@ -6,14 +6,12 @@ export const useTweets = ({ location, resource }) => {
   let url = API_BASE_URL + "/api/tweets"
 
   if (location) {
-    url +=
-      "/" +
-      location[0].toUpperCase() +
-      location.substring(1, location.length).toLowerCase()
+    url += "/" + location
   }
   if (resource) {
-    url += "/" + resource.toLowerCase()
+    url += "/" + encodeURIComponent(resource.trim())
   }
+
   url += "?"
 
   const getKey = (pageIndex, previousPageData) => {
