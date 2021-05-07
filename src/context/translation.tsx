@@ -1,9 +1,8 @@
 import * as React from "react"
-import { isServer } from "~/constants"
 import en from "../locales/en.json"
 import hi from "../locales/hi.json"
 
-type SupportedLocales = "en" | "hi"
+export type SupportedLocales = "en" | "hi"
 type TranslatedStringProviderFunction = (key: string) => string
 type UseTranslationReturn = {
   locale: SupportedLocales
@@ -33,6 +32,7 @@ const TranslationProvider: React.FC = ({ children }) => {
   }, [])
 
   React.useEffect(() => {
+    console.log("locale changed")
     localStorage.setItem("locale", locale)
   }, [locale])
 

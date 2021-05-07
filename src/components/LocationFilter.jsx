@@ -146,7 +146,7 @@ export default function LocationFilter() {
           </p>
         </div>
         <button onClick={() => setCityState(!cityState)}>
-          <span className="font-bold text-primary">Change</span>
+          <span className="font-bold text-primary">{t("CHANGE")}</span>
         </button>
       </div>
     </div>

@@ -5,6 +5,7 @@ import { Disclosure } from "@headlessui/react"
 import { MenuIcon, XIcon } from "@heroicons/react/outline"
 import { HiOutlineShare } from "react-icons/hi"
 import { useTranslation } from "~/context/translation"
+import ChangeLocale from "./ChangeLocale"
 
 export default function Navbar() {
   const [canShare, setCanShare] = React.useState(true)
@@ -37,10 +38,10 @@ export default function Navbar() {
                 </a>
               </Link>
             </div>
-            <div className="hidden md:block sm:ml-20 sm:mr-0 space-x-4 justify-between lg:ml-20">
+            <div className="hidden md:flex sm:ml-20 sm:mr-0 justify-between lg:ml-20 items-center justify-center space-x-4">
               <Link href="/">
                 <a className="hover:bg-gray-700 text-gray focus:bg-red hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                  Home
+                  {t("HOME")}
                 </a>
               </Link>
               <a
@@ -49,11 +50,11 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {t("RESOURCE_VERIFIED")}
+                {t("RESOURCE_VERIFIER")}
               </a>
               <Link href="/disclaimer">
                 <a className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                  Disclaimer
+                  {t("DISCLAIMER")}
                 </a>
               </Link>
               <Link href="/about">
@@ -61,28 +62,32 @@ export default function Navbar() {
                   {t("ABOUT")}
                 </a>
               </Link>
+              <ChangeLocale />
             </div>
-            {canShare ? (
-              <button
-                className="block md:hidden"
-                onClick={async () => {
-                  try {
-                    await navigator.share({
-                      title: "Covid.army",
-                      text:
-                        "Verified Real Time List of COVID-19 Resources and Aid",
-                      url: "https://covid.army",
-                    })
-                  } catch (err) {
-                    console.log(err)
-                  }
-                }}
-              >
-                <HiOutlineShare className="block h-6 w-6" />
-              </button>
-            ) : (
-              <div className="h-1 w-1 lg:hidden"></div>
-            )}
+            <div className="flex space-x-4 items-center justify-center lg:hidden">
+              <ChangeLocale />
+              {canShare ? (
+                <button
+                  className="block md:hidden"
+                  onClick={async () => {
+                    try {
+                      await navigator.share({
+                        title: "Covid.army",
+                        text:
+                          "Verified Real Time List of COVID-19 Resources and Aid",
+                        url: "https://covid.army",
+                      })
+                    } catch (err) {
+                      console.log(err)
+                    }
+                  }}
+                >
+                  <HiOutlineShare className="block h-6 w-6" />
+                </button>
+              ) : (
+                <div className="h-1 w-1 lg:hidden"></div>
+              )}
+            </div>
           </div>
           <Disclosure.Panel className="md:hidden">
             <div className="px-2 grid pt-2 pb-3 space-y-1 sm:px-3">
@@ -97,7 +102,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {t("RESOURCE_VERIFIED")}
+                {t("RESOURCE_VERIFIER")}
               </a>
               <Link href="/disclaimer">
                 <a className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium">

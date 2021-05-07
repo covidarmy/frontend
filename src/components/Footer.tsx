@@ -1,5 +1,4 @@
 import Image from "next/image"
-
 import { AiFillGithub } from "react-icons/ai"
 
 const Footer = () => {
