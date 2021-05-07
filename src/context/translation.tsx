@@ -6,7 +6,7 @@ export type SupportedLocales = "en" | "hi"
 type TranslatedStringProviderFunction = (key: string) => string
 type UseTranslationReturn = {
   locale: SupportedLocales
-  setLocale: React.Dispatch<React.SetStateAction<SupportedLocales>>
+  setLocale: (key: SupportedLocales) => void
   t: TranslatedStringProviderFunction
 }
 
@@ -21,27 +21,34 @@ const translationContext = React.createContext<
 
 const TranslationProvider: React.FC = ({ children }) => {
   const [locale, setLocale] = React.useState<SupportedLocales>("en")
+  const [mountTrip, setMountTrip] = React.useState(false)
 
   React.useEffect(() => {
     const savedLocale = localStorage.getItem("locale")
-    if (typeof savedLocale !== "string") {
-      localStorage.setItem("locale", locale)
+    if (typeof savedLocale === "string") {
+      setLocale(savedLocale as SupportedLocales)
     } else {
-      setLocale(locale)
+      localStorage.setItem("locale", "en")
     }
+    setMountTrip(true)
   }, [])
 
-  React.useEffect(() => {
-    console.log("locale changed")
-    localStorage.setItem("locale", locale)
-  }, [locale])
-
-  const t: TranslatedStringProviderFunction = (key) => {
-    return translations?.[locale]?.[key] ?? ""
+  const changeLocale = (key: SupportedLocales) => {
+    if (mountTrip) {
+      localStorage.setItem("locale", key)
+      setLocale(key)
+    }
   }
 
+  const t: TranslatedStringProviderFunction = React.useMemo(
+    () => (key) => {
+      return translations?.[locale]?.[key] ?? ""
+    },
+    [locale, translations]
+  )
+
   return (
-    <translationContext.Provider value={{ locale, setLocale, t }}>
+    <translationContext.Provider value={{ locale, setLocale: changeLocale, t }}>
       {children}
     </translationContext.Provider>
   )
