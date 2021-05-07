@@ -5,14 +5,16 @@ import LocationFilter from "./LocationFilter"
 import ResourceFilter from "./ResourceFilter"
 import TweetsList from "./TweetsList"
 import Footer from "./Footer"
+import { useTranslation } from "~/context/translation"
 
 export const Dashboard = () => {
+  const { t } = useTranslation()
   return (
     <div className="flex flex-col justify-between h-screen min-h-screen">
       <div>
         <div className="mt-4 lg:mt-8 text-center mb-4 md:mb-0">
           <p className="text-red-500 font-bold">
-            🚨 Please beware of fraudsters 🚨
+            🚨 {t("FRAUDSTERS_DISCLAIMER")} 🚨
           </p>
         </div>
         <div className="lg:flex hidden flex-col justify-center px-4 overflow-hidden lg:flex-row lg:mt-6">

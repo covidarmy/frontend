@@ -16,8 +16,6 @@ const Footer = () => {
           <AiFillGithub className="text-2xl" />
         </a>
       </div>
-
-      {/* ------------- POWERED BY VERCEL -------------  */}
       <div className="mt-2">
         <a
           href={`https://vercel.com/?utm_source=Covidarmy&utm_campaign=oss`}

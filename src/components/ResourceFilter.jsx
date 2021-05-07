@@ -4,9 +4,11 @@ import ResourceIconDeactivated from "../assets/ResourceDeactivated.svg"
 import { useResources } from "~/hooks/useResources"
 import Skeleton from "react-loading-skeleton"
 import { useSlug } from "~/context/slug"
+import { useTranslation } from "~/context/translation"
 
 export default function ResourceFilter() {
   const { location, resource } = useSlug()
+  const { t } = useTranslation()
   const [resources, error, isLoading] = useResources()
 
   // we can add better error state later
@@ -46,7 +48,7 @@ export default function ResourceFilter() {
       <div className="flex">
         <ResourceIconDeactivated />
         <p className="text-strong mt-0 ml-1 font-bold text-gray-500">
-          Please select city first
+          {t("CHOOSE_LOCATION_FIRST")}
         </p>
       </div>
     </div>

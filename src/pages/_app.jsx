@@ -6,6 +6,7 @@ import NextGA from "~/components/NextGA"
 import { DefaultSeo } from "next-seo"
 import { defaultSeoProps, isProduction } from "~/constants"
 import SlugProvider from "~/context/slug"
+import TranslationProvider from "~/context/translation"
 
 function App({ Component, pageProps }) {
   return (
@@ -15,9 +16,11 @@ function App({ Component, pageProps }) {
         disabled={!isProduction}
         trackingId={process.env.NEXT_PUBLIC_GA_TRACKING_ID}
       >
-        <SlugProvider>
-          <Component {...pageProps} />
-        </SlugProvider>
+        <TranslationProvider>
+          <SlugProvider>
+            <Component {...pageProps} />
+          </SlugProvider>
+        </TranslationProvider>
       </NextGA>
     </>
   )

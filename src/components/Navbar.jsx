@@ -1,19 +1,14 @@
 import * as React from "react"
 import Link from "next/link"
-
-// ASSETS
-// @ts-ignore
 import Logo from "../assets/Logo.svg"
-
-// HEADLESS UI
 import { Disclosure } from "@headlessui/react"
-
-// ICONS
 import { MenuIcon, XIcon } from "@heroicons/react/outline"
 import { HiOutlineShare } from "react-icons/hi"
+import { useTranslation } from "~/context/translation"
 
 export default function Navbar() {
   const [canShare, setCanShare] = React.useState(true)
+  const { t } = useTranslation()
 
   React.useEffect(() => {
     if (!navigator.share) setCanShare(false)
@@ -54,7 +49,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Resource Verifier (Beta)
+                {t("RESOURCE_VERIFIED")}
               </a>
               <Link href="/disclaimer">
                 <a className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium">
@@ -63,7 +58,7 @@ export default function Navbar() {
               </Link>
               <Link href="/about">
                 <a className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                  About
+                  {t("ABOUT")}
                 </a>
               </Link>
             </div>
@@ -93,7 +88,7 @@ export default function Navbar() {
             <div className="px-2 grid pt-2 pb-3 space-y-1 sm:px-3">
               <Link href="/">
                 <a className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                  Home
+                  {t("HOME")}
                 </a>
               </Link>
               <a
@@ -102,16 +97,16 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Resource Verifier (Beta)
+                {t("RESOURCE_VERIFIED")}
               </a>
               <Link href="/disclaimer">
                 <a className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                  Disclaimer
+                  {t("DISCLAIMER")}
                 </a>
               </Link>
               <Link href="/about">
                 <a className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                  About
+                  {t("ABOUT")}
                 </a>
               </Link>
             </div>
