@@ -9,10 +9,33 @@ import { HiChevronUp as UpArrow } from "react-icons/hi"
 import { useCities } from "~/hooks/useCities"
 import Skeleton from "react-loading-skeleton"
 import { useSlug } from "~/context/slug"
+import NewCitiesData from "../seeds/newCities.json"
+
+// we can move this logic inside useCities hook once we have backend
+const getCities = (data, states) => {
+  const cities = []
+
+  states.map((state) => {
+    const eachStateData = data[state]
+
+    for (const eachCity in eachStateData) {
+      cities.push(eachCity)
+    }
+  })
+
+  return cities
+}
 
 export default function LocationFilter() {
   const { location, resource } = useSlug()
   const [cities, error, isLoading] = useCities()
+
+  // temporary till we don't have backend
+  const newData = NewCitiesData
+  const newStates = Object.keys(newData)
+  const newCities = getCities(newData, newStates)
+  console.log(newCities)
+
   const [cityState, setCityState] = React.useState(false)
 
   const router = useRouter()
@@ -37,7 +60,7 @@ export default function LocationFilter() {
 
     if (searchValue) {
       const fuse = new Fuse(
-        cities.sort().filter((i) => typeof i !== "boolean"),
+        newCities.sort().filter((i) => typeof i !== "boolean"),
         { includeScore: true }
       )
 
@@ -63,7 +86,7 @@ export default function LocationFilter() {
         _data = [..._data, filter]
       }
     } else if (_data === null) {
-      _data = cities.sort()
+      _data = newStates.sort()
     }
 
     _data = _data.filter((i) => typeof i !== "boolean")
@@ -122,7 +145,7 @@ export default function LocationFilter() {
         <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
           {renderButtons()}
         </div>
-        <div className="mt-2 ml-1">
+        {/* <div className="mt-2 ml-1">
           <button
             className="hover:underline flex items-center text-indigo-600 focus:outline-none focus:ring focus:border-blue-300"
             onClick={() => setShowMore((prev) => !prev)}
@@ -133,7 +156,7 @@ export default function LocationFilter() {
             {showMore && <UpArrow />}
             {!showMore && <DownArrow />}
           </button>
-        </div>
+        </div> */}
       </div>
     )
 
