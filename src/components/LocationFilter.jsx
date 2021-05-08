@@ -111,7 +111,11 @@ export default function LocationFilter() {
               setSearchValue(currentTarget.value)
             }
           />
-          <button type="submit" className="relative h-7 w-7 ml-2 mt-2">
+          <button
+            type="submit"
+            className="relative h-7 w-7 ml-2 mt-2"
+            aria-label="Search"
+          >
             <SearchIcon />
           </button>
         </div>

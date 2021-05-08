@@ -20,9 +20,9 @@ export default function Navbar() {
   }, [])
 
   return (
-    <Disclosure as="nav" className="shadow-lg bg-white w-full">
+    <Disclosure as="header" className="shadow-lg bg-white w-full">
       {({ open }) => (
-        <>
+        <nav>
           <div className="flex items-center justify-between w-full h-16 px-4 lg:px-20">
             <div className="-mr-2 flex md:hidden">
               {/* Mobile menu button */}
@@ -37,7 +37,7 @@ export default function Navbar() {
             </div>
             <div className="flex flex-col lg:flex-row items-center justify-center lg:items-end lg:ml-8 sm:ml-10">
               <Link href="/">
-                <a>
+                <a aria-label="Covid Army Logo">
                   <Logo />
                 </a>
               </Link>
@@ -116,7 +116,7 @@ export default function Navbar() {
               </Link>
             </div>
           </Disclosure.Panel>
-        </>
+        </nav>
       )}
     </Disclosure>
   )
