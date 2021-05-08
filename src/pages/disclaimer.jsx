@@ -20,7 +20,10 @@ const DisclaimerPage = ({ disclaimer }) => {
 }
 
 export const getStaticProps = async () => {
-  const disclaimer = require("fs").readFileSync("seeds/disclaimer.txt", "utf8")
+  const disclaimer = require("fs").readFileSync(
+    "src/seeds/disclaimer.txt",
+    "utf8"
+  )
   return { props: { disclaimer } }
 }
 
