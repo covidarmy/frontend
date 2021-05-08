@@ -14,6 +14,8 @@ export const defaultSeoProps = {
     description: "Verified Real Time List of COVID-19 Resources and Aid",
     type: "website",
     url: "https://covid.army",
-    images: [{ url: "/static/og.png", height: 630, width: 1200 }],
+    images: [
+      { url: "https://covid.army/static/og.png", height: 630, width: 1200 },
+    ],
   },
 }

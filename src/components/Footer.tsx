@@ -11,7 +11,7 @@ const Footer = () => {
           className="mx-2 my-2  text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300"
           aria-label="Github"
           target="_blank"
-          referrerPolicy="no-referrer"
+          rel="noopener noreferrer"
         >
           <AiFillGithub className="text-3xl" />
         </a>
@@ -28,6 +28,7 @@ const Footer = () => {
             src="/static/assets/powered-by-vercel.svg"
             width={212}
             height={44}
+            alt="Powered by vercel"
           />
         </a>
       </div>

@@ -39,7 +39,7 @@ const CityPage = () => {
           }`,
           images: [
             {
-              url: "/static/og.png",
+              url: "https://covid.army/static/og.png",
             },
           ],
         }}

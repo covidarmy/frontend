@@ -12,7 +12,7 @@ export const Dashboard = () => {
       <div>
         {/* DISCLAIMER */}
         <div className="mt-4 lg:mt-8 text-center mb-4 md:mb-0">
-          <p className="text-red-500 font-bold">
+          <p className="text-red-600 font-bold">
             🚨 Please beware of fraudsters 🚨
           </p>
         </div>
