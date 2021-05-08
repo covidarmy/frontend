@@ -26,7 +26,10 @@ const TranslationProvider: React.FC = ({ children }) => {
   React.useEffect(() => {
     const savedLocale = localStorage.getItem("locale")
     if (typeof savedLocale === "string") {
-      setLocale(savedLocale as SupportedLocales)
+      if (savedLocale !== locale) {
+        document.documentElement.setAttribute("lang", savedLocale)
+        setLocale(savedLocale as SupportedLocales)
+      }
     } else {
       localStorage.setItem("locale", "en")
     }
@@ -35,8 +38,10 @@ const TranslationProvider: React.FC = ({ children }) => {
 
   const changeLocale = (key: SupportedLocales) => {
     if (mountTrip) {
-      localStorage.setItem("locale", key)
+      document.documentElement.setAttribute("lang", key)
       setLocale(key)
+      localStorage.setItem("locale", key)
+      document.documentElement.setAttribute("lang", navigator.language)
     }
   }
 
