@@ -25,7 +25,7 @@ const TweetsList = () => {
 
   if (!(location && resource)) {
     return (
-      <div className="py-4 text-xl font-bold">
+      <div className="py-4 text-xl text-center font-bold">
         Please select city and resource
       </div>
     )
