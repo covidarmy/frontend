@@ -34,7 +34,6 @@ export default function LocationFilter() {
   const newData = NewCitiesData
   const newStates = Object.keys(newData)
   const newCities = getCities(newData, newStates)
-  console.log(newCities)
 
   const [cityState, setCityState] = React.useState(false)
 
