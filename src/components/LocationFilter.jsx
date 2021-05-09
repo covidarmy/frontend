@@ -1,39 +1,16 @@
+import * as React from "react"
 import Fuse from "fuse.js"
 import { useRouter } from "next/router"
 import FilterButton from "./FilterButton"
-import * as React from "react"
 import LocationIcon from "../assets/Location.svg"
 import SearchIcon from "../assets/Search.svg"
-import { HiChevronDown as DownArrow } from "react-icons/hi"
-import { HiChevronUp as UpArrow } from "react-icons/hi"
-import { useCities } from "~/hooks/useCities"
 import Skeleton from "react-loading-skeleton"
+import { useCities } from "~/hooks/useCities"
 import { useSlug } from "~/context/slug"
-import NewCitiesData from "../seeds/newCities.json"
-
-// we can move this logic inside useCities hook once we have backend
-const getCities = (data, states) => {
-  const cities = []
-
-  states.map((state) => {
-    const eachStateData = data[state]
-
-    for (const eachCity in eachStateData) {
-      cities.push(eachCity)
-    }
-  })
-
-  return cities
-}
 
 export default function LocationFilter() {
   const { location, resource } = useSlug()
   const [cities, error, isLoading] = useCities()
-
-  // temporary till we don't have backend
-  const newData = NewCitiesData
-  const newStates = Object.keys(newData)
-  const newCities = getCities(newData, newStates)
 
   const [cityState, setCityState] = React.useState(false)
 
@@ -59,7 +36,7 @@ export default function LocationFilter() {
 
     if (searchValue) {
       const fuse = new Fuse(
-        newCities.sort().filter((i) => typeof i !== "boolean"),
+        cities.sort().filter((i) => typeof i !== "boolean"),
         { includeScore: true }
       )
 
@@ -85,7 +62,7 @@ export default function LocationFilter() {
         _data = [..._data, filter]
       }
     } else if (_data === null) {
-      _data = newStates.sort()
+      _data = cities.sort()
     }
 
     _data = _data.filter((i) => typeof i !== "boolean")
