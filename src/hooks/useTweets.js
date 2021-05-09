@@ -1,9 +1,8 @@
 import fetcher from "~/lib/fetcher"
 import { useSWRInfinite } from "swr"
-import { API_BASE_URL } from "~/lib/url"
 
 export const useTweets = ({ location, resource }) => {
-  let url = API_BASE_URL + "/api/tweets"
+  let url = process.env.NEXT_PUBLIC_API_BASE_URL + "/api/tweets"
 
   if (location) {
     url += "/" + location
