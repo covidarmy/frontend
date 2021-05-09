@@ -1,1293 +1,4850 @@
-{
-  "Andaman and Nicobar Islands": {
-    "Port Blair": ["portblair"]
+[
+  {
+    "name": "Port Blair",
+    "top": false
   },
-  "Andhra Pradesh": {
-    "Adoni": ["adoni"],
-    "Amalapuram": ["amalapuram"],
-    "Anakapalle": ["anakapalle"],
-    "Anantapur": ["anantapur"],
-    "Bapatla": ["bapatla"],
-    "Bheemunipatnam": ["bheemunipatnam"],
-    "Bhimavaram": ["bhimavaram"],
-    "Bobbili": ["bobbili"],
-    "Chilakaluripet": ["chilakaluripet"],
-    "Chirala": ["chirala"],
-    "Chittoor": ["chittoor"],
-    "Dharmavaram": ["dharmavaram"],
-    "Eluru": ["eluru"],
-    "Gooty": ["gooty"],
-    "Gudivada": ["gudivada"],
-    "Gudur": ["gudur"],
-    "Guntakal": ["guntakal"],
-    "Guntur": ["guntur"],
-    "Hindupur": ["hindupur"],
-    "Jaggaiahpet": ["jaggaiahpet"],
-    "Jammalamadugu": ["jammalamadugu"],
-    "Kadapa": ["kadapa"],
-    "Kadiri": ["kadiri"],
-    "Kakinada": ["kakinada"],
-    "Kandukur": ["kandukur"],
-    "Kavali": ["kavali"],
-    "Kovvur": ["kovvur"],
-    "Kurnool": ["kurnool"],
-    "Macherla": ["macherla"],
-    "Machilipatnam": ["machilipatnam"],
-    "Madanapalle": ["madanapalle"],
-    "Mandapeta": ["mandapeta"],
-    "Markapur": ["markapur"],
-    "Nagari": ["nagari"],
-    "Naidupet": ["naidupet"],
-    "Nandyal": ["nandyal"],
-    "Narasapuram": ["narasapuram"],
-    "Narasaraopet": ["narasaraopet"],
-    "Narsipatnam": ["narsipatnam"],
-    "Nellore": ["nellore"],
-    "Nidadavole": ["nidadavole"],
-    "Nuzvid": ["nuzvid"],
-    "Ongole": ["ongole"],
-    "Palacole": ["palacole"],
-    "Palasa Kasibugga": ["palasakasibugga"],
-    "Parvathipuram": ["parvathipuram"],
-    "Pedana": ["pedana"],
-    "Peddapuram": ["peddapuram"],
-    "Pithapuram": ["pithapuram"],
-    "Ponnur": ["ponnur"],
-    "Proddatur": ["proddatur"],
-    "Punganur": ["punganur"],
-    "Puttur": ["puttur"],
-    "Rajahmundry": ["rajahmundry"],
-    "Rajam": ["rajam"],
-    "Rajampet": ["rajampet"],
-    "Ramachandrapuram": ["ramachandrapuram"],
-    "Rayachoti": ["rayachoti"],
-    "Rayadurg": ["rayadurg"],
-    "Renigunta": ["renigunta"],
-    "Repalle": ["repalle"],
-    "Salur": ["salur"],
-    "Samalkot": ["samalkot"],
-    "Sattenapalle": ["sattenapalle"],
-    "Srikakulam": ["srikakulam"],
-    "Srikalahasti": ["srikalahasti"],
-    "Srisailam Project (Right Flank Colony) Township": [
-      "srisailamproject(rightflankcolony)township"
-    ],
-    "Sullurpeta": ["sullurpeta"],
-    "Tadepalligudem": ["tadepalligudem"],
-    "Tadpatri": ["tadpatri"],
-    "Tanuku": ["tanuku"],
-    "Tenali": ["tenali"],
-    "Tirupati": ["tirupati"],
-    "Tiruvuru": ["tiruvuru"],
-    "Tuni": ["tuni"],
-    "Uravakonda": ["uravakonda"],
-    "Venkatagiri": ["venkatagiri"],
-    "Vijayawada": ["vijayawada"],
-    "Vinukonda": ["vinukonda"],
-    "Visakhapatnam": ["visakhapatnam"],
-    "Vizianagaram": ["vizianagaram"],
-    "Yemmiganur": ["yemmiganur"],
-    "Yerraguntla": ["yerraguntla"]
+  {
+    "name": "Adoni",
+    "top": false
   },
-  "Arunachal Pradesh": {
-    "Naharlagun": ["naharlagun"],
-    "Pasighat": ["pasighat"]
+  {
+    "name": "Amalapuram",
+    "top": false
   },
-  "Assam": {
-    "Barpeta": ["barpeta"],
-    "Bongaigaon City": ["bongaigaoncity"],
-    "Dhubri": ["dhubri"],
-    "Dibrugarh": ["dibrugarh"],
-    "Diphu": ["diphu"],
-    "Goalpara": ["goalpara"],
-    "Guwahati": ["guwahati"],
-    "Jorhat": ["jorhat"],
-    "Karimganj": ["karimganj"],
-    "Lanka": ["lanka"],
-    "Lumding": ["lumding"],
-    "Mangaldoi": ["mangaldoi"],
-    "Mankachar": ["mankachar"],
-    "Margherita": ["margherita"],
-    "Mariani": ["mariani"],
-    "Marigaon": ["marigaon"],
-    "Nagaon": ["nagaon"],
-    "Nalbari": ["nalbari"],
-    "North Lakhimpur": ["northlakhimpur"],
-    "Rangia": ["rangia"],
-    "Sibsagar": ["sibsagar"],
-    "Silapathar": ["silapathar"],
-    "Silchar": ["silchar"],
-    "Tezpur": ["tezpur"],
-    "Tinsukia": ["tinsukia"]
+  {
+    "name": "Anakapalle",
+    "top": false
   },
-  "Bihar": {
-    "Araria": ["araria"],
-    "Arrah": ["arrah"],
-    "Arwal": ["arwal"],
-    "Asarganj": ["asarganj"],
-    "Aurangabad": ["aurangabad"],
-    "Bagaha": ["bagaha"],
-    "Barh": ["barh"],
-    "Begusarai": ["begusarai"],
-    "Bettiah": ["bettiah"],
-    "Bhabua": ["bhabua"],
-    "Bhagalpur": ["bhagalpur"],
-    "Buxar": ["buxar"],
-    "Chhapra": ["chhapra"],
-    "Darbhanga": ["darbhanga"],
-    "Dehri-on-Sone": ["dehri-on-sone", "dehrionsone"],
-    "Dumraon": ["dumraon"],
-    "Forbesganj": ["forbesganj"],
-    "Gaya": ["gaya"],
-    "Gopalganj": ["gopalganj"],
-    "Hajipur": ["hajipur"],
-    "Jamalpur": ["jamalpur"],
-    "Jamui": ["jamui"],
-    "Jehanabad": ["jehanabad"],
-    "Katihar": ["katihar"],
-    "Kishanganj": ["kishanganj"],
-    "Lakhisarai": ["lakhisarai"],
-    "Lalganj": ["lalganj"],
-    "Madhepura": ["madhepura"],
-    "Madhubani": ["madhubani"],
-    "Maharajganj": ["maharajganj"],
-    "Mahnar Bazar": ["mahnarbazar"],
-    "Makhdumpur": ["makhdumpur"],
-    "Maner": ["maner"],
-    "Manihari": ["manihari"],
-    "Marhaura": ["marhaura"],
-    "Masaurhi": ["masaurhi"],
-    "Mirganj": ["mirganj"],
-    "Mokameh": ["mokameh"],
-    "Motihari": ["motihari"],
-    "Motipur": ["motipur"],
-    "Munger": ["munger"],
-    "Murliganj": ["murliganj"],
-    "Muzaffarpur": ["muzaffarpur"],
-    "Narkatiaganj": ["narkatiaganj"],
-    "Naugachhia": ["naugachhia"],
-    "Nawada": ["nawada"],
-    "Nokha": ["nokha"],
-    "Patna": ["patna"],
-    "Piro": ["piro"],
-    "Purnia": ["purnia"],
-    "Rafiganj": ["rafiganj"],
-    "Rajgir": ["rajgir"],
-    "Ramnagar": ["ramnagar"],
-    "Raxaul Bazar": ["raxaulbazar"],
-    "Revelganj": ["revelganj"],
-    "Rosera": ["rosera"],
-    "Saharsa": ["saharsa"],
-    "Samastipur": ["samastipur"],
-    "Sasaram": ["sasaram"],
-    "Sheikhpura": ["sheikhpura"],
-    "Sheohar": ["sheohar"],
-    "Sherghati": ["sherghati"],
-    "Silao": ["silao"],
-    "Sitamarhi": ["sitamarhi"],
-    "Siwan": ["siwan"],
-    "Sonepur": ["sonepur"],
-    "Sugauli": ["sugauli"],
-    "Sultanganj": ["sultanganj"],
-    "Supaul": ["supaul"],
-    "Warisaliganj": ["warisaliganj"]
+  {
+    "name": "Anantapur",
+    "top": false
   },
-  "Chandigarh": {
-    "Chandigarh": ["chandigarh"]
+  {
+    "name": "Bapatla",
+    "top": false
   },
-  "Chhattisgarh": {
-    "Ambikapur": ["ambikapur"],
-    "Bhatapara": ["bhatapara"],
-    "Bhilai Nagar": ["bhilainagar"],
-    "Bilaspur": ["bilaspur"],
-    "Chirmiri": ["chirmiri"],
-    "Dalli-Rajhara": ["dalli-rajhara", "dallirajhara"],
-    "Dhamtari": ["dhamtari"],
-    "Durg": ["durg"],
-    "Jagdalpur": ["jagdalpur"],
-    "Korba": ["korba"],
-    "Mahasamund": ["mahasamund"],
-    "Manendragarh": ["manendragarh"],
-    "Mungeli": ["mungeli"],
-    "Naila Janjgir": ["nailajanjgir"],
-    "Raigarh": ["raigarh"],
-    "Raipur": ["raipur"],
-    "Rajnandgaon": ["rajnandgaon"],
-    "Sakti": ["sakti"],
-    "Tilda Newra": ["tildanewra"]
+  {
+    "name": "Bheemunipatnam",
+    "top": false
   },
-  "Dadra and Nagar Haveli": {
-    "Silvassa": ["silvassa"]
+  {
+    "name": "Bhimavaram",
+    "top": false
   },
-  "Delhi": {
-    "Delhi": ["delhi"],
-    "New Delhi": ["newdelhi"]
+  {
+    "name": "Bobbili",
+    "top": false
   },
-  "Goa": {
-    "Mapusa": ["mapusa"],
-    "Margao": ["margao"],
-    "Marmagao": ["marmagao"],
-    "Panaji": ["panaji"]
+  {
+    "name": "Chilakaluripet",
+    "top": false
   },
-  "Gujarat": {
-    "Adalaj": ["adalaj"],
-    "Ahmedabad": ["ahmedabad"],
-    "Amreli": ["amreli"],
-    "Anand": ["anand"],
-    "Anjar": ["anjar"],
-    "Ankleshwar": ["ankleshwar"],
-    "Bharuch": ["bharuch"],
-    "Bhavnagar": ["bhavnagar"],
-    "Bhuj": ["bhuj"],
-    "Chhapra": ["chhapra"],
-    "Deesa": ["deesa"],
-    "Dhoraji": ["dhoraji"],
-    "Godhra": ["godhra"],
-    "Jamnagar": ["jamnagar"],
-    "Kadi": ["kadi"],
-    "Kapadvanj": ["kapadvanj"],
-    "Keshod": ["keshod"],
-    "Khambhat": ["khambhat"],
-    "Lathi": ["lathi"],
-    "Limbdi": ["limbdi"],
-    "Lunawada": ["lunawada"],
-    "Mahesana": ["mahesana"],
-    "Mahuva": ["mahuva"],
-    "Manavadar": ["manavadar"],
-    "Mandvi": ["mandvi"],
-    "Mangrol": ["mangrol"],
-    "Mansa": ["mansa"],
-    "Mahemdabad": ["mahemdabad"],
-    "Modasa": ["modasa"],
-    "Morvi": ["morvi"],
-    "Nadiad": ["nadiad"],
-    "Navsari": ["navsari"],
-    "Padra": ["padra"],
-    "Palanpur": ["palanpur"],
-    "Palitana": ["palitana"],
-    "Pardi": ["pardi"],
-    "Patan": ["patan"],
-    "Petlad": ["petlad"],
-    "Porbandar": ["porbandar"],
-    "Radhanpur": ["radhanpur"],
-    "Rajkot": ["rajkot"],
-    "Rajpipla": ["rajpipla"],
-    "Rajula": ["rajula"],
-    "Ranavav": ["ranavav"],
-    "Rapar": ["rapar"],
-    "Salaya": ["salaya"],
-    "Sanand": ["sanand"],
-    "Savarkundla": ["savarkundla"],
-    "Sidhpur": ["sidhpur"],
-    "Sihor": ["sihor"],
-    "Songadh": ["songadh"],
-    "Surat": ["surat"],
-    "Talaja": ["talaja"],
-    "Thangadh": ["thangadh"],
-    "Tharad": ["tharad"],
-    "Umbergaon": ["umbergaon"],
-    "Umreth": ["umreth"],
-    "Una": ["una"],
-    "Unjha": ["unjha"],
-    "Upleta": ["upleta"],
-    "Vadnagar": ["vadnagar"],
-    "Vadodara": ["vadodara"],
-    "Valsad": ["valsad"],
-    "Vapi": ["vapi"],
-    "Veraval": ["veraval"],
-    "Vijapur": ["vijapur"],
-    "Viramgam": ["viramgam"],
-    "Visnagar": ["visnagar"],
-    "Vyara": ["vyara"],
-    "Wadhwan": ["wadhwan"],
-    "Wankaner": ["wankaner"]
+  {
+    "name": "Chirala",
+    "top": false
   },
-  "Haryana": {
-    "Bahadurgarh": ["bahadurgarh"],
-    "Bhiwani": ["bhiwani"],
-    "Charkhi Dadri": ["charkhidadri"],
-    "Faridabad": ["faridabad"],
-    "Fatehabad": ["fatehabad"],
-    "Gohana": ["gohana"],
-    "Gurgaon": ["gurgaon"],
-    "Hansi": ["hansi"],
-    "Hisar": ["hisar"],
-    "Jind": ["jind"],
-    "Kaithal": ["kaithal"],
-    "Karnal": ["karnal"],
-    "Ladwa": ["ladwa"],
-    "Mahendragarh": ["mahendragarh"],
-    "Mandi Dabwali": ["mandidabwali"],
-    "Narnaul": ["narnaul"],
-    "Narwana": ["narwana"],
-    "Palwal": ["palwal"],
-    "Panchkula": ["panchkula"],
-    "Panipat": ["panipat"],
-    "Pehowa": ["pehowa"],
-    "Pinjore": ["pinjore"],
-    "Rania": ["rania"],
-    "Ratia": ["ratia"],
-    "Rewari": ["rewari"],
-    "Rohtak": ["rohtak"],
-    "Safidon": ["safidon"],
-    "Samalkha": ["samalkha"],
-    "Sarsod": ["sarsod"],
-    "Shahbad": ["shahbad"],
-    "Sirsa": ["sirsa"],
-    "Sohna": ["sohna"],
-    "Sonipat": ["sonipat"],
-    "Taraori": ["taraori"],
-    "Thanesar": ["thanesar"],
-    "Tohana": ["tohana"],
-    "Yamunanagar": ["yamunanagar"]
+  {
+    "name": "Chittoor",
+    "top": false
   },
-  "Himachal Pradesh": {
-    "Mandi": ["mandi"],
-    "Nahan": ["nahan"],
-    "Palampur": ["palampur"],
-    "Shimla": ["shimla"],
-    "Solan": ["solan"],
-    "Sundarnagar": ["sundarnagar"]
+  {
+    "name": "Dharmavaram",
+    "top": false
   },
-  "Jammu and Kashmir": {
-    "Anantnag": ["anantnag"],
-    "Baramula": ["baramula"],
-    "Jammu": ["jammu"],
-    "Kathua": ["kathua"],
-    "Punch": ["punch"],
-    "Rajauri": ["rajauri"],
-    "Sopore": ["sopore"],
-    "Srinagar": ["srinagar"],
-    "Udhampur": ["udhampur"]
+  {
+    "name": "Eluru",
+    "top": false
   },
-  "Jharkhand": {
-    "Adityapur": ["adityapur"],
-    "Bokaro Steel City": ["bokarosteelcity"],
-    "Chaibasa": ["chaibasa"],
-    "Chatra": ["chatra"],
-    "Chirkunda": ["chirkunda"],
-    "Medininagar (Daltonganj)": ["medininagar(daltonganj)"],
-    "Deoghar": ["deoghar"],
-    "Dhanbad": ["dhanbad"],
-    "Dumka": ["dumka"],
-    "Giridih": ["giridih"],
-    "Gumia": ["gumia"],
-    "Hazaribag": ["hazaribag"],
-    "Jamshedpur": ["jamshedpur"],
-    "Jhumri Tilaiya": ["jhumritilaiya"],
-    "Lohardaga": ["lohardaga"],
-    "Madhupur": ["madhupur"],
-    "Mihijam": ["mihijam"],
-    "Musabani": ["musabani"],
-    "Pakaur": ["pakaur"],
-    "Patratu": ["patratu"],
-    "Phusro": ["phusro"],
-    "Ramgarh": ["ramgarh"],
-    "Ranchi": ["ranchi"],
-    "Sahibganj": ["sahibganj"],
-    "Saunda": ["saunda"],
-    "Simdega": ["simdega"],
-    "Tenu dam-cum-Kathhara": ["tenudam-cum-kathhara", "tenudamcumkathhara"]
+  {
+    "name": "Gooty",
+    "top": false
   },
-  "Karnataka": {
-    "Bangalore": ["bangalore", "bengaluru"],
-    "Adyar": ["adyar"],
-    "Afzalpur": ["afzalpur"],
-    "Arsikere": ["arsikere"],
-    "Athni": ["athni"],
-    "Belagavi": ["belagavi"],
-    "Ballari": ["ballari"],
-    "Chikkamagaluru": ["chikkamagaluru"],
-    "Davanagere": ["davanagere"],
-    "Gokak": ["gokak"],
-    "Hubli-Dharwad": ["hubli-dharwad", "hublidharwad"],
-    "Karwar": ["karwar"],
-    "Kolar": ["kolar"],
-    "Lakshmeshwar": ["lakshmeshwar"],
-    "Lingsugur": ["lingsugur"],
-    "Maddur": ["maddur"],
-    "Madhugiri": ["madhugiri"],
-    "Madikeri": ["madikeri"],
-    "Magadi": ["magadi"],
-    "Mahalingapura": ["mahalingapura"],
-    "Malavalli": ["malavalli"],
-    "Malur": ["malur"],
-    "Mandya": ["mandya"],
-    "Mangaluru": ["mangaluru"],
-    "Manvi": ["manvi"],
-    "Mudalagi": ["mudalagi"],
-    "Mudabidri": ["mudabidri"],
-    "Muddebihal": ["muddebihal"],
-    "Mudhol": ["mudhol"],
-    "Mulbagal": ["mulbagal"],
-    "Mundargi": ["mundargi"],
-    "Nanjangud": ["nanjangud"],
-    "Nargund": ["nargund"],
-    "Navalgund": ["navalgund"],
-    "Nelamangala": ["nelamangala"],
-    "Pavagada": ["pavagada"],
-    "Piriyapatna": ["piriyapatna"],
-    "Puttur": ["puttur"],
-    "Rabkavi Banhatti": ["rabkavibanhatti"],
-    "Raayachuru": ["raayachuru"],
-    "Ranebennuru": ["ranebennuru"],
-    "Ramanagaram": ["ramanagaram"],
-    "Ramdurg": ["ramdurg"],
-    "Ranibennur": ["ranibennur"],
-    "Robertson Pet": ["robertsonpet"],
-    "Ron": ["ron"],
-    "Sadalagi": ["sadalagi"],
-    "Sagara": ["sagara"],
-    "Sakaleshapura": ["sakaleshapura"],
-    "Sindagi": ["sindagi"],
-    "Sanduru": ["sanduru"],
-    "Sankeshwara": ["sankeshwara"],
-    "Saundatti-Yellamma": ["saundatti-yellamma", "saundattiyellamma"],
-    "Savanur": ["savanur"],
-    "Sedam": ["sedam"],
-    "Shahabad": ["shahabad"],
-    "Shahpur": ["shahpur"],
-    "Shiggaon": ["shiggaon"],
-    "Shikaripur": ["shikaripur"],
-    "Shivamogga": ["shivamogga"],
-    "Surapura": ["surapura"],
-    "Shrirangapattana": ["shrirangapattana"],
-    "Sidlaghatta": ["sidlaghatta"],
-    "Sindhagi": ["sindhagi"],
-    "Sindhnur": ["sindhnur"],
-    "Sira": ["sira"],
-    "Sirsi": ["sirsi"],
-    "Siruguppa": ["siruguppa"],
-    "Srinivaspur": ["srinivaspur"],
-    "Tarikere": ["tarikere"],
-    "Tekkalakote": ["tekkalakote"],
-    "Terdal": ["terdal"],
-    "Talikota": ["talikota"],
-    "Tiptur": ["tiptur"],
-    "Tumkur": ["tumkur"],
-    "Udupi": ["udupi"],
-    "Vijayapura": ["vijayapura"],
-    "Wadi": ["wadi"],
-    "Yadgir": ["yadgir"]
+  {
+    "name": "Gudivada",
+    "top": false
   },
-  "Karnatka": {
-    "Mysore": ["mysore"]
+  {
+    "name": "Gudur",
+    "top": false
   },
-  "Kerala": {
-    "Adoor": ["adoor"],
-    "Alappuzha": ["alappuzha"],
-    "Attingal": ["attingal"],
-    "Chalakudy": ["chalakudy"],
-    "Changanassery": ["changanassery"],
-    "Cherthala": ["cherthala"],
-    "Chittur-Thathamangalam": [
-      "chittur-thathamangalam",
-      "chitturthathamangalam"
-    ],
-    "Guruvayoor": ["guruvayoor"],
-    "Kanhangad": ["kanhangad"],
-    "Kannur": ["kannur"],
-    "Kasaragod": ["kasaragod"],
-    "Kayamkulam": ["kayamkulam"],
-    "Kochi": ["kochi"],
-    "Kodungallur": ["kodungallur"],
-    "Kollam": ["kollam"],
-    "Kottayam": ["kottayam"],
-    "Kozhikode": ["kozhikode"],
-    "Kunnamkulam": ["kunnamkulam"],
-    "Malappuram": ["malappuram"],
-    "Mattannur": ["mattannur"],
-    "Mavelikkara": ["mavelikkara"],
-    "Mavoor": ["mavoor"],
-    "Muvattupuzha": ["muvattupuzha"],
-    "Nedumangad": ["nedumangad"],
-    "Neyyattinkara": ["neyyattinkara"],
-    "Nilambur": ["nilambur"],
-    "Ottappalam": ["ottappalam"],
-    "Palai": ["palai"],
-    "Palakkad": ["palakkad"],
-    "Panamattom": ["panamattom"],
-    "Panniyannur": ["panniyannur"],
-    "Pappinisseri": ["pappinisseri"],
-    "Paravoor": ["paravoor"],
-    "Pathanamthitta": ["pathanamthitta"],
-    "Peringathur": ["peringathur"],
-    "Perinthalmanna": ["perinthalmanna"],
-    "Perumbavoor": ["perumbavoor"],
-    "Ponnani": ["ponnani"],
-    "Punalur": ["punalur"],
-    "Puthuppally": ["puthuppally"],
-    "Koyilandy": ["koyilandy"],
-    "Shoranur": ["shoranur"],
-    "Taliparamba": ["taliparamba"],
-    "Thiruvalla": ["thiruvalla"],
-    "Thiruvananthapuram": ["thiruvananthapuram"],
-    "Thodupuzha": ["thodupuzha"],
-    "Thrissur": ["thrissur"],
-    "Tirur": ["tirur"],
-    "Vaikom": ["vaikom"],
-    "Varkala": ["varkala"],
-    "Vatakara": ["vatakara"]
+  {
+    "name": "Guntakal",
+    "top": false
   },
-  "Madhya Pradesh": {
-    "Alirajpur": ["alirajpur"],
-    "Ashok Nagar": ["ashoknagar"],
-    "Balaghat": ["balaghat"],
-    "Bhopal": ["bhopal"],
-    "Ganjbasoda": ["ganjbasoda"],
-    "Gwalior": ["gwalior"],
-    "Indore": ["indore"],
-    "Itarsi": ["itarsi"],
-    "Jabalpur": ["jabalpur"],
-    "Lahar": ["lahar"],
-    "Maharajpur": ["maharajpur"],
-    "Mahidpur": ["mahidpur"],
-    "Maihar": ["maihar"],
-    "Malaj Khand": ["malajkhand"],
-    "Manasa": ["manasa"],
-    "Manawar": ["manawar"],
-    "Mandideep": ["mandideep"],
-    "Mandla": ["mandla"],
-    "Mandsaur": ["mandsaur"],
-    "Mauganj": ["mauganj"],
-    "Mhow Cantonment": ["mhowcantonment"],
-    "Mhowgaon": ["mhowgaon"],
-    "Morena": ["morena"],
-    "Multai": ["multai"],
-    "Mundi": ["mundi"],
-    "Murwara (Katni)": ["murwara(katni)"],
-    "Nagda": ["nagda"],
-    "Nainpur": ["nainpur"],
-    "Narsinghgarh": ["narsinghgarh"],
-    "Neemuch": ["neemuch"],
-    "Nepanagar": ["nepanagar"],
-    "Niwari": ["niwari"],
-    "Nowgong": ["nowgong"],
-    "Nowrozabad (Khodargama)": ["nowrozabad(khodargama)"],
-    "Pachore": ["pachore"],
-    "Pali": ["pali"],
-    "Panagar": ["panagar"],
-    "Pandhurna": ["pandhurna"],
-    "Panna": ["panna"],
-    "Pasan": ["pasan"],
-    "Pipariya": ["pipariya"],
-    "Pithampur": ["pithampur"],
-    "Porsa": ["porsa"],
-    "Prithvipur": ["prithvipur"],
-    "Raghogarh-Vijaypur": ["raghogarh-vijaypur", "raghogarhvijaypur"],
-    "Rahatgarh": ["rahatgarh"],
-    "Raisen": ["raisen"],
-    "Rajgarh": ["rajgarh"],
-    "Ratlam": ["ratlam"],
-    "Rau": ["rau"],
-    "Rehli": ["rehli"],
-    "Rewa": ["rewa"],
-    "Sabalgarh": ["sabalgarh"],
-    "Sagar": ["sagar"],
-    "Sanawad": ["sanawad"],
-    "Sarangpur": ["sarangpur"],
-    "Sarni": ["sarni"],
-    "Satna": ["satna"],
-    "Sausar": ["sausar"],
-    "Sehore": ["sehore"],
-    "Sendhwa": ["sendhwa"],
-    "Seoni": ["seoni"],
-    "Seoni-Malwa": ["seoni-malwa", "seonimalwa"],
-    "Shahdol": ["shahdol"],
-    "Shajapur": ["shajapur"],
-    "Shamgarh": ["shamgarh"],
-    "Sheopur": ["sheopur"],
-    "Shivpuri": ["shivpuri"],
-    "Shujalpur": ["shujalpur"],
-    "Sidhi": ["sidhi"],
-    "Sihora": ["sihora"],
-    "Singrauli": ["singrauli"],
-    "Sironj": ["sironj"],
-    "Sohagpur": ["sohagpur"],
-    "Tarana": ["tarana"],
-    "Tikamgarh": ["tikamgarh"],
-    "Ujjain": ["ujjain"],
-    "Umaria": ["umaria"],
-    "Vidisha": ["vidisha"],
-    "Vijaypur": ["vijaypur"],
-    "Wara Seoni": ["waraseoni"]
+  {
+    "name": "Guntur",
+    "top": false
   },
-  "Maharashtra": {
-    "[[]]": ["[[]]"],
-    "Ahmednagar": ["ahmednagar"],
-    "Akola": ["akola"],
-    "Akot": ["akot"],
-    "Amalner": ["amalner"],
-    "Ambejogai": ["ambejogai"],
-    "Amravati": ["amravati"],
-    "Anjangaon": ["anjangaon"],
-    "Arvi": ["arvi"],
-    "Aurangabad": ["aurangabad"],
-    "Bhiwandi": ["bhiwandi"],
-    "Dhule": ["dhule"],
-    "Kalyan-Dombivali": ["kalyan-dombivali", "kalyandombivali"],
-    "Ichalkaranji": ["ichalkaranji"],
-    "Karjat": ["karjat"],
-    "Latur": ["latur"],
-    "Loha": ["loha"],
-    "Lonar": ["lonar"],
-    "Lonavla": ["lonavla"],
-    "Mahad": ["mahad"],
-    "Malegaon": ["malegaon"],
-    "Malkapur": ["malkapur"],
-    "Mangalvedhe": ["mangalvedhe"],
-    "Mangrulpir": ["mangrulpir"],
-    "Manjlegaon": ["manjlegaon"],
-    "Manmad": ["manmad"],
-    "Manwath": ["manwath"],
-    "Mehkar": ["mehkar"],
-    "Mhaswad": ["mhaswad"],
-    "Mira-Bhayandar": ["mira-bhayandar", "mirabhayandar"],
-    "Morshi": ["morshi"],
-    "Mukhed": ["mukhed"],
-    "Mul": ["mul"],
-    "Mumbai": ["mumbai"],
-    "Murtijapur": ["murtijapur"],
-    "Nagpur": ["nagpur"],
-    "Nasik": ["nasik"],
-    "Nanded-Waghala": ["nanded-waghala", "nandedwaghala"],
-    "Nandgaon": ["nandgaon"],
-    "Nandura": ["nandura"],
-    "Nandurbar": ["nandurbar"],
-    "Narkhed": ["narkhed"],
-    "Nashik": ["nashik"],
-    "Nawapur": ["nawapur"],
-    "Nilanga": ["nilanga"],
-    "Osmanabad": ["osmanabad"],
-    "Ozar": ["ozar"],
-    "Pachora": ["pachora"],
-    "Paithan": ["paithan"],
-    "Palghar": ["palghar"],
-    "Pandharkaoda": ["pandharkaoda"],
-    "Pandharpur": ["pandharpur"],
-    "Panvel": ["panvel"],
-    "Parbhani": ["parbhani"],
-    "Parli": ["parli"],
-    "Partur": ["partur"],
-    "Pathardi": ["pathardi"],
-    "Pathri": ["pathri"],
-    "Patur": ["patur"],
-    "Pauni": ["pauni"],
-    "Pen": ["pen"],
-    "Phaltan": ["phaltan"],
-    "Pulgaon": ["pulgaon"],
-    "Pune": ["pune"],
-    "Purna": ["purna"],
-    "Pusad": ["pusad"],
-    "Rahuri": ["rahuri"],
-    "Rajura": ["rajura"],
-    "Ramtek": ["ramtek"],
-    "Ratnagiri": ["ratnagiri"],
-    "Raver": ["raver"],
-    "Risod": ["risod"],
-    "Sailu": ["sailu"],
-    "Sangamner": ["sangamner"],
-    "Sangli": ["sangli"],
-    "Sangole": ["sangole"],
-    "Sasvad": ["sasvad"],
-    "Satana": ["satana"],
-    "Satara": ["satara"],
-    "Savner": ["savner"],
-    "Sawantwadi": ["sawantwadi"],
-    "Shahade": ["shahade"],
-    "Shegaon": ["shegaon"],
-    "Shendurjana": ["shendurjana"],
-    "Shirdi": ["shirdi"],
-    "Shirpur-Warwade": ["shirpur-warwade", "shirpurwarwade"],
-    "Shirur": ["shirur"],
-    "Shrigonda": ["shrigonda"],
-    "Shrirampur": ["shrirampur"],
-    "Sillod": ["sillod"],
-    "Sinnar": ["sinnar"],
-    "Solapur": ["solapur"],
-    "Soyagaon": ["soyagaon"],
-    "Talegaon Dabhade": ["talegaondabhade"],
-    "Talode": ["talode"],
-    "Tasgaon": ["tasgaon"],
-    "Thane": ["thane"],
-    "Tirora": ["tirora"],
-    "Tuljapur": ["tuljapur"],
-    "Tumsar": ["tumsar"],
-    "Uchgaon": ["uchgaon"],
-    "Udgir": ["udgir"],
-    "Umarga": ["umarga"],
-    "Umarkhed": ["umarkhed"],
-    "Umred": ["umred"],
-    "Uran": ["uran"],
-    "Uran Islampur": ["uranislampur"],
-    "Vadgaon Kasba": ["vadgaonkasba"],
-    "Vaijapur": ["vaijapur"],
-    "Vasai-Virar": ["vasai-virar", "vasaivirar"],
-    "Vita": ["vita"],
-    "Wadgaon Road": ["wadgaonroad"],
-    "Wai": ["wai"],
-    "Wani": ["wani"],
-    "Wardha": ["wardha"],
-    "Warora": ["warora"],
-    "Warud": ["warud"],
-    "Washim": ["washim"],
-    "Yavatmal": ["yavatmal"],
-    "Yawal": ["yawal"],
-    "Yevla": ["yevla"]
+  {
+    "name": "Hindupur",
+    "top": false
   },
-  "Manipur": {
-    "Imphal": ["imphal"],
-    "Lilong": ["lilong"],
-    "Mayang Imphal": ["mayangimphal"],
-    "Thoubal": ["thoubal"]
+  {
+    "name": "Jaggaiahpet",
+    "top": false
   },
-  "Meghalaya": {
-    "Nongstoin": ["nongstoin"],
-    "Shillong": ["shillong"],
-    "Tura": ["tura"]
+  {
+    "name": "Jammalamadugu",
+    "top": false
   },
-  "Mizoram": {
-    "Aizawl": ["aizawl"],
-    "Lunglei": ["lunglei"],
-    "Saiha": ["saiha"]
+  {
+    "name": "Kadapa",
+    "top": false
   },
-  "Nagaland": {
-    "Dimapur": ["dimapur"],
-    "Kohima": ["kohima"],
-    "Mokokchung": ["mokokchung"],
-    "Tuensang": ["tuensang"],
-    "Wokha": ["wokha"],
-    "Zunheboto": ["zunheboto"]
+  {
+    "name": "Kadiri",
+    "top": false
   },
-  "Odisha": {
-    "Balangir": ["balangir"],
-    "Baleshwar Town": ["baleshwartown"],
-    "Barbil": ["barbil"],
-    "Bargarh": ["bargarh"],
-    "Baripada Town": ["baripadatown"],
-    "Bhadrak": ["bhadrak"],
-    "Bhawanipatna": ["bhawanipatna"],
-    "Bhubaneswar": ["bhubaneswar"],
-    "Brahmapur": ["brahmapur"],
-    "Byasanagar": ["byasanagar"],
-    "Cuttack": ["cuttack"],
-    "Dhenkanal": ["dhenkanal"],
-    "Jatani": ["jatani"],
-    "Jharsuguda": ["jharsuguda"],
-    "Kendrapara": ["kendrapara"],
-    "Kendujhar": ["kendujhar"],
-    "Malkangiri": ["malkangiri"],
-    "Nabarangapur": ["nabarangapur"],
-    "Paradip": ["paradip"],
-    "Parlakhemundi": ["parlakhemundi"],
-    "Pattamundai": ["pattamundai"],
-    "Phulabani": ["phulabani"],
-    "Puri": ["puri"],
-    "Rairangpur": ["rairangpur"],
-    "Rajagangapur": ["rajagangapur"],
-    "Raurkela": ["raurkela"],
-    "Rayagada": ["rayagada"],
-    "Sambalpur": ["sambalpur"],
-    "Soro": ["soro"],
-    "Sunabeda": ["sunabeda"],
-    "Sundargarh": ["sundargarh"],
-    "Talcher": ["talcher"],
-    "Tarbha": ["tarbha"],
-    "Titlagarh": ["titlagarh"]
+  {
+    "name": "Kakinada",
+    "top": false
   },
-  "Puducherry": {
-    "Karaikal": ["karaikal"],
-    "Mahe": ["mahe"],
-    "Pondicherry": ["pondicherry"],
-    "Yanam": ["yanam"]
+  {
+    "name": "Kandukur",
+    "top": false
   },
-  "Punjab": {
-    "Amritsar": ["amritsar"],
-    "Barnala": ["barnala"],
-    "Batala": ["batala"],
-    "Bathinda": ["bathinda"],
-    "Dhuri": ["dhuri"],
-    "Faridkot": ["faridkot"],
-    "Fazilka": ["fazilka"],
-    "Firozpur": ["firozpur"],
-    "Firozpur Cantt.": ["firozpurcantt."],
-    "Gobindgarh": ["gobindgarh"],
-    "Gurdaspur": ["gurdaspur"],
-    "Hoshiarpur": ["hoshiarpur"],
-    "Jagraon": ["jagraon"],
-    "Jalandhar Cantt.": ["jalandharcantt."],
-    "Jalandhar": ["jalandhar"],
-    "Kapurthala": ["kapurthala"],
-    "Khanna": ["khanna"],
-    "Kharar": ["kharar"],
-    "Kot Kapura": ["kotkapura"],
-    "Longowal": ["longowal"],
-    "Ludhiana": ["ludhiana"],
-    "Malerkotla": ["malerkotla"],
-    "Malout": ["malout"],
-    "Mansa": ["mansa"],
-    "Moga": ["moga"],
-    "Mohali": ["mohali"],
-    "Morinda, India": ["morinda,india"],
-    "Mukerian": ["mukerian"],
-    "Muktsar": ["muktsar"],
-    "Nabha": ["nabha"],
-    "Nakodar": ["nakodar"],
-    "Nangal": ["nangal"],
-    "Nawanshahr": ["nawanshahr"],
-    "Pathankot": ["pathankot"],
-    "Patiala": ["patiala"],
-    "Pattran": ["pattran"],
-    "Patti": ["patti"],
-    "Phagwara": ["phagwara"],
-    "Phillaur": ["phillaur"],
-    "Qadian": ["qadian"],
-    "Raikot": ["raikot"],
-    "Rajpura": ["rajpura"],
-    "Rampura Phul": ["rampuraphul"],
-    "Rupnagar": ["rupnagar"],
-    "Samana": ["samana"],
-    "Sangrur": ["sangrur"],
-    "Sirhind Fatehgarh Sahib": ["sirhindfatehgarhsahib"],
-    "Sujanpur": ["sujanpur"],
-    "Sunam": ["sunam"],
-    "Talwara": ["talwara"],
-    "Tarn Taran": ["tarntaran"],
-    "Urmar Tanda": ["urmartanda"],
-    "Zira": ["zira"],
-    "Zirakpur": ["zirakpur"]
+  {
+    "name": "Kavali",
+    "top": false
   },
-  "Rajasthan": {
-    "Ajmer": ["ajmer"],
-    "Alwar": ["alwar"],
-    "Bikaner": ["bikaner"],
-    "Bharatpur": ["bharatpur"],
-    "Bhilwara": ["bhilwara"],
-    "Jaipur": ["jaipur"],
-    "Jodhpur": ["jodhpur"],
-    "Lachhmangarh": ["lachhmangarh"],
-    "Ladnu": ["ladnu"],
-    "Lakheri": ["lakheri"],
-    "Lalsot": ["lalsot"],
-    "Losal": ["losal"],
-    "Makrana": ["makrana"],
-    "Malpura": ["malpura"],
-    "Mandalgarh": ["mandalgarh"],
-    "Mandawa": ["mandawa"],
-    "Mangrol": ["mangrol"],
-    "Merta City": ["mertacity"],
-    "Mount Abu": ["mountabu"],
-    "Nadbai": ["nadbai"],
-    "Nagar": ["nagar"],
-    "Nagaur": ["nagaur"],
-    "Nasirabad": ["nasirabad"],
-    "Nathdwara": ["nathdwara"],
-    "Neem-Ka-Thana": ["neem-ka-thana", "neemkathana"],
-    "Nimbahera": ["nimbahera"],
-    "Nohar": ["nohar"],
-    "Nokha": ["nokha"],
-    "Pali": ["pali"],
-    "Phalodi": ["phalodi"],
-    "Phulera": ["phulera"],
-    "Pilani": ["pilani"],
-    "Pilibanga": ["pilibanga"],
-    "Pindwara": ["pindwara"],
-    "Pipar City": ["piparcity"],
-    "Prantij": ["prantij"],
-    "Pratapgarh": ["pratapgarh"],
-    "Raisinghnagar": ["raisinghnagar"],
-    "Rajakhera": ["rajakhera"],
-    "Rajaldesar": ["rajaldesar"],
-    "Rajgarh (Alwar)": ["rajgarh(alwar)"],
-    "Rajgarh (Churu)": ["rajgarh(churu)"],
-    "Rajsamand": ["rajsamand"],
-    "Ramganj Mandi": ["ramganjmandi"],
-    "Ramngarh": ["ramngarh"],
-    "Ratangarh": ["ratangarh"],
-    "Rawatbhata": ["rawatbhata"],
-    "Rawatsar": ["rawatsar"],
-    "Reengus": ["reengus"],
-    "Sadri": ["sadri"],
-    "Sadulshahar": ["sadulshahar"],
-    "Sadulpur": ["sadulpur"],
-    "Sagwara": ["sagwara"],
-    "Sambhar": ["sambhar"],
-    "Sanchore": ["sanchore"],
-    "Sangaria": ["sangaria"],
-    "Sardarshahar": ["sardarshahar"],
-    "Sawai Madhopur": ["sawaimadhopur"],
-    "Shahpura": ["shahpura"],
-    "Sheoganj": ["sheoganj"],
-    "Sikar": ["sikar"],
-    "Sirohi": ["sirohi"],
-    "Sojat": ["sojat"],
-    "Sri Madhopur": ["srimadhopur"],
-    "Sujangarh": ["sujangarh"],
-    "Sumerpur": ["sumerpur"],
-    "Suratgarh": ["suratgarh"],
-    "Taranagar": ["taranagar"],
-    "Todabhim": ["todabhim"],
-    "Todaraisingh": ["todaraisingh"],
-    "Tonk": ["tonk"],
-    "Udaipur": ["udaipur"],
-    "Udaipurwati": ["udaipurwati"],
-    "Vijainagar, Ajmer": ["vijainagar,ajmer"]
+  {
+    "name": "Kovvur",
+    "top": false
   },
-  "Tamil Nadu": {
-    "Arakkonam": ["arakkonam"],
-    "Aruppukkottai": ["aruppukkottai"],
-    "Chennai": ["chennai"],
-    "Coimbatore": ["coimbatore"],
-    "Erode": ["erode"],
-    "Gobichettipalayam": ["gobichettipalayam"],
-    "Kancheepuram": ["kancheepuram"],
-    "Karur": ["karur"],
-    "Lalgudi": ["lalgudi"],
-    "Madurai": ["madurai"],
-    "Manachanallur": ["manachanallur"],
-    "Nagapattinam": ["nagapattinam"],
-    "Nagercoil": ["nagercoil"],
-    "Namagiripettai": ["namagiripettai"],
-    "Namakkal": ["namakkal"],
-    "Nandivaram-Guduvancheri": [
-      "nandivaram-guduvancheri",
-      "nandivaramguduvancheri"
-    ],
-    "Nanjikottai": ["nanjikottai"],
-    "Natham": ["natham"],
-    "Nellikuppam": ["nellikuppam"],
-    "Neyveli (TS)": ["neyveli(ts)"],
-    "O' Valley": ["o'valley"],
-    "Oddanchatram": ["oddanchatram"],
-    "P.N.Patti": ["p.n.patti"],
-    "Pacode": ["pacode"],
-    "Padmanabhapuram": ["padmanabhapuram"],
-    "Palani": ["palani"],
-    "Palladam": ["palladam"],
-    "Pallapatti": ["pallapatti"],
-    "Pallikonda": ["pallikonda"],
-    "Panagudi": ["panagudi"],
-    "Panruti": ["panruti"],
-    "Paramakudi": ["paramakudi"],
-    "Parangipettai": ["parangipettai"],
-    "Pattukkottai": ["pattukkottai"],
-    "Perambalur": ["perambalur"],
-    "Peravurani": ["peravurani"],
-    "Periyakulam": ["periyakulam"],
-    "Periyasemur": ["periyasemur"],
-    "Pernampattu": ["pernampattu"],
-    "Pollachi": ["pollachi"],
-    "Polur": ["polur"],
-    "Ponneri": ["ponneri"],
-    "Pudukkottai": ["pudukkottai"],
-    "Pudupattinam": ["pudupattinam"],
-    "Puliyankudi": ["puliyankudi"],
-    "Punjaipugalur": ["punjaipugalur"],
-    "Ranipet": ["ranipet"],
-    "Rajapalayam": ["rajapalayam"],
-    "Ramanathapuram": ["ramanathapuram"],
-    "Rameshwaram": ["rameshwaram"],
-    "Rasipuram": ["rasipuram"],
-    "Salem": ["salem"],
-    "Sankarankoil": ["sankarankoil"],
-    "Sankari": ["sankari"],
-    "Sathyamangalam": ["sathyamangalam"],
-    "Sattur": ["sattur"],
-    "Shenkottai": ["shenkottai"],
-    "Sholavandan": ["sholavandan"],
-    "Sholingur": ["sholingur"],
-    "Sirkali": ["sirkali"],
-    "Sivaganga": ["sivaganga"],
-    "Sivagiri": ["sivagiri"],
-    "Sivakasi": ["sivakasi"],
-    "Srivilliputhur": ["srivilliputhur"],
-    "Surandai": ["surandai"],
-    "Suriyampalayam": ["suriyampalayam"],
-    "Tenkasi": ["tenkasi"],
-    "Thammampatti": ["thammampatti"],
-    "Thanjavur": ["thanjavur"],
-    "Tharamangalam": ["tharamangalam"],
-    "Tharangambadi": ["tharangambadi"],
-    "Theni Allinagaram": ["theniallinagaram"],
-    "Thirumangalam": ["thirumangalam"],
-    "Thirupuvanam": ["thirupuvanam"],
-    "Thiruthuraipoondi": ["thiruthuraipoondi"],
-    "Thiruvallur": ["thiruvallur"],
-    "Thiruvarur": ["thiruvarur"],
-    "Thuraiyur": ["thuraiyur"],
-    "Tindivanam": ["tindivanam"],
-    "Tiruchendur": ["tiruchendur"],
-    "Tiruchengode": ["tiruchengode"],
-    "Tiruchirappalli": ["tiruchirappalli"],
-    "Tirukalukundram": ["tirukalukundram"],
-    "Tirukkoyilur": ["tirukkoyilur"],
-    "Tirunelveli": ["tirunelveli"],
-    "Tirupathur": ["tirupathur"],
-    "Tiruppur": ["tiruppur"],
-    "Tiruttani": ["tiruttani"],
-    "Tiruvannamalai": ["tiruvannamalai"],
-    "Tiruvethipuram": ["tiruvethipuram"],
-    "Tittakudi": ["tittakudi"],
-    "Udhagamandalam": ["udhagamandalam"],
-    "Udumalaipettai": ["udumalaipettai"],
-    "Unnamalaikadai": ["unnamalaikadai"],
-    "Usilampatti": ["usilampatti"],
-    "Uthamapalayam": ["uthamapalayam"],
-    "Uthiramerur": ["uthiramerur"],
-    "Vadakkuvalliyur": ["vadakkuvalliyur"],
-    "Vadalur": ["vadalur"],
-    "Vadipatti": ["vadipatti"],
-    "Valparai": ["valparai"],
-    "Vandavasi": ["vandavasi"],
-    "Vaniyambadi": ["vaniyambadi"],
-    "Vedaranyam": ["vedaranyam"],
-    "Vellakoil": ["vellakoil"],
-    "Vellore": ["vellore"],
-    "Vikramasingapuram": ["vikramasingapuram"],
-    "Viluppuram": ["viluppuram"],
-    "Virudhachalam": ["virudhachalam"],
-    "Virudhunagar": ["virudhunagar"],
-    "Viswanatham": ["viswanatham"]
+  {
+    "name": "Kurnool",
+    "top": true
   },
-  "Telangana": {
-    "Adilabad": ["adilabad"],
-    "Bellampalle": ["bellampalle"],
-    "Bhadrachalam": ["bhadrachalam"],
-    "Bhainsa": ["bhainsa"],
-    "Bhongir": ["bhongir"],
-    "Bodhan": ["bodhan"],
-    "Farooqnagar": ["farooqnagar"],
-    "Gadwal": ["gadwal"],
-    "Hyderabad": ["hyderabad"],
-    "Jagtial": ["jagtial"],
-    "Jangaon": ["jangaon"],
-    "Kagaznagar": ["kagaznagar"],
-    "Kamareddy": ["kamareddy"],
-    "Karimnagar": ["karimnagar"],
-    "Khammam": ["khammam"],
-    "Koratla": ["koratla"],
-    "Kothagudem": ["kothagudem"],
-    "Kyathampalle": ["kyathampalle"],
-    "Mahbubnagar": ["mahbubnagar"],
-    "Mancherial": ["mancherial"],
-    "Mandamarri": ["mandamarri"],
-    "Manuguru": ["manuguru"],
-    "Medak": ["medak"],
-    "Miryalaguda": ["miryalaguda"],
-    "Nagarkurnool": ["nagarkurnool"],
-    "Narayanpet": ["narayanpet"],
-    "Nirmal": ["nirmal"],
-    "Nizamabad": ["nizamabad"],
-    "Palwancha": ["palwancha"],
-    "Ramagundam": ["ramagundam"],
-    "Sadasivpet": ["sadasivpet"],
-    "Sangareddy": ["sangareddy"],
-    "Siddipet": ["siddipet"],
-    "Sircilla": ["sircilla"],
-    "Suryapet": ["suryapet"],
-    "Tandur": ["tandur"],
-    "Vikarabad": ["vikarabad"],
-    "Wanaparthy": ["wanaparthy"],
-    "Warangal": ["warangal"],
-    "Yellandu": ["yellandu"]
+  {
+    "name": "Macherla",
+    "top": false
   },
-  "Tripura": {
-    "Agartala": ["agartala"],
-    "Belonia": ["belonia"],
-    "Dharmanagar": ["dharmanagar"],
-    "Kailasahar": ["kailasahar"],
-    "Khowai": ["khowai"],
-    "Pratapgarh": ["pratapgarh"],
-    "Udaipur": ["udaipur"]
+  {
+    "name": "Machilipatnam",
+    "top": false
   },
-  "Uttar Pradesh": {
-    "Achhnera": ["achhnera"],
-    "Agra": ["agra"],
-    "Aligarh": ["aligarh"],
-    "Allahabad": ["allahabad"],
-    "Amroha": ["amroha"],
-    "Azamgarh": ["azamgarh"],
-    "Bahraich": ["bahraich"],
-    "Chandausi": ["chandausi"],
-    "Etawah": ["etawah"],
-    "Firozabad": ["firozabad"],
-    "Fatehpur Sikri": ["fatehpursikri"],
-    "Ghaziabad": ["ghaziabad"],
-    "Gorakhpur": ["gorakhpur"],
-    "Hapur": ["hapur"],
-    "Hardoi ": ["hardoi"],
-    "Jhansi": ["jhansi"],
-    "Kalpi": ["kalpi"],
-    "Kanpur": ["kanpur"],
-    "Khair": ["khair"],
-    "Laharpur": ["laharpur"],
-    "Lakhimpur": ["lakhimpur"],
-    "Lal Gopalganj Nindaura": ["lalgopalganjnindaura"],
-    "Lalitpur": ["lalitpur"],
-    "Lalganj": ["lalganj"],
-    "Lar": ["lar"],
-    "Loni": ["loni"],
-    "Lucknow": ["lucknow"],
-    "Mathura": ["mathura"],
-    "Meerut": ["meerut"],
-    "Modinagar": ["modinagar"],
-    "Moradabad": ["moradabad"],
-    "Nagina": ["nagina"],
-    "Najibabad": ["najibabad"],
-    "Nakur": ["nakur"],
-    "Nanpara": ["nanpara"],
-    "Naraura": ["naraura"],
-    "Naugawan Sadat": ["naugawansadat"],
-    "Nautanwa": ["nautanwa"],
-    "Nawabganj": ["nawabganj"],
-    "Nehtaur": ["nehtaur"],
-    "Niwai": ["niwai"],
-    "Noida": ["noida"],
-    "Noorpur": ["noorpur"],
-    "Obra": ["obra"],
-    "Orai": ["orai"],
-    "Padrauna": ["padrauna"],
-    "Palia Kalan": ["paliakalan"],
-    "Parasi": ["parasi"],
-    "Phulpur": ["phulpur"],
-    "Pihani": ["pihani"],
-    "Pilibhit": ["pilibhit"],
-    "Pilkhuwa": ["pilkhuwa"],
-    "Powayan": ["powayan"],
-    "Pukhrayan": ["pukhrayan"],
-    "Puranpur": ["puranpur"],
-    "Purquazi": ["purquazi"],
-    "Purwa": ["purwa"],
-    "Rae Bareli": ["raebareli"],
-    "Rampur": ["rampur"],
-    "Rampur Maniharan": ["rampurmaniharan"],
-    "Rasra": ["rasra"],
-    "Rath": ["rath"],
-    "Renukoot": ["renukoot"],
-    "Reoti": ["reoti"],
-    "Robertsganj": ["robertsganj"],
-    "Rudauli": ["rudauli"],
-    "Rudrapur": ["rudrapur"],
-    "Sadabad": ["sadabad"],
-    "Safipur": ["safipur"],
-    "Saharanpur": ["saharanpur"],
-    "Sahaspur": ["sahaspur"],
-    "Sahaswan": ["sahaswan"],
-    "Sahawar": ["sahawar"],
-    "Sahjanwa": ["sahjanwa"],
-    "Saidpur": ["saidpur"],
-    "Sambhal": ["sambhal"],
-    "Samdhan": ["samdhan"],
-    "Samthar": ["samthar"],
-    "Sandi": ["sandi"],
-    "Sandila": ["sandila"],
-    "Sardhana": ["sardhana"],
-    "Seohara": ["seohara"],
-    "Shahabad, Hardoi": ["shahabad,hardoi"],
-    "Shahabad, Rampur": ["shahabad,rampur"],
-    "Shahganj": ["shahganj"],
-    "Shahjahanpur": ["shahjahanpur"],
-    "Shamli": ["shamli"],
-    "Shamsabad, Agra": ["shamsabad,agra"],
-    "Shamsabad, Farrukhabad": ["shamsabad,farrukhabad"],
-    "Sherkot": ["sherkot"],
-    "Shikarpur, Bulandshahr": ["shikarpur,bulandshahr"],
-    "Shikohabad": ["shikohabad"],
-    "Shishgarh": ["shishgarh"],
-    "Siana": ["siana"],
-    "Sikanderpur": ["sikanderpur"],
-    "Sikandra Rao": ["sikandrarao"],
-    "Sikandrabad": ["sikandrabad"],
-    "Sirsaganj": ["sirsaganj"],
-    "Sirsi": ["sirsi"],
-    "Sitapur": ["sitapur"],
-    "Soron": ["soron"],
-    "Suar": ["suar"],
-    "Sultanpur": ["sultanpur"],
-    "Sumerpur": ["sumerpur"],
-    "Tanda": ["tanda"],
-    "Thakurdwara": ["thakurdwara"],
-    "Thana Bhawan": ["thanabhawan"],
-    "Tilhar": ["tilhar"],
-    "Tirwaganj": ["tirwaganj"],
-    "Tulsipur": ["tulsipur"],
-    "Tundla": ["tundla"],
-    "Ujhani": ["ujhani"],
-    "Unnao": ["unnao"],
-    "Utraula": ["utraula"],
-    "Varanasi": ["varanasi"],
-    "Vrindavan": ["vrindavan"],
-    "Warhapur": ["warhapur"],
-    "Zaidpur": ["zaidpur"],
-    "Zamania": ["zamania"]
+  {
+    "name": "Madanapalle",
+    "top": false
   },
-  "Uttarakhand": {
-    "Bageshwar": ["bageshwar"],
-    "Dehradun": ["dehradun"],
-    "Haldwani-cum-Kathgodam": [
-      "haldwani-cum-kathgodam",
-      "haldwanicumkathgodam"
-    ],
-    "Hardwar": ["hardwar"],
-    "Kashipur": ["kashipur"],
-    "Manglaur": ["manglaur"],
-    "Mussoorie": ["mussoorie"],
-    "Nagla": ["nagla"],
-    "Nainital": ["nainital"],
-    "Pauri": ["pauri"],
-    "Pithoragarh": ["pithoragarh"],
-    "Ramnagar": ["ramnagar"],
-    "Rishikesh": ["rishikesh"],
-    "Roorkee": ["roorkee"],
-    "Rudrapur": ["rudrapur"],
-    "Sitarganj": ["sitarganj"],
-    "Srinagar": ["srinagar"],
-    "Tehri": ["tehri"]
+  {
+    "name": "Mandapeta",
+    "top": false
   },
-  "West Bengal": {
-    "Adra": ["adra"],
-    "Alipurduar": ["alipurduar"],
-    "Arambagh": ["arambagh"],
-    "Asansol": ["asansol"],
-    "Baharampur": ["baharampur"],
-    "Balurghat": ["balurghat"],
-    "Bankura": ["bankura"],
-    "Darjiling": ["darjiling"],
-    "English Bazar": ["englishbazar"],
-    "Gangarampur": ["gangarampur"],
-    "Habra": ["habra"],
-    "Hugli-Chinsurah": ["hugli-chinsurah", "huglichinsurah"],
-    "Jalpaiguri": ["jalpaiguri"],
-    "Jhargram": ["jhargram"],
-    "Kalimpong": ["kalimpong"],
-    "Kharagpur": ["kharagpur"],
-    "Kolkata": ["kolkata"],
-    "Mainaguri": ["mainaguri"],
-    "Malda": ["malda"],
-    "Mathabhanga": ["mathabhanga"],
-    "Medinipur": ["medinipur"],
-    "Memari": ["memari"],
-    "Monoharpur": ["monoharpur"],
-    "Murshidabad": ["murshidabad"],
-    "Nabadwip": ["nabadwip"],
-    "Naihati": ["naihati"],
-    "Panchla": ["panchla"],
-    "Pandua": ["pandua"],
-    "Paschim Punropara": ["paschimpunropara"],
-    "Purulia": ["purulia"],
-    "Raghunathpur": ["raghunathpur"],
-    "Raghunathganj": ["raghunathganj"],
-    "Raiganj": ["raiganj"],
-    "Rampurhat": ["rampurhat"],
-    "Ranaghat": ["ranaghat"],
-    "Sainthia": ["sainthia"],
-    "Santipur": ["santipur"],
-    "Siliguri": ["siliguri"],
-    "Sonamukhi": ["sonamukhi"],
-    "Srirampore": ["srirampore"],
-    "Suri": ["suri"],
-    "Taki": ["taki"],
-    "Tamluk": ["tamluk"],
-    "Tarakeswar": ["tarakeswar"]
+  {
+    "name": "Markapur",
+    "top": false
+  },
+  {
+    "name": "Nagari",
+    "top": false
+  },
+  {
+    "name": "Naidupet",
+    "top": false
+  },
+  {
+    "name": "Nandyal",
+    "top": false
+  },
+  {
+    "name": "Narasapuram",
+    "top": false
+  },
+  {
+    "name": "Narasaraopet",
+    "top": false
+  },
+  {
+    "name": "Narsipatnam",
+    "top": false
+  },
+  {
+    "name": "Nellore",
+    "top": false
+  },
+  {
+    "name": "Nidadavole",
+    "top": false
+  },
+  {
+    "name": "Nuzvid",
+    "top": false
+  },
+  {
+    "name": "Ongole",
+    "top": false
+  },
+  {
+    "name": "Palacole",
+    "top": false
+  },
+  {
+    "name": "Palasa Kasibugga",
+    "top": false
+  },
+  {
+    "name": "Parvathipuram",
+    "top": false
+  },
+  {
+    "name": "Pedana",
+    "top": false
+  },
+  {
+    "name": "Peddapuram",
+    "top": false
+  },
+  {
+    "name": "Pithapuram",
+    "top": false
+  },
+  {
+    "name": "Ponnur",
+    "top": false
+  },
+  {
+    "name": "Proddatur",
+    "top": false
+  },
+  {
+    "name": "Punganur",
+    "top": false
+  },
+  {
+    "name": "Puttur",
+    "top": false
+  },
+  {
+    "name": "Rajahmundry",
+    "top": false
+  },
+  {
+    "name": "Rajam",
+    "top": false
+  },
+  {
+    "name": "Rajampet",
+    "top": false
+  },
+  {
+    "name": "Ramachandrapuram",
+    "top": false
+  },
+  {
+    "name": "Rayachoti",
+    "top": false
+  },
+  {
+    "name": "Rayadurg",
+    "top": false
+  },
+  {
+    "name": "Renigunta",
+    "top": false
+  },
+  {
+    "name": "Repalle",
+    "top": false
+  },
+  {
+    "name": "Salur",
+    "top": false
+  },
+  {
+    "name": "Samalkot",
+    "top": false
+  },
+  {
+    "name": "Sattenapalle",
+    "top": false
+  },
+  {
+    "name": "Srikakulam",
+    "top": false
+  },
+  {
+    "name": "Srikalahasti",
+    "top": false
+  },
+  {
+    "name": "Srisailam Project (Right Flank Colony) Township",
+    "top": false
+  },
+  {
+    "name": "Sullurpeta",
+    "top": false
+  },
+  {
+    "name": "Tadepalligudem",
+    "top": false
+  },
+  {
+    "name": "Tadpatri",
+    "top": false
+  },
+  {
+    "name": "Tanuku",
+    "top": false
+  },
+  {
+    "name": "Tenali",
+    "top": false
+  },
+  {
+    "name": "Tirupati",
+    "top": false
+  },
+  {
+    "name": "Tiruvuru",
+    "top": false
+  },
+  {
+    "name": "Tuni",
+    "top": false
+  },
+  {
+    "name": "Uravakonda",
+    "top": false
+  },
+  {
+    "name": "Venkatagiri",
+    "top": false
+  },
+  {
+    "name": "Vijayawada",
+    "top": false
+  },
+  {
+    "name": "Vinukonda",
+    "top": false
+  },
+  {
+    "name": "Visakhapatnam",
+    "top": true
+  },
+  {
+    "name": "Vizianagaram",
+    "top": false
+  },
+  {
+    "name": "Yemmiganur",
+    "top": false
+  },
+  {
+    "name": "Yerraguntla",
+    "top": false
+  },
+  {
+    "name": "Naharlagun",
+    "top": false
+  },
+  {
+    "name": "Pasighat",
+    "top": false
+  },
+  {
+    "name": "Barpeta",
+    "top": false
+  },
+  {
+    "name": "Bongaigaon City",
+    "top": false
+  },
+  {
+    "name": "Dhubri",
+    "top": false
+  },
+  {
+    "name": "Dibrugarh",
+    "top": false
+  },
+  {
+    "name": "Diphu",
+    "top": false
+  },
+  {
+    "name": "Goalpara",
+    "top": false
+  },
+  {
+    "name": "Guwahati",
+    "top": false
+  },
+  {
+    "name": "Jorhat",
+    "top": false
+  },
+  {
+    "name": "Karimganj",
+    "top": false
+  },
+  {
+    "name": "Lanka",
+    "top": false
+  },
+  {
+    "name": "Lumding",
+    "top": false
+  },
+  {
+    "name": "Mangaldoi",
+    "top": false
+  },
+  {
+    "name": "Mankachar",
+    "top": false
+  },
+  {
+    "name": "Margherita",
+    "top": false
+  },
+  {
+    "name": "Mariani",
+    "top": false
+  },
+  {
+    "name": "Marigaon",
+    "top": false
+  },
+  {
+    "name": "Nagaon",
+    "top": false
+  },
+  {
+    "name": "Nalbari",
+    "top": false
+  },
+  {
+    "name": "North Lakhimpur",
+    "top": false
+  },
+  {
+    "name": "Rangia",
+    "top": false
+  },
+  {
+    "name": "Sibsagar",
+    "top": false
+  },
+  {
+    "name": "Silapathar",
+    "top": false
+  },
+  {
+    "name": "Silchar",
+    "top": false
+  },
+  {
+    "name": "Tezpur",
+    "top": false
+  },
+  {
+    "name": "Tinsukia",
+    "top": false
+  },
+  {
+    "name": "Araria",
+    "top": false
+  },
+  {
+    "name": "Arrah",
+    "top": false
+  },
+  {
+    "name": "Arwal",
+    "top": false
+  },
+  {
+    "name": "Asarganj",
+    "top": false
+  },
+  {
+    "name": "Aurangabad",
+    "top": false
+  },
+  {
+    "name": "Bagaha",
+    "top": false
+  },
+  {
+    "name": "Barh",
+    "top": false
+  },
+  {
+    "name": "Begusarai",
+    "top": false
+  },
+  {
+    "name": "Bettiah",
+    "top": false
+  },
+  {
+    "name": "Bhabua",
+    "top": false
+  },
+  {
+    "name": "Bhagalpur",
+    "top": false
+  },
+  {
+    "name": "Buxar",
+    "top": false
+  },
+  {
+    "name": "Chhapra",
+    "top": false
+  },
+  {
+    "name": "Darbhanga",
+    "top": false
+  },
+  {
+    "name": "Dehri-on-Sone",
+    "top": false
+  },
+  {
+    "name": "Dumraon",
+    "top": false
+  },
+  {
+    "name": "Forbesganj",
+    "top": false
+  },
+  {
+    "name": "Gaya",
+    "top": true
+  },
+  {
+    "name": "Gopalganj",
+    "top": false
+  },
+  {
+    "name": "Hajipur",
+    "top": false
+  },
+  {
+    "name": "Jamalpur",
+    "top": false
+  },
+  {
+    "name": "Jamui",
+    "top": false
+  },
+  {
+    "name": "Jehanabad",
+    "top": false
+  },
+  {
+    "name": "Katihar",
+    "top": false
+  },
+  {
+    "name": "Kishanganj",
+    "top": false
+  },
+  {
+    "name": "Lakhisarai",
+    "top": false
+  },
+  {
+    "name": "Lalganj",
+    "top": false
+  },
+  {
+    "name": "Madhepura",
+    "top": false
+  },
+  {
+    "name": "Madhubani",
+    "top": false
+  },
+  {
+    "name": "Maharajganj",
+    "top": false
+  },
+  {
+    "name": "Mahnar Bazar",
+    "top": false
+  },
+  {
+    "name": "Makhdumpur",
+    "top": false
+  },
+  {
+    "name": "Maner",
+    "top": false
+  },
+  {
+    "name": "Manihari",
+    "top": false
+  },
+  {
+    "name": "Marhaura",
+    "top": false
+  },
+  {
+    "name": "Masaurhi",
+    "top": false
+  },
+  {
+    "name": "Mirganj",
+    "top": false
+  },
+  {
+    "name": "Mokameh",
+    "top": false
+  },
+  {
+    "name": "Motihari",
+    "top": false
+  },
+  {
+    "name": "Motipur",
+    "top": false
+  },
+  {
+    "name": "Munger",
+    "top": false
+  },
+  {
+    "name": "Murliganj",
+    "top": false
+  },
+  {
+    "name": "Muzaffarpur",
+    "top": false
+  },
+  {
+    "name": "Narkatiaganj",
+    "top": false
+  },
+  {
+    "name": "Naugachhia",
+    "top": false
+  },
+  {
+    "name": "Nawada",
+    "top": false
+  },
+  {
+    "name": "Nokha",
+    "top": false
+  },
+  {
+    "name": "Patna",
+    "top": true
+  },
+  {
+    "name": "Piro",
+    "top": false
+  },
+  {
+    "name": "Purnia",
+    "top": false
+  },
+  {
+    "name": "Rafiganj",
+    "top": false
+  },
+  {
+    "name": "Rajgir",
+    "top": false
+  },
+  {
+    "name": "Ramnagar",
+    "top": false
+  },
+  {
+    "name": "Raxaul Bazar",
+    "top": false
+  },
+  {
+    "name": "Revelganj",
+    "top": false
+  },
+  {
+    "name": "Rosera",
+    "top": false
+  },
+  {
+    "name": "Saharsa",
+    "top": false
+  },
+  {
+    "name": "Samastipur",
+    "top": false
+  },
+  {
+    "name": "Sasaram",
+    "top": false
+  },
+  {
+    "name": "Sheikhpura",
+    "top": false
+  },
+  {
+    "name": "Sheohar",
+    "top": false
+  },
+  {
+    "name": "Sherghati",
+    "top": false
+  },
+  {
+    "name": "Silao",
+    "top": false
+  },
+  {
+    "name": "Sitamarhi",
+    "top": false
+  },
+  {
+    "name": "Siwan",
+    "top": false
+  },
+  {
+    "name": "Sonepur",
+    "top": false
+  },
+  {
+    "name": "Sugauli",
+    "top": false
+  },
+  {
+    "name": "Sultanganj",
+    "top": false
+  },
+  {
+    "name": "Supaul",
+    "top": false
+  },
+  {
+    "name": "Warisaliganj",
+    "top": false
+  },
+  {
+    "name": "Chandigarh",
+    "top": true
+  },
+  {
+    "name": "Ambikapur",
+    "top": false
+  },
+  {
+    "name": "Bhatapara",
+    "top": false
+  },
+  {
+    "name": "Bhilai Nagar",
+    "top": false
+  },
+  {
+    "name": "Bilaspur",
+    "top": false
+  },
+  {
+    "name": "Chirmiri",
+    "top": false
+  },
+  {
+    "name": "Dalli-Rajhara",
+    "top": false
+  },
+  {
+    "name": "Dhamtari",
+    "top": false
+  },
+  {
+    "name": "Durg",
+    "top": false
+  },
+  {
+    "name": "Jagdalpur",
+    "top": false
+  },
+  {
+    "name": "Korba",
+    "top": false
+  },
+  {
+    "name": "Mahasamund",
+    "top": false
+  },
+  {
+    "name": "Manendragarh",
+    "top": false
+  },
+  {
+    "name": "Mungeli",
+    "top": false
+  },
+  {
+    "name": "Naila Janjgir",
+    "top": false
+  },
+  {
+    "name": "Raigarh",
+    "top": false
+  },
+  {
+    "name": "Raipur",
+    "top": false
+  },
+  {
+    "name": "Rajnandgaon",
+    "top": false
+  },
+  {
+    "name": "Sakti",
+    "top": false
+  },
+  {
+    "name": "Tilda Newra",
+    "top": false
+  },
+  {
+    "name": "Silvassa",
+    "top": false
+  },
+  {
+    "name": "Delhi",
+    "top": true
+  },
+  {
+    "name": "New Delhi",
+    "top": false
+  },
+  {
+    "name": "Mapusa",
+    "top": false
+  },
+  {
+    "name": "Margao",
+    "top": false
+  },
+  {
+    "name": "Marmagao",
+    "top": false
+  },
+  {
+    "name": "Panaji",
+    "top": false
+  },
+  {
+    "name": "Adalaj",
+    "top": false
+  },
+  {
+    "name": "Ahmedabad",
+    "top": true
+  },
+  {
+    "name": "Amreli",
+    "top": false
+  },
+  {
+    "name": "Anand",
+    "top": false
+  },
+  {
+    "name": "Anjar",
+    "top": false
+  },
+  {
+    "name": "Ankleshwar",
+    "top": false
+  },
+  {
+    "name": "Bharuch",
+    "top": false
+  },
+  {
+    "name": "Bhavnagar",
+    "top": false
+  },
+  {
+    "name": "Bhuj",
+    "top": false
+  },
+  {
+    "name": "Chhapra",
+    "top": false
+  },
+  {
+    "name": "Deesa",
+    "top": false
+  },
+  {
+    "name": "Dhoraji",
+    "top": false
+  },
+  {
+    "name": "Godhra",
+    "top": false
+  },
+  {
+    "name": "Jamnagar",
+    "top": false
+  },
+  {
+    "name": "Kadi",
+    "top": false
+  },
+  {
+    "name": "Kapadvanj",
+    "top": false
+  },
+  {
+    "name": "Keshod",
+    "top": false
+  },
+  {
+    "name": "Khambhat",
+    "top": false
+  },
+  {
+    "name": "Lathi",
+    "top": false
+  },
+  {
+    "name": "Limbdi",
+    "top": false
+  },
+  {
+    "name": "Lunawada",
+    "top": false
+  },
+  {
+    "name": "Mahesana",
+    "top": false
+  },
+  {
+    "name": "Mahuva",
+    "top": false
+  },
+  {
+    "name": "Manavadar",
+    "top": false
+  },
+  {
+    "name": "Mandvi",
+    "top": false
+  },
+  {
+    "name": "Mangrol",
+    "top": false
+  },
+  {
+    "name": "Mansa",
+    "top": false
+  },
+  {
+    "name": "Mahemdabad",
+    "top": false
+  },
+  {
+    "name": "Modasa",
+    "top": false
+  },
+  {
+    "name": "Morvi",
+    "top": false
+  },
+  {
+    "name": "Nadiad",
+    "top": false
+  },
+  {
+    "name": "Navsari",
+    "top": false
+  },
+  {
+    "name": "Padra",
+    "top": false
+  },
+  {
+    "name": "Palanpur",
+    "top": false
+  },
+  {
+    "name": "Palitana",
+    "top": false
+  },
+  {
+    "name": "Pardi",
+    "top": false
+  },
+  {
+    "name": "Patan",
+    "top": false
+  },
+  {
+    "name": "Petlad",
+    "top": false
+  },
+  {
+    "name": "Porbandar",
+    "top": false
+  },
+  {
+    "name": "Radhanpur",
+    "top": false
+  },
+  {
+    "name": "Rajkot",
+    "top": false
+  },
+  {
+    "name": "Rajpipla",
+    "top": false
+  },
+  {
+    "name": "Rajula",
+    "top": false
+  },
+  {
+    "name": "Ranavav",
+    "top": false
+  },
+  {
+    "name": "Rapar",
+    "top": false
+  },
+  {
+    "name": "Salaya",
+    "top": false
+  },
+  {
+    "name": "Sanand",
+    "top": false
+  },
+  {
+    "name": "Savarkundla",
+    "top": false
+  },
+  {
+    "name": "Sidhpur",
+    "top": false
+  },
+  {
+    "name": "Sihor",
+    "top": false
+  },
+  {
+    "name": "Songadh",
+    "top": false
+  },
+  {
+    "name": "Surat",
+    "top": true
+  },
+  {
+    "name": "Talaja",
+    "top": false
+  },
+  {
+    "name": "Thangadh",
+    "top": false
+  },
+  {
+    "name": "Tharad",
+    "top": false
+  },
+  {
+    "name": "Umbergaon",
+    "top": false
+  },
+  {
+    "name": "Umreth",
+    "top": false
+  },
+  {
+    "name": "Una",
+    "top": false
+  },
+  {
+    "name": "Unjha",
+    "top": false
+  },
+  {
+    "name": "Upleta",
+    "top": false
+  },
+  {
+    "name": "Vadnagar",
+    "top": false
+  },
+  {
+    "name": "Vadodara",
+    "top": false
+  },
+  {
+    "name": "Valsad",
+    "top": false
+  },
+  {
+    "name": "Vapi",
+    "top": false
+  },
+  {
+    "name": "Veraval",
+    "top": false
+  },
+  {
+    "name": "Vijapur",
+    "top": false
+  },
+  {
+    "name": "Viramgam",
+    "top": false
+  },
+  {
+    "name": "Visnagar",
+    "top": false
+  },
+  {
+    "name": "Vyara",
+    "top": false
+  },
+  {
+    "name": "Wadhwan",
+    "top": false
+  },
+  {
+    "name": "Wankaner",
+    "top": false
+  },
+  {
+    "name": "Bahadurgarh",
+    "top": false
+  },
+  {
+    "name": "Bhiwani",
+    "top": false
+  },
+  {
+    "name": "Charkhi Dadri",
+    "top": false
+  },
+  {
+    "name": "Faridabad",
+    "top": true
+  },
+  {
+    "name": "Fatehabad",
+    "top": false
+  },
+  {
+    "name": "Gohana",
+    "top": false
+  },
+  {
+    "name": "Gurgaon",
+    "top": true
+  },
+  {
+    "name": "Hansi",
+    "top": false
+  },
+  {
+    "name": "Hisar",
+    "top": false
+  },
+  {
+    "name": "Jind",
+    "top": false
+  },
+  {
+    "name": "Kaithal",
+    "top": false
+  },
+  {
+    "name": "Karnal",
+    "top": false
+  },
+  {
+    "name": "Ladwa",
+    "top": false
+  },
+  {
+    "name": "Mahendragarh",
+    "top": false
+  },
+  {
+    "name": "Mandi Dabwali",
+    "top": false
+  },
+  {
+    "name": "Narnaul",
+    "top": false
+  },
+  {
+    "name": "Narwana",
+    "top": false
+  },
+  {
+    "name": "Palwal",
+    "top": false
+  },
+  {
+    "name": "Panchkula",
+    "top": false
+  },
+  {
+    "name": "Panipat",
+    "top": false
+  },
+  {
+    "name": "Pehowa",
+    "top": false
+  },
+  {
+    "name": "Pinjore",
+    "top": false
+  },
+  {
+    "name": "Rania",
+    "top": false
+  },
+  {
+    "name": "Ratia",
+    "top": false
+  },
+  {
+    "name": "Rewari",
+    "top": false
+  },
+  {
+    "name": "Rohtak",
+    "top": true
+  },
+  {
+    "name": "Safidon",
+    "top": false
+  },
+  {
+    "name": "Samalkha",
+    "top": false
+  },
+  {
+    "name": "Sarsod",
+    "top": false
+  },
+  {
+    "name": "Shahbad",
+    "top": false
+  },
+  {
+    "name": "Sirsa",
+    "top": false
+  },
+  {
+    "name": "Sohna",
+    "top": false
+  },
+  {
+    "name": "Sonipat",
+    "top": false
+  },
+  {
+    "name": "Taraori",
+    "top": false
+  },
+  {
+    "name": "Thanesar",
+    "top": false
+  },
+  {
+    "name": "Tohana",
+    "top": false
+  },
+  {
+    "name": "Yamunanagar",
+    "top": false
+  },
+  {
+    "name": "Mandi",
+    "top": false
+  },
+  {
+    "name": "Nahan",
+    "top": false
+  },
+  {
+    "name": "Palampur",
+    "top": false
+  },
+  {
+    "name": "Shimla",
+    "top": false
+  },
+  {
+    "name": "Solan",
+    "top": false
+  },
+  {
+    "name": "Sundarnagar",
+    "top": false
+  },
+  {
+    "name": "Anantnag",
+    "top": false
+  },
+  {
+    "name": "Baramula",
+    "top": false
+  },
+  {
+    "name": "Jammu",
+    "top": false
+  },
+  {
+    "name": "Kathua",
+    "top": false
+  },
+  {
+    "name": "Punch",
+    "top": false
+  },
+  {
+    "name": "Rajauri",
+    "top": false
+  },
+  {
+    "name": "Sopore",
+    "top": false
+  },
+  {
+    "name": "Srinagar",
+    "top": false
+  },
+  {
+    "name": "Udhampur",
+    "top": false
+  },
+  {
+    "name": "Adityapur",
+    "top": false
+  },
+  {
+    "name": "Bokaro Steel City",
+    "top": false
+  },
+  {
+    "name": "Chaibasa",
+    "top": false
+  },
+  {
+    "name": "Chatra",
+    "top": false
+  },
+  {
+    "name": "Chirkunda",
+    "top": false
+  },
+  {
+    "name": "Medininagar (Daltonganj)",
+    "top": false
+  },
+  {
+    "name": "Deoghar",
+    "top": false
+  },
+  {
+    "name": "Dhanbad",
+    "top": true
+  },
+  {
+    "name": "Dumka",
+    "top": false
+  },
+  {
+    "name": "Giridih",
+    "top": false
+  },
+  {
+    "name": "Gumia",
+    "top": false
+  },
+  {
+    "name": "Hazaribag",
+    "top": false
+  },
+  {
+    "name": "Jamshedpur",
+    "top": false
+  },
+  {
+    "name": "Jhumri Tilaiya",
+    "top": false
+  },
+  {
+    "name": "Lohardaga",
+    "top": false
+  },
+  {
+    "name": "Madhupur",
+    "top": false
+  },
+  {
+    "name": "Mihijam",
+    "top": false
+  },
+  {
+    "name": "Musabani",
+    "top": false
+  },
+  {
+    "name": "Pakaur",
+    "top": false
+  },
+  {
+    "name": "Patratu",
+    "top": false
+  },
+  {
+    "name": "Phusro",
+    "top": false
+  },
+  {
+    "name": "Ramgarh",
+    "top": false
+  },
+  {
+    "name": "Ranchi",
+    "top": true
+  },
+  {
+    "name": "Sahibganj",
+    "top": false
+  },
+  {
+    "name": "Saunda",
+    "top": false
+  },
+  {
+    "name": "Simdega",
+    "top": false
+  },
+  {
+    "name": "Tenu dam-cum-Kathhara",
+    "top": false
+  },
+  {
+    "name": "Bangalore",
+    "top": true
+  },
+  {
+    "name": "Adyar",
+    "top": false
+  },
+  {
+    "name": "Afzalpur",
+    "top": false
+  },
+  {
+    "name": "Arsikere",
+    "top": false
+  },
+  {
+    "name": "Athni",
+    "top": false
+  },
+  {
+    "name": "Belagavi",
+    "top": false
+  },
+  {
+    "name": "Ballari",
+    "top": false
+  },
+  {
+    "name": "Chikkamagaluru",
+    "top": false
+  },
+  {
+    "name": "Davanagere",
+    "top": false
+  },
+  {
+    "name": "Gokak",
+    "top": false
+  },
+  {
+    "name": "Hubli-Dharwad",
+    "top": false
+  },
+  {
+    "name": "Karwar",
+    "top": false
+  },
+  {
+    "name": "Kolar",
+    "top": false
+  },
+  {
+    "name": "Lakshmeshwar",
+    "top": false
+  },
+  {
+    "name": "Lingsugur",
+    "top": false
+  },
+  {
+    "name": "Maddur",
+    "top": false
+  },
+  {
+    "name": "Madhugiri",
+    "top": false
+  },
+  {
+    "name": "Madikeri",
+    "top": false
+  },
+  {
+    "name": "Magadi",
+    "top": false
+  },
+  {
+    "name": "Mahalingapura",
+    "top": false
+  },
+  {
+    "name": "Malavalli",
+    "top": false
+  },
+  {
+    "name": "Malur",
+    "top": false
+  },
+  {
+    "name": "Mandya",
+    "top": false
+  },
+  {
+    "name": "Mangaluru",
+    "top": false
+  },
+  {
+    "name": "Manvi",
+    "top": false
+  },
+  {
+    "name": "Mudalagi",
+    "top": false
+  },
+  {
+    "name": "Mudabidri",
+    "top": false
+  },
+  {
+    "name": "Muddebihal",
+    "top": false
+  },
+  {
+    "name": "Mudhol",
+    "top": false
+  },
+  {
+    "name": "Mulbagal",
+    "top": false
+  },
+  {
+    "name": "Mundargi",
+    "top": false
+  },
+  {
+    "name": "Nanjangud",
+    "top": false
+  },
+  {
+    "name": "Nargund",
+    "top": false
+  },
+  {
+    "name": "Navalgund",
+    "top": false
+  },
+  {
+    "name": "Nelamangala",
+    "top": false
+  },
+  {
+    "name": "Pavagada",
+    "top": false
+  },
+  {
+    "name": "Piriyapatna",
+    "top": false
+  },
+  {
+    "name": "Puttur",
+    "top": false
+  },
+  {
+    "name": "Rabkavi Banhatti",
+    "top": false
+  },
+  {
+    "name": "Raayachuru",
+    "top": false
+  },
+  {
+    "name": "Ranebennuru",
+    "top": false
+  },
+  {
+    "name": "Ramanagaram",
+    "top": false
+  },
+  {
+    "name": "Ramdurg",
+    "top": false
+  },
+  {
+    "name": "Ranibennur",
+    "top": false
+  },
+  {
+    "name": "Robertson Pet",
+    "top": false
+  },
+  {
+    "name": "Ron",
+    "top": false
+  },
+  {
+    "name": "Sadalagi",
+    "top": false
+  },
+  {
+    "name": "Sagara",
+    "top": false
+  },
+  {
+    "name": "Sakaleshapura",
+    "top": false
+  },
+  {
+    "name": "Sindagi",
+    "top": false
+  },
+  {
+    "name": "Sanduru",
+    "top": false
+  },
+  {
+    "name": "Sankeshwara",
+    "top": false
+  },
+  {
+    "name": "Saundatti-Yellamma",
+    "top": false
+  },
+  {
+    "name": "Savanur",
+    "top": false
+  },
+  {
+    "name": "Sedam",
+    "top": false
+  },
+  {
+    "name": "Shahabad",
+    "top": false
+  },
+  {
+    "name": "Shahpur",
+    "top": false
+  },
+  {
+    "name": "Shiggaon",
+    "top": false
+  },
+  {
+    "name": "Shikaripur",
+    "top": false
+  },
+  {
+    "name": "Shivamogga",
+    "top": false
+  },
+  {
+    "name": "Surapura",
+    "top": false
+  },
+  {
+    "name": "Shrirangapattana",
+    "top": false
+  },
+  {
+    "name": "Sidlaghatta",
+    "top": false
+  },
+  {
+    "name": "Sindhagi",
+    "top": false
+  },
+  {
+    "name": "Sindhnur",
+    "top": false
+  },
+  {
+    "name": "Sira",
+    "top": false
+  },
+  {
+    "name": "Sirsi",
+    "top": false
+  },
+  {
+    "name": "Siruguppa",
+    "top": false
+  },
+  {
+    "name": "Srinivaspur",
+    "top": false
+  },
+  {
+    "name": "Tarikere",
+    "top": false
+  },
+  {
+    "name": "Tekkalakote",
+    "top": false
+  },
+  {
+    "name": "Terdal",
+    "top": false
+  },
+  {
+    "name": "Talikota",
+    "top": false
+  },
+  {
+    "name": "Tiptur",
+    "top": false
+  },
+  {
+    "name": "Tumkur",
+    "top": false
+  },
+  {
+    "name": "Udupi",
+    "top": false
+  },
+  {
+    "name": "Vijayapura",
+    "top": false
+  },
+  {
+    "name": "Wadi",
+    "top": false
+  },
+  {
+    "name": "Yadgir",
+    "top": false
+  },
+  {
+    "name": "Mysore",
+    "top": false
+  },
+  {
+    "name": "Adoor",
+    "top": false
+  },
+  {
+    "name": "Alappuzha",
+    "top": false
+  },
+  {
+    "name": "Attingal",
+    "top": false
+  },
+  {
+    "name": "Chalakudy",
+    "top": false
+  },
+  {
+    "name": "Changanassery",
+    "top": false
+  },
+  {
+    "name": "Cherthala",
+    "top": false
+  },
+  {
+    "name": "Chittur-Thathamangalam",
+    "top": false
+  },
+  {
+    "name": "Guruvayoor",
+    "top": false
+  },
+  {
+    "name": "Kanhangad",
+    "top": false
+  },
+  {
+    "name": "Kannur",
+    "top": false
+  },
+  {
+    "name": "Kasaragod",
+    "top": false
+  },
+  {
+    "name": "Kayamkulam",
+    "top": false
+  },
+  {
+    "name": "Kochi",
+    "top": false
+  },
+  {
+    "name": "Kodungallur",
+    "top": false
+  },
+  {
+    "name": "Kollam",
+    "top": false
+  },
+  {
+    "name": "Kottayam",
+    "top": false
+  },
+  {
+    "name": "Kozhikode",
+    "top": false
+  },
+  {
+    "name": "Kunnamkulam",
+    "top": false
+  },
+  {
+    "name": "Malappuram",
+    "top": false
+  },
+  {
+    "name": "Mattannur",
+    "top": false
+  },
+  {
+    "name": "Mavelikkara",
+    "top": false
+  },
+  {
+    "name": "Mavoor",
+    "top": false
+  },
+  {
+    "name": "Muvattupuzha",
+    "top": false
+  },
+  {
+    "name": "Nedumangad",
+    "top": false
+  },
+  {
+    "name": "Neyyattinkara",
+    "top": false
+  },
+  {
+    "name": "Nilambur",
+    "top": false
+  },
+  {
+    "name": "Ottappalam",
+    "top": false
+  },
+  {
+    "name": "Palai",
+    "top": false
+  },
+  {
+    "name": "Palakkad",
+    "top": false
+  },
+  {
+    "name": "Panamattom",
+    "top": false
+  },
+  {
+    "name": "Panniyannur",
+    "top": false
+  },
+  {
+    "name": "Pappinisseri",
+    "top": false
+  },
+  {
+    "name": "Paravoor",
+    "top": false
+  },
+  {
+    "name": "Pathanamthitta",
+    "top": false
+  },
+  {
+    "name": "Peringathur",
+    "top": false
+  },
+  {
+    "name": "Perinthalmanna",
+    "top": false
+  },
+  {
+    "name": "Perumbavoor",
+    "top": false
+  },
+  {
+    "name": "Ponnani",
+    "top": false
+  },
+  {
+    "name": "Punalur",
+    "top": false
+  },
+  {
+    "name": "Puthuppally",
+    "top": false
+  },
+  {
+    "name": "Koyilandy",
+    "top": false
+  },
+  {
+    "name": "Shoranur",
+    "top": false
+  },
+  {
+    "name": "Taliparamba",
+    "top": false
+  },
+  {
+    "name": "Thiruvalla",
+    "top": false
+  },
+  {
+    "name": "Thiruvananthapuram",
+    "top": false
+  },
+  {
+    "name": "Thodupuzha",
+    "top": false
+  },
+  {
+    "name": "Thrissur",
+    "top": false
+  },
+  {
+    "name": "Tirur",
+    "top": false
+  },
+  {
+    "name": "Vaikom",
+    "top": false
+  },
+  {
+    "name": "Varkala",
+    "top": false
+  },
+  {
+    "name": "Vatakara",
+    "top": false
+  },
+  {
+    "name": "Alirajpur",
+    "top": false
+  },
+  {
+    "name": "Ashok Nagar",
+    "top": false
+  },
+  {
+    "name": "Balaghat",
+    "top": false
+  },
+  {
+    "name": "Bhopal",
+    "top": true
+  },
+  {
+    "name": "Ganjbasoda",
+    "top": false
+  },
+  {
+    "name": "Gwalior",
+    "top": false
+  },
+  {
+    "name": "Indore",
+    "top": true
+  },
+  {
+    "name": "Itarsi",
+    "top": false
+  },
+  {
+    "name": "Jabalpur",
+    "top": true
+  },
+  {
+    "name": "Lahar",
+    "top": false
+  },
+  {
+    "name": "Maharajpur",
+    "top": false
+  },
+  {
+    "name": "Mahidpur",
+    "top": false
+  },
+  {
+    "name": "Maihar",
+    "top": false
+  },
+  {
+    "name": "Malaj Khand",
+    "top": false
+  },
+  {
+    "name": "Manasa",
+    "top": false
+  },
+  {
+    "name": "Manawar",
+    "top": false
+  },
+  {
+    "name": "Mandideep",
+    "top": false
+  },
+  {
+    "name": "Mandla",
+    "top": false
+  },
+  {
+    "name": "Mandsaur",
+    "top": false
+  },
+  {
+    "name": "Mauganj",
+    "top": false
+  },
+  {
+    "name": "Mhow Cantonment",
+    "top": false
+  },
+  {
+    "name": "Mhowgaon",
+    "top": false
+  },
+  {
+    "name": "Morena",
+    "top": false
+  },
+  {
+    "name": "Multai",
+    "top": false
+  },
+  {
+    "name": "Mundi",
+    "top": false
+  },
+  {
+    "name": "Murwara (Katni)",
+    "top": false
+  },
+  {
+    "name": "Nagda",
+    "top": false
+  },
+  {
+    "name": "Nainpur",
+    "top": false
+  },
+  {
+    "name": "Narsinghgarh",
+    "top": false
+  },
+  {
+    "name": "Neemuch",
+    "top": false
+  },
+  {
+    "name": "Nepanagar",
+    "top": false
+  },
+  {
+    "name": "Niwari",
+    "top": false
+  },
+  {
+    "name": "Nowgong",
+    "top": false
+  },
+  {
+    "name": "Nowrozabad (Khodargama)",
+    "top": false
+  },
+  {
+    "name": "Pachore",
+    "top": false
+  },
+  {
+    "name": "Pali",
+    "top": false
+  },
+  {
+    "name": "Panagar",
+    "top": false
+  },
+  {
+    "name": "Pandhurna",
+    "top": false
+  },
+  {
+    "name": "Panna",
+    "top": false
+  },
+  {
+    "name": "Pasan",
+    "top": false
+  },
+  {
+    "name": "Pipariya",
+    "top": false
+  },
+  {
+    "name": "Pithampur",
+    "top": false
+  },
+  {
+    "name": "Porsa",
+    "top": false
+  },
+  {
+    "name": "Prithvipur",
+    "top": false
+  },
+  {
+    "name": "Raghogarh-Vijaypur",
+    "top": false
+  },
+  {
+    "name": "Rahatgarh",
+    "top": false
+  },
+  {
+    "name": "Raisen",
+    "top": false
+  },
+  {
+    "name": "Rajgarh",
+    "top": false
+  },
+  {
+    "name": "Ratlam",
+    "top": false
+  },
+  {
+    "name": "Rau",
+    "top": false
+  },
+  {
+    "name": "Rehli",
+    "top": false
+  },
+  {
+    "name": "Rewa",
+    "top": false
+  },
+  {
+    "name": "Sabalgarh",
+    "top": false
+  },
+  {
+    "name": "Sagar",
+    "top": false
+  },
+  {
+    "name": "Sanawad",
+    "top": false
+  },
+  {
+    "name": "Sarangpur",
+    "top": false
+  },
+  {
+    "name": "Sarni",
+    "top": false
+  },
+  {
+    "name": "Satna",
+    "top": false
+  },
+  {
+    "name": "Sausar",
+    "top": false
+  },
+  {
+    "name": "Sehore",
+    "top": false
+  },
+  {
+    "name": "Sendhwa",
+    "top": false
+  },
+  {
+    "name": "Seoni",
+    "top": false
+  },
+  {
+    "name": "Seoni-Malwa",
+    "top": false
+  },
+  {
+    "name": "Shahdol",
+    "top": false
+  },
+  {
+    "name": "Shajapur",
+    "top": false
+  },
+  {
+    "name": "Shamgarh",
+    "top": false
+  },
+  {
+    "name": "Sheopur",
+    "top": false
+  },
+  {
+    "name": "Shivpuri",
+    "top": false
+  },
+  {
+    "name": "Shujalpur",
+    "top": false
+  },
+  {
+    "name": "Sidhi",
+    "top": false
+  },
+  {
+    "name": "Sihora",
+    "top": false
+  },
+  {
+    "name": "Singrauli",
+    "top": false
+  },
+  {
+    "name": "Sironj",
+    "top": false
+  },
+  {
+    "name": "Sohagpur",
+    "top": false
+  },
+  {
+    "name": "Tarana",
+    "top": false
+  },
+  {
+    "name": "Tikamgarh",
+    "top": false
+  },
+  {
+    "name": "Ujjain",
+    "top": false
+  },
+  {
+    "name": "Umaria",
+    "top": false
+  },
+  {
+    "name": "Vidisha",
+    "top": false
+  },
+  {
+    "name": "Vijaypur",
+    "top": false
+  },
+  {
+    "name": "Wara Seoni",
+    "top": false
+  },
+  {
+    "name": "[[]]",
+    "top": false
+  },
+  {
+    "name": "Ahmednagar",
+    "top": false
+  },
+  {
+    "name": "Akola",
+    "top": false
+  },
+  {
+    "name": "Akot",
+    "top": false
+  },
+  {
+    "name": "Amalner",
+    "top": false
+  },
+  {
+    "name": "Ambejogai",
+    "top": false
+  },
+  {
+    "name": "Amravati",
+    "top": false
+  },
+  {
+    "name": "Anjangaon",
+    "top": false
+  },
+  {
+    "name": "Arvi",
+    "top": false
+  },
+  {
+    "name": "Aurangabad",
+    "top": false
+  },
+  {
+    "name": "Bhiwandi",
+    "top": false
+  },
+  {
+    "name": "Dhule",
+    "top": false
+  },
+  {
+    "name": "Kalyan-Dombivali",
+    "top": false
+  },
+  {
+    "name": "Ichalkaranji",
+    "top": false
+  },
+  {
+    "name": "Karjat",
+    "top": false
+  },
+  {
+    "name": "Latur",
+    "top": false
+  },
+  {
+    "name": "Loha",
+    "top": false
+  },
+  {
+    "name": "Lonar",
+    "top": false
+  },
+  {
+    "name": "Lonavla",
+    "top": false
+  },
+  {
+    "name": "Mahad",
+    "top": false
+  },
+  {
+    "name": "Malegaon",
+    "top": false
+  },
+  {
+    "name": "Malkapur",
+    "top": false
+  },
+  {
+    "name": "Mangalvedhe",
+    "top": false
+  },
+  {
+    "name": "Mangrulpir",
+    "top": false
+  },
+  {
+    "name": "Manjlegaon",
+    "top": false
+  },
+  {
+    "name": "Manmad",
+    "top": false
+  },
+  {
+    "name": "Manwath",
+    "top": false
+  },
+  {
+    "name": "Mehkar",
+    "top": false
+  },
+  {
+    "name": "Mhaswad",
+    "top": false
+  },
+  {
+    "name": "Mira-Bhayandar",
+    "top": false
+  },
+  {
+    "name": "Morshi",
+    "top": false
+  },
+  {
+    "name": "Mukhed",
+    "top": false
+  },
+  {
+    "name": "Mul",
+    "top": false
+  },
+  {
+    "name": "Mumbai",
+    "top": true
+  },
+  {
+    "name": "Murtijapur",
+    "top": false
+  },
+  {
+    "name": "Nagpur",
+    "top": true
+  },
+  {
+    "name": "Nasik",
+    "top": false
+  },
+  {
+    "name": "Nanded-Waghala",
+    "top": false
+  },
+  {
+    "name": "Nandgaon",
+    "top": false
+  },
+  {
+    "name": "Nandura",
+    "top": false
+  },
+  {
+    "name": "Nandurbar",
+    "top": false
+  },
+  {
+    "name": "Narkhed",
+    "top": false
+  },
+  {
+    "name": "Nashik",
+    "top": true
+  },
+  {
+    "name": "Nawapur",
+    "top": false
+  },
+  {
+    "name": "Nilanga",
+    "top": false
+  },
+  {
+    "name": "Osmanabad",
+    "top": false
+  },
+  {
+    "name": "Ozar",
+    "top": false
+  },
+  {
+    "name": "Pachora",
+    "top": false
+  },
+  {
+    "name": "Paithan",
+    "top": false
+  },
+  {
+    "name": "Palghar",
+    "top": false
+  },
+  {
+    "name": "Pandharkaoda",
+    "top": false
+  },
+  {
+    "name": "Pandharpur",
+    "top": false
+  },
+  {
+    "name": "Panvel",
+    "top": false
+  },
+  {
+    "name": "Parbhani",
+    "top": false
+  },
+  {
+    "name": "Parli",
+    "top": false
+  },
+  {
+    "name": "Partur",
+    "top": false
+  },
+  {
+    "name": "Pathardi",
+    "top": false
+  },
+  {
+    "name": "Pathri",
+    "top": false
+  },
+  {
+    "name": "Patur",
+    "top": false
+  },
+  {
+    "name": "Pauni",
+    "top": false
+  },
+  {
+    "name": "Pen",
+    "top": false
+  },
+  {
+    "name": "Phaltan",
+    "top": false
+  },
+  {
+    "name": "Pulgaon",
+    "top": false
+  },
+  {
+    "name": "Pune",
+    "top": true
+  },
+  {
+    "name": "Purna",
+    "top": false
+  },
+  {
+    "name": "Pusad",
+    "top": false
+  },
+  {
+    "name": "Rahuri",
+    "top": false
+  },
+  {
+    "name": "Rajura",
+    "top": false
+  },
+  {
+    "name": "Ramtek",
+    "top": false
+  },
+  {
+    "name": "Ratnagiri",
+    "top": false
+  },
+  {
+    "name": "Raver",
+    "top": false
+  },
+  {
+    "name": "Risod",
+    "top": false
+  },
+  {
+    "name": "Sailu",
+    "top": false
+  },
+  {
+    "name": "Sangamner",
+    "top": false
+  },
+  {
+    "name": "Sangli",
+    "top": false
+  },
+  {
+    "name": "Sangole",
+    "top": false
+  },
+  {
+    "name": "Sasvad",
+    "top": false
+  },
+  {
+    "name": "Satana",
+    "top": false
+  },
+  {
+    "name": "Satara",
+    "top": false
+  },
+  {
+    "name": "Savner",
+    "top": false
+  },
+  {
+    "name": "Sawantwadi",
+    "top": false
+  },
+  {
+    "name": "Shahade",
+    "top": false
+  },
+  {
+    "name": "Shegaon",
+    "top": false
+  },
+  {
+    "name": "Shendurjana",
+    "top": false
+  },
+  {
+    "name": "Shirdi",
+    "top": false
+  },
+  {
+    "name": "Shirpur-Warwade",
+    "top": false
+  },
+  {
+    "name": "Shirur",
+    "top": false
+  },
+  {
+    "name": "Shrigonda",
+    "top": false
+  },
+  {
+    "name": "Shrirampur",
+    "top": false
+  },
+  {
+    "name": "Sillod",
+    "top": false
+  },
+  {
+    "name": "Sinnar",
+    "top": false
+  },
+  {
+    "name": "Solapur",
+    "top": false
+  },
+  {
+    "name": "Soyagaon",
+    "top": false
+  },
+  {
+    "name": "Talegaon Dabhade",
+    "top": false
+  },
+  {
+    "name": "Talode",
+    "top": false
+  },
+  {
+    "name": "Tasgaon",
+    "top": false
+  },
+  {
+    "name": "Thane",
+    "top": true
+  },
+  {
+    "name": "Tirora",
+    "top": false
+  },
+  {
+    "name": "Tuljapur",
+    "top": false
+  },
+  {
+    "name": "Tumsar",
+    "top": false
+  },
+  {
+    "name": "Uchgaon",
+    "top": false
+  },
+  {
+    "name": "Udgir",
+    "top": false
+  },
+  {
+    "name": "Umarga",
+    "top": false
+  },
+  {
+    "name": "Umarkhed",
+    "top": false
+  },
+  {
+    "name": "Umred",
+    "top": false
+  },
+  {
+    "name": "Uran",
+    "top": false
+  },
+  {
+    "name": "Uran Islampur",
+    "top": false
+  },
+  {
+    "name": "Vadgaon Kasba",
+    "top": false
+  },
+  {
+    "name": "Vaijapur",
+    "top": false
+  },
+  {
+    "name": "Vasai-Virar",
+    "top": false
+  },
+  {
+    "name": "Vita",
+    "top": false
+  },
+  {
+    "name": "Wadgaon Road",
+    "top": false
+  },
+  {
+    "name": "Wai",
+    "top": false
+  },
+  {
+    "name": "Wani",
+    "top": false
+  },
+  {
+    "name": "Wardha",
+    "top": false
+  },
+  {
+    "name": "Warora",
+    "top": false
+  },
+  {
+    "name": "Warud",
+    "top": false
+  },
+  {
+    "name": "Washim",
+    "top": false
+  },
+  {
+    "name": "Yavatmal",
+    "top": false
+  },
+  {
+    "name": "Yawal",
+    "top": false
+  },
+  {
+    "name": "Yevla",
+    "top": false
+  },
+  {
+    "name": "Imphal",
+    "top": false
+  },
+  {
+    "name": "Lilong",
+    "top": false
+  },
+  {
+    "name": "Mayang Imphal",
+    "top": false
+  },
+  {
+    "name": "Thoubal",
+    "top": false
+  },
+  {
+    "name": "Nongstoin",
+    "top": false
+  },
+  {
+    "name": "Shillong",
+    "top": false
+  },
+  {
+    "name": "Tura",
+    "top": false
+  },
+  {
+    "name": "Aizawl",
+    "top": false
+  },
+  {
+    "name": "Lunglei",
+    "top": false
+  },
+  {
+    "name": "Saiha",
+    "top": false
+  },
+  {
+    "name": "Dimapur",
+    "top": false
+  },
+  {
+    "name": "Kohima",
+    "top": false
+  },
+  {
+    "name": "Mokokchung",
+    "top": false
+  },
+  {
+    "name": "Tuensang",
+    "top": false
+  },
+  {
+    "name": "Wokha",
+    "top": false
+  },
+  {
+    "name": "Zunheboto",
+    "top": false
+  },
+  {
+    "name": "Balangir",
+    "top": false
+  },
+  {
+    "name": "Baleshwar Town",
+    "top": false
+  },
+  {
+    "name": "Barbil",
+    "top": false
+  },
+  {
+    "name": "Bargarh",
+    "top": false
+  },
+  {
+    "name": "Baripada Town",
+    "top": false
+  },
+  {
+    "name": "Bhadrak",
+    "top": false
+  },
+  {
+    "name": "Bhawanipatna",
+    "top": false
+  },
+  {
+    "name": "Bhubaneswar",
+    "top": false
+  },
+  {
+    "name": "Brahmapur",
+    "top": false
+  },
+  {
+    "name": "Byasanagar",
+    "top": false
+  },
+  {
+    "name": "Cuttack",
+    "top": false
+  },
+  {
+    "name": "Dhenkanal",
+    "top": false
+  },
+  {
+    "name": "Jatani",
+    "top": false
+  },
+  {
+    "name": "Jharsuguda",
+    "top": false
+  },
+  {
+    "name": "Kendrapara",
+    "top": false
+  },
+  {
+    "name": "Kendujhar",
+    "top": false
+  },
+  {
+    "name": "Malkangiri",
+    "top": false
+  },
+  {
+    "name": "Nabarangapur",
+    "top": false
+  },
+  {
+    "name": "Paradip",
+    "top": false
+  },
+  {
+    "name": "Parlakhemundi",
+    "top": false
+  },
+  {
+    "name": "Pattamundai",
+    "top": false
+  },
+  {
+    "name": "Phulabani",
+    "top": false
+  },
+  {
+    "name": "Puri",
+    "top": false
+  },
+  {
+    "name": "Rairangpur",
+    "top": false
+  },
+  {
+    "name": "Rajagangapur",
+    "top": false
+  },
+  {
+    "name": "Raurkela",
+    "top": false
+  },
+  {
+    "name": "Rayagada",
+    "top": false
+  },
+  {
+    "name": "Sambalpur",
+    "top": false
+  },
+  {
+    "name": "Soro",
+    "top": false
+  },
+  {
+    "name": "Sunabeda",
+    "top": false
+  },
+  {
+    "name": "Sundargarh",
+    "top": false
+  },
+  {
+    "name": "Talcher",
+    "top": false
+  },
+  {
+    "name": "Tarbha",
+    "top": false
+  },
+  {
+    "name": "Titlagarh",
+    "top": false
+  },
+  {
+    "name": "Karaikal",
+    "top": false
+  },
+  {
+    "name": "Mahe",
+    "top": false
+  },
+  {
+    "name": "Pondicherry",
+    "top": false
+  },
+  {
+    "name": "Yanam",
+    "top": false
+  },
+  {
+    "name": "Amritsar",
+    "top": false
+  },
+  {
+    "name": "Barnala",
+    "top": false
+  },
+  {
+    "name": "Batala",
+    "top": false
+  },
+  {
+    "name": "Bathinda",
+    "top": false
+  },
+  {
+    "name": "Dhuri",
+    "top": false
+  },
+  {
+    "name": "Faridkot",
+    "top": false
+  },
+  {
+    "name": "Fazilka",
+    "top": false
+  },
+  {
+    "name": "Firozpur",
+    "top": false
+  },
+  {
+    "name": "Firozpur Cantt.",
+    "top": false
+  },
+  {
+    "name": "Gobindgarh",
+    "top": false
+  },
+  {
+    "name": "Gurdaspur",
+    "top": false
+  },
+  {
+    "name": "Hoshiarpur",
+    "top": false
+  },
+  {
+    "name": "Jagraon",
+    "top": false
+  },
+  {
+    "name": "Jalandhar Cantt.",
+    "top": false
+  },
+  {
+    "name": "Jalandhar",
+    "top": false
+  },
+  {
+    "name": "Kapurthala",
+    "top": false
+  },
+  {
+    "name": "Khanna",
+    "top": false
+  },
+  {
+    "name": "Kharar",
+    "top": false
+  },
+  {
+    "name": "Kot Kapura",
+    "top": false
+  },
+  {
+    "name": "Longowal",
+    "top": false
+  },
+  {
+    "name": "Ludhiana",
+    "top": false
+  },
+  {
+    "name": "Malerkotla",
+    "top": false
+  },
+  {
+    "name": "Malout",
+    "top": false
+  },
+  {
+    "name": "Mansa",
+    "top": false
+  },
+  {
+    "name": "Moga",
+    "top": false
+  },
+  {
+    "name": "Mohali",
+    "top": false
+  },
+  {
+    "name": "Morinda, India",
+    "top": false
+  },
+  {
+    "name": "Mukerian",
+    "top": false
+  },
+  {
+    "name": "Muktsar",
+    "top": false
+  },
+  {
+    "name": "Nabha",
+    "top": false
+  },
+  {
+    "name": "Nakodar",
+    "top": false
+  },
+  {
+    "name": "Nangal",
+    "top": false
+  },
+  {
+    "name": "Nawanshahr",
+    "top": false
+  },
+  {
+    "name": "Pathankot",
+    "top": false
+  },
+  {
+    "name": "Patiala",
+    "top": false
+  },
+  {
+    "name": "Pattran",
+    "top": false
+  },
+  {
+    "name": "Patti",
+    "top": false
+  },
+  {
+    "name": "Phagwara",
+    "top": false
+  },
+  {
+    "name": "Phillaur",
+    "top": false
+  },
+  {
+    "name": "Qadian",
+    "top": false
+  },
+  {
+    "name": "Raikot",
+    "top": false
+  },
+  {
+    "name": "Rajpura",
+    "top": false
+  },
+  {
+    "name": "Rampura Phul",
+    "top": false
+  },
+  {
+    "name": "Rupnagar",
+    "top": false
+  },
+  {
+    "name": "Samana",
+    "top": false
+  },
+  {
+    "name": "Sangrur",
+    "top": false
+  },
+  {
+    "name": "Sirhind Fatehgarh Sahib",
+    "top": false
+  },
+  {
+    "name": "Sujanpur",
+    "top": false
+  },
+  {
+    "name": "Sunam",
+    "top": false
+  },
+  {
+    "name": "Talwara",
+    "top": false
+  },
+  {
+    "name": "Tarn Taran",
+    "top": false
+  },
+  {
+    "name": "Urmar Tanda",
+    "top": false
+  },
+  {
+    "name": "Zira",
+    "top": false
+  },
+  {
+    "name": "Zirakpur",
+    "top": false
+  },
+  {
+    "name": "Ajmer",
+    "top": false
+  },
+  {
+    "name": "Alwar",
+    "top": false
+  },
+  {
+    "name": "Bikaner",
+    "top": false
+  },
+  {
+    "name": "Bharatpur",
+    "top": false
+  },
+  {
+    "name": "Bhilwara",
+    "top": false
+  },
+  {
+    "name": "Jaipur",
+    "top": true
+  },
+  {
+    "name": "Jodhpur",
+    "top": false
+  },
+  {
+    "name": "Lachhmangarh",
+    "top": false
+  },
+  {
+    "name": "Ladnu",
+    "top": false
+  },
+  {
+    "name": "Lakheri",
+    "top": false
+  },
+  {
+    "name": "Lalsot",
+    "top": false
+  },
+  {
+    "name": "Losal",
+    "top": false
+  },
+  {
+    "name": "Makrana",
+    "top": false
+  },
+  {
+    "name": "Malpura",
+    "top": false
+  },
+  {
+    "name": "Mandalgarh",
+    "top": false
+  },
+  {
+    "name": "Mandawa",
+    "top": false
+  },
+  {
+    "name": "Mangrol",
+    "top": false
+  },
+  {
+    "name": "Merta City",
+    "top": false
+  },
+  {
+    "name": "Mount Abu",
+    "top": false
+  },
+  {
+    "name": "Nadbai",
+    "top": false
+  },
+  {
+    "name": "Nagar",
+    "top": false
+  },
+  {
+    "name": "Nagaur",
+    "top": false
+  },
+  {
+    "name": "Nasirabad",
+    "top": false
+  },
+  {
+    "name": "Nathdwara",
+    "top": false
+  },
+  {
+    "name": "Neem-Ka-Thana",
+    "top": false
+  },
+  {
+    "name": "Nimbahera",
+    "top": false
+  },
+  {
+    "name": "Nohar",
+    "top": false
+  },
+  {
+    "name": "Nokha",
+    "top": false
+  },
+  {
+    "name": "Pali",
+    "top": false
+  },
+  {
+    "name": "Phalodi",
+    "top": false
+  },
+  {
+    "name": "Phulera",
+    "top": false
+  },
+  {
+    "name": "Pilani",
+    "top": false
+  },
+  {
+    "name": "Pilibanga",
+    "top": false
+  },
+  {
+    "name": "Pindwara",
+    "top": false
+  },
+  {
+    "name": "Pipar City",
+    "top": false
+  },
+  {
+    "name": "Prantij",
+    "top": false
+  },
+  {
+    "name": "Pratapgarh",
+    "top": false
+  },
+  {
+    "name": "Raisinghnagar",
+    "top": false
+  },
+  {
+    "name": "Rajakhera",
+    "top": false
+  },
+  {
+    "name": "Rajaldesar",
+    "top": false
+  },
+  {
+    "name": "Rajgarh (Alwar)",
+    "top": false
+  },
+  {
+    "name": "Rajgarh (Churu)",
+    "top": false
+  },
+  {
+    "name": "Rajsamand",
+    "top": false
+  },
+  {
+    "name": "Ramganj Mandi",
+    "top": false
+  },
+  {
+    "name": "Ramngarh",
+    "top": false
+  },
+  {
+    "name": "Ratangarh",
+    "top": false
+  },
+  {
+    "name": "Rawatbhata",
+    "top": false
+  },
+  {
+    "name": "Rawatsar",
+    "top": false
+  },
+  {
+    "name": "Reengus",
+    "top": false
+  },
+  {
+    "name": "Sadri",
+    "top": false
+  },
+  {
+    "name": "Sadulshahar",
+    "top": false
+  },
+  {
+    "name": "Sadulpur",
+    "top": false
+  },
+  {
+    "name": "Sagwara",
+    "top": false
+  },
+  {
+    "name": "Sambhar",
+    "top": false
+  },
+  {
+    "name": "Sanchore",
+    "top": false
+  },
+  {
+    "name": "Sangaria",
+    "top": false
+  },
+  {
+    "name": "Sardarshahar",
+    "top": false
+  },
+  {
+    "name": "Sawai Madhopur",
+    "top": false
+  },
+  {
+    "name": "Shahpura",
+    "top": false
+  },
+  {
+    "name": "Sheoganj",
+    "top": false
+  },
+  {
+    "name": "Sikar",
+    "top": false
+  },
+  {
+    "name": "Sirohi",
+    "top": false
+  },
+  {
+    "name": "Sojat",
+    "top": false
+  },
+  {
+    "name": "Sri Madhopur",
+    "top": false
+  },
+  {
+    "name": "Sujangarh",
+    "top": false
+  },
+  {
+    "name": "Sumerpur",
+    "top": false
+  },
+  {
+    "name": "Suratgarh",
+    "top": false
+  },
+  {
+    "name": "Taranagar",
+    "top": false
+  },
+  {
+    "name": "Todabhim",
+    "top": false
+  },
+  {
+    "name": "Todaraisingh",
+    "top": false
+  },
+  {
+    "name": "Tonk",
+    "top": false
+  },
+  {
+    "name": "Udaipur",
+    "top": false
+  },
+  {
+    "name": "Udaipurwati",
+    "top": false
+  },
+  {
+    "name": "Vijainagar, Ajmer",
+    "top": false
+  },
+  {
+    "name": "Arakkonam",
+    "top": false
+  },
+  {
+    "name": "Aruppukkottai",
+    "top": false
+  },
+  {
+    "name": "Chennai",
+    "top": true
+  },
+  {
+    "name": "Coimbatore",
+    "top": true
+  },
+  {
+    "name": "Erode",
+    "top": false
+  },
+  {
+    "name": "Gobichettipalayam",
+    "top": false
+  },
+  {
+    "name": "Kancheepuram",
+    "top": false
+  },
+  {
+    "name": "Karur",
+    "top": false
+  },
+  {
+    "name": "Lalgudi",
+    "top": false
+  },
+  {
+    "name": "Madurai",
+    "top": false
+  },
+  {
+    "name": "Manachanallur",
+    "top": false
+  },
+  {
+    "name": "Nagapattinam",
+    "top": false
+  },
+  {
+    "name": "Nagercoil",
+    "top": false
+  },
+  {
+    "name": "Namagiripettai",
+    "top": false
+  },
+  {
+    "name": "Namakkal",
+    "top": false
+  },
+  {
+    "name": "Nandivaram-Guduvancheri",
+    "top": false
+  },
+  {
+    "name": "Nanjikottai",
+    "top": false
+  },
+  {
+    "name": "Natham",
+    "top": false
+  },
+  {
+    "name": "Nellikuppam",
+    "top": false
+  },
+  {
+    "name": "Neyveli (TS)",
+    "top": false
+  },
+  {
+    "name": "O' Valley",
+    "top": false
+  },
+  {
+    "name": "Oddanchatram",
+    "top": false
+  },
+  {
+    "name": "P.N.Patti",
+    "top": false
+  },
+  {
+    "name": "Pacode",
+    "top": false
+  },
+  {
+    "name": "Padmanabhapuram",
+    "top": false
+  },
+  {
+    "name": "Palani",
+    "top": false
+  },
+  {
+    "name": "Palladam",
+    "top": false
+  },
+  {
+    "name": "Pallapatti",
+    "top": false
+  },
+  {
+    "name": "Pallikonda",
+    "top": false
+  },
+  {
+    "name": "Panagudi",
+    "top": false
+  },
+  {
+    "name": "Panruti",
+    "top": false
+  },
+  {
+    "name": "Paramakudi",
+    "top": false
+  },
+  {
+    "name": "Parangipettai",
+    "top": false
+  },
+  {
+    "name": "Pattukkottai",
+    "top": false
+  },
+  {
+    "name": "Perambalur",
+    "top": false
+  },
+  {
+    "name": "Peravurani",
+    "top": false
+  },
+  {
+    "name": "Periyakulam",
+    "top": false
+  },
+  {
+    "name": "Periyasemur",
+    "top": false
+  },
+  {
+    "name": "Pernampattu",
+    "top": false
+  },
+  {
+    "name": "Pollachi",
+    "top": false
+  },
+  {
+    "name": "Polur",
+    "top": false
+  },
+  {
+    "name": "Ponneri",
+    "top": false
+  },
+  {
+    "name": "Pudukkottai",
+    "top": false
+  },
+  {
+    "name": "Pudupattinam",
+    "top": false
+  },
+  {
+    "name": "Puliyankudi",
+    "top": false
+  },
+  {
+    "name": "Punjaipugalur",
+    "top": false
+  },
+  {
+    "name": "Ranipet",
+    "top": false
+  },
+  {
+    "name": "Rajapalayam",
+    "top": false
+  },
+  {
+    "name": "Ramanathapuram",
+    "top": false
+  },
+  {
+    "name": "Rameshwaram",
+    "top": false
+  },
+  {
+    "name": "Rasipuram",
+    "top": false
+  },
+  {
+    "name": "Salem",
+    "top": false
+  },
+  {
+    "name": "Sankarankoil",
+    "top": false
+  },
+  {
+    "name": "Sankari",
+    "top": false
+  },
+  {
+    "name": "Sathyamangalam",
+    "top": false
+  },
+  {
+    "name": "Sattur",
+    "top": false
+  },
+  {
+    "name": "Shenkottai",
+    "top": false
+  },
+  {
+    "name": "Sholavandan",
+    "top": false
+  },
+  {
+    "name": "Sholingur",
+    "top": false
+  },
+  {
+    "name": "Sirkali",
+    "top": false
+  },
+  {
+    "name": "Sivaganga",
+    "top": false
+  },
+  {
+    "name": "Sivagiri",
+    "top": false
+  },
+  {
+    "name": "Sivakasi",
+    "top": false
+  },
+  {
+    "name": "Srivilliputhur",
+    "top": false
+  },
+  {
+    "name": "Surandai",
+    "top": false
+  },
+  {
+    "name": "Suriyampalayam",
+    "top": false
+  },
+  {
+    "name": "Tenkasi",
+    "top": false
+  },
+  {
+    "name": "Thammampatti",
+    "top": false
+  },
+  {
+    "name": "Thanjavur",
+    "top": false
+  },
+  {
+    "name": "Tharamangalam",
+    "top": false
+  },
+  {
+    "name": "Tharangambadi",
+    "top": false
+  },
+  {
+    "name": "Theni Allinagaram",
+    "top": false
+  },
+  {
+    "name": "Thirumangalam",
+    "top": false
+  },
+  {
+    "name": "Thirupuvanam",
+    "top": false
+  },
+  {
+    "name": "Thiruthuraipoondi",
+    "top": false
+  },
+  {
+    "name": "Thiruvallur",
+    "top": false
+  },
+  {
+    "name": "Thiruvarur",
+    "top": false
+  },
+  {
+    "name": "Thuraiyur",
+    "top": false
+  },
+  {
+    "name": "Tindivanam",
+    "top": false
+  },
+  {
+    "name": "Tiruchendur",
+    "top": false
+  },
+  {
+    "name": "Tiruchengode",
+    "top": false
+  },
+  {
+    "name": "Tiruchirappalli",
+    "top": false
+  },
+  {
+    "name": "Tirukalukundram",
+    "top": false
+  },
+  {
+    "name": "Tirukkoyilur",
+    "top": false
+  },
+  {
+    "name": "Tirunelveli",
+    "top": false
+  },
+  {
+    "name": "Tirupathur",
+    "top": false
+  },
+  {
+    "name": "Tiruppur",
+    "top": false
+  },
+  {
+    "name": "Tiruttani",
+    "top": false
+  },
+  {
+    "name": "Tiruvannamalai",
+    "top": false
+  },
+  {
+    "name": "Tiruvethipuram",
+    "top": false
+  },
+  {
+    "name": "Tittakudi",
+    "top": false
+  },
+  {
+    "name": "Udhagamandalam",
+    "top": false
+  },
+  {
+    "name": "Udumalaipettai",
+    "top": false
+  },
+  {
+    "name": "Unnamalaikadai",
+    "top": false
+  },
+  {
+    "name": "Usilampatti",
+    "top": false
+  },
+  {
+    "name": "Uthamapalayam",
+    "top": false
+  },
+  {
+    "name": "Uthiramerur",
+    "top": false
+  },
+  {
+    "name": "Vadakkuvalliyur",
+    "top": false
+  },
+  {
+    "name": "Vadalur",
+    "top": false
+  },
+  {
+    "name": "Vadipatti",
+    "top": false
+  },
+  {
+    "name": "Valparai",
+    "top": false
+  },
+  {
+    "name": "Vandavasi",
+    "top": false
+  },
+  {
+    "name": "Vaniyambadi",
+    "top": false
+  },
+  {
+    "name": "Vedaranyam",
+    "top": false
+  },
+  {
+    "name": "Vellakoil",
+    "top": false
+  },
+  {
+    "name": "Vellore",
+    "top": false
+  },
+  {
+    "name": "Vikramasingapuram",
+    "top": false
+  },
+  {
+    "name": "Viluppuram",
+    "top": false
+  },
+  {
+    "name": "Virudhachalam",
+    "top": false
+  },
+  {
+    "name": "Virudhunagar",
+    "top": false
+  },
+  {
+    "name": "Viswanatham",
+    "top": false
+  },
+  {
+    "name": "Adilabad",
+    "top": false
+  },
+  {
+    "name": "Bellampalle",
+    "top": false
+  },
+  {
+    "name": "Bhadrachalam",
+    "top": false
+  },
+  {
+    "name": "Bhainsa",
+    "top": false
+  },
+  {
+    "name": "Bhongir",
+    "top": false
+  },
+  {
+    "name": "Bodhan",
+    "top": false
+  },
+  {
+    "name": "Farooqnagar",
+    "top": false
+  },
+  {
+    "name": "Gadwal",
+    "top": false
+  },
+  {
+    "name": "Hyderabad",
+    "top": true
+  },
+  {
+    "name": "Jagtial",
+    "top": false
+  },
+  {
+    "name": "Jangaon",
+    "top": false
+  },
+  {
+    "name": "Kagaznagar",
+    "top": false
+  },
+  {
+    "name": "Kamareddy",
+    "top": false
+  },
+  {
+    "name": "Karimnagar",
+    "top": false
+  },
+  {
+    "name": "Khammam",
+    "top": false
+  },
+  {
+    "name": "Koratla",
+    "top": false
+  },
+  {
+    "name": "Kothagudem",
+    "top": false
+  },
+  {
+    "name": "Kyathampalle",
+    "top": false
+  },
+  {
+    "name": "Mahbubnagar",
+    "top": false
+  },
+  {
+    "name": "Mancherial",
+    "top": false
+  },
+  {
+    "name": "Mandamarri",
+    "top": false
+  },
+  {
+    "name": "Manuguru",
+    "top": false
+  },
+  {
+    "name": "Medak",
+    "top": false
+  },
+  {
+    "name": "Miryalaguda",
+    "top": false
+  },
+  {
+    "name": "Nagarkurnool",
+    "top": false
+  },
+  {
+    "name": "Narayanpet",
+    "top": false
+  },
+  {
+    "name": "Nirmal",
+    "top": false
+  },
+  {
+    "name": "Nizamabad",
+    "top": false
+  },
+  {
+    "name": "Palwancha",
+    "top": false
+  },
+  {
+    "name": "Ramagundam",
+    "top": false
+  },
+  {
+    "name": "Sadasivpet",
+    "top": false
+  },
+  {
+    "name": "Sangareddy",
+    "top": false
+  },
+  {
+    "name": "Siddipet",
+    "top": false
+  },
+  {
+    "name": "Sircilla",
+    "top": false
+  },
+  {
+    "name": "Suryapet",
+    "top": false
+  },
+  {
+    "name": "Tandur",
+    "top": false
+  },
+  {
+    "name": "Vikarabad",
+    "top": false
+  },
+  {
+    "name": "Wanaparthy",
+    "top": false
+  },
+  {
+    "name": "Warangal",
+    "top": false
+  },
+  {
+    "name": "Yellandu",
+    "top": false
+  },
+  {
+    "name": "Agartala",
+    "top": false
+  },
+  {
+    "name": "Belonia",
+    "top": false
+  },
+  {
+    "name": "Dharmanagar",
+    "top": false
+  },
+  {
+    "name": "Kailasahar",
+    "top": false
+  },
+  {
+    "name": "Khowai",
+    "top": false
+  },
+  {
+    "name": "Pratapgarh",
+    "top": false
+  },
+  {
+    "name": "Udaipur",
+    "top": false
+  },
+  {
+    "name": "Achhnera",
+    "top": false
+  },
+  {
+    "name": "Agra",
+    "top": true
+  },
+  {
+    "name": "Aligarh",
+    "top": false
+  },
+  {
+    "name": "Allahabad",
+    "top": true
+  },
+  {
+    "name": "Amroha",
+    "top": false
+  },
+  {
+    "name": "Azamgarh",
+    "top": false
+  },
+  {
+    "name": "Bahraich",
+    "top": false
+  },
+  {
+    "name": "Chandausi",
+    "top": false
+  },
+  {
+    "name": "Etawah",
+    "top": false
+  },
+  {
+    "name": "Firozabad",
+    "top": false
+  },
+  {
+    "name": "Fatehpur Sikri",
+    "top": false
+  },
+  {
+    "name": "Ghaziabad",
+    "top": true
+  },
+  {
+    "name": "Gorakhpur",
+    "top": true
+  },
+  {
+    "name": "Hapur",
+    "top": false
+  },
+  {
+    "name": "Hardoi ",
+    "top": false
+  },
+  {
+    "name": "Jhansi",
+    "top": false
+  },
+  {
+    "name": "Kalpi",
+    "top": false
+  },
+  {
+    "name": "Kanpur",
+    "top": true
+  },
+  {
+    "name": "Khair",
+    "top": false
+  },
+  {
+    "name": "Laharpur",
+    "top": false
+  },
+  {
+    "name": "Lakhimpur",
+    "top": false
+  },
+  {
+    "name": "Lal Gopalganj Nindaura",
+    "top": false
+  },
+  {
+    "name": "Lalitpur",
+    "top": false
+  },
+  {
+    "name": "Lalganj",
+    "top": false
+  },
+  {
+    "name": "Lar",
+    "top": false
+  },
+  {
+    "name": "Loni",
+    "top": false
+  },
+  {
+    "name": "Lucknow",
+    "top": true
+  },
+  {
+    "name": "Mathura",
+    "top": false
+  },
+  {
+    "name": "Meerut",
+    "top": false
+  },
+  {
+    "name": "Modinagar",
+    "top": false
+  },
+  {
+    "name": "Moradabad",
+    "top": false
+  },
+  {
+    "name": "Nagina",
+    "top": false
+  },
+  {
+    "name": "Najibabad",
+    "top": false
+  },
+  {
+    "name": "Nakur",
+    "top": false
+  },
+  {
+    "name": "Nanpara",
+    "top": false
+  },
+  {
+    "name": "Naraura",
+    "top": false
+  },
+  {
+    "name": "Naugawan Sadat",
+    "top": false
+  },
+  {
+    "name": "Nautanwa",
+    "top": false
+  },
+  {
+    "name": "Nawabganj",
+    "top": false
+  },
+  {
+    "name": "Nehtaur",
+    "top": false
+  },
+  {
+    "name": "Niwai",
+    "top": false
+  },
+  {
+    "name": "Noida",
+    "top": true
+  },
+  {
+    "name": "Noorpur",
+    "top": false
+  },
+  {
+    "name": "Obra",
+    "top": false
+  },
+  {
+    "name": "Orai",
+    "top": false
+  },
+  {
+    "name": "Padrauna",
+    "top": false
+  },
+  {
+    "name": "Palia Kalan",
+    "top": false
+  },
+  {
+    "name": "Parasi",
+    "top": false
+  },
+  {
+    "name": "Phulpur",
+    "top": false
+  },
+  {
+    "name": "Pihani",
+    "top": false
+  },
+  {
+    "name": "Pilibhit",
+    "top": false
+  },
+  {
+    "name": "Pilkhuwa",
+    "top": false
+  },
+  {
+    "name": "Powayan",
+    "top": false
+  },
+  {
+    "name": "Pukhrayan",
+    "top": false
+  },
+  {
+    "name": "Puranpur",
+    "top": false
+  },
+  {
+    "name": "Purquazi",
+    "top": false
+  },
+  {
+    "name": "Purwa",
+    "top": false
+  },
+  {
+    "name": "Rae Bareli",
+    "top": false
+  },
+  {
+    "name": "Rampur",
+    "top": false
+  },
+  {
+    "name": "Rampur Maniharan",
+    "top": false
+  },
+  {
+    "name": "Rasra",
+    "top": false
+  },
+  {
+    "name": "Rath",
+    "top": false
+  },
+  {
+    "name": "Renukoot",
+    "top": false
+  },
+  {
+    "name": "Reoti",
+    "top": false
+  },
+  {
+    "name": "Robertsganj",
+    "top": false
+  },
+  {
+    "name": "Rudauli",
+    "top": false
+  },
+  {
+    "name": "Rudrapur",
+    "top": false
+  },
+  {
+    "name": "Sadabad",
+    "top": false
+  },
+  {
+    "name": "Safipur",
+    "top": false
+  },
+  {
+    "name": "Saharanpur",
+    "top": false
+  },
+  {
+    "name": "Sahaspur",
+    "top": false
+  },
+  {
+    "name": "Sahaswan",
+    "top": false
+  },
+  {
+    "name": "Sahawar",
+    "top": false
+  },
+  {
+    "name": "Sahjanwa",
+    "top": false
+  },
+  {
+    "name": "Saidpur",
+    "top": false
+  },
+  {
+    "name": "Sambhal",
+    "top": false
+  },
+  {
+    "name": "Samdhan",
+    "top": false
+  },
+  {
+    "name": "Samthar",
+    "top": false
+  },
+  {
+    "name": "Sandi",
+    "top": false
+  },
+  {
+    "name": "Sandila",
+    "top": false
+  },
+  {
+    "name": "Sardhana",
+    "top": false
+  },
+  {
+    "name": "Seohara",
+    "top": false
+  },
+  {
+    "name": "Shahabad, Hardoi",
+    "top": false
+  },
+  {
+    "name": "Shahabad, Rampur",
+    "top": false
+  },
+  {
+    "name": "Shahganj",
+    "top": false
+  },
+  {
+    "name": "Shahjahanpur",
+    "top": false
+  },
+  {
+    "name": "Shamli",
+    "top": false
+  },
+  {
+    "name": "Shamsabad, Agra",
+    "top": false
+  },
+  {
+    "name": "Shamsabad, Farrukhabad",
+    "top": false
+  },
+  {
+    "name": "Sherkot",
+    "top": false
+  },
+  {
+    "name": "Shikarpur, Bulandshahr",
+    "top": false
+  },
+  {
+    "name": "Shikohabad",
+    "top": false
+  },
+  {
+    "name": "Shishgarh",
+    "top": false
+  },
+  {
+    "name": "Siana",
+    "top": false
+  },
+  {
+    "name": "Sikanderpur",
+    "top": false
+  },
+  {
+    "name": "Sikandra Rao",
+    "top": false
+  },
+  {
+    "name": "Sikandrabad",
+    "top": false
+  },
+  {
+    "name": "Sirsaganj",
+    "top": false
+  },
+  {
+    "name": "Sirsi",
+    "top": false
+  },
+  {
+    "name": "Sitapur",
+    "top": false
+  },
+  {
+    "name": "Soron",
+    "top": false
+  },
+  {
+    "name": "Suar",
+    "top": false
+  },
+  {
+    "name": "Sultanpur",
+    "top": false
+  },
+  {
+    "name": "Sumerpur",
+    "top": false
+  },
+  {
+    "name": "Tanda",
+    "top": false
+  },
+  {
+    "name": "Thakurdwara",
+    "top": false
+  },
+  {
+    "name": "Thana Bhawan",
+    "top": false
+  },
+  {
+    "name": "Tilhar",
+    "top": false
+  },
+  {
+    "name": "Tirwaganj",
+    "top": false
+  },
+  {
+    "name": "Tulsipur",
+    "top": false
+  },
+  {
+    "name": "Tundla",
+    "top": false
+  },
+  {
+    "name": "Ujhani",
+    "top": false
+  },
+  {
+    "name": "Unnao",
+    "top": false
+  },
+  {
+    "name": "Utraula",
+    "top": false
+  },
+  {
+    "name": "Varanasi",
+    "top": true
+  },
+  {
+    "name": "Vrindavan",
+    "top": false
+  },
+  {
+    "name": "Warhapur",
+    "top": false
+  },
+  {
+    "name": "Zaidpur",
+    "top": false
+  },
+  {
+    "name": "Zamania",
+    "top": false
+  },
+  {
+    "name": "Bageshwar",
+    "top": false
+  },
+  {
+    "name": "Dehradun",
+    "top": true
+  },
+  {
+    "name": "Haldwani-cum-Kathgodam",
+    "top": false
+  },
+  {
+    "name": "Hardwar",
+    "top": false
+  },
+  {
+    "name": "Kashipur",
+    "top": false
+  },
+  {
+    "name": "Manglaur",
+    "top": false
+  },
+  {
+    "name": "Mussoorie",
+    "top": false
+  },
+  {
+    "name": "Nagla",
+    "top": false
+  },
+  {
+    "name": "Nainital",
+    "top": false
+  },
+  {
+    "name": "Pauri",
+    "top": false
+  },
+  {
+    "name": "Pithoragarh",
+    "top": false
+  },
+  {
+    "name": "Ramnagar",
+    "top": false
+  },
+  {
+    "name": "Rishikesh",
+    "top": false
+  },
+  {
+    "name": "Roorkee",
+    "top": false
+  },
+  {
+    "name": "Rudrapur",
+    "top": false
+  },
+  {
+    "name": "Sitarganj",
+    "top": false
+  },
+  {
+    "name": "Srinagar",
+    "top": false
+  },
+  {
+    "name": "Tehri",
+    "top": false
+  },
+  {
+    "name": "Adra",
+    "top": false
+  },
+  {
+    "name": "Alipurduar",
+    "top": false
+  },
+  {
+    "name": "Arambagh",
+    "top": false
+  },
+  {
+    "name": "Asansol",
+    "top": false
+  },
+  {
+    "name": "Baharampur",
+    "top": false
+  },
+  {
+    "name": "Balurghat",
+    "top": false
+  },
+  {
+    "name": "Bankura",
+    "top": false
+  },
+  {
+    "name": "Darjiling",
+    "top": false
+  },
+  {
+    "name": "English Bazar",
+    "top": false
+  },
+  {
+    "name": "Gangarampur",
+    "top": false
+  },
+  {
+    "name": "Habra",
+    "top": false
+  },
+  {
+    "name": "Hugli-Chinsurah",
+    "top": false
+  },
+  {
+    "name": "Jalpaiguri",
+    "top": false
+  },
+  {
+    "name": "Jhargram",
+    "top": false
+  },
+  {
+    "name": "Kalimpong",
+    "top": false
+  },
+  {
+    "name": "Kharagpur",
+    "top": false
+  },
+  {
+    "name": "Kolkata",
+    "top": true
+  },
+  {
+    "name": "Mainaguri",
+    "top": false
+  },
+  {
+    "name": "Malda",
+    "top": false
+  },
+  {
+    "name": "Mathabhanga",
+    "top": false
+  },
+  {
+    "name": "Medinipur",
+    "top": false
+  },
+  {
+    "name": "Memari",
+    "top": false
+  },
+  {
+    "name": "Monoharpur",
+    "top": false
+  },
+  {
+    "name": "Murshidabad",
+    "top": false
+  },
+  {
+    "name": "Nabadwip",
+    "top": false
+  },
+  {
+    "name": "Naihati",
+    "top": false
+  },
+  {
+    "name": "Panchla",
+    "top": false
+  },
+  {
+    "name": "Pandua",
+    "top": false
+  },
+  {
+    "name": "Paschim Punropara",
+    "top": false
+  },
+  {
+    "name": "Purulia",
+    "top": false
+  },
+  {
+    "name": "Raghunathpur",
+    "top": false
+  },
+  {
+    "name": "Raghunathganj",
+    "top": false
+  },
+  {
+    "name": "Raiganj",
+    "top": false
+  },
+  {
+    "name": "Rampurhat",
+    "top": false
+  },
+  {
+    "name": "Ranaghat",
+    "top": false
+  },
+  {
+    "name": "Sainthia",
+    "top": false
+  },
+  {
+    "name": "Santipur",
+    "top": false
+  },
+  {
+    "name": "Siliguri",
+    "top": false
+  },
+  {
+    "name": "Sonamukhi",
+    "top": false
+  },
+  {
+    "name": "Srirampore",
+    "top": false
+  },
+  {
+    "name": "Suri",
+    "top": false
+  },
+  {
+    "name": "Taki",
+    "top": false
+  },
+  {
+    "name": "Tamluk",
+    "top": false
+  },
+  {
+    "name": "Tarakeswar",
+    "top": false
   }
-}
+]
