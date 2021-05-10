@@ -41,7 +41,7 @@ export default function Navbar() {
                 </a>
               </Link>
             </div>
-            <div className="hidden md:block sm:ml-20 sm:mr-0 space-x-4 justify-between lg:ml-20">
+            <div className="hidden lg:flex items-center space-x-4 justify-between">
               <NavLink url="/">{t("HOME")}</NavLink>
               <NavLink url="https://verifynum.herokuapp.com/" isExternal>
                 {t("RESOURCE_VERIFIER")}
@@ -50,7 +50,7 @@ export default function Navbar() {
               <NavLink url="/about">{t("ABOUT")}</NavLink>
               <ChangeLocale />
             </div>
-            <div className="flex space-x-4 items-center justify-center lg:hidden">
+            <div className="flex space-x-4 items-center justify-center lg:hidden mr-4 lg:mr-0">
               <ChangeLocale />
               {canShare ? (
                 <button
