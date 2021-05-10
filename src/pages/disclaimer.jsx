@@ -1,6 +1,8 @@
 import * as React from "react"
 import Footer from "~/components/Footer"
 import Navbar from "~/components/Navbar"
+import path from "path"
+import fs from "fs"
 
 const DisclaimerPage = ({ disclaimer }) => {
   return (
@@ -20,8 +22,8 @@ const DisclaimerPage = ({ disclaimer }) => {
 }
 
 export const getStaticProps = async () => {
-  const disclaimer = require("fs").readFileSync(
-    "src/seeds/disclaimer.txt",
+  const disclaimer = fs.readFileSync(
+    path.resolve(process.cwd(), "data/disclaimer.txt"),
     "utf8"
   )
   return { props: { disclaimer } }

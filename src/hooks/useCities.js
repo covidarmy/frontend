@@ -1,6 +1,7 @@
 import fetcher from "~/lib/fetcher"
 import useSWR from "swr"
 import * as React from "react"
+import { API_BASE_URL } from "~/constants"
 
 const getCitiesFromData = (data) => {
   const cities = []
@@ -12,10 +13,7 @@ const getCitiesFromData = (data) => {
 }
 
 export const useCities = () => {
-  const { data, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/cities`,
-    fetcher
-  )
+  const { data, error } = useSWR(`${API_BASE_URL}/api/cities`, fetcher)
   const [cities, setCities] = React.useState(data)
   const [isLoading, setIsLoading] = React.useState(true)
 

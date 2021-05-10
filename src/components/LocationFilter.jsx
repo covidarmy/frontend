@@ -42,6 +42,7 @@ export default function LocationFilter() {
 
       _data = fuse.search(searchValue).map(({ item }) => item)
     }
+
     if (!showMore) {
       _data =
         _data !== null
