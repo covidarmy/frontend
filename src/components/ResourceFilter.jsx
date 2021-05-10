@@ -22,7 +22,8 @@ export default function ResourceFilter() {
         </div>
         <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
           {resources.map((item) => {
-            const buttonResource = item.toLowerCase()
+            const buttonResource = item.replace(/\s+/g, "").toLowerCase()
+
             return (
               <FilterButton
                 key={item}
