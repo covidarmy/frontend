@@ -1,6 +1,6 @@
 import fetcher from "~/lib/fetcher"
 import { useSWRInfinite } from "swr"
-import { API_BASE_URL } from "~/lib/url"
+import { API_BASE_URL } from "~/constants"
 
 export const useTweets = ({ location, resource }) => {
   let url = API_BASE_URL + "/api/tweets"
