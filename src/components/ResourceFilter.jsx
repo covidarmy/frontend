@@ -26,7 +26,8 @@ export default function ResourceFilter() {
         </div>
         <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
           {resources.map((item) => {
-            const buttonResource = item.toLowerCase()
+            const buttonResource = item.replace(/\s+/g, "").toLowerCase()
+
             return (
               <FilterButton
                 key={item}
@@ -49,7 +50,7 @@ export default function ResourceFilter() {
     <div className="shadow-md border border-gray-200 rounded-md bg-gray-100 text-center box-border h-auto w-full my-2 p-3 lg:p-6 cursor-not-allowed">
       <div className="flex">
         <ResourceIconDeactivated />
-        <p className="text-strong mt-0 ml-1 font-bold text-gray-500">
+        <p className="text-strong mt-0 ml-1 font-bold text-gray-600">
           {t("CHOOSE_LOCATION_FIRST")}
         </p>
       </div>

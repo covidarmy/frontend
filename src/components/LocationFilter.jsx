@@ -1,13 +1,11 @@
+import * as React from "react"
 import Fuse from "fuse.js"
 import { useRouter } from "next/router"
 import FilterButton from "./FilterButton"
-import * as React from "react"
 import LocationIcon from "../assets/Location.svg"
 import SearchIcon from "../assets/Search.svg"
-import { HiChevronDown as DownArrow } from "react-icons/hi"
-import { HiChevronUp as UpArrow } from "react-icons/hi"
-import { useCities } from "~/hooks/useCities"
 import Skeleton from "react-loading-skeleton"
+import { useCities } from "~/hooks/useCities"
 import { useSlug } from "~/context/slug"
 import { useTranslation } from "~/context/translation"
 
@@ -15,6 +13,7 @@ export default function LocationFilter() {
   const { location, resource } = useSlug()
   const { t } = useTranslation()
   const [cities, error, isLoading] = useCities()
+
   const [cityState, setCityState] = React.useState(false)
   const router = useRouter()
   const filter = router.pathname === "/" && "all"
@@ -44,6 +43,7 @@ export default function LocationFilter() {
 
       _data = fuse.search(searchValue).map(({ item }) => item)
     }
+
     if (!showMore) {
       _data =
         _data !== null
@@ -114,14 +114,18 @@ export default function LocationFilter() {
               setSearchValue(currentTarget.value)
             }
           />
-          <button type="submit" className="relative h-7 w-7 ml-2 mt-2">
+          <button
+            type="submit"
+            className="relative h-7 w-7 ml-2 mt-2"
+            aria-label="Search"
+          >
             <SearchIcon />
           </button>
         </div>
         <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
           {renderButtons()}
         </div>
-        <div className="mt-2 ml-1">
+        {/* <div className="mt-2 ml-1">
           <button
             className="hover:underline flex items-center text-indigo-600 focus:outline-none focus:ring focus:border-blue-300"
             onClick={() => setShowMore((prev) => !prev)}
@@ -132,7 +136,7 @@ export default function LocationFilter() {
             {showMore && <UpArrow />}
             {!showMore && <DownArrow />}
           </button>
-        </div>
+        </div> */}
       </div>
     )
 

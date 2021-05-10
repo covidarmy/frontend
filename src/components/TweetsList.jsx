@@ -11,7 +11,12 @@ const TweetsList = () => {
   const { t } = useTranslation()
 
   if (error) return <div>failed to load</div>
-  if (!data) return <Skeleton count={40} />
+  if (!data)
+    return (
+      <div className="space-y-4 px-0 lg:px-12">
+        <Skeleton count={4} height={340} />
+      </div>
+    )
 
   const showMore = () => {
     setSize(size + 1)
@@ -22,7 +27,7 @@ const TweetsList = () => {
 
   if (!(location && resource)) {
     return (
-      <div className="py-4 text-xl font-bold">
+      <div className="py-4 text-xl text-center font-bold">
         {t("SELECT_LOCATION_RESOURCE")}
       </div>
     )
@@ -30,7 +35,7 @@ const TweetsList = () => {
 
   if (data[0].length > 0) {
     return (
-      <>
+      <div className="flex flex-col items-center justify-center">
         {
           // Tweets
           data.map((page) => {
@@ -47,14 +52,14 @@ const TweetsList = () => {
         {!isReachingEnd && (
           <button
             onClick={showMore}
-            className="bg-indigo-200 text-indigo-700 flex items-center justify-center px-4 py-2 rounded-md gap-2 shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="bg-indigo-200 text-indigo-700 flex items-center justify-center px-4 py-2 mb-2 rounded-md gap-2 shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
             disabled={data[0].length % 20 !== 0}
           >
             {t("SHOW_MORE")}
             <HiChevronDoubleDown />
           </button>
         )}
-      </>
+      </div>
     )
   }
 
