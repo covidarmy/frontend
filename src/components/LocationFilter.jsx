@@ -107,7 +107,7 @@ export default function LocationFilter() {
             className="border-2 w-full relative w-400 border-gray-300 bg-white h-10 pl-10 pr-4 rounded-lg text-sm transition-all focus:outline-none focus:ring focus:border-blue-300"
             type="search"
             name="search"
-            placeholder="Search for your city or Select from below"
+            placeholder="Start searching any city"
             onChange={({ currentTarget }) =>
               setSearchValue(currentTarget.value)
             }
