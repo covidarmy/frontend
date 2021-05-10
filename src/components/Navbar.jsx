@@ -46,9 +46,14 @@ export default function Navbar() {
               </Link>
             </div>
             <div className="hidden md:block sm:ml-20 sm:mr-0 space-x-4 justify-between lg:ml-20">
-              <NavLink url="/">Home</NavLink>
               <NavLink url="https://verifynum.herokuapp.com/" isExternal>
-                Resource Verifier (Beta)
+                Verify
+              </NavLink>
+              <NavLink url="https://donate.indiacovidresources.in/" isExternal>
+                Donate
+              </NavLink>
+              <NavLink url="http://plasma.indiacovidresources.in/" isExternal>
+                Plasma
               </NavLink>
               <NavLink url="/disclaimer"> Disclaimer</NavLink>
               <NavLink url="/about"> About</NavLink>
@@ -77,9 +82,14 @@ export default function Navbar() {
           </div>
           <Disclosure.Panel className="md:hidden">
             <div className="px-2 grid pt-2 pb-3 space-y-1 sm:px-3">
-              <NavLink url="/">Home</NavLink>
-              <NavLink url="https://verifynum.herokuapp.com/" isExternal>
-                Resource Verifier (Beta)
+              <NavLink url="https://verifynum.herokuapp.com" isExternal>
+                Verify
+              </NavLink>
+              <NavLink url="https://donate.indiacovidresources.in/" isExternal>
+                Donate
+              </NavLink>
+              <NavLink url="http://plasma.indiacovidresources.in/" isExternal>
+                Plasma
               </NavLink>
               <NavLink url="/disclaimer"> Disclaimer</NavLink>
               <NavLink url="/about"> About</NavLink>
