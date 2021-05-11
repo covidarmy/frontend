@@ -103,23 +103,18 @@ export default function LocationFilter() {
           <LocationIcon className="h-5 w-5 mt-1" />
           <p className="text-strong ml-1 mt-0.5 font-bold">Choose Your City</p>
         </div>
+        {/* search bar */}
         <div className="pt-2 ml-1 flex justify-start relative text-gray-600">
           <input
-            className="border-2 w-full relative w-400 border-gray-300 bg-white h-10 px-3 pr-16 rounded-lg text-sm focus:outline-none focus:ring focus:border-blue-300"
+            className="border-2 w-full relative w-400 border-gray-300 bg-white h-10 pl-10 pr-4 rounded-lg text-sm transition-all focus:outline-none focus:ring focus:border-blue-300"
             type="search"
             name="search"
-            placeholder="Search for your city or Select from below"
+            placeholder="Start searching any city"
             onChange={({ currentTarget }) =>
               setSearchValue(currentTarget.value)
             }
           />
-          <button
-            type="submit"
-            className="relative h-7 w-7 ml-2 mt-2"
-            aria-label="Search"
-          >
-            <SearchIcon />
-          </button>
+          <SearchIcon className="absolute top-5 left-4" />
         </div>
         <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
           {renderButtons()}
