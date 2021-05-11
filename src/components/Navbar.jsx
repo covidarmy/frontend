@@ -41,7 +41,7 @@ export default function Navbar() {
                 </a>
               </Link>
             </div>
-            <div className="hidden md:block sm:ml-20 sm:mr-0 space-x-4 justify-between lg:ml-20">
+            <div className="hidden lg:flex items-center space-x-4 justify-between">
               <NavLink url="https://donate.indiacovidresources.in/" isExternal>
                 {t("DONATE")}
               </NavLink>
