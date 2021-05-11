@@ -22,7 +22,7 @@ export default function Navbar() {
     <Disclosure as="header" className="shadow-lg bg-white w-full">
       {({ open }) => (
         <nav>
-          <div className="flex items-center justify-between w-full h-16 px-4 lg:px-20">
+          <div className="flex items-center justify-between w-full h-16 lg:px-20">
             <div className="-mr-2 flex md:hidden">
               {/* Mobile menu button */}
               <Disclosure.Button className=" inline-flex items-center justify-center p-2 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-white">
@@ -34,13 +34,11 @@ export default function Navbar() {
                 )}
               </Disclosure.Button>
             </div>
-            <div className="flex flex-col lg:flex-row items-center justify-center lg:items-end lg:ml-8 sm:ml-10">
-              <Link href="/">
-                <a aria-label="Covid Army Logo">
-                  <Logo />
-                </a>
-              </Link>
-            </div>
+            <Link href="/" passHref>
+              <a aria-label="Covid Army Logo">
+                <Logo />
+              </a>
+            </Link>
             <div className="hidden lg:flex items-center space-x-4 justify-between">
               <NavLink url="https://donate.indiacovidresources.in/" isExternal>
                 {t("DONATE")}
@@ -52,7 +50,7 @@ export default function Navbar() {
               <NavLink url="/about">{t("ABOUT")}</NavLink>
               <ChangeLocale />
             </div>
-            <div className="flex space-x-4 items-center justify-center lg:hidden mr-4 lg:mr-0">
+            <div className="flex space-x-4 items-center justify-center lg:hidden lg:mr-0 pr-1">
               <ChangeLocale />
               {canShare ? (
                 <button

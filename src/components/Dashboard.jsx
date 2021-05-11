@@ -5,15 +5,12 @@ import LocationFilter from "./LocationFilter"
 import ResourceFilter from "./ResourceFilter"
 import TweetsList from "./TweetsList"
 import Footer from "./Footer"
-import { useTranslation } from "~/context/translation"
 
 export const Dashboard = () => {
-  const { t } = useTranslation()
   return (
-    <div className="flex flex-col justify-between h-screen min-h-screen">
-      <div>
-        {/* DISCLAIMER */}
-        <div className="mt-4 lg:mt-8 text-center mb-4 md:mb-0">
+    <>
+      <div className="flex flex-col justify-between lg:overflow-hidden h-auto lg:mt-6">
+        <div className="mt-4 text-center mb-4 md:mb-0">
           <p className="text-xs md:text-sm text-red-600 font-bold">
             🚨 Beware of fraud. Sign{" "}
             <a
@@ -27,15 +24,20 @@ export const Dashboard = () => {
             petition to end covid. 🚨
           </p>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 px-4 overflow-hidden lg:mt-6">
-          <div className="rounded-md">
+        <div className="flex flex-col justify-center px-4 overflow-hidden lg:flex-row lg:mt-6 h-full">
+          <div className="rounded-md flex flex-col lg:w-1/2">
             <LocationFilter />
             <ResourceFilter />
           </div>
-          <TweetsList />
+          <div className="h-auto overflow-y-auto flex-col items-center lg:w-1/2 hidden lg:flex">
+            <TweetsList />
+          </div>
+          <div className="block lg:hidden">
+            <TweetsList />
+          </div>
         </div>
       </div>
       <Footer />
-    </div>
+    </>
   )
 }
