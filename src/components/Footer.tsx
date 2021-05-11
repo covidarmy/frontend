@@ -3,7 +3,7 @@ import { AiFillGithub } from "react-icons/ai"
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col items-center justify-between px-6 py-2 bg-white dark:bg-gray-800 sm:flex-row border-t">
+    <footer className="flex flex-row items-center justify-between px-2 lg:px-6 py-2 mt-auto lg:mt-0 h-16 bg-white dark:bg-gray-800 border-t">
       <div className="flex -mx-2">
         <a
           href="https://github.com/covidarmy/frontend/issues"
