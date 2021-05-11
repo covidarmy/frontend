@@ -24,7 +24,7 @@ const TweetsList = () => {
   const { data, error, size, setSize } = useTweets({ location, resource })
 
   const isOxygenConcentratorFromBanglore =
-    location === "bangalore" && resource === "oxygen concentrator"
+    location === "bangalore" && resource === "oxygenconcentrator"
 
   if (error) return <div>failed to load</div>
   if (!data)

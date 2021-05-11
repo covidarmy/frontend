@@ -4,13 +4,15 @@ import { useRouter } from "next/router"
 import FilterButton from "./FilterButton"
 import LocationIcon from "../assets/Location.svg"
 import SearchIcon from "../assets/Search.svg"
+import { HiChevronDown as DownArrow } from "react-icons/hi"
+import { HiChevronUp as UpArrow } from "react-icons/hi"
 import Skeleton from "react-loading-skeleton"
 import { useCities } from "~/hooks/useCities"
 import { useSlug } from "~/context/slug"
 
 export default function LocationFilter() {
   const { location, resource } = useSlug()
-  const [cities, error, isLoading] = useCities()
+  const [cities, topCities, error, isLoading] = useCities()
 
   const [cityState, setCityState] = React.useState(false)
 
@@ -63,7 +65,7 @@ export default function LocationFilter() {
         _data = [..._data, filter]
       }
     } else if (_data === null) {
-      _data = cities.sort()
+      _data = topCities.sort()
     }
 
     _data = _data.filter((i) => typeof i !== "boolean")
@@ -122,18 +124,16 @@ export default function LocationFilter() {
         <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
           {renderButtons()}
         </div>
-        {/* <div className="mt-2 ml-1">
+        <div className="mt-2 ml-1">
           <button
             className="hover:underline flex items-center text-indigo-600 focus:outline-none focus:ring focus:border-blue-300"
             onClick={() => setShowMore((prev) => !prev)}
           >
-            <span>
-              {showMore ? "Show only top locations" : "Show all locations"}
-            </span>
+            <span>{showMore ? "Most visited" : "Show all top locations"}</span>
             {showMore && <UpArrow />}
             {!showMore && <DownArrow />}
           </button>
-        </div> */}
+        </div>
       </div>
     )
 
