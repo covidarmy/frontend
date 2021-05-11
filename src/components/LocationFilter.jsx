@@ -129,9 +129,7 @@ export default function LocationFilter() {
             className="hover:underline flex items-center text-indigo-600 focus:outline-none focus:ring focus:border-blue-300"
             onClick={() => setShowMore((prev) => !prev)}
           >
-            <span>
-              {showMore ? "Show only top locations" : "Show all locations"}
-            </span>
+            <span>{showMore ? "Most visited" : "Show all top locations"}</span>
             {showMore && <UpArrow />}
             {!showMore && <DownArrow />}
           </button>
