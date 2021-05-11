@@ -3,6 +3,7 @@ import { HiChevronDoubleDown } from "react-icons/hi"
 import { useTweets } from "~/hooks/useTweets"
 import Skeleton from "react-loading-skeleton"
 import { useSlug } from "~/context/slug"
+import { useTranslation } from "~/context/translation"
 
 const OlaNotice = () => {
   return (
@@ -22,6 +23,7 @@ const OlaNotice = () => {
 const TweetsList = () => {
   const { location, resource } = useSlug()
   const { data, error, size, setSize } = useTweets({ location, resource })
+  const { t } = useTranslation()
 
   const isOxygenConcentratorFromBanglore =
     location === "bangalore" && resource === "oxygenconcentrator"
@@ -44,7 +46,7 @@ const TweetsList = () => {
   if (!(location && resource)) {
     return (
       <div className="py-4 text-xl text-center font-bold">
-        Please select city and resource
+        {t("SELECT_LOCATION_RESOURCE")}
       </div>
     )
   }
@@ -72,7 +74,7 @@ const TweetsList = () => {
             className="bg-indigo-200 text-indigo-700 flex items-center justify-center px-4 py-2 mb-2 rounded-md gap-2 shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
             disabled={data[0].length % 20 !== 0}
           >
-            Show more
+            {t("SHOW_MORE")}
             <HiChevronDoubleDown />
           </button>
         )}

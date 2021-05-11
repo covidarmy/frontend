@@ -12,6 +12,7 @@ import {
   TiSocialLinkedin,
 } from "react-icons/ti"
 import { HiGlobeAlt as HiGlobe } from "react-icons/hi"
+import { useTranslation } from "~/context/translation"
 
 interface ObjectLiteral {
   [key: string]: any
@@ -45,16 +46,16 @@ interface Props {
 }
 
 const About: React.FC<Props> = (props) => {
+  const { t } = useTranslation()
   const { partnerData, volunteerData } = props
 
   return (
     <div>
       <Navbar />
-
       <section className="p-6 bg-coolGray-100 text-coolGray-800">
         <div className="container p-4 mx-auto text-center">
           <h3 className="text-2xl text-[#4f46ef] mb-6 font-medium">
-            Our Partners
+            {t("OUR_PARTNERS")}
           </h3>
         </div>
         <div className="container flex flex-wrap justify-center mx-auto text-coolGray-600">
@@ -85,7 +86,7 @@ const About: React.FC<Props> = (props) => {
           <div className="md:col-span-8 lg:col-span-6">
             <div className="mb-12">
               <h3 className="text-2xl text-[#4f46ef] mb-6 font-medium">
-                Our Volunteers
+                {t("OUR_VOLUNTEERS")}
               </h3>
             </div>
           </div>

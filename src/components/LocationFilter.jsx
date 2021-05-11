@@ -9,13 +9,14 @@ import { HiChevronUp as UpArrow } from "react-icons/hi"
 import Skeleton from "react-loading-skeleton"
 import { useCities } from "~/hooks/useCities"
 import { useSlug } from "~/context/slug"
+import { useTranslation } from "~/context/translation"
 
 export default function LocationFilter() {
   const { location, resource } = useSlug()
+  const { t } = useTranslation()
   const [cities, topCities, error, isLoading] = useCities()
 
   const [cityState, setCityState] = React.useState(false)
-
   const router = useRouter()
   const filter = router.pathname === "/" && "all"
   const [showMore, setShowMore] = React.useState(false)
@@ -101,7 +102,9 @@ export default function LocationFilter() {
       <div className="shadow-md bg-white box-border h-auto w-full rounded-md my-2 p-3 lg:p-6 border border-gray-200">
         <div className="flex items-center ml-1 mb-1">
           <LocationIcon className="h-5 w-5 mt-1" />
-          <p className="text-strong ml-1 mt-0.5 font-bold">Choose Your City</p>
+          <p className="text-strong ml-1 mt-0.5 font-bold">
+            {t("CHOOSE_LOCATION")}
+          </p>
         </div>
         {/* search bar */}
         <div className="pt-2 ml-1 flex justify-start relative text-gray-600">
@@ -140,7 +143,7 @@ export default function LocationFilter() {
           <p className="text-strong ml-1 font-bold capitalize">{location}</p>
         </div>
         <button onClick={() => setCityState(!cityState)}>
-          <span className="font-bold text-primary hover:underline">Change</span>
+          <span className="font-bold text-primary">{t("CHANGE")}</span>
         </button>
       </div>
     </div>

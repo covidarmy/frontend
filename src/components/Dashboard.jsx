@@ -5,8 +5,10 @@ import LocationFilter from "./LocationFilter"
 import ResourceFilter from "./ResourceFilter"
 import TweetsList from "./TweetsList"
 import Footer from "./Footer"
+import { useTranslation } from "~/context/translation"
 
 export const Dashboard = () => {
+  const { t } = useTranslation()
   return (
     <div className="flex flex-col justify-between h-screen min-h-screen">
       <div>

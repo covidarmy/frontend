@@ -1,5 +1,4 @@
 import Image from "next/image"
-
 import { AiFillGithub } from "react-icons/ai"
 
 const Footer = () => {
@@ -16,8 +15,6 @@ const Footer = () => {
           <AiFillGithub className="text-3xl" />
         </a>
       </div>
-
-      {/* ------------- POWERED BY VERCEL -------------  */}
       <div className="mt-2">
         <a
           href={`https://vercel.com/?utm_source=Covidarmy&utm_campaign=oss`}
