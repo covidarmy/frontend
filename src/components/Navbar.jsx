@@ -22,7 +22,7 @@ export default function Navbar() {
     <Disclosure as="header" className="shadow-lg bg-white w-full">
       {({ open }) => (
         <nav>
-          <div className="flex items-center justify-between w-full h-16 lg:px-20">
+          <div className="flex items-center justify-between w-full h-16 lg:px-20 px-2 sm:px-4">
             <div className="-mr-2 flex md:hidden">
               {/* Mobile menu button */}
               <Disclosure.Button className=" inline-flex items-center justify-center p-2 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-white">
@@ -56,7 +56,7 @@ export default function Navbar() {
               </div>
               {canShare ? (
                 <button
-                  className="block lg:hidden"
+                  className="block lg:hidden mr-1"
                   onClick={async () => {
                     try {
                       await navigator.share({
