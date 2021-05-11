@@ -9,7 +9,7 @@ import Footer from "./Footer"
 export const Dashboard = () => {
   return (
     <>
-      <div className="flex flex-col justify-between lg:overflow-hidden h-auto lg:mt-6">
+      <div className="flex flex-col justify-between lg:overflow-hidden lg:h-full h-auto lg:mt-6">
         <div className="mt-4 text-center mb-4 md:mb-0">
           <p className="text-xs md:text-sm text-red-600 font-bold">
             🚨 Beware of fraud. Sign{" "}
