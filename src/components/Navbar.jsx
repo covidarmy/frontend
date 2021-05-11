@@ -1,6 +1,5 @@
 import * as React from "react"
 import Link from "next/link"
-import Logo from "../assets/Logo.svg"
 import { Disclosure } from "@headlessui/react"
 import { MenuIcon, XIcon } from "@heroicons/react/outline"
 import { HiOutlineShare } from "react-icons/hi"
@@ -9,6 +8,7 @@ import ChangeLocale from "./ChangeLocale"
 
 // COMPONENTS
 import NavLink from "./NavLinks"
+import Logo from "./Logo"
 
 export default function Navbar() {
   const [canShare, setCanShare] = React.useState(true)
@@ -36,7 +36,7 @@ export default function Navbar() {
             </div>
             <Link href="/" passHref>
               <a aria-label="Covid Army Logo">
-                <Logo />
+                <Logo className="lg:w-[146px] lg:h-[27px] w-[120px] h-[22px]" />
               </a>
             </Link>
             <div className="hidden lg:flex items-center space-x-4 justify-between">
@@ -50,11 +50,13 @@ export default function Navbar() {
               <NavLink url="/about">{t("ABOUT")}</NavLink>
               <ChangeLocale />
             </div>
-            <div className="flex space-x-4 items-center justify-center lg:hidden lg:mr-0 pr-1">
-              <ChangeLocale />
+            <>
+              <div className="lg:hidden">
+                <ChangeLocale />
+              </div>
               {canShare ? (
                 <button
-                  className="block md:hidden"
+                  className="block lg:hidden"
                   onClick={async () => {
                     try {
                       await navigator.share({
@@ -73,7 +75,7 @@ export default function Navbar() {
               ) : (
                 <div className="h-1 w-1 lg:hidden"></div>
               )}
-            </div>
+            </>
           </div>
           <Disclosure.Panel className="md:hidden">
             <div className="px-2 grid pt-2 pb-3 space-y-1 sm:px-3">
