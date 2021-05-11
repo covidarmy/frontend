@@ -22,7 +22,7 @@ const FilterButton = React.forwardRef(
           ref={ref}
           onClick={onClick}
           className={clsx([
-            "hover:bg-gray-500 text-gray-700 font-semibold hover:text-white py-0.5 px-1 text-sm lg:text-base lg:py-2 m-1 lg:px-4 border-transparent hover:border-gray-500 rounded select-none cursor-pointer transition-colors",
+            "hover:bg-gray-500 text-gray-700 font-semibold hover:text-white py-0.5 px-1 text-sm lg:text-base lg:py-1.5 m-1 lg:px-2 border-transparent hover:border-gray-500 rounded select-none cursor-pointer transition-colors",
             active ? "bg-gray-500 text-white" : "bg-gray-200",
           ])}
         >
