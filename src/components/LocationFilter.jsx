@@ -4,6 +4,8 @@ import { useRouter } from "next/router"
 import FilterButton from "./FilterButton"
 import LocationIcon from "../assets/Location.svg"
 import SearchIcon from "../assets/Search.svg"
+import { HiChevronDown as DownArrow } from "react-icons/hi"
+import { HiChevronUp as UpArrow } from "react-icons/hi"
 import Skeleton from "react-loading-skeleton"
 import { useCities } from "~/hooks/useCities"
 import { useSlug } from "~/context/slug"
@@ -12,7 +14,7 @@ import { useTranslation } from "~/context/translation"
 export default function LocationFilter() {
   const { location, resource } = useSlug()
   const { t } = useTranslation()
-  const [cities, error, isLoading] = useCities()
+  const [cities, topCities, error, isLoading] = useCities()
 
   const [cityState, setCityState] = React.useState(false)
   const router = useRouter()
@@ -64,7 +66,7 @@ export default function LocationFilter() {
         _data = [..._data, filter]
       }
     } else if (_data === null) {
-      _data = cities.sort()
+      _data = topCities.sort()
     }
 
     _data = _data.filter((i) => typeof i !== "boolean")
@@ -104,39 +106,32 @@ export default function LocationFilter() {
             {t("CHOOSE_LOCATION")}
           </p>
         </div>
+        {/* search bar */}
         <div className="pt-2 ml-1 flex justify-start relative text-gray-600">
           <input
-            className="border-2 w-full relative w-400 border-gray-300 bg-white h-10 px-3 pr-16 rounded-lg text-sm focus:outline-none focus:ring focus:border-blue-300"
+            className="border-2 w-full relative w-400 border-gray-300 bg-white h-10 pl-10 pr-4 rounded-lg text-sm transition-all focus:outline-none focus:ring focus:border-blue-300"
             type="search"
             name="search"
-            placeholder="Search for your city or Select from below"
+            placeholder="Start searching any city"
             onChange={({ currentTarget }) =>
               setSearchValue(currentTarget.value)
             }
           />
-          <button
-            type="submit"
-            className="relative h-7 w-7 ml-2 mt-2"
-            aria-label="Search"
-          >
-            <SearchIcon />
-          </button>
+          <SearchIcon className="absolute top-5 left-4" />
         </div>
         <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
           {renderButtons()}
         </div>
-        {/* <div className="mt-2 ml-1">
+        <div className="mt-2 ml-1">
           <button
             className="hover:underline flex items-center text-indigo-600 focus:outline-none focus:ring focus:border-blue-300"
             onClick={() => setShowMore((prev) => !prev)}
           >
-            <span>
-              {showMore ? "Show only top locations" : "Show all locations"}
-            </span>
+            <span>{showMore ? "Most visited" : "Show all top locations"}</span>
             {showMore && <UpArrow />}
             {!showMore && <DownArrow />}
           </button>
-        </div> */}
+        </div>
       </div>
     )
 

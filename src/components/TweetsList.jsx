@@ -5,10 +5,28 @@ import Skeleton from "react-loading-skeleton"
 import { useSlug } from "~/context/slug"
 import { useTranslation } from "~/context/translation"
 
+const OlaNotice = () => {
+  return (
+    <div className="w-full flex flex-col items-center justify-center space-y-4 my-2 px-2">
+      <a
+        className="p-4 rounded-lg text-center border border-gray-200 cursor-pointer"
+        href="https://www.olacabs.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        You can request a oxygen concentrator from your Ola app for no charge!
+      </a>
+    </div>
+  )
+}
+
 const TweetsList = () => {
   const { location, resource } = useSlug()
   const { data, error, size, setSize } = useTweets({ location, resource })
   const { t } = useTranslation()
+
+  const isOxygenConcentratorFromBanglore =
+    location === "bangalore" && resource === "oxygenconcentrator"
 
   if (error) return <div>failed to load</div>
   if (!data)
@@ -36,6 +54,7 @@ const TweetsList = () => {
   if (data[0].length > 0) {
     return (
       <div className="flex flex-col items-center justify-center">
+        {isOxygenConcentratorFromBanglore ? <OlaNotice /> : ""}
         {
           // Tweets
           data.map((page) => {

@@ -12,17 +12,28 @@ const getCitiesFromData = (data) => {
   return cities
 }
 
+const getTopCitiesFromData = (data) => {
+  const topCities = []
+  data.map((item) => {
+    if (item.top) topCities.push(item.name)
+  })
+
+  return topCities
+}
+
 export const useCities = () => {
   const { data, error } = useSWR(`${API_BASE_URL}/api/cities`, fetcher)
   const [cities, setCities] = React.useState(data)
+  const [topCities, setTopCities] = React.useState(data)
   const [isLoading, setIsLoading] = React.useState(true)
 
   React.useEffect(() => {
     if (data) {
       setCities(getCitiesFromData(data))
+      setTopCities(getTopCitiesFromData(data))
       setIsLoading(false)
     }
   }, [data])
 
-  return [cities, error, isLoading]
+  return [cities, topCities, error, isLoading]
 }

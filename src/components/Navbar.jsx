@@ -41,10 +41,12 @@ export default function Navbar() {
                 </a>
               </Link>
             </div>
-            <div className="hidden lg:flex items-center space-x-4 justify-between">
-              <NavLink url="/">{t("HOME")}</NavLink>
-              <NavLink url="https://verifynum.herokuapp.com/" isExternal>
-                {t("RESOURCE_VERIFIER")}
+            <div className="hidden md:block sm:ml-20 sm:mr-0 space-x-4 justify-between lg:ml-20">
+              <NavLink url="https://donate.indiacovidresources.in/" isExternal>
+                {t("DONATE")}
+              </NavLink>
+              <NavLink url="http://plasma.indiacovidresources.in/" isExternal>
+                {t("PLASMA")}
               </NavLink>
               <NavLink url="/disclaimer">{t("DISCLAIMER")}</NavLink>
               <NavLink url="/about">{t("ABOUT")}</NavLink>
@@ -77,13 +79,14 @@ export default function Navbar() {
           </div>
           <Disclosure.Panel className="md:hidden">
             <div className="px-2 grid pt-2 pb-3 space-y-1 sm:px-3">
-              <NavLink url="/"> {t("HOME")} </NavLink>
-              <NavLink url="https://verifynum.herokuapp.com/" isExternal>
-                {" "}
-                {t("RESOURCE_VERIFIER")}{" "}
+              <NavLink url="https://donate.indiacovidresources.in/" isExternal>
+                {t("DONATE")}
               </NavLink>
-              <NavLink url="/disclaimer"> {t("DISCLAIMER")} </NavLink>
-              <NavLink url="/about"> {t("ABOUT")} </NavLink>
+              <NavLink url="http://plasma.indiacovidresources.in/" isExternal>
+                {t("PLASMA")}
+              </NavLink>
+              <NavLink url="/disclaimer">{t("DISCLAIMER")}</NavLink>
+              <NavLink url="/about">{t("ABOUT")}</NavLink>
             </div>
           </Disclosure.Panel>
         </nav>
