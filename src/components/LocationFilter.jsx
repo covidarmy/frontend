@@ -130,7 +130,7 @@ export default function LocationFilter() {
             onClick={() => setShowMore((prev) => !prev)}
           >
             <span>
-              {showMore ? "Show only top locations" : "Show most visited"}
+              {showMore ? "Show only top locations" : "Show all locations"}
             </span>
             {showMore && <UpArrow />}
             {!showMore && <DownArrow />}
