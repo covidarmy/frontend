@@ -58,12 +58,12 @@ const TweetsList = () => {
         {
           // Tweets
           data.map((page) => {
-            return page.map(({ _id: key, tweet_object: tweetObj }) => (
+            return page.map(({ _id: key, tweet_id }) => (
               <div
                 key={key}
                 className="w-full flex flex-col items-center justify-center space-y-4 my-2 px-2"
               >
-                <Tweet id={tweetObj.tweet_id} />
+                <Tweet id={tweet_id} />
               </div>
             ))
           })
