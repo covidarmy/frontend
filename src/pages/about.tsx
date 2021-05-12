@@ -12,6 +12,8 @@ import {
   TiSocialLinkedin,
 } from "react-icons/ti"
 import { HiGlobeAlt as HiGlobe } from "react-icons/hi"
+
+// TRANSLATION
 import { useTranslation } from "~/context/translation"
 
 interface ObjectLiteral {
@@ -30,6 +32,7 @@ interface IPartner {
   imageFileName: string
   description?: string
   name: string
+  published?: boolean
 }
 
 interface IVolunteer {
@@ -48,6 +51,7 @@ interface Props {
 const About: React.FC<Props> = (props) => {
   const { t } = useTranslation()
   const { partnerData, volunteerData } = props
+  console.log("partnerData:", partnerData)
 
   return (
     <div>
@@ -132,7 +136,11 @@ export const getStaticProps: GetStaticProps = async () => {
   const partnerData: IPartner[] = await fetch(
     "https://notion-api.splitbee.io/v1/table/2dbc2f82b58944909448f24756debbef",
     { method: "get" }
-  ).then((res) => res.json())
+  )
+    .then((res) => res.json())
+    .then((res) =>
+      res.filter(({ published }: { published: boolean }) => published)
+    )
 
   const volunteerData: IVolunteer[] = await fetch(
     "https://notion-api.splitbee.io/v1/table/16b6dd8733794d7fbd6bfa77f7d361da",
