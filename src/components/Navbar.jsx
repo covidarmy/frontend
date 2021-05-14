@@ -1,6 +1,6 @@
 import * as React from "react"
 import Link from "next/link"
-import { Disclosure } from "@headlessui/react"
+import { Disclosure, Transition } from "@headlessui/react"
 import { MenuIcon, XIcon } from "@heroicons/react/outline"
 import { HiOutlineShare } from "react-icons/hi"
 import { useTranslation } from "~/context/translation"
@@ -77,18 +77,31 @@ export default function Navbar() {
               )}
             </>
           </div>
-          <Disclosure.Panel className="md:hidden">
-            <div className="px-2 grid pt-2 pb-3 space-y-1 sm:px-3">
-              <NavLink url="https://donate.indiacovidresources.in/" isExternal>
-                {t("DONATE")}
-              </NavLink>
-              <NavLink url="http://plasma.indiacovidresources.in/" isExternal>
-                {t("PLASMA")}
-              </NavLink>
-              <NavLink url="/disclaimer">{t("DISCLAIMER")}</NavLink>
-              <NavLink url="/about">{t("ABOUT")}</NavLink>
-            </div>
-          </Disclosure.Panel>
+          <Transition
+            show={open}
+            enter="transition duration-100 ease-out"
+            enterFrom="transform scale-95 opacity-0"
+            enterTo="transform scale-100 opacity-100"
+            leave="transition duration-75 ease-out"
+            leaveFrom="transform scale-100 opacity-100"
+            leaveTo="transform scale-95 opacity-0"
+          >
+            <Disclosure.Panel className="md:hidden" static>
+              <div className="px-2 grid pt-2 pb-3 space-y-1 sm:px-3">
+                <NavLink
+                  url="https://donate.indiacovidresources.in/"
+                  isExternal
+                >
+                  {t("DONATE")}
+                </NavLink>
+                <NavLink url="http://plasma.indiacovidresources.in/" isExternal>
+                  {t("PLASMA")}
+                </NavLink>
+                <NavLink url="/disclaimer">{t("DISCLAIMER")}</NavLink>
+                <NavLink url="/about">{t("ABOUT")}</NavLink>
+              </div>
+            </Disclosure.Panel>
+          </Transition>
         </nav>
       )}
     </Disclosure>
