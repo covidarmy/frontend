@@ -20,4 +20,10 @@ export const defaultSeoProps = {
       { url: "https://covid.army/static/og.png", height: 630, width: 1200 },
     ],
   },
+  additionalLinkTags: [
+    {
+      rel: "manifest",
+      href: "/manifest.json",
+    },
+  ],
 }
