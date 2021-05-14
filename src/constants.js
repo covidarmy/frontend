@@ -25,5 +25,16 @@ export const defaultSeoProps = {
       rel: "manifest",
       href: "/manifest.json",
     },
+    {
+      rel: "apple-touch-icon",
+      href: "/icons/icon-192x192.png",
+      sizes: "192x192",
+    },
+  ],
+  additionalMetaTags: [
+    {
+      name: "theme-color",
+      content: "#4f46ef",
+    },
   ],
 }
