@@ -51,7 +51,6 @@ interface Props {
 const About: React.FC<Props> = (props) => {
   const { t } = useTranslation()
   const { partnerData, volunteerData } = props
-  console.log("partnerData:", partnerData)
 
   return (
     <div>
