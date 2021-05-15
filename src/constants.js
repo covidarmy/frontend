@@ -20,4 +20,21 @@ export const defaultSeoProps = {
       { url: "https://covid.army/static/og.png", height: 630, width: 1200 },
     ],
   },
+  additionalLinkTags: [
+    {
+      rel: "manifest",
+      href: "/manifest.json",
+    },
+    {
+      rel: "apple-touch-icon",
+      href: "/icons/icon-192x192.png",
+      sizes: "192x192",
+    },
+  ],
+  additionalMetaTags: [
+    {
+      name: "theme-color",
+      content: "#4f46ef",
+    },
+  ],
 }

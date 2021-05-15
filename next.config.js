@@ -1,7 +1,9 @@
+const withPWA = require("next-pwa")
+
 /**
  * @type {import("next/dist/next-server/server/config-shared").NextConfig}
  */
-module.exports = {
+let config = {
   future: {
     webpack5: true,
     strictPostcssConfiguration: true,
@@ -36,6 +38,9 @@ module.exports = {
         headers: securityHeaders,
       },
     ]
+  },
+  pwa: {
+    dest: "public",
   },
 }
 
@@ -89,3 +94,5 @@ const securityHeaders = [
     value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
   },
 ]
+
+module.exports = withPWA(config)
