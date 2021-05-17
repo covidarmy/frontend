@@ -41,6 +41,7 @@ interface IVolunteer {
   social_link: string
   social_type: string
   name: string
+  type: "contributor" | "core"
 }
 
 interface Props {
@@ -89,41 +90,87 @@ const About: React.FC<Props> = (props) => {
           <div className="md:col-span-8 lg:col-span-6">
             <div className="mb-12">
               <h3 className="text-2xl text-[#4f46ef] mb-6 font-medium">
-                {t("OUR_VOLUNTEERS")}
+                Core Team
               </h3>
             </div>
           </div>
         </div>
         <div className="flex flex-wrap -mx-2 mb-8 mt-8">
-          {volunteerData.map((element) => {
-            const SocialIcon = icons[element.social_type] ?? HiGlobe
+          {volunteerData
+            .filter((i) => i.type === "core")
+            .map((element) => {
+              const SocialIcon = icons[element.social_type] ?? HiGlobe
 
-            return (
-              <div
-                key={element.id}
-                className="w-full md:w-1/2 lg:w-1/3 px-2 mb-4"
-              >
-                <div className="flex items-center justify-center">
-                  <div className="bg-white mt-10 py-12 px-8 md:px-16 text-center rounded-md shadow-lg mx-auto">
-                    <img
-                      className="w-28 h-28 object-cover rounded-full mx-auto shadow-lg"
-                      src={element.image}
-                      alt="Image"
-                    />
-                    <p className="capitalize text-xl mt-1">{element.name}</p>
-                    <a
-                      target="_blank"
-                      className="rounded-md flex flex-row bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-blue-500 hover:to-indigo-600 text-lg capitalize text-white mt-6 px-12 py-1 items-center justify-center space-x-1"
-                      href={element.social_link}
-                    >
-                      <SocialIcon className="h-6 w-6" />
-                      <span>{element.social_type}</span>
-                    </a>
+              return (
+                <div
+                  key={element.id}
+                  className="w-full md:w-1/2 lg:w-1/3 px-2 mb-4"
+                >
+                  <div className="flex items-center justify-center">
+                    <div className="bg-white mt-10 py-12 px-8 md:px-16 text-center rounded-md shadow-lg mx-auto">
+                      <img
+                        className="w-28 h-28 object-cover rounded-full mx-auto shadow-lg"
+                        src={element.image}
+                        alt="Image"
+                      />
+                      <p className="capitalize text-xl mt-1">{element.name}</p>
+                      <a
+                        target="_blank"
+                        className="rounded-md flex flex-row bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-blue-500 hover:to-indigo-600 text-lg capitalize text-white mt-6 px-12 py-1 items-center justify-center space-x-1"
+                        href={element.social_link}
+                      >
+                        <SocialIcon className="h-6 w-6" />
+                        <span>{element.social_type}</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )
-          })}
+              )
+            })}
+        </div>
+      </section>
+      <section id="team" className="container section-team mx-auto">
+        <div className="row justify-center flex text-center my-20">
+          <div className="md:col-span-8 lg:col-span-6">
+            <div className="mb-12">
+              <h3 className="text-2xl text-[#4f46ef] mb-6 font-medium">
+                Contributors
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-wrap -mx-2 mb-8 mt-8">
+          {volunteerData
+            .filter((i) => i.type === "contributor")
+            .map((element) => {
+              const SocialIcon = icons[element.social_type] ?? HiGlobe
+
+              return (
+                <div
+                  key={element.id}
+                  className="w-full md:w-1/2 lg:w-1/3 px-2 mb-4"
+                >
+                  <div className="flex items-center justify-center">
+                    <div className="bg-white mt-10 py-12 px-8 md:px-16 text-center rounded-md shadow-lg mx-auto">
+                      <img
+                        className="w-28 h-28 object-cover rounded-full mx-auto shadow-lg"
+                        src={element.image}
+                        alt="Image"
+                      />
+                      <p className="capitalize text-xl mt-1">{element.name}</p>
+                      <a
+                        target="_blank"
+                        className="rounded-md flex flex-row bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-blue-500 hover:to-indigo-600 text-lg capitalize text-white mt-6 px-12 py-1 items-center justify-center space-x-1"
+                        href={element.social_link}
+                      >
+                        <SocialIcon className="h-6 w-6" />
+                        <span>{element.social_type}</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
         </div>
       </section>
       <Footer />
