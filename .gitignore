@@ -36,3 +36,5 @@ yarn-error.log*
 
 # cache
 /tweets.json
+/public/sw.js
+/public/workbox*.js
