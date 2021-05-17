@@ -48,9 +48,9 @@ export default function ResourceFilter() {
 
   return (
     <div className="shadow-md border border-gray-200 rounded-md bg-gray-100 text-center box-border h-auto w-full my-2 p-3 lg:p-6 cursor-not-allowed">
-      <div className="flex">
+      <div className="flex items-center">
         <ResourceIconDeactivated />
-        <p className="text-strong mt-0 ml-1 font-bold text-gray-600">
+        <p className="text-strong ml-1 font-bold text-gray-600">
           {t("CHOOSE_LOCATION_FIRST")}
         </p>
       </div>
