@@ -1,8 +1,10 @@
 import * as React from "react"
-import { useProtectedRoute } from "~/context/auth"
+import { useAuth } from "~/context/auth"
 
 const AddResourcePage: React.FC = () => {
-  useProtectedRoute()
+  const { isAuthenticated, user, loading } = useAuth()
+
+  if (loading) return null
 
   return null
 }

@@ -3,41 +3,46 @@ import { auth } from "~/lib/firebase"
 import firebase from "firebase/app"
 import { useRouter } from "next/router"
 
+type User = firebase.User | null
+
 const context = React.createContext<{
-  user: firebase.User | undefined
+  user: User
   isAuthenticated: boolean
+  loading: boolean
 }>({
-  user: undefined,
+  user: null,
   isAuthenticated: false,
+  loading: true,
 })
 
 const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = React.useState<firebase.User | undefined>(undefined)
+  const [user, setUser] = React.useState<User>(null)
   const [isAuthenticated, setAuthenticated] = React.useState(false)
+  const [loading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
-    auth().onAuthStateChanged((user) => {
+    auth.onAuthStateChanged((user) => {
+      setLoading(true)
       if (user) {
         setUser(user)
         setAuthenticated(true)
       } else {
-        setUser(undefined)
+        setUser(null)
         setAuthenticated(false)
       }
+      setLoading(false)
     })
   }, [])
 
   return (
-    <context.Provider value={{ isAuthenticated, user }}>
+    <context.Provider value={{ isAuthenticated, user, loading }}>
       {children}
     </context.Provider>
   )
 }
 
-export const useAuth = () => React.useContext(context)
-
-export const useProtectedRoute = () => {
-  const { isAuthenticated, user } = useAuth()
+export const useAuth = () => {
+  const { isAuthenticated, user, loading } = React.useContext(context)
   const router = useRouter()
 
   React.useEffect(() => {
@@ -49,7 +54,8 @@ export const useProtectedRoute = () => {
       })
     }
   }, [])
-  return null
+
+  return { isAuthenticated, user, loading }
 }
 
 export default AuthProvider

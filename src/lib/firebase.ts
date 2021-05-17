@@ -18,4 +18,4 @@ if (!firebase.apps.length) {
 }
 
 export const fb = firebase
-export const auth = firebase.auth
+export const auth = firebase.auth()
