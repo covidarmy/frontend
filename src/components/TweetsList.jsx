@@ -43,10 +43,22 @@ const TweetsList = () => {
   const isEmpty = data?.[0]?.length === 0
   const isReachingEnd = isEmpty || (data && data[data.length - 1]?.length < 20)
 
-  if (!(location && resource)) {
+  if (!location) {
     return (
-      <div className="py-4 text-xl text-center font-bold">
-        {t("SELECT_LOCATION_RESOURCE")}
+      <div className="hidden lg:flex justify-center items-center border rounded-md shadow-md bg-gray-100 w-full h-52 my-2 p-3 lg:p-6">
+        <p className="font-semibold text-lg text-gray-600">
+          {t("SELECT_LOCATION_RESOURCE")}
+        </p>
+      </div>
+    )
+  }
+
+  if (!resource) {
+    return (
+      <div className="hidden lg:flex justify-center items-center border rounded-md shadow-md bg-gray-100 w-full h-52 my-2 p-3 lg:p-6">
+        <p className="font-semibold text-lg text-gray-600">
+          {t("SELECT_RESOURCE")}
+        </p>
       </div>
     )
   }
