@@ -1,7 +1,55 @@
+import { useRouter } from "next/router"
 import * as React from "react"
+import Navbar from "~/components/Navbar"
+import { auth, fb } from "~/lib/firebase"
 
 const LoginPage: React.FC = () => {
-  return null
+  const router = useRouter()
+
+  return (
+    <div className="w-screen h-screen flex flex-col">
+      <Navbar />
+      <div className="flex-1 flex items-center justify-center w-full">
+        <button
+          className="items-center flex justify-center mx-auto focus:outline-none px-4 gap-2 py-2 border border-gray-200 shadow-sm hover:shadow transition duration-150 ease-in rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+          onClick={() => {
+            auth
+              .signInWithPopup(new fb.auth.GoogleAuthProvider())
+              .then((user) => {
+                router.push("/dashboard")
+              })
+          }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            aria-label="Google"
+            className="h-6 w-6"
+            role="img"
+            viewBox="0 0 512 512"
+          >
+            <rect width="512" height="512" rx="15%" fill="#fff" />
+            <path
+              fill="#4285f4"
+              d="M386 400c45-42 65-112 53-179H260v74h102c-4 24-18 44-38 57z"
+            />
+            <path
+              fill="#34a853"
+              d="M90 341a192 192 0 0 0 296 59l-62-48c-53 35-141 22-171-60z"
+            />
+            <path
+              fill="#fbbc02"
+              d="M153 292c-8-25-8-48 0-73l-63-49c-23 46-30 111 0 171z"
+            />
+            <path
+              fill="#ea4335"
+              d="M153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55z"
+            />
+          </svg>
+          Login with Google
+        </button>
+      </div>
+    </div>
+  )
 }
 
 export default LoginPage

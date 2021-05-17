@@ -1,6 +1,7 @@
 import { useRouter } from "next/router"
 import * as React from "react"
 import LoadingPage from "~/components/LoadingPage"
+import Navbar from "~/components/Navbar"
 import { useAuth } from "~/context/auth"
 
 const DashboardPage: React.FC = () => {
@@ -8,14 +9,19 @@ const DashboardPage: React.FC = () => {
   const router = useRouter()
 
   React.useEffect(() => {
-    if (!isAuthenticated) {
+    if (!loading && !isAuthenticated) {
       router.push("/login")
     }
-  }, [])
+  }, [isAuthenticated, loading])
 
   if (loading) return <LoadingPage />
 
-  return null
+  return (
+    <div className="w-screen h-screen flex flex-col">
+      <Navbar />
+      <div className="flex-1 flex items-center justify-center w-full"></div>
+    </div>
+  )
 }
 
 export default DashboardPage

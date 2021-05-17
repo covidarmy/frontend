@@ -7,7 +7,7 @@ import { useTranslation } from "~/context/translation"
 import ChangeLocale from "./ChangeLocale"
 
 // COMPONENTS
-import NavLink from "./NavLinks"
+import NavLink from "./NavLink"
 import Logo from "./Logo"
 import { useAuth } from "~/context/auth"
 
@@ -53,12 +53,9 @@ export default function Navbar() {
               {isAuthenticated ? (
                 <>
                   <NavLink url="/dashboard">Dashboard</NavLink>
-                  <button
-                    onClick={signOut}
-                    className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
-                  >
+                  <NavLink onClick={signOut} isButton>
                     Sign out
-                  </button>
+                  </NavLink>
                 </>
               ) : (
                 <NavLink url="/login">Volunteer login</NavLink>
@@ -117,12 +114,9 @@ export default function Navbar() {
                 {isAuthenticated ? (
                   <>
                     <NavLink url="/dashboard">Dashboard</NavLink>
-                    <button
-                      onClick={signOut}
-                      className="hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
-                    >
+                    <NavLink onClick={signOut} isButton>
                       Sign out
-                    </button>
+                    </NavLink>
                   </>
                 ) : (
                   <NavLink url="/login">Volunteer login</NavLink>
