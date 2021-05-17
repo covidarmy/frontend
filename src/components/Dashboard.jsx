@@ -26,7 +26,7 @@ export const Dashboard = () => {
         </div>
       </div>
       <Footer />
-      <div className="fixed bottom-6 right-6 w-10">
+      <div className="shadow-lg rounded-full p-2 bg-green-600 fixed bottom-6 right-6 w-12">
         <a
           href="http://wa.me/917404255034"
           target="_blank"
