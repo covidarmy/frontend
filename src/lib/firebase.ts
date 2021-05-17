@@ -17,4 +17,5 @@ if (!firebase.apps.length) {
   firebase.initializeApp(config)
 }
 
-export default { fb: firebase, auth: firebase.auth }
+export const fb = firebase
+export const auth = firebase.auth
