@@ -1,6 +1,6 @@
 const withPWA = require("next-pwa")
 
-module.exports = withPWA({
+let config = {
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
@@ -14,7 +14,15 @@ module.exports = withPWA({
   images: {
     domains: ["pbs.twimg.com", "abs.twimg.com"],
   },
-  pwa: {
-    dest: "public",
-  },
-})
+}
+
+if (process.env.NODE_ENV === "production") {
+  config = withPWA({
+    ...config,
+    pwa: {
+      dest: "public",
+    },
+  })
+}
+
+module.exports = config

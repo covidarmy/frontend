@@ -9,16 +9,24 @@ const context = React.createContext<{
   user: User
   isAuthenticated: boolean
   loading: boolean
+  signOut: (() => void) | undefined
 }>({
   user: null,
   isAuthenticated: false,
   loading: true,
+  signOut: undefined,
 })
 
 const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = React.useState<User>(null)
   const [isAuthenticated, setAuthenticated] = React.useState(false)
   const [loading, setLoading] = React.useState(true)
+  const router = useRouter()
+
+  const signOut = () => {
+    auth.signOut()
+    router.push("/login")
+  }
 
   React.useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -35,27 +43,14 @@ const AuthProvider: React.FC = ({ children }) => {
   }, [])
 
   return (
-    <context.Provider value={{ isAuthenticated, user, loading }}>
+    <context.Provider value={{ isAuthenticated, user, loading, signOut }}>
       {children}
     </context.Provider>
   )
 }
 
 export const useAuth = () => {
-  const { isAuthenticated, user, loading } = React.useContext(context)
-  const router = useRouter()
-
-  React.useEffect(() => {
-    if (!isAuthenticated) {
-      router.push("/login", {
-        query: {
-          message: "Please log in first.",
-        },
-      })
-    }
-  }, [])
-
-  return { isAuthenticated, user, loading }
+  return React.useContext(context)
 }
 
 export default AuthProvider
