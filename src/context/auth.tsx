@@ -1,6 +1,7 @@
 import * as React from "react"
 import { auth } from "~/lib/firebase"
 import firebase from "firebase/app"
+import { useRouter } from "next/router"
 
 const context = React.createContext<{
   user: firebase.User | undefined
@@ -34,5 +35,21 @@ const AuthProvider: React.FC = ({ children }) => {
 }
 
 export const useAuth = () => React.useContext(context)
+
+export const useProtectedRoute = () => {
+  const { isAuthenticated, user } = useAuth()
+  const router = useRouter()
+
+  React.useEffect(() => {
+    if (!isAuthenticated) {
+      router.push("/login", {
+        query: {
+          message: "Please log in first.",
+        },
+      })
+    }
+  }, [])
+  return null
+}
 
 export default AuthProvider
