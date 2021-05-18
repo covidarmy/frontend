@@ -96,10 +96,9 @@ export default function LocationFilter() {
       )
     })
   }
-
   if (!cityState)
     return (
-      <div className="shadow-md bg-white box-border h-auto w-full rounded-md my-2 p-3 lg:p-6 border border-gray-200">
+      <div className="shadow-md box-border rounded-md border border-gray-200 p-3 lg:p-6 bg-white h-auto w-full my-2">
         <div className="flex items-center ml-1 mb-1">
           <LocationIcon className="h-5 w-5 mt-1" />
           <p className="text-strong ml-1 mt-0.5 font-bold">
