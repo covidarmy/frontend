@@ -24,7 +24,7 @@ const ChangeLocale = () => {
     <Listbox value={selected} onChange={changeLocale}>
       {({ open }) => (
         <>
-          <div className="relative mt-1 text-sm">
+          <div className="relative mt-1 text-sm" style={{ zIndex: 9999 }}>
             <Listbox.Button className="relative w-full w-28 lg:w-32 py-2 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 border border-gray-200">
               <span className="block truncate">{selected.name}</span>
               <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
