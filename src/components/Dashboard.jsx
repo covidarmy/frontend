@@ -11,7 +11,7 @@ import Footer from "./Footer"
 export const Dashboard = () => {
   return (
     <>
-      <div className="flex flex-col lg:overflow-hidden min-h-screen">
+      <main className="flex flex-col lg:overflow-hidden min-h-screen">
         <div className="flex flex-col justify-center px-4 overflow-hidden lg:flex-row lg:mt-6 h-full">
           <div className="rounded-md flex flex-col lg:w-1/2">
             <LocationFilter />
@@ -24,13 +24,14 @@ export const Dashboard = () => {
             <TweetsList />
           </div>
         </div>
-      </div>
+      </main>
       <Footer />
       <div className="shadow-2xl rounded-full p-2 bg-green-600 fixed bottom-6 right-6 w-12 cursor-pointer">
         <a
           href="http://wa.me/917404255034"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Whatsapp Bot"
         >
           <WhatsappLogo />
         </a>
