@@ -10,25 +10,7 @@ import Skeleton from "react-loading-skeleton"
 import { useCities } from "~/hooks/useCities"
 import { useSlug } from "~/context/slug"
 import { useTranslation } from "~/context/translation"
-import ExternalIcon from "../assets/External.svg"
-
-const Disclaimer = () => {
-  const linkHref =
-    "https://www.change.org/p/government-of-india-should-approve-paper-strip-rapid-antigen-tests-for-self-testing-at-home"
-  return (
-    <a
-      href={linkHref}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex items-center ml-auto font-bold text-red-600 text-xs md:text-sm hover:underline"
-    >
-      Beware of fraud
-      <div className="ml-1">
-        <ExternalIcon />
-      </div>
-    </a>
-  )
-}
+import FruadBanner from "./FruadBanner"
 
 export default function LocationFilter() {
   const { location, resource } = useSlug()
@@ -119,12 +101,12 @@ export default function LocationFilter() {
   if (!cityState)
     return (
       <div className="shadow-md bg-white box-border h-auto w-full rounded-md my-2 p-3 lg:p-6 border border-gray-200">
-        <div className="flex items-center ml-1 mb-1">
-          <LocationIcon className="h-5 w-5 mt-1" />
-          <p className="text-strong ml-1 mt-0.5 font-bold text-sm md:text-base">
+        <div className="flex items-center">
+          <LocationIcon className="h-5 w-5" />
+          <p className="text-strong ml-1 font-bold text-sm md:text-base">
             {t("CHOOSE_LOCATION")}
           </p>
-          <Disclaimer />
+          <FruadBanner />
         </div>
         {/* search bar */}
         <div className="pt-2 ml-1 flex justify-start relative text-gray-600">
