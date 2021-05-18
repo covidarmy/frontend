@@ -52,7 +52,7 @@ export default function Navbar() {
               <NavLink url="/about">{t("ABOUT")}</NavLink>
               {isAuthenticated ? (
                 <>
-                  <NavLink url="/dashboard">Dashboard</NavLink>
+                  <NavLink url="/dashboard/step1">Dashboard</NavLink>
                   <NavLink onClick={signOut} isButton>
                     Sign out
                   </NavLink>
@@ -73,8 +73,7 @@ export default function Navbar() {
                     try {
                       await navigator.share({
                         title: "Covid.army",
-                        text:
-                          "Verified Real Time List of COVID-19 Resources and Aid",
+                        text: "Verified Real Time List of COVID-19 Resources and Aid",
                         url: "https://covid.army",
                       })
                     } catch (err) {
@@ -113,7 +112,7 @@ export default function Navbar() {
                 <NavLink url="/about">{t("ABOUT")}</NavLink>
                 {isAuthenticated ? (
                   <>
-                    <NavLink url="/dashboard">Dashboard</NavLink>
+                    <NavLink url="/dashboard/step1">Dashboard</NavLink>
                     <NavLink onClick={signOut} isButton>
                       Sign out
                     </NavLink>
