@@ -4,10 +4,10 @@ import Link from "next/link"
 import Navbar from "~/components/Navbar"
 import { auth, fb } from "~/lib/firebase"
 
-import BackIcon from "../assets/arrow-left.svg"
-import FacebookIcon from "../assets/facebook.svg"
-import TwitterIcon from "../assets/twitter.svg"
-import RightIcon from "../assets/chevron-right.svg"
+import BackIcon from "~/assets/arrow-left.svg"
+import FacebookIcon from "~/assets/facebook.svg"
+import TwitterIcon from "~/assets/twitter.svg"
+import RightIcon from "~/assets/chevron-right.svg"
 
 const LoginPage: React.FC = () => {
   const router = useRouter()
