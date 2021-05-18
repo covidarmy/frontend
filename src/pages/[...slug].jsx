@@ -10,10 +10,10 @@ const CityPage = () => {
 
   if (slug === undefined) {
     return (
-      <div className="w-screen h-screen flex flex-col">
+      <>
         <Navbar />
         <Dashboard city={null} resource={null} />
-      </div>
+      </>
     )
   }
 
@@ -44,10 +44,10 @@ const CityPage = () => {
           ],
         }}
       />
-      <div className="w-screen h-screen flex flex-col">
+      <>
         <Navbar />
         <Dashboard city={city} resource={resource} />
-      </div>
+      </>
     </>
   )
 }
