@@ -5,7 +5,7 @@ import { useResources } from "~/hooks/useResources"
 import Skeleton from "react-loading-skeleton"
 import { useSlug } from "~/context/slug"
 import { useTranslation } from "~/context/translation"
-import FruadBanner from "./FruadBanner"
+import FraudBanner from "./FraudBanner"
 
 export default function ResourceFilter() {
   const { location, resource } = useSlug()
@@ -24,7 +24,7 @@ export default function ResourceFilter() {
           <p className="text-strong ml-1 font-bold text-sm md:text-base">
             {t("CHOOSE_RESOURCES")}
           </p>
-          <FruadBanner />
+          <FraudBanner />
         </div>
         <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
           {resources.map((item) => {

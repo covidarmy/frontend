@@ -10,7 +10,7 @@ import Skeleton from "react-loading-skeleton"
 import { useCities } from "~/hooks/useCities"
 import { useSlug } from "~/context/slug"
 import { useTranslation } from "~/context/translation"
-import FruadBanner from "./FruadBanner"
+import FraudBanner from "./FraudBanner"
 
 export default function LocationFilter() {
   const { location, resource } = useSlug()
@@ -106,7 +106,7 @@ export default function LocationFilter() {
           <p className="text-strong ml-1 font-bold text-sm md:text-base">
             {t("CHOOSE_LOCATION")}
           </p>
-          <FruadBanner />
+          <FraudBanner />
         </div>
         {/* search bar */}
         <div className="pt-2 ml-1 flex justify-start relative text-gray-600">
