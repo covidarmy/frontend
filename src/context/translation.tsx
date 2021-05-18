@@ -15,9 +15,8 @@ const translations: Record<string, Record<string, string>> = {
   hi,
 }
 
-const translationContext = React.createContext<
-  UseTranslationReturn | undefined
->(undefined)
+const translationContext =
+  React.createContext<UseTranslationReturn | undefined>(undefined)
 
 const TranslationProvider: React.FC = ({ children }) => {
   const [locale, setLocale] = React.useState<SupportedLocales>("en")
