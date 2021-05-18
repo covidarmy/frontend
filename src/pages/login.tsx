@@ -1,53 +1,74 @@
 import { useRouter } from "next/router"
 import * as React from "react"
+import Link from "next/link"
 import Navbar from "~/components/Navbar"
 import { auth, fb } from "~/lib/firebase"
+
+import BackIcon from "../assets/arrow-left.svg"
+import FacebookIcon from "../assets/facebook.svg"
+import TwitterIcon from "../assets/twitter.svg"
+import RightIcon from "../assets/chevron-right.svg"
 
 const LoginPage: React.FC = () => {
   const router = useRouter()
 
+  const handleAuth = () => {
+    auth.signInWithPopup(new fb.auth.GoogleAuthProvider()).then((user) => {
+      router.push("/dashboard")
+    })
+  }
+
   return (
-    <div className="w-screen h-screen flex flex-col">
+    <div className="bg-gray-100 min-h-screen">
       <Navbar />
-      <div className="flex-1 flex items-center justify-center w-full">
-        <button
-          className="items-center flex justify-center mx-auto focus:outline-none px-4 gap-2 py-2 border border-gray-200 shadow-sm hover:shadow transition duration-150 ease-in rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-          onClick={() => {
-            auth
-              .signInWithPopup(new fb.auth.GoogleAuthProvider())
-              .then((user) => {
-                router.push("/dashboard")
-              })
-          }}
+      <main className="flex flex-col items-center justify-center rounded-lg p-4 sm:p-8">
+        <div
+          className="bg-white py-6 px-6 sm:px-10 w-full "
+          style={{ maxWidth: "32rem" }}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            aria-label="Google"
-            className="h-6 w-6"
-            role="img"
-            viewBox="0 0 512 512"
-          >
-            <rect width="512" height="512" rx="15%" fill="#fff" />
-            <path
-              fill="#4285f4"
-              d="M386 400c45-42 65-112 53-179H260v74h102c-4 24-18 44-38 57z"
-            />
-            <path
-              fill="#34a853"
-              d="M90 341a192 192 0 0 0 296 59l-62-48c-53 35-141 22-171-60z"
-            />
-            <path
-              fill="#fbbc02"
-              d="M153 292c-8-25-8-48 0-73l-63-49c-23 46-30 111 0 171z"
-            />
-            <path
-              fill="#ea4335"
-              d="M153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55z"
-            />
-          </svg>
-          Login with Google
-        </button>
-      </div>
+          <div className="flex items-center">
+            <Link href="/">
+              <a aria-label="Back Button">
+                <BackIcon />
+              </a>
+            </Link>
+            <div className="w-full">
+              <p className="font-semibold text-center">Welcome to covid.army</p>
+            </div>
+          </div>
+          <hr className="mt-6" />
+          <p className="mt-7">Hello Superhero, hope you are doing good!</p>
+          <h2 className="font-bold text-2xl pt-10">Please log in using</h2>
+          <div className="sm:flex items-center justify-between mt-9">
+            <button
+              className="inline-flex rounded-lg py-3 px-7"
+              style={{ background: "#EFEFEF" }}
+              onClick={handleAuth}
+            >
+              <FacebookIcon />
+              <div className="ml-2">Facebook</div>
+            </button>
+            <p>or</p>
+            <button
+              className="inline-flex rounded-lg py-3 px-7"
+              style={{ background: "#EFEFEF" }}
+            >
+              <TwitterIcon />
+              <div className="ml-2">Twitter</div>
+            </button>
+          </div>
+        </div>
+
+        <div
+          className="shadow-md w-full bg-white py-6 px-6 sm:px-10 rounded-lg mt-5"
+          style={{ maxWidth: "32rem" }}
+        >
+          <div className="flex items-center justify-between text-blue-500 cursor-pointer hover:underline">
+            <div>Volunteer FAQs</div>
+            <RightIcon />
+          </div>
+        </div>
+      </main>
     </div>
   )
 }
