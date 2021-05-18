@@ -13,7 +13,11 @@ export default function NavLink({
 
   switch (true) {
     case isButton:
-      return <button className={linkClasses} onClick={onClick}></button>
+      return (
+        <button className={linkClasses} onClick={onClick}>
+          {children}
+        </button>
+      )
     case isExternal:
       return (
         <a
