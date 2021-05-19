@@ -15,21 +15,28 @@ import Link from "next/link"
  * @type {React.ForwardRefExoticComponent<Props>}
  */
 const FilterButton = React.forwardRef(
-  ({ active, href, onClick, children, className = "" }, ref) => {
-    return (
-      <Link href={href}>
-        <a
-          ref={ref}
-          onClick={onClick}
-          className={clsx([
-            "hover:bg-gray-500 text-gray-700 font-semibold hover:text-white py-0.5 px-1 text-sm lg:text-base lg:py-1.5 m-1 lg:px-2 border-transparent hover:border-gray-500 rounded select-none cursor-pointer transition-colors",
-            active ? "bg-gray-500 text-white" : "bg-gray-200",
-          ])}
-        >
-          {children}
-        </a>
-      </Link>
-    )
+  (
+    { active, href, onClick, children, className = "", isButton = false },
+    ref
+  ) => {
+    const className = clsx([
+      "hover:bg-gray-500 text-gray-700 font-semibold hover:text-white py-0.5 px-1 text-sm lg:text-base lg:py-1.5 m-1 lg:px-2 border-transparent hover:border-gray-500 rounded select-none cursor-pointer transition-colors",
+      active ? "bg-gray-500 text-white" : "bg-gray-200",
+      className,
+    ])
+
+    switch (true) {
+      case isButton:
+        return <button className={className} onClick={onClick}></button>
+      default:
+        return (
+          <Link href={href}>
+            <a ref={ref} onClick={onClick} className={className}>
+              {children}
+            </a>
+          </Link>
+        )
+    }
   }
 )
 
