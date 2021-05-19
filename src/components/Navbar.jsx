@@ -1,15 +1,13 @@
 import * as React from "react"
-import Link from "next/link"
 import { Disclosure, Transition } from "@headlessui/react"
-import { MenuIcon, XIcon } from "@heroicons/react/outline"
 import { HiOutlineShare } from "react-icons/hi"
-import { useTranslation } from "~/context/translation"
+import { MenuIcon, XIcon } from "@heroicons/react/outline"
 import ChangeLocale from "./ChangeLocale"
-
-// COMPONENTS
-import NavLink from "./NavLink"
+import Link from "next/link"
 import Logo from "./Logo"
+import NavLink from "./NavLink"
 import { useAuth } from "~/context/auth"
+import { useTranslation } from "~/context/translation"
 
 export default function Navbar() {
   const [canShare, setCanShare] = React.useState(true)
@@ -52,10 +50,12 @@ export default function Navbar() {
               <NavLink url="/about">{t("ABOUT")}</NavLink>
               {isAuthenticated ? (
                 <>
-                  <NavLink url="/dashboard/step1">Dashboard</NavLink>
+                  <div className="w-px h-8 bg-gray-500"></div>
+                  <NavLink url="/dashboard">Dashboard</NavLink>
                   <NavLink onClick={signOut} isButton>
                     Sign out
                   </NavLink>
+                  <div className="w-px h-8 bg-gray-500"></div>
                 </>
               ) : (
                 <NavLink url="/login">Volunteer login</NavLink>
@@ -73,7 +73,8 @@ export default function Navbar() {
                     try {
                       await navigator.share({
                         title: "Covid.army",
-                        text: "Verified Real Time List of COVID-19 Resources and Aid",
+                        text:
+                          "Verified Real Time List of COVID-19 Resources and Aid",
                         url: "https://covid.army",
                       })
                     } catch (err) {
@@ -112,7 +113,8 @@ export default function Navbar() {
                 <NavLink url="/about">{t("ABOUT")}</NavLink>
                 {isAuthenticated ? (
                   <>
-                    <NavLink url="/dashboard/step1">Dashboard</NavLink>
+                    <div className="h-px w-full bg-gray-800"></div>
+                    <NavLink url="/dashboard">Dashboard</NavLink>
                     <NavLink onClick={signOut} isButton>
                       Sign out
                     </NavLink>

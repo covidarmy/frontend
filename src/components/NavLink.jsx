@@ -1,15 +1,19 @@
 import * as React from "react"
+import clsx from "clsx"
 import Link from "next/link"
 
 export default function NavLink({
   url,
   children,
+  className = "",
   isExternal = false,
   isButton,
   onClick = false,
 }) {
-  const linkClasses =
-    "hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
+  const linkClasses = clsx([
+    "hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors",
+    className,
+  ])
 
   switch (true) {
     case isButton:
