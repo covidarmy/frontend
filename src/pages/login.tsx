@@ -14,7 +14,7 @@ const LoginPage: React.FC = () => {
 
   const handleAuth = () => {
     auth.signInWithPopup(new fb.auth.GoogleAuthProvider()).then((user) => {
-      router.push("/dashboard/step1")
+      router.push("/dashboard")
     })
   }
 

@@ -13,9 +13,11 @@ import FilterButton from "~/components/FilterButton"
 import SearchIcon from "~/assets/Search.svg"
 import { HiChevronDown as DownArrow } from "react-icons/hi"
 import { HiChevronUp as UpArrow } from "react-icons/hi"
+import { useSlug } from "~/context/slug"
 
 const LocationFilterCustom = () => {
   const { t } = useTranslation()
+  const { location, resource } = useSlug()
   const [cities, topCities, error, isLoading] = useCities()
 
   const router = useRouter()
@@ -128,27 +130,22 @@ const Step1Page = () => {
   if (loading) return <LoadingPage />
 
   return (
-    <div className=" bg-gray-100 min-h-screen">
-      <Navbar />
-      <main className="flex flex-col items-center justify-center rounded-lg p-4 sm:p-8">
-        <div
-          className="shadow-md bg-white py-6 px-6 sm:px-10 w-full "
-          style={{ maxWidth: "32rem" }}
-        >
-          <div className="flex items-center">
-            <Link href="/">
-              <a aria-label="Back Button">
-                <BackIcon />
-              </a>
-            </Link>
-            <div className="w-full">
-              <p className="text-sm text-center">Step 1 of 3</p>
-            </div>
-          </div>
-          <hr className="my-6" />
-          <LocationFilterCustom />
+    <div
+      className="shadow-md bg-white py-6 px-6 sm:px-10 w-full "
+      style={{ maxWidth: "32rem" }}
+    >
+      <div className="flex items-center">
+        <Link href="/">
+          <a aria-label="Back Button">
+            <BackIcon />
+          </a>
+        </Link>
+        <div className="w-full">
+          <p className="text-sm text-center">Step 1 of 3</p>
         </div>
-      </main>
+      </div>
+      <hr className="my-6" />
+      <LocationFilterCustom />
     </div>
   )
 }

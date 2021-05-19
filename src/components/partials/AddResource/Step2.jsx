@@ -53,27 +53,22 @@ const Step2Page = () => {
   if (loading) return <LoadingPage />
 
   return (
-    <div className=" bg-gray-100 min-h-screen">
-      <Navbar />
-      <main className="flex flex-col items-center justify-center rounded-lg p-4 sm:p-8">
-        <div
-          className="shadow-md bg-white py-6 px-6 sm:px-10 w-full "
-          style={{ maxWidth: "32rem" }}
-        >
-          <div className="flex items-center">
-            <Link href="/dashboard/step1">
-              <a aria-label="Back Button">
-                <BackIcon />
-              </a>
-            </Link>
-            <div className="w-full">
-              <p className="text-sm text-center">Step 2 of 3</p>
-            </div>
-          </div>
-          <hr className="my-6" />
-          <ResourceFilterCustom />
+    <div
+      className="shadow-md bg-white py-6 px-6 sm:px-10 w-full "
+      style={{ maxWidth: "32rem" }}
+    >
+      <div className="flex items-center">
+        <Link href="/dashboard">
+          <a aria-label="Back Button">
+            <BackIcon />
+          </a>
+        </Link>
+        <div className="w-full">
+          <p className="text-sm text-center">Step 2 of 3</p>
         </div>
-      </main>
+      </div>
+      <hr className="my-6" />
+      <ResourceFilterCustom />
     </div>
   )
 }
