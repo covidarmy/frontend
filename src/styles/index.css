@@ -1,34 +1,18 @@
-/* TAILWIND EXTENSIONS */
 @tailwind base;
 @tailwind components;
-
-/* DEFINE CSS VARIABLES */
-:root {
-  --color-primary: #4f46ef;
-}
 
 html {
   box-sizing: border-box;
 }
 
 body {
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 *,
 *:before,
 *:after {
   box-sizing: inherit;
-}
-
-.section-team {
-  /* font-family: "Poppins", sans-serif; */
-  padding: 20px 0;
-}
-
-.twitter-icon {
-  color: white;
-  fill: white;
 }
 
 @tailwind utilities;
