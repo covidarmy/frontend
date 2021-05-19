@@ -47,7 +47,7 @@
   },
   "optionalDependencies": {},
   "lint-staged": {
-    "./src/**/*.{js,jsx,ts,tsx,svg}": [
+    "./src/**/*.{js,jsx,ts,tsx}": [
       "npm run format"
     ]
   }
