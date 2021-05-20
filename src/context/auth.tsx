@@ -2,6 +2,7 @@ import * as React from "react"
 import { auth } from "~/lib/firebase"
 import firebase from "firebase/app"
 import { useRouter } from "next/router"
+import { API_BASE_URL } from "~/constants"
 
 type User = firebase.User | null
 
@@ -33,6 +34,15 @@ const AuthProvider: React.FC = ({ children }) => {
       console.log(user)
       setLoading(true)
       if (user) {
+        console.log(user)
+        user.getIdToken().then((idToken) =>
+          fetch(API_BASE_URL + "/volunteer/auth", {
+            method: "POST",
+            headers: {
+              authorization: idToken,
+            },
+          }).catch((err) => console.log(err))
+        )
         setUser(user)
         setAuthenticated(true)
       } else {
