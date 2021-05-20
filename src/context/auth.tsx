@@ -31,13 +31,11 @@ const AuthProvider: React.FC = ({ children }) => {
 
   React.useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      console.log(user)
       setLoading(true)
       if (user) {
-        console.log(user)
         user.getIdToken().then((idToken) =>
           fetch(API_BASE_URL + "/volunteer/auth", {
-            method: "POST",
+            method: "post",
             headers: {
               authorization: idToken,
             },
