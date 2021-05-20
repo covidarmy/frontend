@@ -19,7 +19,7 @@ const FilterButton = React.forwardRef(
     { active, href, onClick, children, className = "", isButton = false },
     ref
   ) => {
-    const className = clsx([
+    const classes = clsx([
       "hover:bg-gray-500 text-gray-700 font-semibold hover:text-white py-0.5 px-1 text-sm lg:text-base lg:py-1.5 m-1 lg:px-2 border-transparent hover:border-gray-500 rounded select-none cursor-pointer transition-colors",
       active ? "bg-gray-500 text-white" : "bg-gray-200",
       className,
@@ -27,11 +27,11 @@ const FilterButton = React.forwardRef(
 
     switch (true) {
       case isButton:
-        return <button className={className} onClick={onClick}></button>
+        return <button className={classes} onClick={onClick}></button>
       default:
         return (
           <Link href={href}>
-            <a ref={ref} onClick={onClick} className={className}>
+            <a ref={ref} onClick={onClick} className={classes}>
               {children}
             </a>
           </Link>

@@ -30,6 +30,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
   React.useEffect(() => {
     auth.onAuthStateChanged((user) => {
+      console.log(user)
       setLoading(true)
       if (user) {
         setUser(user)

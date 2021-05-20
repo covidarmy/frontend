@@ -1,11 +1,6 @@
 import { useRouter } from "next/router"
 import * as React from "react"
-import Link from "next/link"
 import Fuse from "fuse.js"
-import LoadingPage from "~/components/LoadingPage"
-import Navbar from "~/components/Navbar"
-import { useAuth } from "~/context/auth"
-import BackIcon from "~/assets/arrow-left.svg"
 import { useTranslation } from "~/context/translation"
 import { useCities } from "~/hooks/useCities"
 import LocationIcon from "~/assets/Location.svg"
@@ -15,7 +10,7 @@ import { HiChevronDown as DownArrow } from "react-icons/hi"
 import { HiChevronUp as UpArrow } from "react-icons/hi"
 import { useSlug } from "~/context/slug"
 
-const LocationFilterCustom = () => {
+const Step1 = () => {
   const { t } = useTranslation()
   const { location, resource } = useSlug()
   const [cities, topCities, error, isLoading] = useCities()
@@ -89,7 +84,6 @@ const LocationFilterCustom = () => {
           {t("CHOOSE_LOCATION")}
         </p>
       </div>
-      {/* search bar */}
       <div className="pt-2 ml-1 flex justify-start relative text-gray-600">
         <input
           className="border-2 w-full relative w-400 border-gray-300 bg-white h-10 pl-10 pr-4 rounded-lg text-sm transition-all focus:outline-none focus:ring focus:border-blue-300"
@@ -117,37 +111,4 @@ const LocationFilterCustom = () => {
   )
 }
 
-const Step1Page = () => {
-  const { isAuthenticated, user, loading } = useAuth()
-  const router = useRouter()
-
-  React.useEffect(() => {
-    if (!loading && !isAuthenticated) {
-      router.push("/login")
-    }
-  }, [isAuthenticated, loading])
-
-  if (loading) return <LoadingPage />
-
-  return (
-    <div
-      className="shadow-md bg-white py-6 px-6 sm:px-10 w-full "
-      style={{ maxWidth: "32rem" }}
-    >
-      <div className="flex items-center">
-        <Link href="/">
-          <a aria-label="Back Button">
-            <BackIcon />
-          </a>
-        </Link>
-        <div className="w-full">
-          <p className="text-sm text-center">Step 1 of 3</p>
-        </div>
-      </div>
-      <hr className="my-6" />
-      <LocationFilterCustom />
-    </div>
-  )
-}
-
-export default Step1Page
+export default Step1
