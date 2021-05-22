@@ -43,9 +43,6 @@ export default function Navbar() {
               <NavLink url="https://donate.indiacovidresources.in/" isExternal>
                 {t("DONATE")}
               </NavLink>
-              <NavLink url="http://plasma.indiacovidresources.in/" isExternal>
-                {t("PLASMA")}
-              </NavLink>
               <NavLink url="/disclaimer">{t("DISCLAIMER")}</NavLink>
               <NavLink url="/about">{t("ABOUT")}</NavLink>
               <ChangeLocale />
@@ -61,8 +58,7 @@ export default function Navbar() {
                     try {
                       await navigator.share({
                         title: "Covid.army",
-                        text:
-                          "Verified Real Time List of COVID-19 Resources and Aid",
+                        text: "Verified Real Time List of COVID-19 Resources and Aid",
                         url: "https://covid.army",
                       })
                     } catch (err) {
@@ -93,9 +89,6 @@ export default function Navbar() {
                   isExternal
                 >
                   {t("DONATE")}
-                </NavLink>
-                <NavLink url="http://plasma.indiacovidresources.in/" isExternal>
-                  {t("PLASMA")}
                 </NavLink>
                 <NavLink url="/disclaimer">{t("DISCLAIMER")}</NavLink>
                 <NavLink url="/about">{t("ABOUT")}</NavLink>
