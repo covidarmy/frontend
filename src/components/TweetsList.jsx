@@ -95,17 +95,15 @@ const TweetsList = () => {
   }
 
   return (
-    <div className="text-center pt-2 md:px-10">
-      No tweets found{" "}
-      {location ? " for " + location + (resource ? " & " + resource : "") : ""}.
-      This might be a bug, please DM on Twitter to let me know.{" "}
-      <a
-        target="_blank"
-        href="https://twitter.com/covid_army"
-        className="text-blue-600"
-      >
-        @covid_army
-      </a>
+    // <div className="text-center pt-2 md:px-10">
+    //   {/* Sorry, we don't have any data{" "}
+    //   {location ? " for " + location + (resource ? " & " + resource : "") : ""}. */}
+    // </div>
+
+    <div className="flex justify-center items-center border rounded-md shadow-md bg-gray-100 w-full h-52 my-2 p-3 lg:p-6">
+      <p className="font-semibold text-sm md:text-lg text-gray-600 text-center">
+        Sorry, we don't have any data for {location} & {resource}.
+      </p>
     </div>
   )
 }
