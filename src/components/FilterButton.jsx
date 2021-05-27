@@ -16,7 +16,7 @@ import Link from "next/link"
  */
 const FilterButton = React.forwardRef(
   (
-    { active, href, onClick, children, className = "", isButton = false },
+    { active, href = "", onClick, children, className = "", isButton = false },
     ref
   ) => {
     const classes = clsx([
