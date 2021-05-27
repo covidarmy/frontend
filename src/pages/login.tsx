@@ -69,15 +69,16 @@ const LoginPage: React.FC = () => {
               }}
             >
               <div className="flex items-center justify-start w-full gap-8">
-                <label>Email</label>
+                <label className="sr-only">Email</label>
                 <input
                   type="email"
+                  placeholder="Email"
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-2 py-2 transition ease-in border border-gray-200 rounded-md focus:outline-none focus:ring focus:ring-offset-indigo-400"
                   required
                 />
               </div>
-              <div className="flex justify-center w-full mt-6">
+              <div className="flex w-full mt-6">
                 <button
                   type="submit"
                   className="w-32 py-2 text-sm font-medium text-white transition ease-in bg-indigo-500 rounded focus:outline-none focus:ring focus:ring-offset-indigo-400"
