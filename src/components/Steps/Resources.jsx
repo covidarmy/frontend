@@ -8,10 +8,19 @@ import { useResources } from "~/hooks/useResources"
 import FilterButton from "~/components/FilterButton"
 import ResourceIcon from "~/assets/Resource.svg"
 import Skeleton from "react-loading-skeleton"
+import { useStore } from "~/lib/StepsStore"
 
 const ResourceFilterCustom = ({ nextStep }) => {
   const { t } = useTranslation()
+  const { selectResource } = useStore((state) => ({
+    selectResource: state.actions.selectResource,
+  }))
   const [resources, error, isLoading] = useResources()
+
+  const handleResourceSubmit = (item) => {
+    selectResource(item)
+    nextStep()
+  }
 
   // we can add better error state later
   if (error) return <div>failed to load</div>
@@ -28,7 +37,11 @@ const ResourceFilterCustom = ({ nextStep }) => {
       <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
         {resources.map((item) => {
           return (
-            <FilterButton key={item} active={false} onClick={nextStep}>
+            <FilterButton
+              key={item}
+              active={false}
+              onClick={() => handleResourceSubmit(item)}
+            >
               {item}
             </FilterButton>
           )
@@ -54,7 +67,7 @@ const ResourceStep = ({ nextStep, previousStep }) => {
             <BackIcon />
           </a>
           <div className="w-full">
-            <p className="text-sm text-center">Step 2 of 3</p>
+            <p className="text-sm text-center">Step 3 of 4</p>
           </div>
         </div>
         <hr className="my-6" />

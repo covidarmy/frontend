@@ -2,9 +2,35 @@ import * as React from "react"
 import { useRouter } from "next/router"
 import BackIcon from "~/assets/arrow-left.svg"
 import PhoneIcon from "~/assets/phone.svg"
+import { API_BASE_URL } from "~/constants"
+import { useStore } from "~/lib/StepsStore"
 
-const SubmitForm = ({ previousStep }) => {
+const SubmitForm = ({ previousStep, user }) => {
   const router = useRouter()
+  const { resource } = useStore((state) => ({
+    resource: state.resource,
+  }))
+
+  console.log(resource);
+
+  const handleSubmit = () => {
+    //     const rawResponse = await fetch(`${API_BASE_URL}/volunteer/contacts/`, {
+    //     method: 'POST',
+    //     headers: {
+    //       'Accept': 'application/json',
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
+    //         authorization: ''
+    //     })
+    //   });
+
+    //   const content = await rawResponse.json();
+
+    console.log(user)
+
+    router.push("/dashboard")
+  }
 
   return (
     <main className="flex flex-col items-center justify-center rounded-lg p-4 sm:p-8">
@@ -85,9 +111,7 @@ const SubmitForm = ({ previousStep }) => {
         <div className="flex justify-center mt-10 rounded-md">
           <button
             className="py-2 px-8 bg-blue-600 text-white"
-            onClick={() => {
-              router.push("/dashboard")
-            }}
+            onClick={handleSubmit}
           >
             Submit
           </button>
