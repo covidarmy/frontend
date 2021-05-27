@@ -1,6 +1,8 @@
 import Navbar from "~/components/Navbar"
 import createStore from "zustand"
-import { HiArrowLeft } from "react-icons/hi"
+import CitiesStep from "~/components/Steps/Cities"
+import ResourceStep from "~/components/Steps/Resources"
+import SubmitForm from "~/components/Steps/SubmitForm"
 
 type Steps = 1 | 2 | 3
 
@@ -51,19 +53,9 @@ export default function AddResourcePage() {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main className="flex flex-col w-full h-full">
-        <div className="shadow-md bg-white py-6 px-6 sm:px-10 w-full max-w-[32rem]">
-          <div className="flex items-center">
-            <button onClick={previousStep} aria-label="Back Button">
-              <HiArrowLeft />
-            </button>
-            <div className="w-full">
-              <p className="text-sm text-center">Step {step} of 3</p>
-            </div>
-          </div>
-          <hr className="my-6" />
-        </div>
-      </main>
+      {step === 1 && <CitiesStep nextStep={nextStep} />}
+      {step === 2 && <ResourceStep nextStep={nextStep} previousStep={previousStep} />}
+      {step === 3 && <SubmitForm previousStep={previousStep} />}
     </div>
   )
 }
