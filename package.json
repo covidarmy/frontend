@@ -7,8 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "format": "prettier --write ./src/**/*.{js,jsx,ts,tsx}",
-    "prepare": "husky install"
+    "format": "prettier --write ./src/**/*.{js,jsx,ts,tsx}"
   },
   "dependencies": {
     "@headlessui/react": "^1.1.1",
@@ -17,6 +16,7 @@
     "clipboard": "^2.0.8",
     "clsx": "^1.1.1",
     "date-fns": "^2.21.1",
+    "firebase": "^8.6.1",
     "fuse.js": "^6.4.6",
     "heroicons": "^1.0.1",
     "inter-ui": "^3.18.1",
@@ -29,7 +29,8 @@
     "react-loading-skeleton": "^2.2.0",
     "react-static-tweets": "^0.5.4",
     "swr": "^0.5.6",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "zustand": "^3.5.1"
   },
   "devDependencies": {
     "@tailwindcss/jit": "^0.1.18",
@@ -37,17 +38,9 @@
     "@types/react": "^17.0.5",
     "@types/react-dom": "^17.0.3",
     "autoprefixer": "^10.2.5",
-    "husky": "^6.0.0",
-    "lint-staged": "^10.5.4",
     "postcss": "^8.2.13",
     "prettier": "^2.2.1",
     "tailwindcss": "^2.1.2",
     "typescript": "^4.2.4"
-  },
-  "optionalDependencies": {},
-  "lint-staged": {
-    "./src/**/*.{js,jsx,ts,tsx}": [
-      "npm run format"
-    ]
   }
 }

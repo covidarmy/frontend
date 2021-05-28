@@ -97,7 +97,6 @@ export default function LocationFilter() {
       )
     })
   }
-
   if (!cityState)
     return (
       <div className="shadow-md bg-white box-border h-auto w-full rounded-md my-2 p-3 lg:p-6 border border-gray-200">

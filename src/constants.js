@@ -1,7 +1,13 @@
 export const isServer = typeof window === "undefined"
 export const isProduction = process.env.NODE_ENV === "production"
+
 export const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ?? "https://api.covid.army"
+
+export const APP_BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://covid.army"
+    : "http://localhost:3000"
 
 /** @type {import("next-seo").DefaultSeoProps} */
 export const defaultSeoProps = {

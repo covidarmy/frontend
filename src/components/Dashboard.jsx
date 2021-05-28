@@ -1,8 +1,5 @@
 import * as React from "react"
-
 import WhatsappLogo from "../assets/whatsapp.svg"
-
-// COMPONENTS
 import LocationFilter from "./LocationFilter"
 import ResourceFilter from "./ResourceFilter"
 import TweetsList from "./TweetsList"

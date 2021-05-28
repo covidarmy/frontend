@@ -1,18 +1,18 @@
 import * as React from "react"
-import Link from "next/link"
 import { Disclosure, Transition } from "@headlessui/react"
-import { MenuIcon, XIcon } from "@heroicons/react/outline"
 import { HiOutlineShare } from "react-icons/hi"
-import { useTranslation } from "~/context/translation"
+import { MenuIcon, XIcon } from "@heroicons/react/outline"
 import ChangeLocale from "./ChangeLocale"
-
-// COMPONENTS
-import NavLink from "./NavLinks"
+import Link from "next/link"
 import Logo from "./Logo"
+import NavLink from "./NavLink"
+import { useAuth } from "~/context/auth"
+import { useTranslation } from "~/context/translation"
 
 export default function Navbar() {
   const [canShare, setCanShare] = React.useState(true)
   const { t } = useTranslation()
+  const { isAuthenticated, signOut } = useAuth()
 
   React.useEffect(() => {
     if (!navigator.share) setCanShare(false)
@@ -23,9 +23,9 @@ export default function Navbar() {
       {({ open }) => (
         <nav>
           <div className="flex items-center justify-between w-full h-16 lg:px-20 px-2 sm:px-4">
-            <div className="-mr-2 flex md:hidden">
+            <div className="-mr-2 flex lg:hidden">
               {/* Mobile menu button */}
-              <Disclosure.Button className=" inline-flex items-center justify-center p-2 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-white">
+              <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-white">
                 <span className="sr-only">Open main menu</span>
                 {open ? (
                   <XIcon className="block h-6 w-6" aria-hidden="true" />
@@ -45,6 +45,18 @@ export default function Navbar() {
               </NavLink>
               <NavLink url="/disclaimer">{t("DISCLAIMER")}</NavLink>
               <NavLink url="/about">{t("ABOUT")}</NavLink>
+              {isAuthenticated ? (
+                <>
+                  <div className="w-px h-8 bg-gray-500"></div>
+                  <NavLink url="/dashboard">Dashboard</NavLink>
+                  <NavLink onClick={signOut} isButton>
+                    Sign out
+                  </NavLink>
+                  <div className="w-px h-8 bg-gray-500"></div>
+                </>
+              ) : (
+                <NavLink url="/login">Volunteer login</NavLink>
+              )}
               <ChangeLocale />
             </div>
             <>
@@ -82,7 +94,7 @@ export default function Navbar() {
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-95 opacity-0"
           >
-            <Disclosure.Panel className="md:hidden" static>
+            <Disclosure.Panel className="lg:hidden" static>
               <div className="px-2 grid pt-2 pb-3 space-y-1 sm:px-3">
                 <NavLink
                   url="https://donate.indiacovidresources.in/"
@@ -92,6 +104,17 @@ export default function Navbar() {
                 </NavLink>
                 <NavLink url="/disclaimer">{t("DISCLAIMER")}</NavLink>
                 <NavLink url="/about">{t("ABOUT")}</NavLink>
+                {isAuthenticated ? (
+                  <>
+                    <div className="h-px w-full bg-gray-800"></div>
+                    <NavLink url="/dashboard">Dashboard</NavLink>
+                    <NavLink onClick={signOut} isButton>
+                      Sign out
+                    </NavLink>
+                  </>
+                ) : (
+                  <NavLink url="/login">Volunteer login</NavLink>
+                )}
               </div>
             </Disclosure.Panel>
           </Transition>
