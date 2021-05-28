@@ -22,7 +22,7 @@ const SubmitForm = ({ previousStep, user }) => {
       const postRequestBody = {
         city: city.toLowerCase(),
         phone_no: phoneNo,
-        resource_type: resource.toLowerCase(),
+        resource_type: encodeURIComponent(resource.toLowerCase()),
         title: title,
       }
 
