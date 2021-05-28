@@ -58,6 +58,7 @@ const About: React.FC<Props> = (props) => {
   const { t } = useTranslation()
   const { partnerData, volunteerData } = props
 
+  console.log('props', props)
   return (
     <div>
       <Navbar />
