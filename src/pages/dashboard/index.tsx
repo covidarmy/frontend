@@ -7,6 +7,14 @@ import AwardIcon from "~/assets/award.svg"
 import HeartIcon from "~/assets/heart.svg"
 import SearchIcon from "~/assets/Search.svg"
 
+const FilterButton = ({ text }) => {
+  return (
+    <button className="flex justify-center items-center px-4 py-5 bg-white text-gray-500 shadow-md rounded-lg">
+      {text}
+    </button>
+  )
+}
+
 export default function DashboardPage() {
   //   const { isAuthenticated, loading } = useAuth()
   //   const router = useRouter()
@@ -51,7 +59,7 @@ export default function DashboardPage() {
             <div className="relative">
               <input
                 type="text"
-                style={{ width: '21.2rem' }}
+                style={{ width: "21.2rem" }}
                 placeholder="search a lead using keywords"
                 className="pl-4 h-full py-3 rounded-lg shadow-md"
               />
@@ -60,18 +68,10 @@ export default function DashboardPage() {
               </div>
             </div>
             {/* btns */}
-            <button className="px-4 py-5 bg-white text-gray-500 shadow-md rounded-lg">
-              week
-            </button>
-            <button className="px-4 py-5 bg-white text-gray-500 shadow-md rounded-lg">
-              month
-            </button>
-            <button className="px-4 py-5 bg-white text-gray-500 shadow-md rounded-lg">
-              2 months
-            </button>
-            <button className="px-4 py-5 bg-white text-gray-500 shadow-md rounded-lg">
-              6 months
-            </button>
+            <FilterButton text="week" />
+            <FilterButton text="month" />
+            <FilterButton text="2 months" />
+            <FilterButton text="6 months" />
             <button className="px-4 py-5 bg-white text-gray-300 shadow-sm rounded-lg">
               clear filter
             </button>
@@ -81,7 +81,6 @@ export default function DashboardPage() {
           <div className="bg-white py-4 px-5 rounded-lg shadow-md mt-5">
             <p className="text-gray-500 text-sm">25 May 2021 • 1 lead</p>
             <hr className="my-4" />
-            
           </div>
         </div>
       </main>
