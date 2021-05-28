@@ -33,6 +33,11 @@ interface IPartner {
   description?: string
   name: string
   published?: boolean
+  logoImg: {
+    name: string
+    url: string
+    rawUrl: string
+  }[]
 }
 
 interface IVolunteer {
@@ -75,7 +80,8 @@ const About: React.FC<Props> = (props) => {
                 referrerPolicy="no-referrer"
               >
                 <Image
-                  src={`/static/assets/partners/${partner.imageFileName}`}
+                  // src={`/static/assets/partners/${partner.imageFileName}`}
+                  src={partner.logoImg[0].url}
                   height={150}
                   width={150}
                 />
@@ -85,8 +91,8 @@ const About: React.FC<Props> = (props) => {
         </div>
       </section>
 
-      <section id="team" className="container section-team mx-auto">
-        <div className="row justify-center flex text-center my-20">
+      <section id="team" className="container mx-auto section-team">
+        <div className="flex justify-center my-20 text-center row">
           <div className="md:col-span-8 lg:col-span-6">
             <div className="mb-12">
               <h3 className="text-2xl text-[#4f46ef] mb-6 font-medium">
@@ -95,7 +101,7 @@ const About: React.FC<Props> = (props) => {
             </div>
           </div>
         </div>
-        <div className="flex flex-wrap -mx-2 mb-8 mt-8">
+        <div className="flex flex-wrap mt-8 mb-8 -mx-2">
           {volunteerData
             .filter((i) => i.type === "core")
             .map((element) => {
@@ -104,22 +110,22 @@ const About: React.FC<Props> = (props) => {
               return (
                 <div
                   key={element.id}
-                  className="w-full md:w-1/2 lg:w-1/3 px-2 mb-4"
+                  className="w-full px-2 mb-4 md:w-1/2 lg:w-1/3"
                 >
                   <div className="flex items-center justify-center">
-                    <div className="bg-white mt-10 py-12 px-8 md:px-16 text-center rounded-md shadow-lg mx-auto">
+                    <div className="px-8 py-12 mx-auto mt-10 text-center bg-white rounded-md shadow-lg md:px-16">
                       <img
-                        className="w-28 h-28 object-cover rounded-full mx-auto shadow-lg"
+                        className="object-cover mx-auto rounded-full shadow-lg w-28 h-28"
                         src={element.image}
                         alt="Image"
                       />
-                      <p className="capitalize text-xl mt-1">{element.name}</p>
+                      <p className="mt-1 text-xl capitalize">{element.name}</p>
                       <a
                         target="_blank"
-                        className="rounded-md flex flex-row bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-blue-500 hover:to-indigo-600 text-lg capitalize text-white mt-6 px-12 py-1 items-center justify-center space-x-1"
+                        className="flex flex-row items-center justify-center px-12 py-1 mt-6 space-x-1 text-lg text-white capitalize rounded-md bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-blue-500 hover:to-indigo-600"
                         href={element.social_link}
                       >
-                        <SocialIcon className="h-6 w-6" />
+                        <SocialIcon className="w-6 h-6" />
                         <span>{element.social_type}</span>
                       </a>
                     </div>
@@ -129,8 +135,8 @@ const About: React.FC<Props> = (props) => {
             })}
         </div>
       </section>
-      <section id="team" className="container section-team mx-auto">
-        <div className="row justify-center flex text-center my-20">
+      <section id="team" className="container mx-auto section-team">
+        <div className="flex justify-center my-20 text-center row">
           <div className="md:col-span-8 lg:col-span-6">
             <div className="mb-12">
               <h3 className="text-2xl text-[#4f46ef] mb-6 font-medium">
@@ -139,7 +145,7 @@ const About: React.FC<Props> = (props) => {
             </div>
           </div>
         </div>
-        <div className="flex flex-wrap -mx-2 mb-8 mt-8">
+        <div className="flex flex-wrap mt-8 mb-8 -mx-2">
           {volunteerData
             .filter((i) => i.type === "contributor")
             .map((element) => {
@@ -148,22 +154,22 @@ const About: React.FC<Props> = (props) => {
               return (
                 <div
                   key={element.id}
-                  className="w-full md:w-1/2 lg:w-1/3 px-2 mb-4"
+                  className="w-full px-2 mb-4 md:w-1/2 lg:w-1/3"
                 >
                   <div className="flex items-center justify-center">
-                    <div className="bg-white mt-10 py-12 px-8 md:px-16 text-center rounded-md shadow-lg mx-auto">
+                    <div className="px-8 py-12 mx-auto mt-10 text-center bg-white rounded-md shadow-lg md:px-16">
                       <img
-                        className="w-28 h-28 object-cover rounded-full mx-auto shadow-lg"
+                        className="object-cover mx-auto rounded-full shadow-lg w-28 h-28"
                         src={element.image}
                         alt="Image"
                       />
-                      <p className="capitalize text-xl mt-1">{element.name}</p>
+                      <p className="mt-1 text-xl capitalize">{element.name}</p>
                       <a
                         target="_blank"
-                        className="rounded-md flex flex-row bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-blue-500 hover:to-indigo-600 text-lg capitalize text-white mt-6 px-12 py-1 items-center justify-center space-x-1"
+                        className="flex flex-row items-center justify-center px-12 py-1 mt-6 space-x-1 text-lg text-white capitalize rounded-md bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-blue-500 hover:to-indigo-600"
                         href={element.social_link}
                       >
-                        <SocialIcon className="h-6 w-6" />
+                        <SocialIcon className="w-6 h-6" />
                         <span>{element.social_type}</span>
                       </a>
                     </div>
