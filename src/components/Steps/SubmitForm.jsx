@@ -18,11 +18,11 @@ const SubmitForm = ({ previousStep, user }) => {
     e.preventDefault()
 
     user.getIdToken().then((idToken) => {
+      console.log(idToken)
       const postRequestBody = {
-        authorization: idToken,
-        city: city,
+        city: city.toLowerCase(),
         phone_no: phoneNo,
-        resource_type: resource,
+        resource_type: resource.toLowerCase(),
         title: title,
       }
 
@@ -30,12 +30,16 @@ const SubmitForm = ({ previousStep, user }) => {
       fetch(`${API_BASE_URL}/volunteer/contacts/`, {
         method: "POST",
         headers: {
-          'Accept': "application/json",
+          Accept: "application/json",
+          authorization: idToken,
         },
         body: JSON.stringify(postRequestBody),
       })
         .then((res) => {
-            console.log(res)
+          return res.json()
+        })
+        .then((data) => {
+          console.log(data)
           // router.push("/dashboard")
         })
         .catch((e) => {
