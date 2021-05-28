@@ -12,8 +12,8 @@ const SubmitForm = ({ previousStep, user }) => {
     resource: state.resource,
     reset: state.actions.reset,
   }))
-  const [phoneNo, setPhoneNo] = React.useState()
-  const [title, setTitle] = React.useState()
+  const [phoneNo, setPhoneNo] = React.useState("")
+  const [title, setTitle] = React.useState("")
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
