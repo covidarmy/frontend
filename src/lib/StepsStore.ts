@@ -13,6 +13,7 @@ interface AddResourceStore {
     selectState: (cstate: string) => void
     selectCity: (city: string) => void
     selectResource: (resource: string) => void
+    reset: (step: string) => void
   }
 }
 
@@ -42,6 +43,9 @@ export const useStore = createStore<AddResourceStore>((set, get) => ({
     },
     selectResource: (resource: string) => {
       set(() => ({ resource }))
+    },
+    reset: () => {
+      set((state) => ({ step: (state.step = 1) as Steps }))
     },
   },
 }))

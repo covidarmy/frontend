@@ -7,9 +7,10 @@ import { useStore } from "~/lib/StepsStore"
 
 const SubmitForm = ({ previousStep, user }) => {
   const router = useRouter()
-  const { city, resource } = useStore((state) => ({
+  const { city, resource, reset } = useStore((state) => ({
     city: state.city,
     resource: state.resource,
+    reset: state.actions.reset,
   }))
   const [phoneNo, setPhoneNo] = React.useState()
   const [title, setTitle] = React.useState()
@@ -18,7 +19,6 @@ const SubmitForm = ({ previousStep, user }) => {
     e.preventDefault()
 
     user.getIdToken().then((idToken) => {
-      console.log(idToken)
       const postRequestBody = {
         city: city.toLowerCase(),
         phone_no: phoneNo,
@@ -26,21 +26,20 @@ const SubmitForm = ({ previousStep, user }) => {
         title: title,
       }
 
-      console.log(postRequestBody)
+      //   console.log(postRequestBody)
       fetch(`${API_BASE_URL}/volunteer/contacts/`, {
         method: "POST",
         headers: {
-          Accept: "application/json",
           authorization: idToken,
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(postRequestBody),
       })
-        .then((res) => {
-          return res.json()
-        })
-        .then((data) => {
-          console.log(data)
-          // router.push("/dashboard")
+        .then((res) => res.json())
+        .then(() => {
+          //   console.log(data)
+          reset()
+          router.push("/dashboard")
         })
         .catch((e) => {
           console.log(e)
