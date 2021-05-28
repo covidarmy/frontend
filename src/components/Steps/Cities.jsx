@@ -10,7 +10,7 @@ import SearchIcon from "~/assets/Search.svg"
 import { useEmptyCities } from "~/hooks/useEmptyCities"
 import { useStore } from "~/lib/StepsStore"
 
-const LocationFilterCustom = ({ nextStep, cities }) => {
+const LocationFilterCustom = ({ nextStep, cities, isLoading }) => {
   const router = useRouter()
   const { t } = useTranslation()
   const [searchValue, setSearchValue] = React.useState("")
@@ -19,8 +19,8 @@ const LocationFilterCustom = ({ nextStep, cities }) => {
   }))
 
   const handleCitySubmit = (item) => {
-    selectCity(item);
-    nextStep();
+    selectCity(item)
+    nextStep()
   }
 
   const renderButtons = () => {
@@ -37,7 +37,11 @@ const LocationFilterCustom = ({ nextStep, cities }) => {
 
     return _data.map((item) => {
       return (
-        <FilterButton key={item} active={false} onClick={() => handleCitySubmit(item)}>
+        <FilterButton
+          key={item}
+          active={false}
+          onClick={() => handleCitySubmit(item)}
+        >
           {item}
         </FilterButton>
       )
@@ -64,10 +68,14 @@ const LocationFilterCustom = ({ nextStep, cities }) => {
         <SearchIcon className="absolute top-5 left-4" />
       </div>
       <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
-        {cities !== undefined ? (
-          renderButtons()
+        {!isLoading ? (
+          cities !== undefined ? (
+            renderButtons()
+          ) : (
+            <div>No empty city found for this state.</div>
+          )
         ) : (
-          <div>No empty city found for this state.</div>
+          <div>loading..</div>
         )}
       </div>
     </div>
@@ -80,8 +88,6 @@ const CitiesStep = ({ nextStep, previousStep }) => {
     cstate: state.cstate,
   }))
   const [cities, isLoading] = useEmptyCities(cstate)
-
-  if (isLoading) return <div>loading...</div>
 
   return (
     <main className="flex flex-col items-center justify-center rounded-lg p-4 sm:p-8">
@@ -102,7 +108,11 @@ const CitiesStep = ({ nextStep, previousStep }) => {
           </div>
         </div>
         <hr className="my-6" />
-        <LocationFilterCustom nextStep={nextStep} cities={cities} />
+        <LocationFilterCustom
+          nextStep={nextStep}
+          cities={cities}
+          isLoading={isLoading}
+        />
       </div>
     </main>
   )
