@@ -5,7 +5,7 @@ import Navbar from "~/components/Navbar"
 import { useAuth } from "~/context/auth"
 import AwardIcon from "~/assets/award.svg"
 import HeartIcon from "~/assets/heart.svg"
-import SearchIcon from "~/assets/search.svg"
+import SearchIcon from "~/assets/Search.svg"
 
 export default function DashboardPage() {
   //   const { isAuthenticated, loading } = useAuth()
