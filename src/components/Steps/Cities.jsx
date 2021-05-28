@@ -14,6 +14,14 @@ const LocationFilterCustom = ({ nextStep, cities }) => {
   const router = useRouter()
   const { t } = useTranslation()
   const [searchValue, setSearchValue] = React.useState("")
+  const { selectCity } = useStore((state) => ({
+    selectCity: state.actions.selectCity,
+  }))
+
+  const handleCitySubmit = (item) => {
+    selectCity(item);
+    nextStep();
+  }
 
   const renderButtons = () => {
     let _data = cities
@@ -29,7 +37,7 @@ const LocationFilterCustom = ({ nextStep, cities }) => {
 
     return _data.map((item) => {
       return (
-        <FilterButton key={item} active={false} onClick={nextStep}>
+        <FilterButton key={item} active={false} onClick={() => handleCitySubmit(item)}>
           {item}
         </FilterButton>
       )
@@ -68,12 +76,11 @@ const LocationFilterCustom = ({ nextStep, cities }) => {
 
 const CitiesStep = ({ nextStep, previousStep }) => {
   const router = useRouter()
-  const { location } = useStore((state) => ({
-    location: state.location,
+  const { cstate } = useStore((state) => ({
+    cstate: state.cstate,
   }))
-  const [cities, isLoading] = useEmptyCities(location)
+  const [cities, isLoading] = useEmptyCities(cstate)
 
-  console.log(cities)
   if (isLoading) return <div>loading...</div>
 
   return (

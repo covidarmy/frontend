@@ -10,13 +10,13 @@ import AllStates from "~/lib/allStates.json"
 import { useStore } from "~/lib/StepsStore"
 
 const LocationFilterCustom = ({ nextStep }) => {
-  const { selectCity } = useStore((state) => ({
-    selectCity: state.actions.selectCity
+  const { selectState } = useStore((state) => ({
+    selectState: state.actions.selectState
   }))
   const [searchValue, setSearchValue] = React.useState("")
 
   const handleStateSubmit = (item) => {
-    selectCity(item)
+    selectState(item)
     nextStep();
   }
 

@@ -4,11 +4,13 @@ type Steps = 1 | 2 | 3 | 4
 
 interface AddResourceStore {
   step: Steps
-  location: string | undefined
+  cstate: string | undefined
+  city: string | undefined
   resource: string | undefined
   actions: {
     nextStep: () => void
     previousStep: () => void
+    selectState: (cstate: string) => void
     selectCity: (city: string) => void
     selectResource: (resource: string) => void
   }
@@ -16,7 +18,8 @@ interface AddResourceStore {
 
 export const useStore = createStore<AddResourceStore>((set, get) => ({
   step: 1,
-  location: undefined,
+  cstate: undefined,
+  city: undefined,
   resource: undefined,
   actions: {
     nextStep: () => {
@@ -31,8 +34,11 @@ export const useStore = createStore<AddResourceStore>((set, get) => ({
         set(() => ({ step: (step - 1) as Steps }))
       }
     },
-    selectCity: (location: string) => {
-      set(() => ({ location }))
+    selectState: (cstate: string) => {
+      set(() => ({ cstate }))
+    },
+    selectCity: (city: string) => {
+      set(() => ({ city }))
     },
     selectResource: (resource: string) => {
       set(() => ({ resource }))
