@@ -29,12 +29,12 @@ const Card = ({ title, resourceType, city, status, message, contactNo }) => {
       {/* title */}
       <div className="flex items-center gap-3">
         <h3 className="font-semibold mr-auto">{title}</h3>
-        <button className="bg-blue-100 text-blue-600 px-4 py-2 rounded">
+        <div className="bg-blue-50 text-blue-600 px-4 py-2 rounded">
           {resourceType}
-        </button>
-        <button className="bg-blue-100 text-blue-600 px-4 py-2 rounded">
+        </div>
+        <div className="bg-blue-50 text-blue-600 px-4 py-2 rounded">
           {city}
-        </button>
+        </div>
         <button className="px-3">
           <EditIcon />
         </button>
@@ -51,7 +51,7 @@ const Card = ({ title, resourceType, city, status, message, contactNo }) => {
             {contactNo}
           </button>
           {status === "ACTIVE" && (
-            <button className="inline-flex items-center justify-center bg-green-200 text-green-600 ml-auto py-2 px-4 rounded font-semibold">
+            <button className="inline-flex items-center justify-center bg-green-100 text-green-600 ml-auto py-2 px-4 rounded font-semibold">
               <CheckMarkIcon />
               <div className="ml-2">Verified</div>
             </button>
@@ -139,15 +139,14 @@ export default function DashboardPage() {
         </div>
 
         {/* main content */}
-        <div className="w-full">
+        <div className="">
           <div className="flex gap-5 items-stretch h-14">
             {/* search-bar */}
-            <div className="relative">
+            <div className="w-full max-w-xs relative">
               <input
                 type="text"
-                style={{ width: "20.5rem" }}
                 placeholder="search a lead using keywords"
-                className="pl-4 h-full py-3 rounded-lg shadow-md focus:outline-none focus:ring focus:border-blue-300"
+                className="pl-4 w-full h-full py-3 rounded-lg shadow-md focus:outline-none focus:ring focus:border-blue-300"
               />
               <div className="absolute right-4 top-5 transform scale-125">
                 <SearchIcon />
