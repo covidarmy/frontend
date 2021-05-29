@@ -14,6 +14,7 @@ const SubmitForm = ({ previousStep, user }) => {
   }))
   const [phoneNo, setPhoneNo] = React.useState("")
   const [title, setTitle] = React.useState("")
+  const [message, setMessage] = React.useState("")
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
@@ -22,8 +23,9 @@ const SubmitForm = ({ previousStep, user }) => {
       const postRequestBody = {
         city: city.toLowerCase(),
         phone_no: phoneNo,
-        resource_type: encodeURIComponent(resource.toLowerCase()),
         title: title,
+        message: message,
+        resource_type: encodeURIComponent(resource.toLowerCase()),
       }
 
       //   console.log(postRequestBody)
@@ -111,7 +113,11 @@ const SubmitForm = ({ previousStep, user }) => {
             <p className="text-sm opacity-50">
               Message/comment to go along with the contact number
             </p>
-            <textarea className="border w-full h-28 p-2 mt-1" />
+            <textarea
+              className="border w-full h-28 p-2 mt-1"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
           </div>
 
           {/* <div className="mt-7">
@@ -126,7 +132,9 @@ const SubmitForm = ({ previousStep, user }) => {
 
           <hr className="mt-6" />
           <div className="flex justify-center mt-10 rounded-md">
-            <button className="py-2 px-8 bg-blue-600 text-white">Submit</button>
+            <button className="py-2 px-8 bg-blue-600 text-white" type="submit">
+              Submit
+            </button>
           </div>
         </form>
 

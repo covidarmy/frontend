@@ -8,11 +8,13 @@ type User = firebase.User | null
 
 const context = React.createContext<{
   user: User
+  authToken: string
   isAuthenticated: boolean
   loading: boolean
   signOut: (() => void) | undefined
 }>({
   user: null,
+  authToken: "",
   isAuthenticated: false,
   loading: true,
   signOut: undefined,
@@ -22,6 +24,7 @@ const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = React.useState<User>(null)
   const [isAuthenticated, setAuthenticated] = React.useState(false)
   const [loading, setLoading] = React.useState(true)
+  const [authToken, setAuthToken] = React.useState("")
   const router = useRouter()
 
   const signOut = () => {
@@ -33,14 +36,15 @@ const AuthProvider: React.FC = ({ children }) => {
     auth.onAuthStateChanged((user) => {
       setLoading(true)
       if (user) {
-        user.getIdToken().then((idToken) =>
+        user.getIdToken().then((idToken) => {
+          setAuthToken(idToken)
           fetch(API_BASE_URL + "/volunteer/auth", {
             method: "post",
             headers: {
               authorization: idToken,
             },
           }).catch((err) => console.log(err))
-        )
+        })
         setUser(user)
         setAuthenticated(true)
       } else {
@@ -52,7 +56,7 @@ const AuthProvider: React.FC = ({ children }) => {
   }, [])
 
   return (
-    <context.Provider value={{ isAuthenticated, user, loading, signOut }}>
+    <context.Provider value={{ isAuthenticated, user, authToken, loading, signOut }}>
       {children}
     </context.Provider>
   )
