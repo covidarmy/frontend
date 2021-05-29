@@ -21,7 +21,7 @@ export const useLeads = (authToken) => {
 
   React.useEffect(() => {
     if (data) {
-      setLeads(data)
+      setLeads(data.reverse())
       setIsLoading(false)
     }
   }, [data])

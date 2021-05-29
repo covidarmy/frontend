@@ -12,18 +12,66 @@ import SearchIcon from "~/assets/Search.svg"
 import EditIcon from "~/assets/edit.svg"
 import CheckMarkIcon from "~/assets/checkmark.svg"
 
+const getTotalUsersFromLeads = (leads) => {
+  const uniqueUsers = []
+  leads.forEach((lead) => {
+    if (!uniqueUsers.includes(lead.userId[0])) {
+      uniqueUsers.push(lead.userId[0])
+    }
+  })
+  return uniqueUsers.length
+}
+
+const getFormattedData = (date) => {
+  // 2021-05-29T05:31:06.921Z
+  const dateString = date.split("-")
+  const year = dateString[0]
+  const month = dateString[1]
+  const day = dateString[2].split("T")[0]
+
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ]
+
+  const formattedString = `${day} ${monthNames[+month - 1]} ${year}`
+  return formattedString
+}
+
 const FilterButton = ({ text }) => {
   return (
-    <button className="flex justify-center items-center px-4 py-5 bg-white text-gray-500 shadow-md rounded-lg transition-all border hover:shadow-sm hover:border-gray-300">
+    <button className="flex justify-center min-w-max h-full items-center px-4 py-2 bg-white text-gray-500 shadow-md rounded-lg transition-all border hover:shadow-sm hover:border-gray-300">
       {text}
     </button>
   )
 }
 
-const Card = ({ title, resourceType, city, status, message, contactNo }) => {
+const Card = ({
+  title,
+  resourceType,
+  city,
+  status,
+  message,
+  contactNo,
+  updatedAt,
+}) => {
+  const router = useRouter()
+
   return (
     <div className="bg-white py-4 px-5 rounded-lg shadow-md mt-5">
-      <p className="text-gray-500 text-sm">25 May 2021 • 1 lead</p>
+      <p className="text-gray-500 text-sm">{`Last updated at ${getFormattedData(
+        updatedAt
+      )}`}</p>
       <hr className="my-4" />
 
       {/* title */}
@@ -32,10 +80,13 @@ const Card = ({ title, resourceType, city, status, message, contactNo }) => {
         <div className="bg-blue-50 text-blue-600 px-4 py-2 rounded">
           {resourceType}
         </div>
-        <div className="bg-blue-50 text-blue-600 px-4 py-2 rounded">
-          {city}
-        </div>
-        <button className="px-3">
+        <div className="bg-blue-50 text-blue-600 px-4 py-2 rounded">{city}</div>
+        <button
+          className="px-3"
+          onClick={() => {
+            router.push("/dashboard/add")
+          }}
+        >
           <EditIcon />
         </button>
       </div>
@@ -63,30 +114,16 @@ const Card = ({ title, resourceType, city, status, message, contactNo }) => {
       {message !== null && (
         <div>
           <p className="text-gray-400 text-sm mt-5">Message/remarks</p>
-          <p className="bg-gray-100 p-4 mt-2 rounded">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla enim
-            ipsum mollitia sequi beatae temporibus impedit nihil quis maxime
-            aut!
-          </p>
+          <p className="bg-gray-100 p-4 mt-2 rounded">{message}</p>
         </div>
       )}
     </div>
   )
 }
 
-const getTotalUsersFromLeads = (leads) => {
-  const uniqueUsers = []
-  leads.forEach((lead) => {
-    if (!uniqueUsers.includes(lead.userId[0])) {
-      uniqueUsers.push(lead.userId[0])
-    }
-  })
-  return uniqueUsers.length
-}
-
 export default function DashboardPage() {
   const { authToken, isAuthenticated, loading } = useAuth()
-  const [leads, isloading] = useLeads(authToken)
+  const [leads] = useLeads(authToken)
   const router = useRouter()
 
   React.useEffect(() => {
@@ -97,13 +134,16 @@ export default function DashboardPage() {
 
   if (loading) return <LoadingPage />
 
-  console.log(leads)
+//   console.log(leads)
   return (
     <div className="min-h-screen bg-gray-100 ">
       <Navbar />
-      <main className="flex gap-8 p-4 pt-8 mx-auto max-w-6xl rounded-lg">
+      <section className="flex gap-8 p-4 pt-8 mx-auto max-w-6xl rounded-lg">
         {/* sidebar */}
-        <div className="flex flex-col gap-3 w-56">
+        <aside
+          className="hidden lg:flex flex-col gap-3 w-full"
+          style={{ maxWidth: "11rem" }}
+        >
           <button
             className="bg-blue-600 text-white px-6 py-2 rounded-md h-14 transition-shadow hover:shadow-lg"
             onClick={() => router.push("/dashboard/add")}
@@ -136,13 +176,16 @@ export default function DashboardPage() {
           ) : (
             <Skeleton height="6rem" />
           )}
-        </div>
+        </aside>
 
         {/* main content */}
-        <div className="">
-          <div className="flex gap-5 items-stretch h-14">
+        <main>
+          <div
+            className="flex flex-col md:flex-row gap-5"
+            style={{ minHeight: "3.5rem" }}
+          >
             {/* search-bar */}
-            <div className="w-full max-w-xs relative">
+            <div className="w-full relative">
               <input
                 type="text"
                 placeholder="search a lead using keywords"
@@ -153,11 +196,13 @@ export default function DashboardPage() {
               </div>
             </div>
             {/* btns */}
-            <FilterButton text="week" />
-            <FilterButton text="month" />
-            <FilterButton text="2 months" />
-            <FilterButton text="6 months" />
-            <FilterButton text="clear filter" />
+            <div className="flex items-center gap-5 justify-between">
+              <FilterButton text="week" />
+              <FilterButton text="month" />
+              <FilterButton text="2 months" />
+              <FilterButton text="6 months" />
+              <FilterButton text="1 year" />
+            </div>
           </div>
 
           {/* cards */}
@@ -171,6 +216,7 @@ export default function DashboardPage() {
                 status={lead.status}
                 message={lead.message}
                 contactNo={lead.contact_no}
+                updatedAt={lead.updatedAt}
               />
             ))
           ) : (
@@ -180,8 +226,8 @@ export default function DashboardPage() {
               <Skeleton height="14rem" className="mt-5" />
             </>
           )}
-        </div>
-      </main>
+        </main>
+      </section>
     </div>
   )
 }
