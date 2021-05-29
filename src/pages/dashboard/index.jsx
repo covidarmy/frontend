@@ -13,6 +13,9 @@ import SearchIcon from "~/assets/Search.svg"
 import EditIcon from "~/assets/edit.svg"
 import CheckMarkIcon from "~/assets/checkmark.svg"
 
+import ReactTooltip from "react-tooltip"
+import { useCopyToClipboard } from "~/hooks/useCopyToClipboard"
+
 const getTotalUsersFromLeads = (leads) => {
   const uniqueUsers = []
   leads.forEach((lead) => {
@@ -64,7 +67,6 @@ const FilterButton = ({ text, active }) => {
 }
 
 const FilterButtonGroup = () => {
-
   return (
     <div className="flex items-center gap-5 justify-between">
       <FilterButton text="week" />
@@ -73,6 +75,31 @@ const FilterButtonGroup = () => {
       <FilterButton text="6 months" />
       <FilterButton text="1 year" />
     </div>
+  )
+}
+
+const ClickToCopyButton = ({ text }) => {
+  const [copied, setCopied, copy] = useCopyToClipboard(text)
+
+  React.useEffect(() => {
+    if (copied) {
+      setTimeout(() => {
+        setCopied(false)
+      }, 3000)
+    }
+  }, [copied])
+
+  return (
+    <>
+      <ReactTooltip />
+      <button
+        onClick={copy}
+        data-tip={copied ? "Copied" : "Click to copy"}
+        className="py-2 px-4 rounded font-semibold transition-colors bg-gray-100 hover:bg-gray-300"
+      >
+        {text}
+      </button>
+    </>
   )
 }
 
@@ -118,12 +145,7 @@ const Card = ({
       <div className="mt-6">
         <p className="text-gray-400 text-sm">Contact numbers provided</p>
         <div className="flex items-center mt-2 gap-3">
-          <button
-            className="py-2 px-4 rounded font-semibold"
-            style={{ background: "#F4F4F4" }}
-          >
-            {contactNo}
-          </button>
+          <ClickToCopyButton text={contactNo} />
           {status === "ACTIVE" && (
             <button className="inline-flex items-center justify-center bg-green-100 text-green-600 ml-auto py-2 px-4 rounded font-semibold">
               <CheckMarkIcon />
