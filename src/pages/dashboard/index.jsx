@@ -18,7 +18,7 @@ import MoreIcon from "~/assets/more.svg"
 
 import ReactTooltip from "react-tooltip"
 import { useCopyToClipboard } from "~/hooks/useCopyToClipboard"
-import { Menu, Transition } from "@headlessui/react"
+import { Menu, RadioGroup, Transition } from "@headlessui/react"
 
 const getTotalUsersFromLeads = (leads) => {
   const uniqueUsers = []
@@ -56,29 +56,30 @@ const getFormattedData = (date) => {
   return formattedString
 }
 
-const FilterButton = ({ text, active }) => {
-  const [isActive, setIsActive] = React.useState(active)
-  return (
-    <button
-      onClick={() => setIsActive(!isActive)}
-      className={`${
-        isActive ? "bg-blue-500 text-white" : "bg-white text-gray-500"
-      } flex justify-center min-w-max h-full items-center px-4 py-2 shadow-md rounded-lg transition-all border hover:shadow-sm hover:border-gray-300 focus:outline-none focus:ring focus:border-blue-300`}
-    >
-      {text}
-    </button>
-  )
-}
-
 const FilterButtonGroup = () => {
+  let [selectedFilter, setSelectedFilter] = React.useState()
+  const filters = ["week", "month", "2 months", "6 months", "1 year"]
+
   return (
-    <div className="flex items-center gap-5 justify-between">
-      <FilterButton text="week" />
-      <FilterButton text="month" />
-      <FilterButton text="2 months" />
-      <FilterButton text="6 months" />
-      <FilterButton text="1 year" />
-    </div>
+    <RadioGroup
+      value={selectedFilter}
+      onChange={setSelectedFilter}
+      className="flex items-center gap-5 justify-between"
+    >
+      {filters.map((filter) => (
+        <RadioGroup.Option key={filter} value={filter} className="h-full">
+          {({ checked }) => (
+            <button
+              className={`${
+                checked ? "bg-blue-500 text-white" : "bg-white text-gray-500"
+              } flex justify-center min-w-max h-full items-center px-4 py-2 shadow-md rounded-lg transition-shadow border hover:shadow-sm hover:border-gray-300 focus:outline-none focus:ring focus:border-blue-300`}
+            >
+              {filter}
+            </button>
+          )}
+        </RadioGroup.Option>
+      ))}
+    </RadioGroup>
   )
 }
 
@@ -124,7 +125,7 @@ const EditDropdownMenu = () => {
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-95 opacity-0"
           >
-            <Menu.Items className="absolute right-0 p-3 rounded-lg shadow-lg bg-white">
+            <Menu.Items className="absolute right-0 py-3 px-2 rounded-lg shadow-lg bg-white">
               <Menu.Item>
                 <button className="flex items-center px-4 py-2 w-full transition-colors hover:bg-gray-100">
                   <EditIcon />
