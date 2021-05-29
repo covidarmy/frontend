@@ -25,7 +25,10 @@ const LoginPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
-      <main className="flex flex-col items-center justify-center rounded-lg p-4 sm:p-8 gap-5 mx-auto max-w-xl">
+      <main
+        className="flex flex-col items-center justify-center rounded-lg p-4 sm:p-8 gap-5 mx-auto"
+        style={{ maxWidth: "36rem" }}
+      >
         <div className="w-full px-6 py-6 bg-white rounded-md shadow-md sm:px-10">
           <div className="flex items-center">
             <Link href="/">
