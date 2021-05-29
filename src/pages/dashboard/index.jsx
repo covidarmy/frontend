@@ -12,9 +12,13 @@ import HeartIcon from "~/assets/heart.svg"
 import SearchIcon from "~/assets/Search.svg"
 import EditIcon from "~/assets/edit.svg"
 import CheckMarkIcon from "~/assets/checkmark.svg"
+import UnverfiedIcon from "~/assets/unverfied.svg"
+import DeleteIcon from "~/assets/delete.svg"
+import MoreIcon from "~/assets/more.svg"
 
 import ReactTooltip from "react-tooltip"
 import { useCopyToClipboard } from "~/hooks/useCopyToClipboard"
+import { Menu, Transition } from "@headlessui/react"
 
 const getTotalUsersFromLeads = (leads) => {
   const uniqueUsers = []
@@ -103,6 +107,44 @@ const ClickToCopyButton = ({ text }) => {
   )
 }
 
+const EditDropdownMenu = () => {
+  return (
+    <Menu>
+      {({ open }) => (
+        <div className="relative">
+          <Menu.Button className="py-2 focus:outline-none focus:ring focus:border-blue-300">
+            <MoreIcon />
+          </Menu.Button>
+          <Transition
+            show={open}
+            enter="transition duration-100 ease-out"
+            enterFrom="transform scale-95 opacity-0"
+            enterTo="transform scale-100 opacity-100"
+            leave="transition duration-75 ease-out"
+            leaveFrom="transform scale-100 opacity-100"
+            leaveTo="transform scale-95 opacity-0"
+          >
+            <Menu.Items className="absolute right-0 p-3 rounded-lg shadow-lg bg-white">
+              <Menu.Item>
+                <button className="flex items-center px-4 py-2 w-full transition-colors hover:bg-gray-100">
+                  <EditIcon />
+                  <p className="ml-2">Edit</p>
+                </button>
+              </Menu.Item>
+              <Menu.Item>
+                <button className="flex items-center px-4 py-2 w-full transition-colors hover:bg-gray-100">
+                  <DeleteIcon />
+                  <p className="ml-2">Delete</p>
+                </button>
+              </Menu.Item>
+            </Menu.Items>
+          </Transition>
+        </div>
+      )}
+    </Menu>
+  )
+}
+
 const Card = ({
   title,
   resourceType,
@@ -113,8 +155,6 @@ const Card = ({
   contactNo,
   updatedAt,
 }) => {
-  const router = useRouter()
-
   return (
     <div className="bg-white py-4 px-5 rounded-lg shadow-md mt-5">
       <p className="text-gray-500 text-sm">{`Last updated at ${getFormattedData(
@@ -131,14 +171,7 @@ const Card = ({
         <div className="bg-blue-50 text-blue-600 px-4 py-2 rounded">
           {city + ", " + state}
         </div>
-        <button
-          className="px-3"
-          onClick={() => {
-            router.push("/dashboard/add")
-          }}
-        >
-          <EditIcon />
-        </button>
+        <EditDropdownMenu />
       </div>
 
       {/* phone_no */}
@@ -146,11 +179,16 @@ const Card = ({
         <p className="text-gray-400 text-sm">Contact numbers provided</p>
         <div className="flex items-center mt-2 gap-3">
           <ClickToCopyButton text={contactNo} />
-          {status === "ACTIVE" && (
-            <button className="inline-flex items-center justify-center bg-green-100 text-green-600 ml-auto py-2 px-4 rounded font-semibold">
+          {status === "ACTIVE" ? (
+            <div className="inline-flex items-center justify-center text-green-600 ml-auto py-2 px-4 rounded font-semibold">
               <CheckMarkIcon />
               <div className="ml-2">Verified</div>
-            </button>
+            </div>
+          ) : (
+            <div className="inline-flex items-center justify-center text-red-600 ml-auto py-2 px-4 rounded font-semibold">
+              <UnverfiedIcon />
+              <div className="ml-2">Unverified</div>
+            </div>
           )}
         </div>
       </div>
