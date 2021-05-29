@@ -49,11 +49,30 @@ const getFormattedData = (date) => {
   return formattedString
 }
 
-const FilterButton = ({ text }) => {
+const FilterButton = ({ text, active }) => {
+  const [isActive, setIsActive] = React.useState(active)
   return (
-    <button className="flex justify-center min-w-max h-full items-center px-4 py-2 bg-white text-gray-500 shadow-md rounded-lg transition-all border hover:shadow-sm hover:border-gray-300">
+    <button
+      onClick={() => setIsActive(!isActive)}
+      className={`${
+        isActive ? "bg-blue-500 text-white" : "bg-white text-gray-500"
+      } flex justify-center min-w-max h-full items-center px-4 py-2 shadow-md rounded-lg transition-all border hover:shadow-sm hover:border-gray-300 focus:outline-none focus:ring focus:border-blue-300`}
+    >
       {text}
     </button>
+  )
+}
+
+const FilterButtonGroup = () => {
+
+  return (
+    <div className="flex items-center gap-5 justify-between">
+      <FilterButton text="week" />
+      <FilterButton text="month" />
+      <FilterButton text="2 months" />
+      <FilterButton text="6 months" />
+      <FilterButton text="1 year" />
+    </div>
   )
 }
 
@@ -174,7 +193,7 @@ export default function DashboardPage() {
           style={{ maxWidth: "11rem" }}
         >
           <button
-            className="bg-blue-600 text-white px-6 py-2 rounded-md h-14 transition-shadow hover:shadow-lg"
+            className="bg-blue-600 text-white px-6 py-2 rounded-md h-14 transition-shadow hover:shadow-lg focus:outline-none focus:ring focus:border-blue-300"
             onClick={() => router.push("/dashboard/add")}
           >
             Add a lead
@@ -227,13 +246,7 @@ export default function DashboardPage() {
               </div>
             </div>
             {/* btns */}
-            <div className="flex items-center gap-5 justify-between">
-              <FilterButton text="week" />
-              <FilterButton text="month" />
-              <FilterButton text="2 months" />
-              <FilterButton text="6 months" />
-              <FilterButton text="1 year" />
-            </div>
+            <FilterButtonGroup />
           </div>
 
           {/* cards */}
