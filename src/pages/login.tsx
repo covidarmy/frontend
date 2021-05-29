@@ -3,11 +3,9 @@ import * as React from "react"
 import Link from "next/link"
 import Navbar from "~/components/Navbar"
 import BackIcon from "~/assets/arrow-left.svg"
-import RightIcon from "~/assets/chevron-right.svg"
 import { useAuth } from "~/context/auth"
+import { auth, fb as firebase } from "~/lib/firebase"
 import LoadingPage from "~/components/LoadingPage"
-import { auth, fb } from "~/lib/firebase"
-import FaceBookIcon from "~/assets/facebook.svg"
 import GoogleIcon from "~/assets/google.svg"
 
 const LoginPage: React.FC = () => {
@@ -45,14 +43,13 @@ const LoginPage: React.FC = () => {
             Hello Superhero, hope you are doing good!
           </p>
           <h2 className="text-xl font-bold mt-8">Please log in using</h2>
-          <div className="flex flex-col lg:flex-row justify-between items-stretch lg:items-center mt-9">
             <button
-              className="inline-flex items-center justify-center py-3 px-7 rounded-lg"
+              className="mt-9 inline-flex items-center py-3 px-7 rounded-lg"
               style={{ background: "#EFEFEF" }}
               onClick={() => {
                 auth
-                  .signInWithPopup(new fb.auth.GoogleAuthProvider())
-                  .then((user) => {
+                  .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+                  .then(() => {
                     router.push("/dashboard")
                   })
               }}
@@ -60,30 +57,14 @@ const LoginPage: React.FC = () => {
               <GoogleIcon />
               <div className="text-xl font-semibold ml-2">Google</div>
             </button>
-            <p className="text-center">or</p>
-            <button
-              className="inline-flex items-center justify-center py-3 px-7 rounded-lg"
-              style={{ background: "#EFEFEF" }}
-              onClick={() => {
-                auth
-                  .signInWithPopup(new fb.auth.FacebookAuthProvider())
-                  .then((user) => {
-                    router.push("/dashboard")
-                  })
-              }}
-            >
-              <FaceBookIcon />
-              <div className="text-xl font-semibold ml-2">Facebook</div>
-            </button>
-          </div>
         </div>
 
-        <div className="w-full px-6 py-6 bg-white rounded-lg shadow-md sm:px-10">
+        {/* <div className="w-full px-6 py-6 bg-white rounded-lg shadow-md sm:px-10">
           <div className="flex items-center justify-between text-blue-500 cursor-pointer hover:underline">
             <div>Volunteer FAQs</div>
             <RightIcon />
           </div>
-        </div>
+        </div> */}
       </main>
     </div>
   )
