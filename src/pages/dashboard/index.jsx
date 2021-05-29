@@ -74,6 +74,16 @@ const Card = ({ title, resourceType, city, status, message, contactNo }) => {
   )
 }
 
+const getTotalUsersFromLeads = (leads) => {
+  const uniqueUsers = []
+  leads.forEach((lead) => {
+    if (!uniqueUsers.includes(lead.userId[0])) {
+      uniqueUsers.push(lead.userId[0])
+    }
+  })
+  return uniqueUsers.length
+}
+
 export default function DashboardPage() {
   const { authToken, isAuthenticated, loading } = useAuth()
   const [leads, isloading] = useLeads(authToken)
@@ -100,20 +110,32 @@ export default function DashboardPage() {
           >
             Add a lead
           </button>
-          <div className="shadow-lg p-4 bg-white rounded-lg">
-            <p className="text-gray-400">People helped</p>
-            <div className="flex items-center mt-3">
-              <HeartIcon />
-              <p className="ml-1 text-lg text-blue-600">64</p>
+          {/* total people */}
+          {leads !== undefined ? (
+            <div className="shadow-lg p-4 bg-white rounded-lg">
+              <p className="text-gray-400">People helped</p>
+              <div className="flex items-center mt-3">
+                <HeartIcon />
+                <p className="ml-1 text-lg text-blue-600">
+                  {getTotalUsersFromLeads(leads)}
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="shadow-lg p-4 bg-white rounded-lg">
-            <p className="text-gray-400">Leads provided</p>
-            <div className="flex items-center mt-3">
-              <AwardIcon />
-              <p className="ml-1 text-lg text-blue-600">64</p>
+          ) : (
+            <Skeleton height="6rem" />
+          )}
+          {/* total leads */}
+          {leads !== undefined ? (
+            <div className="shadow-lg p-4 bg-white rounded-lg">
+              <p className="text-gray-400">Leads provided</p>
+              <div className="flex items-center mt-3">
+                <AwardIcon />
+                <p className="ml-1 text-lg text-blue-600">{leads.length}</p>
+              </div>
             </div>
-          </div>
+          ) : (
+            <Skeleton height="6rem" />
+          )}
         </div>
 
         {/* main content */}
@@ -143,6 +165,7 @@ export default function DashboardPage() {
           {leads !== undefined ? (
             leads.map((lead) => (
               <Card
+                key={lead._id}
                 title={lead.title}
                 resourceType={lead.resource_type}
                 city={lead.city}
