@@ -76,7 +76,7 @@ const SubmitForm = ({ previousStep, user }) => {
           <div className="flex gap-3  mt-3">
             <div className="flex flex-col">
               <label htmlFor="" className="text-sm opacity-50">
-                Title
+                Your name
               </label>
               <input
                 type="text"
