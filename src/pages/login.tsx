@@ -4,7 +4,6 @@ import Link from "next/link"
 import Navbar from "~/components/Navbar"
 import BackIcon from "~/assets/arrow-left.svg"
 import RightIcon from "~/assets/chevron-right.svg"
-import { APP_BASE_URL } from "~/constants"
 import { useAuth } from "~/context/auth"
 import LoadingPage from "~/components/LoadingPage"
 import { auth, fb } from "~/lib/firebase"
@@ -43,7 +42,7 @@ const LoginPage: React.FC = () => {
             Hello Superhero, hope you are doing good!
           </p>
           <h2 className="text-xl font-bold mt-8">Please log in using</h2>
-          <div className="flex justify-between items-center mt-9">
+          <div className="flex flex-col lg:flex-row justify-between items-stretch lg:items-center mt-9">
             <button
               className="inline-flex items-center justify-center py-3 px-7 rounded-lg"
               style={{ background: "#EFEFEF" }}
@@ -58,7 +57,7 @@ const LoginPage: React.FC = () => {
               <GoogleIcon />
               <div className="text-xl font-semibold ml-2">Google</div>
             </button>
-            <p>or</p>
+            <p className="text-center">or</p>
             <button
               className="inline-flex items-center justify-center py-3 px-7 rounded-lg"
               style={{ background: "#EFEFEF" }}
