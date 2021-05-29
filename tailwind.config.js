@@ -3,7 +3,7 @@ const colors = require("tailwindcss/colors")
 
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}"],
-  darkMode: 'class', // or 'media' or 'class'
+  darkMode: "class", // or 'media' or 'class'
   theme: {
     colors: {
       primary: "#4f46ef",
@@ -18,7 +18,10 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor: ["active"],
+      textColor: ["active"],
+    },
   },
   plugins: [],
 }

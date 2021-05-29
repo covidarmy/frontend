@@ -58,13 +58,13 @@ const getFormattedData = (date) => {
 
 const FilterButtonGroup = () => {
   let [selectedFilter, setSelectedFilter] = React.useState()
-  const filters = ["week", "month", "2 months", "6 months", "1 year"]
+  const filters = ["week", "month", "2 months", "6 months"]
 
   return (
     <RadioGroup
       value={selectedFilter}
       onChange={setSelectedFilter}
-      className="flex items-center gap-5 justify-between"
+      className="flex items-center gap-4 justify-between"
     >
       {filters.map((filter) => (
         <RadioGroup.Option key={filter} value={filter} className="h-full">
@@ -79,6 +79,14 @@ const FilterButtonGroup = () => {
           )}
         </RadioGroup.Option>
       ))}
+      <button
+        className="min-w-max h-full px-4 py-2 shadow-md rounded-lg bg-white text-gray-500 transition-shadow border active:bg-blue-500 active:text-white hover:shadow-sm hover:border-gray-300 focus:outline-none focus:ring focus:border-blue-300"
+        onClick={() => {
+          setSelectedFilter("")
+        }}
+      >
+        Clear Filter
+      </button>
     </RadioGroup>
   )
 }
