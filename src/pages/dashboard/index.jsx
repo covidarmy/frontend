@@ -2,6 +2,7 @@ import * as React from "react"
 import Skeleton from "react-loading-skeleton"
 import LoadingPage from "~/components/LoadingPage"
 import Navbar from "~/components/Navbar"
+import Fuse from "fuse.js"
 import { useRouter } from "next/router"
 import { useAuth } from "~/context/auth"
 import { useLeads } from "~/hooks/useLeads"
@@ -60,6 +61,7 @@ const Card = ({
   title,
   resourceType,
   city,
+  state,
   status,
   message,
   contactNo,
@@ -80,7 +82,9 @@ const Card = ({
         <div className="bg-blue-50 text-blue-600 px-4 py-2 rounded">
           {resourceType}
         </div>
-        <div className="bg-blue-50 text-blue-600 px-4 py-2 rounded">{city}</div>
+        <div className="bg-blue-50 text-blue-600 px-4 py-2 rounded">
+          {city + ", " + state}
+        </div>
         <button
           className="px-3"
           onClick={() => {
@@ -124,6 +128,8 @@ const Card = ({
 export default function DashboardPage() {
   const { authToken, isAuthenticated, loading } = useAuth()
   const [leads] = useLeads(authToken)
+  const [filteredLeads, setFilteredLeads] = React.useState(leads)
+  const [searchText, setSearchText] = React.useState("")
   const router = useRouter()
 
   React.useEffect(() => {
@@ -132,9 +138,32 @@ export default function DashboardPage() {
     }
   }, [isAuthenticated, loading])
 
-  if (loading) return <LoadingPage />
+  React.useEffect(() => {
+    setFilteredLeads(leads)
+  }, [leads])
 
-//   console.log(leads)
+  React.useEffect(() => {
+    if (searchText === "") {
+      setFilteredLeads(leads)
+    }
+  }, [searchText])
+
+  const handleSearch = (e) => {
+    setSearchText(e.target.value)
+
+    if (searchText !== "" && searchText) {
+      const fuse = new Fuse(leads, {
+        keys: ["title", "category", "city", "message", "state", "contact_no"],
+      })
+      const filteredList = fuse.search(searchText).map(({ item }) => item)
+
+      setFilteredLeads(filteredList)
+    } else {
+      setFilteredLeads(leads)
+    }
+  }
+
+  if (loading) return <LoadingPage />
   return (
     <div className="min-h-screen bg-gray-100 ">
       <Navbar />
@@ -185,9 +214,11 @@ export default function DashboardPage() {
             style={{ minHeight: "3.5rem" }}
           >
             {/* search-bar */}
-            <div className="w-full relative">
+            <div className="w-full relative" style={{ minWidth: "21rem" }}>
               <input
                 type="text"
+                value={searchText}
+                onChange={(e) => handleSearch(e)}
                 placeholder="search a lead using keywords"
                 className="pl-4 w-full h-full py-3 rounded-lg shadow-md focus:outline-none focus:ring focus:border-blue-300"
               />
@@ -206,13 +237,14 @@ export default function DashboardPage() {
           </div>
 
           {/* cards */}
-          {leads !== undefined ? (
-            leads.map((lead) => (
+          {filteredLeads !== undefined ? (
+            filteredLeads.map((lead) => (
               <Card
                 key={lead._id}
                 title={lead.title}
                 resourceType={lead.resource_type}
                 city={lead.city}
+                state={lead.state}
                 status={lead.status}
                 message={lead.message}
                 contactNo={lead.contact_no}
