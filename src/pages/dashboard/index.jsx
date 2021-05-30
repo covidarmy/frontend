@@ -23,6 +23,8 @@ import { useCopyToClipboard } from "~/hooks/useCopyToClipboard"
 import { Menu, RadioGroup, Transition } from "@headlessui/react"
 import { API_BASE_URL } from "~/constants"
 
+import Highlighter from "react-highlight-words"
+
 const getTotalUsersFromLeads = (leads) => {
   const uniqueUsers = []
   leads.forEach((lead) => {
@@ -94,7 +96,7 @@ const FilterButtonGroup = () => {
   )
 }
 
-const ClickToCopyButton = ({ text }) => {
+const ClickToCopyButton = ({ text, searchText }) => {
   const [copied, setCopied, copy] = useCopyToClipboard(text)
 
   React.useEffect(() => {
@@ -113,7 +115,11 @@ const ClickToCopyButton = ({ text }) => {
         data-tip={copied ? "Copied" : "Click to copy"}
         className="py-2 px-4 rounded font-semibold transition-colors bg-gray-100 hover:bg-gray-300"
       >
-        {text}
+        <Highlighter
+          searchWords={[searchText]}
+          autoEscape={true}
+          textToHighlight={text}
+        />
       </button>
     </>
   )
@@ -188,6 +194,7 @@ const Card = ({
   updatedAt,
   authToken,
   user,
+  searchText,
 }) => {
   return (
     <div className="bg-white py-4 px-3 md:px-5 rounded-lg shadow-md mt-3 md:mt-5">
@@ -200,28 +207,56 @@ const Card = ({
       {(isMobile || isTablet) && (
         <>
           <div className="flex items-center gap-3">
-            <h3 className="font-semibold mr-auto">{title}</h3>
+            <h3 className="font-semibold mr-auto">
+              <Highlighter
+                searchWords={[searchText]}
+                autoEscape={true}
+                textToHighlight={title}
+              />
+            </h3>
             <EditDropdownMenu authToken={authToken} user={user} />
           </div>
           <div className="flex flex-wrap items-center gap-3 mt-2">
             <div className="bg-blue-50 text-blue-600 px-4 py-2 rounded">
-              {resourceType}
+              <Highlighter
+                searchWords={[searchText]}
+                autoEscape={true}
+                textToHighlight={resourceType}
+              />
             </div>
             <div className="bg-blue-50 text-blue-600 px-4 py-2 rounded">
-              {city + ", " + state}
+              <Highlighter
+                searchWords={[searchText]}
+                autoEscape={true}
+                textToHighlight={city + ", " + state}
+              />
             </div>
           </div>
         </>
       )}
       {isDesktop && (
         <div className="flex items-center gap-3">
-          <h3 className="font-semibold mr-auto">{title}</h3>
+          <h3 className="font-semibold mr-auto">
+            <Highlighter
+              searchWords={[searchText]}
+              autoEscape={true}
+              textToHighlight={title}
+            />
+          </h3>
           <div className="hidden md:flex items-center gap-3">
             <div className="bg-blue-50 text-blue-600 px-4 py-2 rounded">
-              {resourceType}
+              <Highlighter
+                searchWords={[searchText]}
+                autoEscape={true}
+                textToHighlight={resourceType}
+              />
             </div>
             <div className="bg-blue-50 text-blue-600 px-4 py-2 rounded">
-              {city + ", " + state}
+              <Highlighter
+                searchWords={[searchText]}
+                autoEscape={true}
+                textToHighlight={city + ", " + state}
+              />
             </div>
           </div>
           <EditDropdownMenu authToken={authToken} user={user} />
@@ -234,7 +269,7 @@ const Card = ({
           Contact numbers provided <small>(click to copy)</small>
         </p>
         <div className="flex items-center mt-2 gap-3">
-          <ClickToCopyButton text={contactNo} />
+          <ClickToCopyButton text={contactNo} searchText={searchText} />
           {status === "ACTIVE" ? (
             <div className="inline-flex items-center justify-center text-green-600 ml-auto py-2 px-4 rounded font-semibold">
               <CheckMarkIcon />
@@ -283,19 +318,17 @@ export default function DashboardPage() {
     }
   }, [searchText])
 
-  const handleSearch = (e) => {
-    setSearchText(e.target.value)
+  const handleSearch = (text) => {
+    setSearchText(text)
 
-    if (searchText !== "" && searchText) {
-      const fuse = new Fuse(leads, {
-        keys: ["title", "category", "city", "message", "state", "contact_no"],
-      })
-      const filteredList = fuse.search(searchText).map(({ item }) => item)
+    // searching for values
+    const fuse = new Fuse(leads, {
+      keys: ["title", "category", "city", "state", "contact_no"],
+    })
+    const filteredList = fuse.search(text).map(({ item }) => item)
 
-      setFilteredLeads(filteredList)
-    } else {
-      setFilteredLeads(leads)
-    }
+    // setting this to list
+    setFilteredLeads(filteredList)
   }
 
   if (loading) return <LoadingPage />
@@ -350,7 +383,7 @@ export default function DashboardPage() {
               <input
                 type="text"
                 value={searchText}
-                onChange={(e) => handleSearch(e)}
+                onChange={(e) => handleSearch(e.target.value)}
                 placeholder="search a lead using keywords"
                 className="pl-4 min-w-max w-full h-full py-3 rounded-lg shadow-md focus:outline-none focus:ring focus:border-blue-300"
               />
@@ -377,6 +410,7 @@ export default function DashboardPage() {
                 updatedAt={lead.updatedAt}
                 user={lead}
                 authToken={authToken}
+                searchText={searchText}
               />
             ))
           ) : (
