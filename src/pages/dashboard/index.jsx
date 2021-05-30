@@ -6,6 +6,7 @@ import Fuse from "fuse.js"
 import { useRouter } from "next/router"
 import { useAuth } from "~/context/auth"
 import { useLeads } from "~/hooks/useLeads"
+import { isMobile, isTablet, isDesktop } from "react-device-detect"
 
 import AwardIcon from "~/assets/award.svg"
 import HeartIcon from "~/assets/heart.svg"
@@ -15,10 +16,12 @@ import CheckMarkIcon from "~/assets/checkmark.svg"
 import UnverfiedIcon from "~/assets/unverfied.svg"
 import DeleteIcon from "~/assets/delete.svg"
 import MoreIcon from "~/assets/more.svg"
+import PlusIcon from "~/assets/plus.svg"
 
 import ReactTooltip from "react-tooltip"
 import { useCopyToClipboard } from "~/hooks/useCopyToClipboard"
 import { Menu, RadioGroup, Transition } from "@headlessui/react"
+import { API_BASE_URL } from "~/constants"
 
 const getTotalUsersFromLeads = (leads) => {
   const uniqueUsers = []
@@ -64,7 +67,7 @@ const FilterButtonGroup = () => {
     <RadioGroup
       value={selectedFilter}
       onChange={setSelectedFilter}
-      className="flex items-center gap-4 justify-between"
+      className="hidden md:flex items-center gap-4 justify-between"
     >
       {filters.map((filter) => (
         <RadioGroup.Option key={filter} value={filter} className="h-full">
@@ -72,7 +75,7 @@ const FilterButtonGroup = () => {
             <button
               className={`${
                 checked ? "bg-blue-500 text-white" : "bg-white text-gray-500"
-              } flex justify-center min-w-max h-full items-center px-4 py-2 shadow-md rounded-lg transition-shadow border hover:shadow-sm hover:border-gray-300 focus:outline-none focus:ring focus:border-blue-300`}
+              } justify-center min-w-max h-full items-center px-4 py-2 shadow-md rounded-lg transition-shadow border hover:shadow-sm hover:border-gray-300 focus:outline-none focus:ring focus:border-blue-300`}
             >
               {filter}
             </button>
@@ -80,7 +83,7 @@ const FilterButtonGroup = () => {
         </RadioGroup.Option>
       ))}
       <button
-        className="min-w-max h-full px-4 py-2 shadow-md rounded-lg bg-white text-gray-500 transition-shadow border active:bg-blue-500 active:text-white hover:shadow-sm hover:border-gray-300 focus:outline-none focus:ring focus:border-blue-300"
+        className="hidden md:block min-w-max h-full px-4 py-2 shadow-md rounded-lg bg-white text-gray-500 transition-shadow border active:bg-blue-500 active:text-white hover:shadow-sm hover:border-gray-300 focus:outline-none focus:ring focus:border-blue-300"
         onClick={() => {
           setSelectedFilter("")
         }}
@@ -116,7 +119,24 @@ const ClickToCopyButton = ({ text }) => {
   )
 }
 
-const EditDropdownMenu = () => {
+const EditDropdownMenu = ({ authToken, user }) => {
+  const handleDelete = () => {
+    console.log(user)
+
+    fetch(`${API_BASE_URL}/volunteer/contacts/`, {
+      method: "DELETE",
+      headers: {
+        authorization: authToken,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ contact_id: user._id }),
+    })
+      .then((res) => res.json())
+      .catch((e) => {
+        console.log(e)
+      })
+  }
+
   return (
     <Menu>
       {({ open }) => (
@@ -141,7 +161,10 @@ const EditDropdownMenu = () => {
                 </button>
               </Menu.Item>
               <Menu.Item>
-                <button className="flex items-center px-4 py-2 w-full transition-colors hover:bg-gray-100">
+                <button
+                  className="flex items-center px-4 py-2 w-full transition-colors hover:bg-gray-100"
+                  onClick={handleDelete}
+                >
                   <DeleteIcon />
                   <p className="ml-2">Delete</p>
                 </button>
@@ -163,29 +186,53 @@ const Card = ({
   message,
   contactNo,
   updatedAt,
+  authToken,
+  user,
 }) => {
   return (
-    <div className="bg-white py-4 px-5 rounded-lg shadow-md mt-5">
+    <div className="bg-white py-4 px-3 md:px-5 rounded-lg shadow-md mt-3 md:mt-5">
       <p className="text-gray-500 text-sm">{`Last updated at ${getFormattedData(
         updatedAt
       )}`}</p>
       <hr className="my-4" />
 
       {/* title */}
-      <div className="flex items-center gap-3">
-        <h3 className="font-semibold mr-auto">{title}</h3>
-        <div className="bg-blue-50 text-blue-600 px-4 py-2 rounded">
-          {resourceType}
+      {(isMobile || isTablet) && (
+        <>
+          <div className="flex items-center gap-3">
+            <h3 className="font-semibold mr-auto">{title}</h3>
+            <EditDropdownMenu authToken={authToken} user={user} />
+          </div>
+          <div className="flex flex-wrap items-center gap-3 mt-2">
+            <div className="bg-blue-50 text-blue-600 px-4 py-2 rounded">
+              {resourceType}
+            </div>
+            <div className="bg-blue-50 text-blue-600 px-4 py-2 rounded">
+              {city + ", " + state}
+            </div>
+          </div>
+        </>
+      )}
+      {isDesktop && (
+        <div className="flex items-center gap-3">
+          <h3 className="font-semibold mr-auto">{title}</h3>
+          <div className="hidden md:flex items-center gap-3">
+            <div className="bg-blue-50 text-blue-600 px-4 py-2 rounded">
+              {resourceType}
+            </div>
+            <div className="bg-blue-50 text-blue-600 px-4 py-2 rounded">
+              {city + ", " + state}
+            </div>
+          </div>
+          <EditDropdownMenu authToken={authToken} user={user} />
         </div>
-        <div className="bg-blue-50 text-blue-600 px-4 py-2 rounded">
-          {city + ", " + state}
-        </div>
-        <EditDropdownMenu />
-      </div>
+      )}
 
       {/* phone_no */}
       <div className="mt-6">
-        <p className="text-gray-400 text-sm">Contact numbers provided</p>
+        <p className="text-gray-400 text-sm">
+          Contact numbers provided <small>(click to copy)</small>
+        </p>
         <div className="flex items-center mt-2 gap-3">
           <ClickToCopyButton text={contactNo} />
           {status === "ACTIVE" ? (
@@ -255,7 +302,7 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-gray-100 ">
       <Navbar />
-      <section className="flex gap-8 p-4 pt-8 mx-auto max-w-6xl rounded-lg">
+      <section className="flex gap-8 p-4 pt-3 md:pt-6 mx-auto max-w-6xl rounded-lg">
         {/* sidebar */}
         <aside
           className="hidden lg:flex flex-col gap-3 w-full"
@@ -297,12 +344,9 @@ export default function DashboardPage() {
 
         {/* main content */}
         <main>
-          <div
-            className="flex flex-col md:flex-row gap-5"
-            style={{ minHeight: "3.5rem" }}
-          >
+          <div className="flex gap-4 h-14">
             {/* search-bar */}
-            <div className="w-full relative" style={{ minWidth: "21rem" }}>
+            <div className="w-full relative">
               <input
                 type="text"
                 value={searchText}
@@ -331,6 +375,8 @@ export default function DashboardPage() {
                 message={lead.message}
                 contactNo={lead.contact_no}
                 updatedAt={lead.updatedAt}
+                user={lead}
+                authToken={authToken}
               />
             ))
           ) : (
@@ -342,6 +388,15 @@ export default function DashboardPage() {
           )}
         </main>
       </section>
+      {/* floating button */}
+      {isMobile && (
+        <button
+          className="bg-blue-600 p-2 rounded-full shadow-md fixed bottom-6 right-5"
+          onClick={() => router.push("/dashboard/add")}
+        >
+          <PlusIcon />
+        </button>
+      )}
     </div>
   )
 }

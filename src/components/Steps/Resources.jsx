@@ -55,7 +55,7 @@ const ResourceStep = ({ nextStep, previousStep }) => {
   return (
     <main className="flex flex-col items-center justify-center rounded-lg p-4 sm:p-8">
       <div
-        className="shadow-md bg-white py-6 px-6 sm:px-10 w-full "
+        className="shadow-md bg-white p-4 sm:px-10 w-full "
         style={{ maxWidth: "32rem" }}
       >
         <div className="flex items-center">

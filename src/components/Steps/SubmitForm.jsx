@@ -4,6 +4,7 @@ import BackIcon from "~/assets/arrow-left.svg"
 import PhoneIcon from "~/assets/phone.svg"
 import { API_BASE_URL } from "~/constants"
 import { useStore } from "~/lib/StepsStore"
+import { isDesktop } from "react-device-detect"
 
 const SubmitForm = ({ previousStep, user }) => {
   const router = useRouter()
@@ -52,7 +53,7 @@ const SubmitForm = ({ previousStep, user }) => {
   return (
     <main className="flex flex-col items-center justify-center rounded-lg p-4 sm:p-8">
       <div
-        className="shadow-md bg-white py-6 px-6 sm:px-10 w-full "
+        className="shadow-md bg-white p-4 sm:px-10 w-full"
         style={{ maxWidth: "32rem" }}
       >
         <div className="flex items-center">
@@ -69,8 +70,8 @@ const SubmitForm = ({ previousStep, user }) => {
         </div>
         <hr className="my-6" />
         <div className="flex items-center">
-          <PhoneIcon />
-          <p className="ml-2 font-bold">Please add contact details and links</p>
+          {isDesktop && <PhoneIcon />}
+          <p className="ml-0 md:ml-2 font-bold">Please add contact details.</p>
         </div>
         <form onSubmit={handleFormSubmit}>
           <div className="flex gap-3  mt-3">
@@ -111,7 +112,7 @@ const SubmitForm = ({ previousStep, user }) => {
 
           <div className="mt-7">
             <p className="text-sm opacity-50">
-              Message/comment to go along with the contact number
+              Message/comment to go along with the contact number (optional).
             </p>
             <textarea
               className="border w-full h-28 p-2 mt-1"
