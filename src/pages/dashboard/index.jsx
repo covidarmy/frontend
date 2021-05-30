@@ -127,17 +127,13 @@ const ClickToCopyButton = ({ text, searchText }) => {
 
 const EditDropdownMenu = ({ authToken, user }) => {
   const handleDelete = () => {
-    console.log(user)
-
-    fetch(`${API_BASE_URL}/volunteer/contacts/`, {
+    fetch(`${API_BASE_URL}/volunteer/contacts/?contact_id=${user._id}`, {
       method: "DELETE",
       headers: {
         authorization: authToken,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ contact_id: user._id }),
     })
-      .then((res) => res.json())
       .catch((e) => {
         console.log(e)
       })

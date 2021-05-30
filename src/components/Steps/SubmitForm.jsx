@@ -25,7 +25,7 @@ const SubmitForm = ({ previousStep, user }) => {
         city: city.toLowerCase(),
         phone_no: phoneNo,
         title: title,
-        message: message,
+        description: message,
         resource_type: encodeURIComponent(resource.toLowerCase()),
       }
 
