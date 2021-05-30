@@ -26,7 +26,7 @@ const SubmitForm = ({ previousStep, user }) => {
         phone_no: phoneNo,
         title: title,
         description: message,
-        resource_type: encodeURIComponent(resource.toLowerCase()),
+        resource_type: resource.split(" ").join("").toLowerCase(),
       }
 
       //   console.log(postRequestBody)
@@ -40,9 +40,8 @@ const SubmitForm = ({ previousStep, user }) => {
       })
         .then((res) => res.json())
         .then(() => {
-          //   console.log(data)
-          reset()
           router.push("/dashboard")
+          reset()
         })
         .catch((e) => {
           console.log(e)
