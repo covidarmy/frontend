@@ -305,8 +305,8 @@ export default function DashboardPage() {
       <section className="flex gap-8 p-4 pt-3 md:pt-6 mx-auto max-w-6xl rounded-lg">
         {/* sidebar */}
         <aside
-          className="hidden lg:flex flex-col gap-3 w-full"
-          style={{ maxWidth: "11rem" }}
+          className="hidden md:flex flex-col gap-3 w-full"
+          style={{ minWidth: "11rem" }}
         >
           <button
             className="bg-blue-600 text-white px-6 py-2 rounded-md h-14 transition-shadow hover:shadow-lg focus:outline-none focus:ring focus:border-blue-300"
@@ -346,13 +346,13 @@ export default function DashboardPage() {
         <main>
           <div className="flex gap-4 h-14">
             {/* search-bar */}
-            <div className="w-full relative">
+            <div className="w-full relative" style={{ minWidth: "21rem" }}>
               <input
                 type="text"
                 value={searchText}
                 onChange={(e) => handleSearch(e)}
                 placeholder="search a lead using keywords"
-                className="pl-4 w-full h-full py-3 rounded-lg shadow-md focus:outline-none focus:ring focus:border-blue-300"
+                className="pl-4 min-w-max w-full h-full py-3 rounded-lg shadow-md focus:outline-none focus:ring focus:border-blue-300"
               />
               <div className="absolute right-4 top-5 transform scale-125">
                 <SearchIcon />
