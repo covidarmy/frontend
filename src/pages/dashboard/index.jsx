@@ -24,6 +24,7 @@ import { Menu, RadioGroup, Transition } from "@headlessui/react"
 import { API_BASE_URL } from "~/constants"
 
 import Highlighter from "react-highlight-words"
+import { mutate } from "swr"
 
 const getTotalUsersFromLeads = (leads) => {
   const uniqueUsers = []
@@ -134,6 +135,7 @@ const EditDropdownMenu = ({ authToken, user }) => {
         "Content-Type": "application/json",
       },
     })
+      .then(() => mutate(`${API_BASE_URL}/volunteer/contacts`))
       .catch((e) => {
         console.log(e)
       })
@@ -372,7 +374,7 @@ export default function DashboardPage() {
         </aside>
 
         {/* main content */}
-        <main>
+        <main className="w-full">
           <div className="flex gap-4 h-14">
             {/* search-bar */}
             <div className="w-full relative" style={{ minWidth: "21rem" }}>
@@ -401,7 +403,7 @@ export default function DashboardPage() {
                 city={lead.city}
                 state={lead.state}
                 status={lead.status}
-                message={lead.message}
+                message={lead.description}
                 contactNo={lead.contact_no}
                 updatedAt={lead.updatedAt}
                 user={lead}
