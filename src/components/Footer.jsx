@@ -26,10 +26,10 @@ const Footer = () => {
                 <Link link="https://github.com/covidarmy/frontend/">
                     <AiFillGithub className="text-3xl text-black" />
                 </Link>
-                <Link link="">
+                <Link link="https://wa.me/917404255034?text=Hi">
                     <AiOutlineWhatsApp className="text-3xl text-green-500" />
                 </Link>
-                <Link link="https://wa.me/917404255034?text=Hi">
+                <Link link="https://twitter.com/covid_army">
                     <AiFillTwitterCircle className="text-3xl text-blue-500" />
                 </Link>
             </div>
