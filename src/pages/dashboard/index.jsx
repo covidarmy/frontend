@@ -101,7 +101,10 @@ const EditDropdownMenu = ({ authToken, user }) => {
         "Content-Type": "application/json",
       },
     })
-      .then(() => mutate(`${API_BASE_URL}/volunteer/contacts`))
+      .then(() => {
+        // refreshing for new list
+        mutate([`${API_BASE_URL}/volunteer/contacts`, authToken])
+      })
       .catch((e) => {
         console.log(e)
       })
