@@ -4,14 +4,11 @@ import LocationFilter from './LocationFilter';
 import ResourceFilter from './ResourceFilter';
 import TweetsList from './TweetsList';
 import Footer from './Footer';
-import { isDesktop } from 'react-device-detect';
+import { isDesktop, isMobile, isTablet } from 'react-device-detect';
 
 const FAB = () => {
     return (
-        <div
-            className="shadow-2xl rounded-full p-2 bg-green-600 fixed bottom-3 right-6 w-12 cursor-pointer"
-            style={{ zIndex: '-1' }}
-        >
+        <div className="shadow-2xl rounded-full p-2 bg-green-600 fixed bottom-3 right-6 w-12 cursor-pointer">
             <a
                 href="https://wa.me/917404255034?text=Hi"
                 target="_blank"
@@ -35,7 +32,7 @@ export const Dashboard = () => {
                 </div>
                 <TweetsList />
             </main>
-            {/* {(isMobile || isTablet) && <FAB />} */}
+            {(isMobile || isTablet) && <FAB />}
         </>
     );
 };
