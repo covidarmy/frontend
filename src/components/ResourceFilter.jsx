@@ -1,20 +1,25 @@
-import FilterButton from './FilterButton'
-import ResourceIcon from '../assets/Resource.svg'
 import ResourceIconDeactivated from '../assets/ResourceDeactivated.svg'
-import { useResources } from '~/hooks/useResources'
-import Skeleton from 'react-loading-skeleton'
+import ResourceIcon from '../assets/Resource.svg'
+
+import FraudBanner from './FraudBanner'
 import { useSlug } from '~/context/slug'
 import { useTranslation } from '~/context/translation'
-import FraudBanner from './FraudBanner'
+import { useRouter } from 'next/router'
 
-export default function ResourceFilter() {
-  const { location, resource } = useSlug()
+export default function ResourceFilter({ resources }) {
+  const router = useRouter()
   const { t } = useTranslation()
-  const [resources, error, isLoading] = useResources()
+  const formattedResources = Object.keys(resources)
+  const { location, resource, setResource } = useSlug()
 
-  // we can add better error state later
-  if (error) return <div>failed to load</div>
-  if (isLoading) return <Skeleton height={128} />
+  const handleResourceClick = (res) => {
+    const params = router.query
+    router.push({
+      pathname: '/',
+      query: { ...params, resource: res },
+    })
+    setResource(res)
+  }
 
   if (location)
     return (
@@ -27,21 +32,21 @@ export default function ResourceFilter() {
           <FraudBanner />
         </div>
         <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
-          {resources.map((item) => {
+          {formattedResources.map((item, idx) => {
             const buttonResource = item.replace(/\s+/g, '').toLowerCase()
-
+            const classes = `cursor-pointer px-2 py-1 md:px-3 md:py-2 m-1 text-sm md:text-base rounded transition-colors ${
+              resource === item.toLowerCase()
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-200 hover:bg-gray-500 hover:text-white'
+            }`
             return (
-              <FilterButton
-                key={item}
-                active={resource === buttonResource}
-                href={
-                  location === null
-                    ? `/${buttonResource}`
-                    : `/${location}` + `/${buttonResource}`
-                }
+              <a
+                key={idx}
+                className={classes}
+                onClick={() => handleResourceClick(buttonResource)}
               >
                 {item}
-              </FilterButton>
+              </a>
             )
           })}
         </div>

@@ -27,7 +27,7 @@ const FilterButton = React.forwardRef(
         return <button className={classes} onClick={onClick}></button>
       default:
         return (
-          <Link href={href}>
+          <Link href={{ pathname: '/', query: { location: href } }}>
             <a ref={ref} onClick={onClick} className={classes}>
               {children}
             </a>

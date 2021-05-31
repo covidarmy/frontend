@@ -21,13 +21,13 @@ const FAB = () => {
   )
 }
 
-export const Dashboard = () => {
+export const Dashboard = ({ cities, resources }) => {
   return (
     <>
       <main className="container mx-auto p-2 grid grid-cols-1 md:grid-cols-2 md:gap-8 lg:mt-4">
         <div className="flex flex-col">
-          <LocationFilter />
-          <ResourceFilter />
+          <LocationFilter cities={cities} />
+          <ResourceFilter resources={resources} />
           {isDesktop && <Footer />}
         </div>
         <TweetsList />

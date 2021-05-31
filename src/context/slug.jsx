@@ -12,15 +12,8 @@ export default function SlugProvider({ children }) {
   const [resource, setResource] = React.useState(undefined)
 
   React.useEffect(() => {
-    const { slug } = router.query
-    if (Array.isArray(slug)) {
-      if (slug.length === 2) {
-        setLocation(slug[0])
-        setResource(slug[1])
-      } else if (slug.length === 1) {
-        setLocation(slug[0])
-      }
-    }
+    const params = router.query
+    console.log(params);
   }, [router.query.slug])
 
   React.useEffect(() => {
@@ -31,7 +24,7 @@ export default function SlugProvider({ children }) {
   }, [router.pathname])
 
   return (
-    <slugContext.Provider value={{ location, resource }}>
+    <slugContext.Provider value={{ location, setLocation, resource, setResource }}>
       {children}
     </slugContext.Provider>
   )

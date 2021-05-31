@@ -1,24 +1,40 @@
 import * as React from 'react'
 import Fuse from 'fuse.js'
-import { useRouter } from 'next/router'
-import FilterButton from './FilterButton'
 import LocationIcon from '../assets/Location.svg'
 import SearchIcon from '../assets/Search.svg'
-import { HiChevronDown as DownArrow } from 'react-icons/hi'
-import { HiChevronUp as UpArrow } from 'react-icons/hi'
-import Skeleton from 'react-loading-skeleton'
-import { useCities } from '~/hooks/useCities'
-import { useSlug } from '~/context/slug'
-import { useTranslation } from '~/context/translation'
 import FraudBanner from './FraudBanner'
 
-export default function LocationFilter() {
-  const { location, resource } = useSlug()
+import { useRouter } from 'next/router'
+import { HiChevronDown as DownArrow } from 'react-icons/hi'
+import { HiChevronUp as UpArrow } from 'react-icons/hi'
+import { useSlug } from '~/context/slug'
+import { useTranslation } from '~/context/translation'
+
+const getCitiesFromData = (data) => {
+  const cities = []
+  data.map((item) => {
+    cities.push(item.name)
+  })
+
+  return cities
+}
+
+const getTopCitiesFromData = (data) => {
+  const topCities = []
+  data.map((item) => {
+    if (item.top) topCities.push(item.name)
+  })
+
+  return topCities
+}
+
+export default function LocationFilter({ cities }) {
+  const router = useRouter()
   const { t } = useTranslation()
-  const [cities, topCities, error, isLoading] = useCities()
+  const { location, setLocation } = useSlug()
+  const topCities = getTopCitiesFromData(cities)
 
   const [cityState, setCityState] = React.useState(false)
-  const router = useRouter()
   const filter = router.pathname === '/' && 'all'
   const [showMore, setShowMore] = React.useState(false)
 
@@ -32,15 +48,21 @@ export default function LocationFilter() {
     }
   }, [location])
 
-  if (error) return <div>failed to load</div>
-  if (isLoading) return <Skeleton height={214} />
+  const handleLocationClick = (loc) => {
+    router.push({
+      pathname: '/',
+      query: { location: loc },
+    })
+    setLocation(loc)
+  }
 
   const renderButtons = () => {
     let _data = null
 
     if (searchValue) {
+      const citiesValues = getCitiesFromData(cities)
       const fuse = new Fuse(
-        cities.sort().filter((i) => typeof i !== 'boolean'),
+        citiesValues.sort().filter((i) => typeof i !== 'boolean'),
         { includeScore: true }
       )
 
@@ -72,28 +94,21 @@ export default function LocationFilter() {
 
     _data = _data.filter((i) => typeof i !== 'boolean')
 
-    return _data.map((item) => {
-      /** Location provided by useSlug */
-      let currentLocation = location
-      /** Location where the FilterButton will route the user to */
-      const buttonLocation = item.replace(/\s+/g, '').toString().toLowerCase()
-
-      if (typeof currentLocation === 'string') {
-        currentLocation = currentLocation.replace(/\s+/g, '').toLowerCase()
-      }
-
+    return _data.map((item, idx) => {
+      const buttonResource = item.replace(/\s+/g, '').toLowerCase()
+      const classes = `cursor-pointer px-2 py-1 md:px-3 md:py-2 m-1 text-sm md:text-base rounded transition-colors ${
+        location === item.toLowerCase()
+          ? 'bg-blue-600 text-white'
+          : 'bg-gray-200 hover:bg-gray-500 hover:text-white'
+      }`
       return (
-        <FilterButton
-          key={item}
-          active={currentLocation === item.toLowerCase()}
-          href={
-            resource === undefined
-              ? '/' + buttonLocation
-              : `/${buttonLocation}/${resource}`
-          }
+        <a
+          key={idx}
+          className={classes}
+          onClick={() => handleLocationClick(buttonResource)}
         >
           {item}
-        </FilterButton>
+        </a>
       )
     })
   }
