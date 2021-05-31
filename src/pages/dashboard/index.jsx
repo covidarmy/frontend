@@ -7,6 +7,8 @@ import { useRouter } from "next/router"
 import { useAuth } from "~/context/auth"
 import { useLeads } from "~/hooks/useLeads"
 import { isMobile, isTablet, isDesktop } from "react-device-detect"
+import { getFormattedDateString } from "~/lib/getFormattedDateString"
+import { getTotalUsersFromLeads } from "~/lib/getTotalUsersFromLeads"
 
 import AwardIcon from "~/assets/award.svg"
 import HeartIcon from "~/assets/heart.svg"
@@ -25,42 +27,6 @@ import { API_BASE_URL } from "~/constants"
 
 import Highlighter from "react-highlight-words"
 import { mutate } from "swr"
-
-const getTotalUsersFromLeads = (leads) => {
-  const uniqueUsers = []
-  leads.forEach((lead) => {
-    if (!uniqueUsers.includes(lead.userId[0])) {
-      uniqueUsers.push(lead.userId[0])
-    }
-  })
-  return uniqueUsers.length
-}
-
-const getFormattedData = (date) => {
-  // 2021-05-29T05:31:06.921Z
-  const dateString = date.split("-")
-  const year = dateString[0]
-  const month = dateString[1]
-  const day = dateString[2].split("T")[0]
-
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ]
-
-  const formattedString = `${day} ${monthNames[+month - 1]} ${year}`
-  return formattedString
-}
 
 const FilterButtonGroup = () => {
   let [selectedFilter, setSelectedFilter] = React.useState()
@@ -189,6 +155,7 @@ const Card = ({
   status,
   message,
   contactNo,
+  createdAt,
   updatedAt,
   authToken,
   user,
@@ -196,9 +163,9 @@ const Card = ({
 }) => {
   return (
     <div className="bg-white py-4 px-3 md:px-5 rounded-lg shadow-md mt-3 md:mt-5">
-      <p className="text-gray-500 text-sm">{`Last updated at ${getFormattedData(
-        updatedAt
-      )}`}</p>
+      <p className="text-gray-500 text-sm">
+        {getFormattedDateString(createdAt, updatedAt)}
+      </p>
       <hr className="my-4" />
 
       {/* title */}
@@ -406,6 +373,7 @@ export default function DashboardPage() {
                 message={lead.description}
                 contactNo={lead.contact_no}
                 updatedAt={lead.updatedAt}
+                createdAt={lead.createdAt}
                 user={lead}
                 authToken={authToken}
                 searchText={searchText}
