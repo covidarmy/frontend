@@ -1,29 +1,29 @@
-import * as React from "react";
-import Navbar from "~/components/Navbar";
-import { useAuth } from "~/context/auth";
-import { useRouter } from "next/router";
-import LoadingPage from "~/components/LoadingPage";
-import { useStore } from "~/lib/StepsStore";
+import * as React from 'react'
+import Navbar from '~/components/Navbar'
+import { useAuth } from '~/context/auth'
+import { useRouter } from 'next/router'
+import LoadingPage from '~/components/LoadingPage'
+import { useStore } from '~/lib/StepsStore'
 
-import StatesStep from "~/components/Steps/States";
-import CitiesStep from "~/components/Steps/Cities";
-import ResourceStep from "~/components/Steps/Resources";
-import SubmitForm from "~/components/Steps/SubmitForm";
+import StatesStep from '~/components/Steps/States'
+import CitiesStep from '~/components/Steps/Cities'
+import ResourceStep from '~/components/Steps/Resources'
+import SubmitForm from '~/components/Steps/SubmitForm'
 
 export default function AddResourcePage() {
-  const { user, isAuthenticated, loading } = useAuth();
-  const router = useRouter();
+  const { user, isAuthenticated, loading } = useAuth()
+  const router = useRouter()
   const { step } = useStore((state) => ({
     step: state.step,
-  }));
+  }))
 
   React.useEffect(() => {
     if (!loading && !isAuthenticated) {
-      router.push("/login");
+      router.push('/login')
     }
-  }, [loading, isAuthenticated]);
+  }, [loading, isAuthenticated])
 
-  if (loading) return <LoadingPage />;
+  if (loading) return <LoadingPage />
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -32,5 +32,5 @@ export default function AddResourcePage() {
       {step === 3 && <ResourceStep />}
       {step === 4 && <SubmitForm user={user} />}
     </div>
-  );
+  )
 }

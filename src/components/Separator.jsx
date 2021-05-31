@@ -1,11 +1,11 @@
-import clsx from "clsx";
+import clsx from 'clsx'
 
-const Separator = ({ className = "" }) => {
+const Separator = ({ className = '' }) => {
   return (
     <div
-      className={clsx(["w-full border-b lg:block border-gray-600", className])}
+      className={clsx(['w-full border-b lg:block border-gray-600', className])}
     />
-  );
-};
+  )
+}
 
-export default Separator;
+export default Separator

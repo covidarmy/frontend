@@ -1,19 +1,19 @@
-import * as React from "react";
-import clsx from "clsx";
-import Link from "next/link";
+import * as React from 'react'
+import clsx from 'clsx'
+import Link from 'next/link'
 
 export default function NavLink({
   url,
   children,
-  className = "",
+  className = '',
   isExternal = false,
   isButton,
   onClick = false,
 }) {
   const linkClasses = clsx([
-    "hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors",
+    'hover:bg-gray-700 text-gray hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors',
     className,
-  ]);
+  ])
 
   switch (true) {
     case isButton:
@@ -21,7 +21,7 @@ export default function NavLink({
         <button className={linkClasses} onClick={onClick}>
           {children}
         </button>
-      );
+      )
     case isExternal:
       return (
         <a
@@ -32,12 +32,12 @@ export default function NavLink({
         >
           {children}
         </a>
-      );
+      )
     default:
       return (
         <Link href={url}>
           <a className={linkClasses}>{children}</a>
         </Link>
-      );
+      )
   }
 }

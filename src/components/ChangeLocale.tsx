@@ -1,24 +1,24 @@
-import { Listbox, Transition } from "@headlessui/react";
-import { SelectorIcon, CheckIcon } from "@heroicons/react/outline";
-import * as React from "react";
-import { useTranslation, SupportedLocales } from "~/context/translation";
+import { Listbox, Transition } from '@headlessui/react'
+import { SelectorIcon, CheckIcon } from '@heroicons/react/outline'
+import * as React from 'react'
+import { useTranslation, SupportedLocales } from '~/context/translation'
 
 const locales: Array<{ name: string; value: SupportedLocales }> = [
-  { name: "English", value: "en" },
-  { name: "Hindi", value: "hi" },
-];
+  { name: 'English', value: 'en' },
+  { name: 'Hindi', value: 'hi' },
+]
 
 const ChangeLocale = () => {
-  const { locale, setLocale } = useTranslation();
-  const [selected, setSelected] = React.useState<typeof locales[0]>(locales[0]);
+  const { locale, setLocale } = useTranslation()
+  const [selected, setSelected] = React.useState<typeof locales[0]>(locales[0])
 
   React.useEffect(() => {
-    setSelected(locales.filter((i) => i.value === locale)[0]);
-  }, [locale]);
+    setSelected(locales.filter((i) => i.value === locale)[0])
+  }, [locale])
 
   const changeLocale = (item: { name: string; value: SupportedLocales }) => {
-    setLocale(item.value);
-  };
+    setLocale(item.value)
+  }
 
   return (
     <Listbox value={selected} onChange={changeLocale}>
@@ -51,8 +51,8 @@ const ChangeLocale = () => {
                     className={({ active }) =>
                       `${
                         active
-                          ? "text-indigo-900 bg-indigo-100"
-                          : "text-gray-900"
+                          ? 'text-indigo-900 bg-indigo-100'
+                          : 'text-gray-900'
                       }
                           cursor-default select-none relative py-2 pl-10 pr-4`
                     }
@@ -62,7 +62,7 @@ const ChangeLocale = () => {
                       <>
                         <span
                           className={`${
-                            selected ? "font-medium" : "font-normal"
+                            selected ? 'font-medium' : 'font-normal'
                           } block truncate`}
                         >
                           {locale.name}
@@ -70,7 +70,7 @@ const ChangeLocale = () => {
                         {selected ? (
                           <span
                             className={`${
-                              active ? "text-indigo-600" : "text-indigo-600"
+                              active ? 'text-indigo-600' : 'text-indigo-600'
                             }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                           >
@@ -87,7 +87,7 @@ const ChangeLocale = () => {
         </>
       )}
     </Listbox>
-  );
-};
+  )
+}
 
-export default ChangeLocale;
+export default ChangeLocale

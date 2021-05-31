@@ -1,6 +1,6 @@
-import clsx from "clsx";
-import * as React from "react";
-import Link from "next/link";
+import clsx from 'clsx'
+import * as React from 'react'
+import Link from 'next/link'
 
 /**
  * @typedef {Object} Props
@@ -15,16 +15,16 @@ import Link from "next/link";
  * @type {React.ForwardRefExoticComponent<Props>}
  */
 const FilterButton = React.forwardRef(
-  ({ active, href = "", onClick, children, isButton = false }, ref) => {
+  ({ active, href = '', onClick, children, isButton = false }, ref) => {
     const classes = `px-2 py-1 md:px-3 md:py-2 m-1 text-sm md:text-base rounded transition-colors ${
       active
-        ? "bg-blue-600 text-white"
-        : "bg-gray-200 hover:bg-gray-500 hover:text-white"
-    }`;
+        ? 'bg-blue-600 text-white'
+        : 'bg-gray-200 hover:bg-gray-500 hover:text-white'
+    }`
 
     switch (true) {
       case isButton:
-        return <button className={classes} onClick={onClick}></button>;
+        return <button className={classes} onClick={onClick}></button>
       default:
         return (
           <Link href={href}>
@@ -32,9 +32,9 @@ const FilterButton = React.forwardRef(
               {children}
             </a>
           </Link>
-        );
+        )
     }
   }
-);
+)
 
-export default FilterButton;
+export default FilterButton

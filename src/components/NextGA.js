@@ -1,41 +1,41 @@
-import * as React from "react";
-import Head from "next/head";
-import { useRouter } from "next/router";
+import * as React from 'react'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
 
-const context = React.createContext(undefined);
+const context = React.createContext(undefined)
 
 export default function NextGA({ trackingId, children, disabled = false }) {
-  const router = useRouter();
+  const router = useRouter()
 
   // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
   const pageview = (/** @type {URL} */ url) => {
-    window.gtag("config", trackingId, {
+    window.gtag('config', trackingId, {
       page_path: url,
-    });
-  };
+    })
+  }
 
   const handleRouteChange = (/** @type {URL} */ url) => {
     /* invoke analytics function only for production */
-    pageview(url);
-  };
+    pageview(url)
+  }
 
   // https://developers.google.com/analytics/devguides/collection/gtagjs/events
   const event = ({ action, category, label, value }) => {
-    window.gtag("event", action, {
+    window.gtag('event', action, {
       event_category: category,
       event_label: label,
       value: value,
-    });
-  };
+    })
+  }
 
   React.useEffect(() => {
     if (!disabled) {
-      router.events.on("routeChangeComplete", handleRouteChange);
+      router.events.on('routeChangeComplete', handleRouteChange)
       return () => {
-        router.events.off("routeChangeComplete", handleRouteChange);
-      };
+        router.events.off('routeChangeComplete', handleRouteChange)
+      }
     }
-  }, [router.events]);
+  }, [router.events])
 
   return (
     <>
@@ -65,5 +65,5 @@ export default function NextGA({ trackingId, children, disabled = false }) {
         {children}
       </context.Provider>
     </>
-  );
+  )
 }

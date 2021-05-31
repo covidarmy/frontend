@@ -1,36 +1,36 @@
-import * as React from "react";
-import Skeleton from "react-loading-skeleton";
-import LoadingPage from "~/components/LoadingPage";
-import Navbar from "~/components/Navbar";
-import Fuse from "fuse.js";
-import { useRouter } from "next/router";
-import { useAuth } from "~/context/auth";
-import { useLeads } from "~/hooks/useLeads";
-import { isMobile, isTablet, isDesktop } from "react-device-detect";
-import { getFormattedDateString } from "~/lib/getFormattedDateString";
-import { getTotalUsersFromLeads } from "~/lib/getTotalUsersFromLeads";
+import * as React from 'react'
+import Skeleton from 'react-loading-skeleton'
+import LoadingPage from '~/components/LoadingPage'
+import Navbar from '~/components/Navbar'
+import Fuse from 'fuse.js'
+import { useRouter } from 'next/router'
+import { useAuth } from '~/context/auth'
+import { useLeads } from '~/hooks/useLeads'
+import { isMobile, isTablet, isDesktop } from 'react-device-detect'
+import { getFormattedDateString } from '~/lib/getFormattedDateString'
+import { getTotalUsersFromLeads } from '~/lib/getTotalUsersFromLeads'
 
-import AwardIcon from "~/assets/award.svg";
-import HeartIcon from "~/assets/heart.svg";
-import SearchIcon from "~/assets/Search.svg";
-import EditIcon from "~/assets/edit.svg";
-import CheckMarkIcon from "~/assets/checkmark.svg";
-import UnverfiedIcon from "~/assets/unverfied.svg";
-import DeleteIcon from "~/assets/delete.svg";
-import MoreIcon from "~/assets/more.svg";
-import PlusIcon from "~/assets/plus.svg";
+import AwardIcon from '~/assets/award.svg'
+import HeartIcon from '~/assets/heart.svg'
+import SearchIcon from '~/assets/Search.svg'
+import EditIcon from '~/assets/edit.svg'
+import CheckMarkIcon from '~/assets/checkmark.svg'
+import UnverfiedIcon from '~/assets/unverfied.svg'
+import DeleteIcon from '~/assets/delete.svg'
+import MoreIcon from '~/assets/more.svg'
+import PlusIcon from '~/assets/plus.svg'
 
-import ReactTooltip from "react-tooltip";
-import { useCopyToClipboard } from "~/hooks/useCopyToClipboard";
-import { Menu, RadioGroup, Transition } from "@headlessui/react";
-import { API_BASE_URL } from "~/constants";
+import ReactTooltip from 'react-tooltip'
+import { useCopyToClipboard } from '~/hooks/useCopyToClipboard'
+import { Menu, RadioGroup, Transition } from '@headlessui/react'
+import { API_BASE_URL } from '~/constants'
 
-import Highlighter from "react-highlight-words";
-import { mutate } from "swr";
+import Highlighter from 'react-highlight-words'
+import { mutate } from 'swr'
 
 const FilterButtonGroup = () => {
-  let [selectedFilter, setSelectedFilter] = React.useState();
-  const filters = ["week", "month", "2 months", "6 months"];
+  let [selectedFilter, setSelectedFilter] = React.useState()
+  const filters = ['week', 'month', '2 months', '6 months']
 
   return (
     <RadioGroup
@@ -43,7 +43,7 @@ const FilterButtonGroup = () => {
           {({ checked }) => (
             <button
               className={`${
-                checked ? "bg-blue-500 text-white" : "bg-white text-gray-500"
+                checked ? 'bg-blue-500 text-white' : 'bg-white text-gray-500'
               } justify-center min-w-max h-full items-center px-4 py-2 shadow-md rounded-lg transition-shadow border hover:shadow-sm hover:border-gray-300 focus:outline-none focus:ring focus:border-blue-300`}
             >
               {filter}
@@ -54,32 +54,32 @@ const FilterButtonGroup = () => {
       <button
         className="hidden md:block min-w-max h-full px-4 py-2 shadow-md rounded-lg bg-white text-gray-500 transition-shadow border active:bg-blue-500 active:text-white hover:shadow-sm hover:border-gray-300 focus:outline-none focus:ring focus:border-blue-300"
         onClick={() => {
-          setSelectedFilter("");
+          setSelectedFilter('')
         }}
       >
         Clear Filter
       </button>
     </RadioGroup>
-  );
-};
+  )
+}
 
 const ClickToCopyButton = ({ text, searchText }) => {
-  const [copied, setCopied, copy] = useCopyToClipboard(text);
+  const [copied, setCopied, copy] = useCopyToClipboard(text)
 
   React.useEffect(() => {
     if (copied) {
       setTimeout(() => {
-        setCopied(false);
-      }, 3000);
+        setCopied(false)
+      }, 3000)
     }
-  }, [copied]);
+  }, [copied])
 
   return (
     <>
       <ReactTooltip />
       <button
         onClick={copy}
-        data-tip={copied ? "Copied" : "Click to copy"}
+        data-tip={copied ? 'Copied' : 'Click to copy'}
         className="py-2 px-4 rounded font-semibold transition-colors bg-gray-100 hover:bg-gray-300"
       >
         <Highlighter
@@ -89,26 +89,26 @@ const ClickToCopyButton = ({ text, searchText }) => {
         />
       </button>
     </>
-  );
-};
+  )
+}
 
 const EditDropdownMenu = ({ authToken, user }) => {
   const handleDelete = () => {
     fetch(`${API_BASE_URL}/volunteer/contacts/?contact_id=${user._id}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
         authorization: authToken,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     })
       .then(() => {
         // refreshing for new list
-        mutate([`${API_BASE_URL}/volunteer/contacts`, authToken]);
+        mutate([`${API_BASE_URL}/volunteer/contacts`, authToken])
       })
       .catch((e) => {
-        console.log(e);
-      });
-  };
+        console.log(e)
+      })
+  }
 
   return (
     <Menu>
@@ -147,8 +147,8 @@ const EditDropdownMenu = ({ authToken, user }) => {
         </div>
       )}
     </Menu>
-  );
-};
+  )
+}
 
 const Card = ({
   title,
@@ -196,7 +196,7 @@ const Card = ({
               <Highlighter
                 searchWords={[searchText]}
                 autoEscape={true}
-                textToHighlight={city + ", " + state}
+                textToHighlight={city + ', ' + state}
               />
             </div>
           </div>
@@ -223,7 +223,7 @@ const Card = ({
               <Highlighter
                 searchWords={[searchText]}
                 autoEscape={true}
-                textToHighlight={city + ", " + state}
+                textToHighlight={city + ', ' + state}
               />
             </div>
           </div>
@@ -238,7 +238,7 @@ const Card = ({
         </p>
         <div className="flex items-center mt-2 gap-3">
           <ClickToCopyButton text={contactNo} searchText={searchText} />
-          {verificationStatus === "verified" ? (
+          {verificationStatus === 'verified' ? (
             <div className="inline-flex items-center justify-center text-green-600 ml-auto py-2 px-4 rounded font-semibold">
               <CheckMarkIcon />
               <div className="ml-2">Verified</div>
@@ -260,46 +260,46 @@ const Card = ({
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
 export default function DashboardPage() {
-  const { authToken, isAuthenticated, loading } = useAuth();
-  const [leads] = useLeads(authToken);
-  const [filteredLeads, setFilteredLeads] = React.useState(leads);
-  const [searchText, setSearchText] = React.useState("");
-  const router = useRouter();
+  const { authToken, isAuthenticated, loading } = useAuth()
+  const [leads] = useLeads(authToken)
+  const [filteredLeads, setFilteredLeads] = React.useState(leads)
+  const [searchText, setSearchText] = React.useState('')
+  const router = useRouter()
 
   React.useEffect(() => {
     if (!loading && !isAuthenticated) {
-      router.push("/login");
+      router.push('/login')
     }
-  }, [isAuthenticated, loading]);
+  }, [isAuthenticated, loading])
 
   React.useEffect(() => {
-    setFilteredLeads(leads);
-  }, [leads]);
+    setFilteredLeads(leads)
+  }, [leads])
 
   React.useEffect(() => {
-    if (searchText === "") {
-      setFilteredLeads(leads);
+    if (searchText === '') {
+      setFilteredLeads(leads)
     }
-  }, [searchText]);
+  }, [searchText])
 
   const handleSearch = (text) => {
-    setSearchText(text);
+    setSearchText(text)
 
     // searching for values
     const fuse = new Fuse(leads, {
-      keys: ["title", "category", "city", "state", "contact_no"],
-    });
-    const filteredList = fuse.search(text).map(({ item }) => item);
+      keys: ['title', 'category', 'city', 'state', 'contact_no'],
+    })
+    const filteredList = fuse.search(text).map(({ item }) => item)
 
     // setting this to list
-    setFilteredLeads(filteredList);
-  };
+    setFilteredLeads(filteredList)
+  }
 
-  if (loading) return <LoadingPage />;
+  if (loading) return <LoadingPage />
   return (
     <div className="min-h-screen bg-gray-100 ">
       <Navbar />
@@ -307,11 +307,11 @@ export default function DashboardPage() {
         {/* sidebar */}
         <aside
           className="hidden md:flex flex-col gap-3 w-full"
-          style={{ minWidth: "11rem" }}
+          style={{ minWidth: '11rem' }}
         >
           <button
             className="bg-blue-600 text-white px-6 py-2 rounded-md h-14 transition-shadow hover:shadow-lg focus:outline-none focus:ring focus:border-blue-300"
-            onClick={() => router.push("/dashboard/add")}
+            onClick={() => router.push('/dashboard/add')}
           >
             Add a lead
           </button>
@@ -347,7 +347,7 @@ export default function DashboardPage() {
         <main className="w-full">
           <div className="flex gap-4 h-14">
             {/* search-bar */}
-            <div className="w-full relative" style={{ minWidth: "21rem" }}>
+            <div className="w-full relative" style={{ minWidth: '21rem' }}>
               <input
                 type="text"
                 value={searchText}
@@ -395,11 +395,11 @@ export default function DashboardPage() {
       {isMobile && (
         <button
           className="bg-blue-600 p-2 rounded-full shadow-md fixed bottom-6 right-5"
-          onClick={() => router.push("/dashboard/add")}
+          onClick={() => router.push('/dashboard/add')}
         >
           <PlusIcon />
         </button>
       )}
     </div>
-  );
+  )
 }

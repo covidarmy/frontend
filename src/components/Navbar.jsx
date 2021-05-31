@@ -1,22 +1,22 @@
-import * as React from "react";
-import { Disclosure, Transition } from "@headlessui/react";
-import { HiOutlineShare } from "react-icons/hi";
-import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import ChangeLocale from "./ChangeLocale";
-import Link from "next/link";
-import Logo from "./Logo";
-import NavLink from "./NavLink";
-import { useAuth } from "~/context/auth";
-import { useTranslation } from "~/context/translation";
+import * as React from 'react'
+import { Disclosure, Transition } from '@headlessui/react'
+import { HiOutlineShare } from 'react-icons/hi'
+import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import ChangeLocale from './ChangeLocale'
+import Link from 'next/link'
+import Logo from './Logo'
+import NavLink from './NavLink'
+import { useAuth } from '~/context/auth'
+import { useTranslation } from '~/context/translation'
 
 export default function Navbar() {
-  const [canShare, setCanShare] = React.useState(true);
-  const { t } = useTranslation();
-  const { isAuthenticated, signOut } = useAuth();
+  const [canShare, setCanShare] = React.useState(true)
+  const { t } = useTranslation()
+  const { isAuthenticated, signOut } = useAuth()
 
   React.useEffect(() => {
-    if (!navigator.share) setCanShare(false);
-  }, []);
+    if (!navigator.share) setCanShare(false)
+  }, [])
 
   return (
     <Disclosure as="header" className="shadow-lg bg-white w-full">
@@ -41,10 +41,10 @@ export default function Navbar() {
             </Link>
             <div className="hidden lg:flex items-center space-x-4 justify-between">
               <NavLink url="https://donate.indiacovidresources.in/" isExternal>
-                {t("DONATE")}
+                {t('DONATE')}
               </NavLink>
-              <NavLink url="/disclaimer">{t("DISCLAIMER")}</NavLink>
-              <NavLink url="/about">{t("ABOUT")}</NavLink>
+              <NavLink url="/disclaimer">{t('DISCLAIMER')}</NavLink>
+              <NavLink url="/about">{t('ABOUT')}</NavLink>
               {isAuthenticated ? (
                 <>
                   <div className="w-px h-8 bg-gray-500"></div>
@@ -69,13 +69,13 @@ export default function Navbar() {
                   onClick={async () => {
                     try {
                       await navigator.share({
-                        title: "Covid.army",
+                        title: 'Covid.army',
                         text:
-                          "Verified Real Time List of COVID-19 Resources and Aid",
-                        url: "https://covid.army",
-                      });
+                          'Verified Real Time List of COVID-19 Resources and Aid',
+                        url: 'https://covid.army',
+                      })
                     } catch (err) {
-                      console.log(err);
+                      console.log(err)
                     }
                   }}
                 >
@@ -101,10 +101,10 @@ export default function Navbar() {
                   url="https://donate.indiacovidresources.in/"
                   isExternal
                 >
-                  {t("DONATE")}
+                  {t('DONATE')}
                 </NavLink>
-                <NavLink url="/disclaimer">{t("DISCLAIMER")}</NavLink>
-                <NavLink url="/about">{t("ABOUT")}</NavLink>
+                <NavLink url="/disclaimer">{t('DISCLAIMER')}</NavLink>
+                <NavLink url="/about">{t('ABOUT')}</NavLink>
                 {isAuthenticated ? (
                   <>
                     <div className="h-px w-full bg-gray-800"></div>
@@ -122,5 +122,5 @@ export default function Navbar() {
         </nav>
       )}
     </Disclosure>
-  );
+  )
 }

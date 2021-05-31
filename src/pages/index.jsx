@@ -1,5 +1,5 @@
-import { Dashboard } from "~/components/Dashboard";
-import Navbar from "~/components/Navbar";
+import { Dashboard } from '~/components/Dashboard'
+import Navbar from '~/components/Navbar'
 
 const IndexPage = () => {
   return (
@@ -7,7 +7,7 @@ const IndexPage = () => {
       <Navbar />
       <Dashboard />
     </>
-  );
-};
+  )
+}
 
-export default IndexPage;
+export default IndexPage

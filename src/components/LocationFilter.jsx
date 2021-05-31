@@ -1,50 +1,50 @@
-import * as React from "react";
-import Fuse from "fuse.js";
-import { useRouter } from "next/router";
-import FilterButton from "./FilterButton";
-import LocationIcon from "../assets/Location.svg";
-import SearchIcon from "../assets/Search.svg";
-import { HiChevronDown as DownArrow } from "react-icons/hi";
-import { HiChevronUp as UpArrow } from "react-icons/hi";
-import Skeleton from "react-loading-skeleton";
-import { useCities } from "~/hooks/useCities";
-import { useSlug } from "~/context/slug";
-import { useTranslation } from "~/context/translation";
-import FraudBanner from "./FraudBanner";
+import * as React from 'react'
+import Fuse from 'fuse.js'
+import { useRouter } from 'next/router'
+import FilterButton from './FilterButton'
+import LocationIcon from '../assets/Location.svg'
+import SearchIcon from '../assets/Search.svg'
+import { HiChevronDown as DownArrow } from 'react-icons/hi'
+import { HiChevronUp as UpArrow } from 'react-icons/hi'
+import Skeleton from 'react-loading-skeleton'
+import { useCities } from '~/hooks/useCities'
+import { useSlug } from '~/context/slug'
+import { useTranslation } from '~/context/translation'
+import FraudBanner from './FraudBanner'
 
 export default function LocationFilter() {
-  const { location, resource } = useSlug();
-  const { t } = useTranslation();
-  const [cities, topCities, error, isLoading] = useCities();
+  const { location, resource } = useSlug()
+  const { t } = useTranslation()
+  const [cities, topCities, error, isLoading] = useCities()
 
-  const [cityState, setCityState] = React.useState(false);
-  const router = useRouter();
-  const filter = router.pathname === "/" && "all";
-  const [showMore, setShowMore] = React.useState(false);
+  const [cityState, setCityState] = React.useState(false)
+  const router = useRouter()
+  const filter = router.pathname === '/' && 'all'
+  const [showMore, setShowMore] = React.useState(false)
 
-  const [searchValue, setSearchValue] = React.useState("");
+  const [searchValue, setSearchValue] = React.useState('')
 
   React.useEffect(() => {
-    if (typeof location !== "undefined") {
-      setCityState(true);
+    if (typeof location !== 'undefined') {
+      setCityState(true)
     } else {
-      setCityState(false);
+      setCityState(false)
     }
-  }, [location]);
+  }, [location])
 
-  if (error) return <div>failed to load</div>;
-  if (isLoading) return <Skeleton height={214} />;
+  if (error) return <div>failed to load</div>
+  if (isLoading) return <Skeleton height={214} />
 
   const renderButtons = () => {
-    let _data = null;
+    let _data = null
 
     if (searchValue) {
       const fuse = new Fuse(
-        cities.sort().filter((i) => typeof i !== "boolean"),
+        cities.sort().filter((i) => typeof i !== 'boolean'),
         { includeScore: true }
-      );
+      )
 
-      _data = fuse.search(searchValue).map(({ item }) => item);
+      _data = fuse.search(searchValue).map(({ item }) => item)
     }
 
     if (!showMore) {
@@ -54,32 +54,32 @@ export default function LocationFilter() {
             ? _data.slice(0, 8)
             : _data
           : [
-              "Delhi",
-              "Bangalore",
-              "Chennai",
-              "Mumbai",
-              "Kolkata",
-              "Lucknow",
-              "Noida",
-              "Gurgaon",
-            ];
-      if (filter !== "all" && !_data.includes(filter)) {
-        _data = [..._data, filter];
+              'Delhi',
+              'Bangalore',
+              'Chennai',
+              'Mumbai',
+              'Kolkata',
+              'Lucknow',
+              'Noida',
+              'Gurgaon',
+            ]
+      if (filter !== 'all' && !_data.includes(filter)) {
+        _data = [..._data, filter]
       }
     } else if (_data === null) {
-      _data = topCities.sort();
+      _data = topCities.sort()
     }
 
-    _data = _data.filter((i) => typeof i !== "boolean");
+    _data = _data.filter((i) => typeof i !== 'boolean')
 
     return _data.map((item) => {
       /** Location provided by useSlug */
-      let currentLocation = location;
+      let currentLocation = location
       /** Location where the FilterButton will route the user to */
-      const buttonLocation = item.replace(/\s+/g, "").toString().toLowerCase();
+      const buttonLocation = item.replace(/\s+/g, '').toString().toLowerCase()
 
-      if (typeof currentLocation === "string") {
-        currentLocation = currentLocation.replace(/\s+/g, "").toLowerCase();
+      if (typeof currentLocation === 'string') {
+        currentLocation = currentLocation.replace(/\s+/g, '').toLowerCase()
       }
 
       return (
@@ -88,22 +88,22 @@ export default function LocationFilter() {
           active={currentLocation === item.toLowerCase()}
           href={
             resource === undefined
-              ? "/" + buttonLocation
+              ? '/' + buttonLocation
               : `/${buttonLocation}/${resource}`
           }
         >
           {item}
         </FilterButton>
-      );
-    });
-  };
+      )
+    })
+  }
   if (!cityState)
     return (
       <div className="shadow-md bg-white box-border h-auto w-full rounded-md my-2 p-3 lg:p-6 border border-gray-200">
         <div className="flex items-center">
           <LocationIcon className="h-5 w-5" />
           <p className="text-strong ml-1 font-bold text-sm md:text-base">
-            {t("CHOOSE_LOCATION")}
+            {t('CHOOSE_LOCATION')}
           </p>
           <FraudBanner />
         </div>
@@ -128,13 +128,13 @@ export default function LocationFilter() {
             className="hover:underline flex items-center text-indigo-600 focus:outline-none focus:ring focus:border-blue-300"
             onClick={() => setShowMore((prev) => !prev)}
           >
-            <span>{showMore ? "Most visited" : "Show all top locations"}</span>
+            <span>{showMore ? 'Most visited' : 'Show all top locations'}</span>
             {showMore && <UpArrow />}
             {!showMore && <DownArrow />}
           </button>
         </div>
       </div>
-    );
+    )
 
   return (
     <div className="shadow-md bg-white box-border h-auto w-full rounded-md my-2 p-3 lg:p-6 border border-gray-200">
@@ -144,9 +144,9 @@ export default function LocationFilter() {
           <p className="text-strong ml-1 font-bold capitalize">{location}</p>
         </div>
         <button onClick={() => setCityState(!cityState)}>
-          <span className="font-bold text-primary">{t("CHANGE")}</span>
+          <span className="font-bold text-primary">{t('CHANGE')}</span>
         </button>
       </div>
     </div>
-  );
+  )
 }
