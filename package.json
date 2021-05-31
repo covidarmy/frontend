@@ -20,7 +20,6 @@
     "firebase": "^8.6.1",
     "fuse.js": "^6.4.6",
     "heroicons": "^1.0.1",
-    "inter-ui": "^3.18.1",
     "next": "^10.2.0",
     "next-pwa": "^5.2.21",
     "next-seo": "^4.24.0",
