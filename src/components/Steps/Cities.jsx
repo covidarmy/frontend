@@ -1,38 +1,38 @@
-import { useRouter } from "next/router"
-import * as React from "react"
-import Fuse from "fuse.js"
-import BackIcon from "~/assets/arrow-left.svg"
-import { useTranslation } from "~/context/translation"
-import LocationIcon from "~/assets/Location.svg"
-import FilterButton from "~/components/FilterButton"
-import SearchIcon from "~/assets/Search.svg"
+import { useRouter } from "next/router";
+import * as React from "react";
+import Fuse from "fuse.js";
+import BackIcon from "~/assets/arrow-left.svg";
+import { useTranslation } from "~/context/translation";
+import LocationIcon from "~/assets/Location.svg";
+import FilterButton from "~/components/FilterButton";
+import SearchIcon from "~/assets/Search.svg";
 
-import { useEmptyCities } from "~/hooks/useEmptyCities"
-import { useStore } from "~/lib/StepsStore"
+import { useEmptyCities } from "~/hooks/useEmptyCities";
+import { useStore } from "~/lib/StepsStore";
 
 const LocationFilterCustom = ({ nextStep, cities, isLoading }) => {
-  const router = useRouter()
-  const { t } = useTranslation()
-  const [searchValue, setSearchValue] = React.useState("")
+  const router = useRouter();
+  const { t } = useTranslation();
+  const [searchValue, setSearchValue] = React.useState("");
   const { selectCity } = useStore((state) => ({
     selectCity: state.actions.selectCity,
-  }))
+  }));
 
   const handleCitySubmit = (item) => {
-    selectCity(item)
-    nextStep()
-  }
+    selectCity(item);
+    nextStep();
+  };
 
   const renderButtons = () => {
-    let _data = cities
+    let _data = cities;
 
     if (searchValue) {
       const fuse = new Fuse(
         cities.sort().filter((i) => typeof i !== "boolean"),
         { includeScore: true }
-      )
+      );
 
-      _data = fuse.search(searchValue).map(({ item }) => item)
+      _data = fuse.search(searchValue).map(({ item }) => item);
     }
 
     return _data.map((item) => {
@@ -44,9 +44,9 @@ const LocationFilterCustom = ({ nextStep, cities, isLoading }) => {
         >
           {item}
         </FilterButton>
-      )
-    })
-  }
+      );
+    });
+  };
 
   return (
     <div className="bg-white h-auto w-full my-2">
@@ -79,20 +79,22 @@ const LocationFilterCustom = ({ nextStep, cities, isLoading }) => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-const CitiesStep = ({ nextStep, previousStep }) => {
-  const router = useRouter()
-  const { cstate } = useStore((state) => ({
+const CitiesStep = () => {
+  const router = useRouter();
+  const { cstate, nextStep, previousStep } = useStore((state) => ({
     cstate: state.cstate,
-  }))
-  const [cities, isLoading] = useEmptyCities(cstate)
+    previousStep: state.actions.previousStep,
+    nextStep: state.actions.nextStep,
+  }));
+  const [cities, isLoading] = useEmptyCities(cstate);
 
   return (
     <main className="flex flex-col items-center justify-center rounded-lg p-4 sm:p-8">
       <div
-        className="shadow-md bg-white py-6 px-6 sm:px-10 w-full "
+        className="shadow-md bg-white py-6 px-4 sm:px-10 w-full "
         style={{ maxWidth: "32rem" }}
       >
         <div className="flex items-center">
@@ -115,7 +117,7 @@ const CitiesStep = ({ nextStep, previousStep }) => {
         />
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default CitiesStep
+export default CitiesStep;

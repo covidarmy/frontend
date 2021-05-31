@@ -1,12 +1,12 @@
-import * as React from "react"
-import Footer from "~/components/Footer"
-import Navbar from "~/components/Navbar"
-import path from "path"
-import fs from "fs"
-import { useTranslation } from "~/context/translation"
+import * as React from "react";
+import Footer from "~/components/Footer";
+import Navbar from "~/components/Navbar";
+import path from "path";
+import fs from "fs";
+import { useTranslation } from "~/context/translation";
 
 const DisclaimerPage = ({ disclaimer }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   return (
     <div className="w-screen">
       <Navbar />
@@ -20,15 +20,15 @@ const DisclaimerPage = ({ disclaimer }) => {
       </div>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
 export const getStaticProps = async () => {
   const disclaimer = fs.readFileSync(
     path.resolve(process.cwd(), "data/disclaimer.txt"),
     "utf8"
-  )
-  return { props: { disclaimer } }
-}
+  );
+  return { props: { disclaimer } };
+};
 
-export default DisclaimerPage
+export default DisclaimerPage;

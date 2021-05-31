@@ -1,30 +1,37 @@
-import * as React from "react"
-import { useRouter } from "next/router"
-import BackIcon from "~/assets/arrow-left.svg"
-import PhoneIcon from "~/assets/phone.svg"
-import { API_BASE_URL } from "~/constants"
-import { useStore } from "~/lib/StepsStore"
+import * as React from "react";
+import { useRouter } from "next/router";
+import BackIcon from "~/assets/arrow-left.svg";
+import PhoneIcon from "~/assets/phone.svg";
+import { API_BASE_URL } from "~/constants";
+import { useStore } from "~/lib/StepsStore";
+import { isDesktop } from "react-device-detect";
+import { RadioGroup } from "@headlessui/react";
 
-const SubmitForm = ({ previousStep, user }) => {
-  const router = useRouter()
-  const { city, resource, reset } = useStore((state) => ({
+const SubmitForm = ({ user }) => {
+  const router = useRouter();
+  const { city, resource, reset, previousStep } = useStore((state) => ({
     city: state.city,
     resource: state.resource,
     reset: state.actions.reset,
-  }))
-  const [phoneNo, setPhoneNo] = React.useState()
-  const [title, setTitle] = React.useState()
+    previousStep: state.actions.previousStep,
+  }));
+  const [phoneNo, setPhoneNo] = React.useState("");
+  const [title, setTitle] = React.useState("");
+  const [message, setMessage] = React.useState("");
+  const [isVerifed, setIsVerfied] = React.useState("");
 
   const handleFormSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     user.getIdToken().then((idToken) => {
       const postRequestBody = {
         city: city.toLowerCase(),
         phone_no: phoneNo,
-        resource_type: encodeURIComponent(resource.toLowerCase()),
         title: title,
-      }
+        description: message,
+        resource_type: resource.split(" ").join("").toLowerCase(),
+        isVerified: isVerifed === "Yes" ? true : false,
+      };
 
       //   console.log(postRequestBody)
       fetch(`${API_BASE_URL}/volunteer/contacts/`, {
@@ -37,20 +44,19 @@ const SubmitForm = ({ previousStep, user }) => {
       })
         .then((res) => res.json())
         .then(() => {
-          //   console.log(data)
-          reset()
-          router.push("/dashboard")
+          router.push("/dashboard");
+          reset();
         })
         .catch((e) => {
-          console.log(e)
-        })
-    })
-  }
+          console.log(e);
+        });
+    });
+  };
 
   return (
     <main className="flex flex-col items-center justify-center rounded-lg p-4 sm:p-8">
       <div
-        className="shadow-md bg-white py-6 px-6 sm:px-10 w-full "
+        className="shadow-md bg-white p-4 sm:px-10 w-full"
         style={{ maxWidth: "32rem" }}
       >
         <div className="flex items-center">
@@ -67,14 +73,14 @@ const SubmitForm = ({ previousStep, user }) => {
         </div>
         <hr className="my-6" />
         <div className="flex items-center">
-          <PhoneIcon />
-          <p className="ml-2 font-bold">Please add contact details and links</p>
+          {isDesktop && <PhoneIcon />}
+          <p className="ml-0 md:ml-2 font-bold">Please add contact details.</p>
         </div>
         <form onSubmit={handleFormSubmit}>
           <div className="flex gap-3  mt-3">
             <div className="flex flex-col">
               <label htmlFor="" className="text-sm opacity-50">
-                Title
+                Your name
               </label>
               <input
                 type="text"
@@ -109,24 +115,56 @@ const SubmitForm = ({ previousStep, user }) => {
 
           <div className="mt-7">
             <p className="text-sm opacity-50">
-              Message/comment to go along with the contact number
+              Message/comment to go along with the contact number (optional).
             </p>
-            <textarea className="border w-full h-28 p-2 mt-1" />
+            <textarea
+              className="border w-full h-28 p-2 mt-1"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
           </div>
 
-          {/* <div className="mt-7">
+          <div className="mt-7">
             <p className="text-sm opacity-50 mb-2">
               Is it a verified resource ? <small>(optional)</small>
             </p>
-            <button className="bg-gray-200 px-4 py-2 rounded-sm">Yes</button>
-            <button className="bg-gray-200 px-4 py-2 rounded-sm ml-2">
-              No
-            </button>
-          </div> */}
+            <RadioGroup
+              value={isVerifed}
+              onChange={setIsVerfied}
+              className="flex gap-2"
+            >
+              <RadioGroup.Option value="Yes">
+                {({ checked }) => (
+                  <button
+                    type="button"
+                    className={`${
+                      checked ? "bg-blue-600 text-white" : "bg-gray-200"
+                    } px-4 py-2 rounded-sm`}
+                  >
+                    Yes
+                  </button>
+                )}
+              </RadioGroup.Option>
+              <RadioGroup.Option value="No">
+                {({ checked }) => (
+                  <button
+                    type="button"
+                    className={`${
+                      checked ? "bg-blue-600 text-white" : "bg-gray-200"
+                    } px-4 py-2 rounded-sm`}
+                  >
+                    No
+                  </button>
+                )}
+              </RadioGroup.Option>
+            </RadioGroup>
+          </div>
 
           <hr className="mt-6" />
           <div className="flex justify-center mt-10 rounded-md">
-            <button className="py-2 px-8 bg-blue-600 text-white">Submit</button>
+            <button className="py-2 px-8 bg-blue-600 text-white" type="submit">
+              Submit
+            </button>
           </div>
         </form>
 
@@ -135,7 +173,7 @@ const SubmitForm = ({ previousStep, user }) => {
         </a> */}
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default SubmitForm
+export default SubmitForm;

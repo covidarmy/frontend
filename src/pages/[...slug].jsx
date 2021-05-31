@@ -1,12 +1,12 @@
-import { Dashboard } from "~/components/Dashboard"
-import Navbar from "~/components/Navbar"
-import { NextSeo } from "next-seo"
-import { useRouter } from "next/router"
-import { camelize } from "~/lib/utils"
+import { Dashboard } from "~/components/Dashboard";
+import Navbar from "~/components/Navbar";
+import { NextSeo } from "next-seo";
+import { useRouter } from "next/router";
+import { camelize } from "~/lib/utils";
 
 const CityPage = () => {
-  const router = useRouter()
-  const { slug } = router.query
+  const router = useRouter();
+  const { slug } = router.query;
 
   if (slug === undefined) {
     return (
@@ -14,34 +14,29 @@ const CityPage = () => {
         <Navbar />
         <Dashboard city={null} resource={null} />
       </>
-    )
+    );
   }
 
   const title = Array.isArray(slug)
     ? slug
         .map((i) => {
-          return i[0].toUpperCase() + i.slice(1)
+          return i[0].toUpperCase() + i.slice(1);
         })
         .join(" - ")
-    : ""
+    : "";
 
-  const city = camelize(slug[0])
-  const resource = typeof slug[1] === "string" ? camelize(slug[1]) : null
+  const city = camelize(slug[0]);
+  const resource = typeof slug[1] === "string" ? camelize(slug[1]) : null;
+  const pageTitle = `Covid.army${title !== "" ? ` - ${title}` : ""}`;
+  const desc = `Covid Resources Leads${title !== "" ? ` For ${title}` : ""}`;
 
   return (
     <>
       <NextSeo
-        title={`Covid.army${title !== "" ? ` - ${title}` : ""}`}
+        title={pageTitle}
         openGraph={{
-          title: `Covid.army${title !== "" ? ` - ${title}` : ""}`,
-          description: `Covid Resources Leads${
-            title !== "" ? ` For ${title}` : ""
-          }`,
-          images: [
-            {
-              url: "https://covid.army/static/og.png",
-            },
-          ],
+          title: pageTitle,
+          description: desc,
         }}
       />
       <>
@@ -49,7 +44,7 @@ const CityPage = () => {
         <Dashboard city={city} resource={resource} />
       </>
     </>
-  )
-}
+  );
+};
 
-export default CityPage
+export default CityPage;

@@ -1,10 +1,8 @@
-const defaultTheme = require("tailwindcss/defaultTheme")
 const colors = require("tailwindcss/colors")
 
 module.exports = {
-  mode: "jit",
-  purge: ["./src/**/*.{js,jsx,ts,tsx,vue,svelte}"],
-  darkMode: false, // or 'media' or 'class'
+  purge: ["./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: "class", // or 'media' or 'class'
   theme: {
     colors: {
       primary: "#4f46ef",
@@ -13,13 +11,13 @@ module.exports = {
       colors: {
         ...colors,
       },
-      fontFamily: {
-        sans: ["Inter", ...defaultTheme.fontFamily.sans],
-      },
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor: ["active"],
+      textColor: ["active"],
+    },
   },
   plugins: [],
 }
