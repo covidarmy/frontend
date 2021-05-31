@@ -9,7 +9,7 @@ module.exports = withPWA({
     return config
   },
   images: {
-    domains: ["pbs.twimg.com", "abs.twimg.com"],
+    domains: ["pbs.twimg.com", "abs.twimg.com", "www.notion.so"],
   },
   pwa: {
     dest: "public",
