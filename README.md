@@ -4,7 +4,7 @@
 
 **Covid.army** scrapes tweets from Twitter's search page (using Twitter's advanced search feature) and collates them, and showcases all of them in one place with a beautiful user-friendly interface.
 
-Link - [https://covid.army](https://covid.army)
+[![Preview Image](./public/preview.png)](https://covid.army)
 
 Want to contribute? Check the [Contributing](#contributing) section.
 
@@ -20,10 +20,11 @@ npm run dev
 ## Environment Variables
 
 ```bash
-FB_PRIVATE_KEY=           # Private key from firebase service account json
-FB_CLIENT_EMAIL=          # Client email from firebase service account json
-FB_PROJECT_ID=            # Your firebase project id
-NEXT_PUBLIC_CLARITY_ID=   # Microsoft Clarity ID
+NEXT_PUBLIC_FB_API_KEY=""
+NEXT_PUBLIC_FB_APP_ID=""
+NEXT_PUBLIC_FB_MEASUREMENT_ID=""
+NEXT_PUBLIC_FB_MESSAGING_ID=""
+NEXT_PUBLIC_FB_PROJECT_ID=""
 ```
 
 ## Data Models
