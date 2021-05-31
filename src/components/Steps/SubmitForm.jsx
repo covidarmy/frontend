@@ -7,12 +7,13 @@ import { useStore } from "~/lib/StepsStore"
 import { isDesktop } from "react-device-detect"
 import { RadioGroup } from "@headlessui/react"
 
-const SubmitForm = ({ previousStep, user }) => {
+const SubmitForm = ({ user }) => {
   const router = useRouter()
-  const { city, resource, reset } = useStore((state) => ({
+  const { city, resource, reset, previousStep } = useStore((state) => ({
     city: state.city,
     resource: state.resource,
     reset: state.actions.reset,
+    previousStep: state.actions.previousStep,
   }))
   const [phoneNo, setPhoneNo] = React.useState("")
   const [title, setTitle] = React.useState("")
@@ -32,7 +33,7 @@ const SubmitForm = ({ previousStep, user }) => {
         isVerified: isVerifed === "Yes" ? true : false,
       }
 
-    //   console.log(postRequestBody)
+      //   console.log(postRequestBody)
       fetch(`${API_BASE_URL}/volunteer/contacts/`, {
         method: "POST",
         headers: {

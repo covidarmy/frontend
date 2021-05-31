@@ -11,13 +11,13 @@ import { useStore } from "~/lib/StepsStore"
 
 const LocationFilterCustom = ({ nextStep }) => {
   const { selectState } = useStore((state) => ({
-    selectState: state.actions.selectState
+    selectState: state.actions.selectState,
   }))
   const [searchValue, setSearchValue] = React.useState("")
 
   const handleStateSubmit = (item) => {
     selectState(item)
-    nextStep();
+    nextStep()
   }
 
   const renderButtons = () => {
@@ -34,7 +34,11 @@ const LocationFilterCustom = ({ nextStep }) => {
 
     return _data.map((item) => {
       return (
-        <FilterButton key={item} active={false} onClick={() => handleStateSubmit(item)}>
+        <FilterButton
+          key={item}
+          active={false}
+          onClick={() => handleStateSubmit(item)}
+        >
           {item}
         </FilterButton>
       )
@@ -65,8 +69,11 @@ const LocationFilterCustom = ({ nextStep }) => {
   )
 }
 
-const StatesStep = ({ nextStep }) => {
+const StatesStep = () => {
   const router = useRouter()
+  const { nextStep } = useStore((state) => ({
+    nextStep: state.actions.nextStep,
+  }))
 
   return (
     <main className="flex flex-col items-center justify-center rounded-lg p-4 sm:p-8">

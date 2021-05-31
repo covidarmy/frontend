@@ -82,10 +82,12 @@ const LocationFilterCustom = ({ nextStep, cities, isLoading }) => {
   )
 }
 
-const CitiesStep = ({ nextStep, previousStep }) => {
+const CitiesStep = () => {
   const router = useRouter()
-  const { cstate } = useStore((state) => ({
+  const { cstate, nextStep, previousStep } = useStore((state) => ({
     cstate: state.cstate,
+    previousStep: state.actions.previousStep,
+    nextStep: state.actions.nextStep,
   }))
   const [cities, isLoading] = useEmptyCities(cstate)
 

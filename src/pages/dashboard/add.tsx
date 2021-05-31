@@ -11,14 +11,11 @@ import ResourceStep from "~/components/Steps/Resources"
 import SubmitForm from "~/components/Steps/SubmitForm"
 
 export default function AddResourcePage() {
-  const { nextStep, previousStep, step } = useStore((state) => ({
-    step: state.step,
-    previousStep: state.actions.previousStep,
-    nextStep: state.actions.nextStep,
-  }))
-
-  const router = useRouter()
   const { user, isAuthenticated, loading } = useAuth()
+  const router = useRouter()
+  const { step } = useStore((state) => ({
+    step: state.step,
+  }))
 
   React.useEffect(() => {
     if (!loading && !isAuthenticated) {
@@ -30,14 +27,10 @@ export default function AddResourcePage() {
   return (
     <div className="min-h-screen">
       <Navbar />
-      {step === 1 && <StatesStep nextStep={nextStep} />}
-      {step === 2 && (
-        <CitiesStep nextStep={nextStep} previousStep={previousStep} />
-      )}
-      {step === 3 && (
-        <ResourceStep nextStep={nextStep} previousStep={previousStep} />
-      )}
-      {step === 4 && <SubmitForm previousStep={previousStep} user={user} />}
+      {step === 1 && <StatesStep />}
+      {step === 2 && <CitiesStep />}
+      {step === 3 && <ResourceStep />}
+      {step === 4 && <SubmitForm user={user} />}
     </div>
   )
 }
