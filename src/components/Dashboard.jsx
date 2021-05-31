@@ -4,7 +4,7 @@ import LocationFilter from './LocationFilter';
 import ResourceFilter from './ResourceFilter';
 import TweetsList from './TweetsList';
 import Footer from './Footer';
-import { isDesktop, isMobile, isTablet } from 'react-device-detect';
+import { isDesktop } from 'react-device-detect';
 
 const FAB = () => {
     return (
@@ -27,7 +27,7 @@ const FAB = () => {
 export const Dashboard = () => {
     return (
         <>
-            <main className="container mx-auto p-2 grid md:grid-cols-2 md:gap-8 lg:mt-4">
+            <main className="container mx-auto p-2 grid grid-cols-1 md:grid-cols-2 md:gap-8 lg:mt-4">
                 <div className="flex flex-col">
                     <LocationFilter />
                     <ResourceFilter />
