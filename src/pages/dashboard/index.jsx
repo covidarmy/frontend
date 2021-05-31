@@ -152,7 +152,6 @@ const Card = ({
   resourceType,
   city,
   state,
-  status,
   message,
   contactNo,
   createdAt,
@@ -160,6 +159,7 @@ const Card = ({
   authToken,
   user,
   searchText,
+  verificationStatus,
 }) => {
   return (
     <div className="bg-white py-4 px-3 md:px-5 rounded-lg shadow-md mt-3 md:mt-5">
@@ -235,7 +235,7 @@ const Card = ({
         </p>
         <div className="flex items-center mt-2 gap-3">
           <ClickToCopyButton text={contactNo} searchText={searchText} />
-          {status === "ACTIVE" ? (
+          {verificationStatus === "verified" ? (
             <div className="inline-flex items-center justify-center text-green-600 ml-auto py-2 px-4 rounded font-semibold">
               <CheckMarkIcon />
               <div className="ml-2">Verified</div>
@@ -369,7 +369,7 @@ export default function DashboardPage() {
                 resourceType={lead.resource_type}
                 city={lead.city}
                 state={lead.state}
-                status={lead.status}
+                verificationStatus={lead.verification_status}
                 message={lead.description}
                 contactNo={lead.contact_no}
                 updatedAt={lead.updatedAt}

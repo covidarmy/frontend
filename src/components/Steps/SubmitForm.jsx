@@ -5,6 +5,7 @@ import PhoneIcon from "~/assets/phone.svg"
 import { API_BASE_URL } from "~/constants"
 import { useStore } from "~/lib/StepsStore"
 import { isDesktop } from "react-device-detect"
+import { RadioGroup } from "@headlessui/react"
 
 const SubmitForm = ({ previousStep, user }) => {
   const router = useRouter()
@@ -16,6 +17,7 @@ const SubmitForm = ({ previousStep, user }) => {
   const [phoneNo, setPhoneNo] = React.useState("")
   const [title, setTitle] = React.useState("")
   const [message, setMessage] = React.useState("")
+  const [isVerifed, setIsVerfied] = React.useState("")
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
@@ -27,9 +29,10 @@ const SubmitForm = ({ previousStep, user }) => {
         title: title,
         description: message,
         resource_type: resource.split(" ").join("").toLowerCase(),
+        isVerified: isVerifed === "Yes" ? true : false,
       }
 
-      //   console.log(postRequestBody)
+    //   console.log(postRequestBody)
       fetch(`${API_BASE_URL}/volunteer/contacts/`, {
         method: "POST",
         headers: {
@@ -120,15 +123,41 @@ const SubmitForm = ({ previousStep, user }) => {
             />
           </div>
 
-          {/* <div className="mt-7">
+          <div className="mt-7">
             <p className="text-sm opacity-50 mb-2">
               Is it a verified resource ? <small>(optional)</small>
             </p>
-            <button className="bg-gray-200 px-4 py-2 rounded-sm">Yes</button>
-            <button className="bg-gray-200 px-4 py-2 rounded-sm ml-2">
-              No
-            </button>
-          </div> */}
+            <RadioGroup
+              value={isVerifed}
+              onChange={setIsVerfied}
+              className="flex gap-2"
+            >
+              <RadioGroup.Option value="Yes">
+                {({ checked }) => (
+                  <button
+                    type="button"
+                    className={`${
+                      checked ? "bg-blue-600 text-white" : "bg-gray-200"
+                    } px-4 py-2 rounded-sm`}
+                  >
+                    Yes
+                  </button>
+                )}
+              </RadioGroup.Option>
+              <RadioGroup.Option value="No">
+                {({ checked }) => (
+                  <button
+                    type="button"
+                    className={`${
+                      checked ? "bg-blue-600 text-white" : "bg-gray-200"
+                    } px-4 py-2 rounded-sm`}
+                  >
+                    No
+                  </button>
+                )}
+              </RadioGroup.Option>
+            </RadioGroup>
+          </div>
 
           <hr className="mt-6" />
           <div className="flex justify-center mt-10 rounded-md">
