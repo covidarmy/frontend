@@ -1,9 +1,9 @@
-import { Tweet } from "react-static-tweets"
-import { HiChevronDoubleDown } from "react-icons/hi"
-import { useTweets } from "~/hooks/useTweets"
-import Skeleton from "react-loading-skeleton"
-import { useSlug } from "~/context/slug"
-import { useTranslation } from "~/context/translation"
+import { Tweet } from "react-static-tweets";
+import { HiChevronDoubleDown } from "react-icons/hi";
+import { useTweets } from "~/hooks/useTweets";
+import Skeleton from "react-loading-skeleton";
+import { useSlug } from "~/context/slug";
+import { useTranslation } from "~/context/translation";
 
 const OlaNotice = () => {
   return (
@@ -17,31 +17,31 @@ const OlaNotice = () => {
         You can request a oxygen concentrator from your Ola app for no charge!
       </a>
     </div>
-  )
-}
+  );
+};
 
 const TweetsList = () => {
-  const { location, resource } = useSlug()
-  const { data, error, size, setSize } = useTweets({ location, resource })
-  const { t } = useTranslation()
+  const { location, resource } = useSlug();
+  const { data, error, size, setSize } = useTweets({ location, resource });
+  const { t } = useTranslation();
 
   const isOxygenConcentratorFromBanglore =
-    location === "bangalore" && resource === "oxygenconcentrator"
+    location === "bangalore" && resource === "oxygenconcentrator";
 
-  if (error) return <div>failed to load</div>
+  if (error) return <div>failed to load</div>;
   if (!data)
     return (
       <div className="space-y-4 px-0 lg:px-12">
         <Skeleton count={4} height={340} />
       </div>
-    )
+    );
 
   const showMore = () => {
-    setSize(size + 1)
-  }
+    setSize(size + 1);
+  };
 
-  const isEmpty = data?.[0]?.length === 0
-  const isReachingEnd = isEmpty || (data && data[data.length - 1]?.length < 20)
+  const isEmpty = data?.[0]?.length === 0;
+  const isReachingEnd = isEmpty || (data && data[data.length - 1]?.length < 20);
 
   if (!location) {
     return (
@@ -50,7 +50,7 @@ const TweetsList = () => {
           {t("SELECT_LOCATION_RESOURCE")}
         </p>
       </div>
-    )
+    );
   }
 
   if (!resource) {
@@ -60,7 +60,7 @@ const TweetsList = () => {
           {t("SELECT_RESOURCE")}
         </p>
       </div>
-    )
+    );
   }
 
   if (data[0].length > 0) {
@@ -77,7 +77,7 @@ const TweetsList = () => {
               >
                 <Tweet id={tweet_id} />
               </div>
-            ))
+            ));
           })
         }
         {!isReachingEnd && (
@@ -91,7 +91,7 @@ const TweetsList = () => {
           </button>
         )}
       </div>
-    )
+    );
   }
 
   return (
@@ -105,7 +105,7 @@ const TweetsList = () => {
         Sorry, we don't have any data for {location} & {resource}.
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default TweetsList
+export default TweetsList;

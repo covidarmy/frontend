@@ -1,4 +1,4 @@
-import Navbar from "~/components/Navbar"
+import Navbar from "~/components/Navbar";
 
 const Coming = () => {
   return (
@@ -20,7 +20,7 @@ const Coming = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Coming
+export default Coming;

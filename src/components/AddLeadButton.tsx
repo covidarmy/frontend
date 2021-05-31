@@ -1,6 +1,6 @@
-import Link from "next/link"
-import * as React from "react"
-import { HiPlus } from "react-icons/hi"
+import Link from "next/link";
+import * as React from "react";
+import { HiPlus } from "react-icons/hi";
 
 const AddLeadButton = () => {
   return (
@@ -10,7 +10,7 @@ const AddLeadButton = () => {
         <span>Add new lead</span>
       </a>
     </Link>
-  )
-}
+  );
+};
 
-export default AddLeadButton
+export default AddLeadButton;

@@ -1,36 +1,36 @@
-import * as React from "react"
-import Skeleton from "react-loading-skeleton"
-import LoadingPage from "~/components/LoadingPage"
-import Navbar from "~/components/Navbar"
-import Fuse from "fuse.js"
-import { useRouter } from "next/router"
-import { useAuth } from "~/context/auth"
-import { useLeads } from "~/hooks/useLeads"
-import { isMobile, isTablet, isDesktop } from "react-device-detect"
-import { getFormattedDateString } from "~/lib/getFormattedDateString"
-import { getTotalUsersFromLeads } from "~/lib/getTotalUsersFromLeads"
+import * as React from "react";
+import Skeleton from "react-loading-skeleton";
+import LoadingPage from "~/components/LoadingPage";
+import Navbar from "~/components/Navbar";
+import Fuse from "fuse.js";
+import { useRouter } from "next/router";
+import { useAuth } from "~/context/auth";
+import { useLeads } from "~/hooks/useLeads";
+import { isMobile, isTablet, isDesktop } from "react-device-detect";
+import { getFormattedDateString } from "~/lib/getFormattedDateString";
+import { getTotalUsersFromLeads } from "~/lib/getTotalUsersFromLeads";
 
-import AwardIcon from "~/assets/award.svg"
-import HeartIcon from "~/assets/heart.svg"
-import SearchIcon from "~/assets/Search.svg"
-import EditIcon from "~/assets/edit.svg"
-import CheckMarkIcon from "~/assets/checkmark.svg"
-import UnverfiedIcon from "~/assets/unverfied.svg"
-import DeleteIcon from "~/assets/delete.svg"
-import MoreIcon from "~/assets/more.svg"
-import PlusIcon from "~/assets/plus.svg"
+import AwardIcon from "~/assets/award.svg";
+import HeartIcon from "~/assets/heart.svg";
+import SearchIcon from "~/assets/Search.svg";
+import EditIcon from "~/assets/edit.svg";
+import CheckMarkIcon from "~/assets/checkmark.svg";
+import UnverfiedIcon from "~/assets/unverfied.svg";
+import DeleteIcon from "~/assets/delete.svg";
+import MoreIcon from "~/assets/more.svg";
+import PlusIcon from "~/assets/plus.svg";
 
-import ReactTooltip from "react-tooltip"
-import { useCopyToClipboard } from "~/hooks/useCopyToClipboard"
-import { Menu, RadioGroup, Transition } from "@headlessui/react"
-import { API_BASE_URL } from "~/constants"
+import ReactTooltip from "react-tooltip";
+import { useCopyToClipboard } from "~/hooks/useCopyToClipboard";
+import { Menu, RadioGroup, Transition } from "@headlessui/react";
+import { API_BASE_URL } from "~/constants";
 
-import Highlighter from "react-highlight-words"
-import { mutate } from "swr"
+import Highlighter from "react-highlight-words";
+import { mutate } from "swr";
 
 const FilterButtonGroup = () => {
-  let [selectedFilter, setSelectedFilter] = React.useState()
-  const filters = ["week", "month", "2 months", "6 months"]
+  let [selectedFilter, setSelectedFilter] = React.useState();
+  const filters = ["week", "month", "2 months", "6 months"];
 
   return (
     <RadioGroup
@@ -54,25 +54,25 @@ const FilterButtonGroup = () => {
       <button
         className="hidden md:block min-w-max h-full px-4 py-2 shadow-md rounded-lg bg-white text-gray-500 transition-shadow border active:bg-blue-500 active:text-white hover:shadow-sm hover:border-gray-300 focus:outline-none focus:ring focus:border-blue-300"
         onClick={() => {
-          setSelectedFilter("")
+          setSelectedFilter("");
         }}
       >
         Clear Filter
       </button>
     </RadioGroup>
-  )
-}
+  );
+};
 
 const ClickToCopyButton = ({ text, searchText }) => {
-  const [copied, setCopied, copy] = useCopyToClipboard(text)
+  const [copied, setCopied, copy] = useCopyToClipboard(text);
 
   React.useEffect(() => {
     if (copied) {
       setTimeout(() => {
-        setCopied(false)
-      }, 3000)
+        setCopied(false);
+      }, 3000);
     }
-  }, [copied])
+  }, [copied]);
 
   return (
     <>
@@ -89,8 +89,8 @@ const ClickToCopyButton = ({ text, searchText }) => {
         />
       </button>
     </>
-  )
-}
+  );
+};
 
 const EditDropdownMenu = ({ authToken, user }) => {
   const handleDelete = () => {
@@ -103,12 +103,12 @@ const EditDropdownMenu = ({ authToken, user }) => {
     })
       .then(() => {
         // refreshing for new list
-        mutate([`${API_BASE_URL}/volunteer/contacts`, authToken])
+        mutate([`${API_BASE_URL}/volunteer/contacts`, authToken]);
       })
       .catch((e) => {
-        console.log(e)
-      })
-  }
+        console.log(e);
+      });
+  };
 
   return (
     <Menu>
@@ -147,8 +147,8 @@ const EditDropdownMenu = ({ authToken, user }) => {
         </div>
       )}
     </Menu>
-  )
-}
+  );
+};
 
 const Card = ({
   title,
@@ -260,46 +260,46 @@ const Card = ({
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
 export default function DashboardPage() {
-  const { authToken, isAuthenticated, loading } = useAuth()
-  const [leads] = useLeads(authToken)
-  const [filteredLeads, setFilteredLeads] = React.useState(leads)
-  const [searchText, setSearchText] = React.useState("")
-  const router = useRouter()
+  const { authToken, isAuthenticated, loading } = useAuth();
+  const [leads] = useLeads(authToken);
+  const [filteredLeads, setFilteredLeads] = React.useState(leads);
+  const [searchText, setSearchText] = React.useState("");
+  const router = useRouter();
 
   React.useEffect(() => {
     if (!loading && !isAuthenticated) {
-      router.push("/login")
+      router.push("/login");
     }
-  }, [isAuthenticated, loading])
+  }, [isAuthenticated, loading]);
 
   React.useEffect(() => {
-    setFilteredLeads(leads)
-  }, [leads])
+    setFilteredLeads(leads);
+  }, [leads]);
 
   React.useEffect(() => {
     if (searchText === "") {
-      setFilteredLeads(leads)
+      setFilteredLeads(leads);
     }
-  }, [searchText])
+  }, [searchText]);
 
   const handleSearch = (text) => {
-    setSearchText(text)
+    setSearchText(text);
 
     // searching for values
     const fuse = new Fuse(leads, {
       keys: ["title", "category", "city", "state", "contact_no"],
-    })
-    const filteredList = fuse.search(text).map(({ item }) => item)
+    });
+    const filteredList = fuse.search(text).map(({ item }) => item);
 
     // setting this to list
-    setFilteredLeads(filteredList)
-  }
+    setFilteredLeads(filteredList);
+  };
 
-  if (loading) return <LoadingPage />
+  if (loading) return <LoadingPage />;
   return (
     <div className="min-h-screen bg-gray-100 ">
       <Navbar />
@@ -401,5 +401,5 @@ export default function DashboardPage() {
         </button>
       )}
     </div>
-  )
+  );
 }

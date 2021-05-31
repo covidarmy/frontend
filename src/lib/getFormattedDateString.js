@@ -1,9 +1,9 @@
 const getFormattedDate = (date) => {
   // 2021-05-29T05:31:06.921Z
-  const dateString = date.split("-")
-  const year = dateString[0]
-  const month = dateString[1]
-  const day = dateString[2].split("T")[0]
+  const dateString = date.split("-");
+  const year = dateString[0];
+  const month = dateString[1];
+  const day = dateString[2].split("T")[0];
 
   const monthNames = [
     "January",
@@ -18,19 +18,19 @@ const getFormattedDate = (date) => {
     "October",
     "November",
     "December",
-  ]
+  ];
 
-  const formattedString = `${day} ${monthNames[+month - 1]} ${year}`
-  return formattedString
-}
+  const formattedString = `${day} ${monthNames[+month - 1]} ${year}`;
+  return formattedString;
+};
 
 export const getFormattedDateString = (createdAt, updatedAt) => {
-  let formattedString = ""
+  let formattedString = "";
   if (createdAt === updatedAt) {
-    formattedString += `Added at ${getFormattedDate(createdAt)}`
+    formattedString += `Added at ${getFormattedDate(createdAt)}`;
   } else {
-    formattedString += `Last updated at ${getFormattedDate(updatedAt)}`
+    formattedString += `Last updated at ${getFormattedDate(updatedAt)}`;
   }
 
-  return formattedString
-}
+  return formattedString;
+};

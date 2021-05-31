@@ -1,5 +1,5 @@
-import Image from "next/image"
-import { AiFillGithub, AiFillTwitterCircle } from "react-icons/ai"
+import Image from "next/image";
+import { AiFillGithub, AiFillTwitterCircle } from "react-icons/ai";
 
 const Footer = () => {
   return (
@@ -46,7 +46,7 @@ const Footer = () => {
         </a>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

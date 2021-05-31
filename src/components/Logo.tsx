@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 
 const Logo = (props: JSX.IntrinsicElements["svg"]) => {
   return (
@@ -75,7 +75,7 @@ const Logo = (props: JSX.IntrinsicElements["svg"]) => {
         fill="#4F46EF"
       />
     </svg>
-  )
-}
+  );
+};
 
-export default Logo
+export default Logo;

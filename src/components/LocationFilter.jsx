@@ -1,50 +1,50 @@
-import * as React from "react"
-import Fuse from "fuse.js"
-import { useRouter } from "next/router"
-import FilterButton from "./FilterButton"
-import LocationIcon from "../assets/Location.svg"
-import SearchIcon from "../assets/Search.svg"
-import { HiChevronDown as DownArrow } from "react-icons/hi"
-import { HiChevronUp as UpArrow } from "react-icons/hi"
-import Skeleton from "react-loading-skeleton"
-import { useCities } from "~/hooks/useCities"
-import { useSlug } from "~/context/slug"
-import { useTranslation } from "~/context/translation"
-import FraudBanner from "./FraudBanner"
+import * as React from "react";
+import Fuse from "fuse.js";
+import { useRouter } from "next/router";
+import FilterButton from "./FilterButton";
+import LocationIcon from "../assets/Location.svg";
+import SearchIcon from "../assets/Search.svg";
+import { HiChevronDown as DownArrow } from "react-icons/hi";
+import { HiChevronUp as UpArrow } from "react-icons/hi";
+import Skeleton from "react-loading-skeleton";
+import { useCities } from "~/hooks/useCities";
+import { useSlug } from "~/context/slug";
+import { useTranslation } from "~/context/translation";
+import FraudBanner from "./FraudBanner";
 
 export default function LocationFilter() {
-  const { location, resource } = useSlug()
-  const { t } = useTranslation()
-  const [cities, topCities, error, isLoading] = useCities()
+  const { location, resource } = useSlug();
+  const { t } = useTranslation();
+  const [cities, topCities, error, isLoading] = useCities();
 
-  const [cityState, setCityState] = React.useState(false)
-  const router = useRouter()
-  const filter = router.pathname === "/" && "all"
-  const [showMore, setShowMore] = React.useState(false)
+  const [cityState, setCityState] = React.useState(false);
+  const router = useRouter();
+  const filter = router.pathname === "/" && "all";
+  const [showMore, setShowMore] = React.useState(false);
 
-  const [searchValue, setSearchValue] = React.useState("")
+  const [searchValue, setSearchValue] = React.useState("");
 
   React.useEffect(() => {
     if (typeof location !== "undefined") {
-      setCityState(true)
+      setCityState(true);
     } else {
-      setCityState(false)
+      setCityState(false);
     }
-  }, [location])
+  }, [location]);
 
-  if (error) return <div>failed to load</div>
-  if (isLoading) return <Skeleton height={214} />
+  if (error) return <div>failed to load</div>;
+  if (isLoading) return <Skeleton height={214} />;
 
   const renderButtons = () => {
-    let _data = null
+    let _data = null;
 
     if (searchValue) {
       const fuse = new Fuse(
         cities.sort().filter((i) => typeof i !== "boolean"),
         { includeScore: true }
-      )
+      );
 
-      _data = fuse.search(searchValue).map(({ item }) => item)
+      _data = fuse.search(searchValue).map(({ item }) => item);
     }
 
     if (!showMore) {
@@ -62,24 +62,24 @@ export default function LocationFilter() {
               "Lucknow",
               "Noida",
               "Gurgaon",
-            ]
+            ];
       if (filter !== "all" && !_data.includes(filter)) {
-        _data = [..._data, filter]
+        _data = [..._data, filter];
       }
     } else if (_data === null) {
-      _data = topCities.sort()
+      _data = topCities.sort();
     }
 
-    _data = _data.filter((i) => typeof i !== "boolean")
+    _data = _data.filter((i) => typeof i !== "boolean");
 
     return _data.map((item) => {
       /** Location provided by useSlug */
-      let currentLocation = location
+      let currentLocation = location;
       /** Location where the FilterButton will route the user to */
-      const buttonLocation = item.replace(/\s+/g, "").toString().toLowerCase()
+      const buttonLocation = item.replace(/\s+/g, "").toString().toLowerCase();
 
       if (typeof currentLocation === "string") {
-        currentLocation = currentLocation.replace(/\s+/g, "").toLowerCase()
+        currentLocation = currentLocation.replace(/\s+/g, "").toLowerCase();
       }
 
       return (
@@ -94,9 +94,9 @@ export default function LocationFilter() {
         >
           {item}
         </FilterButton>
-      )
-    })
-  }
+      );
+    });
+  };
   if (!cityState)
     return (
       <div className="shadow-md bg-white box-border h-auto w-full rounded-md my-2 p-3 lg:p-6 border border-gray-200">
@@ -134,7 +134,7 @@ export default function LocationFilter() {
           </button>
         </div>
       </div>
-    )
+    );
 
   return (
     <div className="shadow-md bg-white box-border h-auto w-full rounded-md my-2 p-3 lg:p-6 border border-gray-200">
@@ -148,5 +148,5 @@ export default function LocationFilter() {
         </button>
       </div>
     </div>
-  )
+  );
 }

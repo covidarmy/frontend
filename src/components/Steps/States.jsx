@@ -1,35 +1,35 @@
-import { useRouter } from "next/router"
-import * as React from "react"
-import Fuse from "fuse.js"
-import BackIcon from "~/assets/arrow-left.svg"
-import LocationIcon from "~/assets/Location.svg"
-import FilterButton from "~/components/FilterButton"
-import SearchIcon from "~/assets/Search.svg"
+import { useRouter } from "next/router";
+import * as React from "react";
+import Fuse from "fuse.js";
+import BackIcon from "~/assets/arrow-left.svg";
+import LocationIcon from "~/assets/Location.svg";
+import FilterButton from "~/components/FilterButton";
+import SearchIcon from "~/assets/Search.svg";
 
-import AllStates from "~/lib/allStates.json"
-import { useStore } from "~/lib/StepsStore"
+import AllStates from "~/lib/allStates.json";
+import { useStore } from "~/lib/StepsStore";
 
 const LocationFilterCustom = ({ nextStep }) => {
   const { selectState } = useStore((state) => ({
     selectState: state.actions.selectState,
-  }))
-  const [searchValue, setSearchValue] = React.useState("")
+  }));
+  const [searchValue, setSearchValue] = React.useState("");
 
   const handleStateSubmit = (item) => {
-    selectState(item)
-    nextStep()
-  }
+    selectState(item);
+    nextStep();
+  };
 
   const renderButtons = () => {
-    let _data = AllStates
+    let _data = AllStates;
 
     if (searchValue) {
       const fuse = new Fuse(
         AllStates.sort().filter((i) => typeof i !== "boolean"),
         { includeScore: true }
-      )
+      );
 
-      _data = fuse.search(searchValue).map(({ item }) => item)
+      _data = fuse.search(searchValue).map(({ item }) => item);
     }
 
     return _data.map((item) => {
@@ -41,9 +41,9 @@ const LocationFilterCustom = ({ nextStep }) => {
         >
           {item}
         </FilterButton>
-      )
-    })
-  }
+      );
+    });
+  };
 
   return (
     <div className="bg-white h-auto w-full my-2">
@@ -66,14 +66,14 @@ const LocationFilterCustom = ({ nextStep }) => {
         {renderButtons()}
       </div>
     </div>
-  )
-}
+  );
+};
 
 const StatesStep = () => {
-  const router = useRouter()
+  const router = useRouter();
   const { nextStep } = useStore((state) => ({
     nextStep: state.actions.nextStep,
-  }))
+  }));
 
   return (
     <main className="flex flex-col items-center justify-center rounded-lg p-4 sm:p-8">
@@ -85,7 +85,7 @@ const StatesStep = () => {
           <a
             aria-label="Back Button"
             onClick={() => {
-              router.push("/dashboard")
+              router.push("/dashboard");
             }}
             className="cursor-pointer"
           >
@@ -99,7 +99,7 @@ const StatesStep = () => {
         <LocationFilterCustom nextStep={nextStep} />
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default StatesStep
+export default StatesStep;

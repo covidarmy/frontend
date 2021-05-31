@@ -1,30 +1,30 @@
-import { useRouter } from "next/router"
-import * as React from "react"
-import Link from "next/link"
-import Navbar from "~/components/Navbar"
-import BackIcon from "~/assets/arrow-left.svg"
-import RightIcon from "~/assets/chevron-right.svg"
-import { APP_BASE_URL } from "~/constants"
-import { useAuth } from "~/context/auth"
-import LoadingPage from "~/components/LoadingPage"
-import { auth } from "~/lib/firebase"
+import { useRouter } from "next/router";
+import * as React from "react";
+import Link from "next/link";
+import Navbar from "~/components/Navbar";
+import BackIcon from "~/assets/arrow-left.svg";
+import RightIcon from "~/assets/chevron-right.svg";
+import { APP_BASE_URL } from "~/constants";
+import { useAuth } from "~/context/auth";
+import LoadingPage from "~/components/LoadingPage";
+import { auth } from "~/lib/firebase";
 
 const LoginPage: React.FC = () => {
-  const { isAuthenticated, loading } = useAuth()
-  const router = useRouter()
-  const [email, setEmail] = React.useState<string>("")
+  const { isAuthenticated, loading } = useAuth();
+  const router = useRouter();
+  const [email, setEmail] = React.useState<string>("");
   const [submitted, setSubmitted] = React.useState({
     done: false,
     email: "",
-  })
+  });
 
   React.useEffect(() => {
     if (!loading && isAuthenticated) {
-      router.push("/dashboard")
+      router.push("/dashboard");
     }
-  }, [loading, isAuthenticated])
+  }, [loading, isAuthenticated]);
 
-  if (loading) return <LoadingPage />
+  if (loading) return <LoadingPage />;
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -55,18 +55,18 @@ const LoginPage: React.FC = () => {
             <form
               className="flex flex-col items-center justify-between w-full mt-6"
               onSubmit={async (e) => {
-                e.preventDefault()
+                e.preventDefault();
                 // await fetch(API_BASE_URL + "/volunteer/login", {
                 //   method: "POST",
                 //   body: JSON.stringify({ email }),
                 // })
-                console.log(email)
+                console.log(email);
                 await auth.sendSignInLinkToEmail(email, {
                   url: APP_BASE_URL + "/auth/success",
                   handleCodeInApp: true,
-                })
-                window.localStorage.setItem("emailForSignIn", email)
-                setSubmitted({ done: true, email })
+                });
+                window.localStorage.setItem("emailForSignIn", email);
+                setSubmitted({ done: true, email });
               }}
             >
               <div className="flex items-center justify-start w-full gap-8">
@@ -105,7 +105,7 @@ const LoginPage: React.FC = () => {
         </div>
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;

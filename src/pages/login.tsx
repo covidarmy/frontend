@@ -1,24 +1,24 @@
-import { useRouter } from "next/router"
-import * as React from "react"
-import Link from "next/link"
-import Navbar from "~/components/Navbar"
-import BackIcon from "~/assets/arrow-left.svg"
-import { useAuth } from "~/context/auth"
-import { auth, fb as firebase } from "~/lib/firebase"
-import LoadingPage from "~/components/LoadingPage"
-import GoogleIcon from "~/assets/google.svg"
+import { useRouter } from "next/router";
+import * as React from "react";
+import Link from "next/link";
+import Navbar from "~/components/Navbar";
+import BackIcon from "~/assets/arrow-left.svg";
+import { useAuth } from "~/context/auth";
+import { auth, fb as firebase } from "~/lib/firebase";
+import LoadingPage from "~/components/LoadingPage";
+import GoogleIcon from "~/assets/google.svg";
 
 const LoginPage: React.FC = () => {
-  const { isAuthenticated, loading } = useAuth()
-  const router = useRouter()
+  const { isAuthenticated, loading } = useAuth();
+  const router = useRouter();
 
   React.useEffect(() => {
     if (!loading && isAuthenticated) {
-      router.push("/dashboard")
+      router.push("/dashboard");
     }
-  }, [loading, isAuthenticated])
+  }, [loading, isAuthenticated]);
 
-  if (loading) return <LoadingPage />
+  if (loading) return <LoadingPage />;
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -43,20 +43,20 @@ const LoginPage: React.FC = () => {
             Hello Superhero, hope you are doing good!
           </p>
           <h2 className="text-xl font-bold mt-8">Please log in using</h2>
-            <button
-              className="mt-9 inline-flex items-center py-3 px-7 rounded-lg"
-              style={{ background: "#EFEFEF" }}
-              onClick={() => {
-                auth
-                  .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-                  .then(() => {
-                    router.push("/dashboard")
-                  })
-              }}
-            >
-              <GoogleIcon />
-              <div className="text-xl font-semibold ml-2">Google</div>
-            </button>
+          <button
+            className="mt-9 inline-flex items-center py-3 px-7 rounded-lg"
+            style={{ background: "#EFEFEF" }}
+            onClick={() => {
+              auth
+                .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+                .then(() => {
+                  router.push("/dashboard");
+                });
+            }}
+          >
+            <GoogleIcon />
+            <div className="text-xl font-semibold ml-2">Google</div>
+          </button>
         </div>
 
         {/* <div className="w-full px-6 py-6 bg-white rounded-lg shadow-md sm:px-10">
@@ -67,7 +67,7 @@ const LoginPage: React.FC = () => {
         </div> */}
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;

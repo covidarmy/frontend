@@ -1,30 +1,30 @@
-import { useRouter } from "next/router"
-import * as React from "react"
-import LoadingPage from "~/components/LoadingPage"
-import { useAuth } from "~/context/auth"
-import BackIcon from "~/assets/arrow-left.svg"
-import { useTranslation } from "~/context/translation"
-import { useResources } from "~/hooks/useResources"
-import FilterButton from "~/components/FilterButton"
-import ResourceIcon from "~/assets/Resource.svg"
-import Skeleton from "react-loading-skeleton"
-import { useStore } from "~/lib/StepsStore"
+import { useRouter } from "next/router";
+import * as React from "react";
+import LoadingPage from "~/components/LoadingPage";
+import { useAuth } from "~/context/auth";
+import BackIcon from "~/assets/arrow-left.svg";
+import { useTranslation } from "~/context/translation";
+import { useResources } from "~/hooks/useResources";
+import FilterButton from "~/components/FilterButton";
+import ResourceIcon from "~/assets/Resource.svg";
+import Skeleton from "react-loading-skeleton";
+import { useStore } from "~/lib/StepsStore";
 
 const ResourceFilterCustom = ({ nextStep }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const { selectResource } = useStore((state) => ({
     selectResource: state.actions.selectResource,
-  }))
-  const [resources, error, isLoading] = useResources()
+  }));
+  const [resources, error, isLoading] = useResources();
 
   const handleResourceSubmit = (item) => {
-    selectResource(item)
-    nextStep()
-  }
+    selectResource(item);
+    nextStep();
+  };
 
   // we can add better error state later
-  if (error) return <div>failed to load</div>
-  if (isLoading) return <Skeleton height={128} />
+  if (error) return <div>failed to load</div>;
+  if (isLoading) return <Skeleton height={128} />;
 
   return (
     <div className="bg-white text-center h-auto w-full my-2">
@@ -44,18 +44,18 @@ const ResourceFilterCustom = ({ nextStep }) => {
             >
               {item}
             </FilterButton>
-          )
+          );
         })}
       </div>
     </div>
-  )
-}
+  );
+};
 
 const ResourceStep = () => {
   const { nextStep, previousStep } = useStore((state) => ({
     previousStep: state.actions.previousStep,
     nextStep: state.actions.nextStep,
-  }))
+  }));
 
   return (
     <main className="flex flex-col items-center justify-center rounded-lg p-4 sm:p-8">
@@ -79,7 +79,7 @@ const ResourceStep = () => {
         <ResourceFilterCustom nextStep={nextStep} />
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default ResourceStep
+export default ResourceStep;

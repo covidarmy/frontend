@@ -1,13 +1,13 @@
-import "../styles/index.css"
-import "inter-ui/inter.css"
-import "react-static-tweets/styles.css"
-import * as React from "react"
-import NextGA from "~/components/NextGA"
-import { DefaultSeo } from "next-seo"
-import { defaultSeoProps, isProduction } from "~/constants"
-import SlugProvider from "~/context/slug"
-import TranslationProvider from "~/context/translation"
-import AuthProvider from "~/context/auth"
+import "../styles/index.css";
+import "inter-ui/inter.css";
+import "react-static-tweets/styles.css";
+import * as React from "react";
+import NextGA from "~/components/NextGA";
+import { DefaultSeo } from "next-seo";
+import { defaultSeoProps, isProduction } from "~/constants";
+import SlugProvider from "~/context/slug";
+import TranslationProvider from "~/context/translation";
+import AuthProvider from "~/context/auth";
 
 function App({ Component, pageProps }) {
   return (
@@ -26,7 +26,7 @@ function App({ Component, pageProps }) {
         </AuthProvider>
       </NextGA>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

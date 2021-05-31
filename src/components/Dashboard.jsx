@@ -1,9 +1,9 @@
-import * as React from "react"
-import WhatsappLogo from "../assets/whatsapp.svg"
-import LocationFilter from "./LocationFilter"
-import ResourceFilter from "./ResourceFilter"
-import TweetsList from "./TweetsList"
-import Footer from "./Footer"
+import * as React from "react";
+import WhatsappLogo from "../assets/whatsapp.svg";
+import LocationFilter from "./LocationFilter";
+import ResourceFilter from "./ResourceFilter";
+import TweetsList from "./TweetsList";
+import Footer from "./Footer";
 
 export const Dashboard = () => {
   return (
@@ -34,5 +34,5 @@ export const Dashboard = () => {
         </a>
       </div>
     </>
-  )
-}
+  );
+};

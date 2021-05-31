@@ -1,27 +1,27 @@
-import * as React from "react"
-import { useRouter } from "next/router"
-import BackIcon from "~/assets/arrow-left.svg"
-import PhoneIcon from "~/assets/phone.svg"
-import { API_BASE_URL } from "~/constants"
-import { useStore } from "~/lib/StepsStore"
-import { isDesktop } from "react-device-detect"
-import { RadioGroup } from "@headlessui/react"
+import * as React from "react";
+import { useRouter } from "next/router";
+import BackIcon from "~/assets/arrow-left.svg";
+import PhoneIcon from "~/assets/phone.svg";
+import { API_BASE_URL } from "~/constants";
+import { useStore } from "~/lib/StepsStore";
+import { isDesktop } from "react-device-detect";
+import { RadioGroup } from "@headlessui/react";
 
 const SubmitForm = ({ user }) => {
-  const router = useRouter()
+  const router = useRouter();
   const { city, resource, reset, previousStep } = useStore((state) => ({
     city: state.city,
     resource: state.resource,
     reset: state.actions.reset,
     previousStep: state.actions.previousStep,
-  }))
-  const [phoneNo, setPhoneNo] = React.useState("")
-  const [title, setTitle] = React.useState("")
-  const [message, setMessage] = React.useState("")
-  const [isVerifed, setIsVerfied] = React.useState("")
+  }));
+  const [phoneNo, setPhoneNo] = React.useState("");
+  const [title, setTitle] = React.useState("");
+  const [message, setMessage] = React.useState("");
+  const [isVerifed, setIsVerfied] = React.useState("");
 
   const handleFormSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     user.getIdToken().then((idToken) => {
       const postRequestBody = {
@@ -31,7 +31,7 @@ const SubmitForm = ({ user }) => {
         description: message,
         resource_type: resource.split(" ").join("").toLowerCase(),
         isVerified: isVerifed === "Yes" ? true : false,
-      }
+      };
 
       //   console.log(postRequestBody)
       fetch(`${API_BASE_URL}/volunteer/contacts/`, {
@@ -44,14 +44,14 @@ const SubmitForm = ({ user }) => {
       })
         .then((res) => res.json())
         .then(() => {
-          router.push("/dashboard")
-          reset()
+          router.push("/dashboard");
+          reset();
         })
         .catch((e) => {
-          console.log(e)
-        })
-    })
-  }
+          console.log(e);
+        });
+    });
+  };
 
   return (
     <main className="flex flex-col items-center justify-center rounded-lg p-4 sm:p-8">
@@ -173,7 +173,7 @@ const SubmitForm = ({ user }) => {
         </a> */}
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default SubmitForm
+export default SubmitForm;

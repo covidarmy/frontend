@@ -1,57 +1,57 @@
-import { GetStaticProps } from "next"
-import Image from "next/image"
+import { GetStaticProps } from "next";
+import Image from "next/image";
 
 // COMPONENTS
-import Navbar from "~/components/Navbar"
-import Footer from "~/components/Footer"
+import Navbar from "~/components/Navbar";
+import Footer from "~/components/Footer";
 
 // ICONS
 import {
   TiSocialTwitter,
   TiSocialDribbble,
   TiSocialLinkedin,
-} from "react-icons/ti"
-import { HiGlobeAlt as HiGlobe } from "react-icons/hi"
+} from "react-icons/ti";
+import { HiGlobeAlt as HiGlobe } from "react-icons/hi";
 
 // TRANSLATION
-import { useTranslation } from "~/context/translation"
+import { useTranslation } from "~/context/translation";
 
 interface ObjectLiteral {
-  [key: string]: any
+  [key: string]: any;
 }
 
 const icons: ObjectLiteral = {
   twitter: TiSocialTwitter,
   dribbble: TiSocialDribbble,
   linkedin: TiSocialLinkedin,
-}
+};
 
 interface IPartner {
-  id: string
-  url: string
-  imageFileName: string
-  description?: string
-  name: string
-  published?: boolean
+  id: string;
+  url: string;
+  imageFileName: string;
+  description?: string;
+  name: string;
+  published?: boolean;
 }
 
 interface IVolunteer {
-  id: string
-  image: string
-  social_link: string
-  social_type: string
-  name: string
-  type: "contributor" | "core"
+  id: string;
+  image: string;
+  social_link: string;
+  social_type: string;
+  name: string;
+  type: "contributor" | "core";
 }
 
 interface Props {
-  partnerData: IPartner[]
-  volunteerData: IVolunteer[]
+  partnerData: IPartner[];
+  volunteerData: IVolunteer[];
 }
 
 const About: React.FC<Props> = (props) => {
-  const { t } = useTranslation()
-  const { partnerData, volunteerData } = props
+  const { t } = useTranslation();
+  const { partnerData, volunteerData } = props;
 
   return (
     <div>
@@ -99,7 +99,7 @@ const About: React.FC<Props> = (props) => {
           {volunteerData
             .filter((i) => i.type === "core")
             .map((element) => {
-              const SocialIcon = icons[element.social_type] ?? HiGlobe
+              const SocialIcon = icons[element.social_type] ?? HiGlobe;
 
               return (
                 <div
@@ -125,7 +125,7 @@ const About: React.FC<Props> = (props) => {
                     </div>
                   </div>
                 </div>
-              )
+              );
             })}
         </div>
       </section>
@@ -143,7 +143,7 @@ const About: React.FC<Props> = (props) => {
           {volunteerData
             .filter((i) => i.type === "contributor")
             .map((element) => {
-              const SocialIcon = icons[element.social_type] ?? HiGlobe
+              const SocialIcon = icons[element.social_type] ?? HiGlobe;
 
               return (
                 <div
@@ -169,14 +169,14 @@ const About: React.FC<Props> = (props) => {
                     </div>
                   </div>
                 </div>
-              )
+              );
             })}
         </div>
       </section>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
 export const getStaticProps: GetStaticProps = async () => {
   const partnerData: IPartner[] = await fetch(
@@ -186,17 +186,17 @@ export const getStaticProps: GetStaticProps = async () => {
     .then((res) => res.json())
     .then((res) =>
       res.filter(({ published }: { published: boolean }) => published)
-    )
+    );
 
   const volunteerData: IVolunteer[] = await fetch(
     "https://notion-api.splitbee.io/v1/table/16b6dd8733794d7fbd6bfa77f7d361da",
     { method: "get" }
-  ).then((res) => res.json())
+  ).then((res) => res.json());
 
   return {
     props: { volunteerData, partnerData },
     revalidate: 60,
-  }
-}
+  };
+};
 
-export default About
+export default About;

@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 
 const LoadingPage: React.FC = () => {
   return (
@@ -24,7 +24,7 @@ const LoadingPage: React.FC = () => {
         ></path>
       </svg>
     </div>
-  )
-}
+  );
+};
 
-export default LoadingPage
+export default LoadingPage;
