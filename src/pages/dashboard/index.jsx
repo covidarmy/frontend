@@ -308,7 +308,7 @@ const NotYetVerifedByUsUI = () => {
           <EmptyLeadsIcon />
         </div>
 
-        <div className="p-3 max-w-sm md:max-w-lg mx-auto">
+        <div className="p-3 max-w-sm md:max-w-lg mx-auto md:mx-0">
           <h2 className="font-semibold text-gray-600 text-xl text-center md:text-left">
             We've received your request to become a volunteer, as soon as we
             approve you can start adding leads.
