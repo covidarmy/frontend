@@ -66,8 +66,6 @@ const TweetsList = () => {
       </div>
     )
 
-  console.log(data)
-
   if (data[0].length > 0) {
     return (
       <div className="flex flex-col">
