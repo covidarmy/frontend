@@ -9,16 +9,14 @@ import { useRouter } from 'next/router'
 export default function ResourceFilter({ resources }) {
   const router = useRouter()
   const { t } = useTranslation()
-  const formattedResources = Object.keys(resources)
-  const { location, resource, setResource } = useSlug()
+  const { location, resource } = useSlug()
 
-  const handleResourceClick = (res) => {
+  const handleResourceClick = (query) => {
     const params = router.query
     router.push({
       pathname: '/',
-      query: { ...params, resource: res },
+      query: { ...params, resource: query },
     })
-    setResource(res)
   }
 
   if (location)
@@ -32,7 +30,7 @@ export default function ResourceFilter({ resources }) {
           <FraudBanner />
         </div>
         <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
-          {formattedResources.map((item, idx) => {
+          {Object.keys(resources).map((item, idx) => {
             const buttonResource = item.replace(/\s+/g, '').toLowerCase()
             const classes = `cursor-pointer px-2 py-1 md:px-3 md:py-2 m-1 text-sm md:text-base rounded transition-colors ${
               resource === item.toLowerCase()

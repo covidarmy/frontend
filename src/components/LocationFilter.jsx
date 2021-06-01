@@ -31,7 +31,7 @@ const getTopCitiesFromData = (data) => {
 export default function LocationFilter({ cities }) {
   const router = useRouter()
   const { t } = useTranslation()
-  const { location, setLocation } = useSlug()
+  const { location } = useSlug()
   const topCities = getTopCitiesFromData(cities)
 
   const [cityState, setCityState] = React.useState(false)
@@ -48,12 +48,11 @@ export default function LocationFilter({ cities }) {
     }
   }, [location])
 
-  const handleLocationClick = (loc) => {
+  const handleLocationClick = (query) => {
     router.push({
       pathname: '/',
-      query: { location: loc },
+      query: { location: query },
     })
-    setLocation(loc)
   }
 
   const renderButtons = () => {

@@ -1,3 +1,4 @@
+import * as React from 'react'
 import Navbar from '~/components/Navbar'
 import { Dashboard } from '~/components/Dashboard'
 import { NextSeo } from 'next-seo'
@@ -7,9 +8,19 @@ import { API_BASE_URL } from '~/constants'
 
 function HomePage({ cities, resources }) {
   const router = useRouter()
-  const { location, resource } = router.query
-  const pageTitle = `Covid.army - ${location}`
-  const desc = `Covid Resources Leads - ${location}`
+  const params = router.query
+
+  const title = Array.isArray(params)
+    ? params
+        .map((i) => {
+          return i[0].toUpperCase() + i.slice(1)
+        })
+        .join(' - ')
+    : ''
+
+  const resource = typeof params.resource === 'string' ? camelize(params.resource) : null
+  const pageTitle = `Covid.army ${title}`
+  const desc = `Covid Resources Leads${title !== '' ? ` For ${title}` : ''}`
 
   return (
     <>

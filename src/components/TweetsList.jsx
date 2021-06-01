@@ -23,9 +23,9 @@ const OlaNotice = () => {
 }
 
 const TweetsList = () => {
+  const { t } = useTranslation()
   const { location, resource } = useSlug()
   const { data, error, size, setSize } = useTweets({ location, resource })
-  const { t } = useTranslation()
 
   const isOxygenConcentratorFromBanglore =
     location === 'bangalore' && resource === 'oxygenconcentrator'
