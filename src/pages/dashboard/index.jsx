@@ -294,9 +294,43 @@ const NoLeadsUI = () => {
   )
 }
 
+const NotYetVerifedByUsUI = () => {
+  const router = useRouter()
+
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <Navbar />
+      <main
+        className="container mx-auto grid grid-cols-1 md:grid-cols-2 items-center"
+        style={{ height: '80vh' }}
+      >
+        <div className="justify-self-center transform scale-75 md:scale-100">
+          <EmptyLeadsIcon />
+        </div>
+
+        <div className="p-3 max-w-sm md:max-w-lg mx-auto">
+          <h2 className="font-semibold text-gray-600 text-xl text-center md:text-left">
+            We've received your request to become a volunteer, as soon as we
+            approve you can start adding leads.
+          </h2>
+          <h3 className="mt-5 font-bold text-xl text-center md:text-left">
+            Happy waiting!
+          </h3>
+          <button
+            className="bg-blue-600 text-white font-medium mt-14 px-12 py-3 w-full md:w-auto rounded-md transition-shadow hover:shadow-lg focus:outline-none focus:ring focus:border-blue-300"
+            onClick={() => router.push('/')}
+          >
+            Go back
+          </button>
+        </div>
+      </main>
+    </div>
+  )
+}
+
 export default function DashboardPage() {
   const { authToken, isAuthenticated, loading } = useAuth()
-  const [leads] = useLeads(authToken)
+  const [leads, isNotVerifedByUs] = useLeads(authToken)
   const [filteredLeads, setFilteredLeads] = React.useState(leads)
   const [searchText, setSearchText] = React.useState('')
   const router = useRouter()
@@ -331,111 +365,117 @@ export default function DashboardPage() {
   }
 
   if (loading) return <LoadingPage />
-  return (
-    <div className="min-h-screen bg-gray-100">
-      <Navbar />
+  if (isNotVerifedByUs) return <NotYetVerifedByUsUI />
 
-      {leads && leads.length === 0 ? (
-        <NoLeadsUI />
-      ) : (
-        <section className="flex gap-8 p-4 pt-3 md:pt-6 mx-auto max-w-6xl rounded-lg">
-          {/* sidebar */}
-          <aside
-            className="hidden md:flex flex-col gap-3 w-full"
-            style={{ minWidth: '11rem' }}
-          >
-            <button
-              className="bg-blue-600 text-white px-6 py-2 rounded-md h-14 transition-shadow hover:shadow-lg focus:outline-none focus:ring focus:border-blue-300"
-              onClick={() => router.push('/dashboard/add')}
+  if (leads && leads.length === 0) {
+    return (
+      <div className="min-h-screen bg-gray-100">
+        <Navbar />
+
+        {leads && leads.length === 0 ? (
+          <NoLeadsUI />
+        ) : (
+          <section className="flex gap-8 p-4 pt-3 md:pt-6 mx-auto max-w-6xl rounded-lg">
+            {/* sidebar */}
+            <aside
+              className="hidden md:flex flex-col gap-3 w-full"
+              style={{ minWidth: '11rem' }}
             >
-              Add a lead
-            </button>
-            {/* total people */}
-            {leads !== undefined ? (
-              <div className="shadow-lg p-4 bg-white rounded-lg">
-                <p className="text-gray-400">People helped</p>
-                <div className="flex items-center mt-3">
-                  <HeartIcon />
-                  <p className="ml-1 text-lg text-blue-600">
-                    {getTotalUsersFromLeads(leads)}
-                  </p>
+              <button
+                className="bg-blue-600 text-white px-6 py-2 rounded-md h-14 transition-shadow hover:shadow-lg focus:outline-none focus:ring focus:border-blue-300"
+                onClick={() => router.push('/dashboard/add')}
+              >
+                Add a lead
+              </button>
+              {/* total people */}
+              {leads !== undefined ? (
+                <div className="shadow-lg p-4 bg-white rounded-lg">
+                  <p className="text-gray-400">People helped</p>
+                  <div className="flex items-center mt-3">
+                    <HeartIcon />
+                    <p className="ml-1 text-lg text-blue-600">
+                      {getTotalUsersFromLeads(leads)}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <Skeleton height="6rem" />
-            )}
-            {/* total leads */}
-            {leads !== undefined ? (
-              <div className="shadow-lg p-4 bg-white rounded-lg">
-                <p className="text-gray-400">Leads provided</p>
-                <div className="flex items-center mt-3">
-                  <AwardIcon />
-                  <p className="ml-1 text-lg text-blue-600">{leads.length}</p>
+              ) : (
+                <Skeleton height="6rem" />
+              )}
+              {/* total leads */}
+              {leads !== undefined ? (
+                <div className="shadow-lg p-4 bg-white rounded-lg">
+                  <p className="text-gray-400">Leads provided</p>
+                  <div className="flex items-center mt-3">
+                    <AwardIcon />
+                    <p className="ml-1 text-lg text-blue-600">{leads.length}</p>
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <Skeleton height="6rem" />
-            )}
-          </aside>
+              ) : (
+                <Skeleton height="6rem" />
+              )}
+            </aside>
 
-          {/* main content */}
-          <main className="w-full">
-            <div className="flex gap-4 h-14">
-              {/* search-bar */}
-              <div className="w-full relative" style={{ minWidth: '21rem' }}>
-                <input
-                  type="text"
-                  value={searchText}
-                  onChange={(e) => handleSearch(e.target.value)}
-                  placeholder="search a lead using keywords"
-                  className="pl-4 min-w-max w-full h-full py-3 rounded-lg shadow-md focus:outline-none focus:ring focus:border-blue-300"
-                />
-                <div className="absolute right-4 top-5 transform scale-125">
-                  <SearchIcon />
+            {/* main content */}
+            <main className="w-full">
+              <div className="flex gap-4 h-14">
+                {/* search-bar */}
+                <div className="w-full relative" style={{ minWidth: '21rem' }}>
+                  <input
+                    type="text"
+                    value={searchText}
+                    onChange={(e) => handleSearch(e.target.value)}
+                    placeholder="search a lead using keywords"
+                    className="pl-4 min-w-max w-full h-full py-3 rounded-lg shadow-md focus:outline-none focus:ring focus:border-blue-300"
+                  />
+                  <div className="absolute right-4 top-5 transform scale-125">
+                    <SearchIcon />
+                  </div>
                 </div>
+                {/* btns */}
+                <FilterButtonGroup />
               </div>
-              {/* btns */}
-              <FilterButtonGroup />
-            </div>
 
-            {/* cards */}
-            {filteredLeads !== undefined ? (
-              filteredLeads.map((lead) => (
-                <Card
-                  key={lead._id}
-                  title={lead.title}
-                  resourceType={lead.resource_type}
-                  city={lead.city}
-                  state={lead.state}
-                  verificationStatus={lead.verification_status}
-                  message={lead.description}
-                  contactNo={lead.contact_no}
-                  updatedAt={lead.updatedAt}
-                  createdAt={lead.createdAt}
-                  user={lead}
-                  authToken={authToken}
-                  searchText={searchText}
-                />
-              ))
-            ) : (
-              <>
-                <Skeleton height="14rem" className="mt-5" />
-                <Skeleton height="14rem" className="mt-5" />
-                <Skeleton height="14rem" className="mt-5" />
-              </>
-            )}
-          </main>
-        </section>
-      )}
-      {/* floating button */}
-      {isMobile && (
-        <button
-          className="bg-blue-600 p-2 rounded-full shadow-md fixed bottom-6 right-5"
-          onClick={() => router.push('/dashboard/add')}
-        >
-          <PlusIcon />
-        </button>
-      )}
-    </div>
-  )
+              {/* cards */}
+              {filteredLeads !== undefined ? (
+                filteredLeads.map((lead) => (
+                  <Card
+                    key={lead._id}
+                    title={lead.title}
+                    resourceType={lead.resource_type}
+                    city={lead.city}
+                    state={lead.state}
+                    verificationStatus={lead.verification_status}
+                    message={lead.description}
+                    contactNo={lead.contact_no}
+                    updatedAt={lead.updatedAt}
+                    createdAt={lead.createdAt}
+                    user={lead}
+                    authToken={authToken}
+                    searchText={searchText}
+                  />
+                ))
+              ) : (
+                <>
+                  <Skeleton height="14rem" className="mt-5" />
+                  <Skeleton height="14rem" className="mt-5" />
+                  <Skeleton height="14rem" className="mt-5" />
+                </>
+              )}
+            </main>
+          </section>
+        )}
+        {/* floating button */}
+        {isMobile && (
+          <button
+            className="bg-blue-600 p-2 rounded-full shadow-md fixed bottom-6 right-5"
+            onClick={() => router.push('/dashboard/add')}
+          >
+            <PlusIcon />
+          </button>
+        )}
+      </div>
+    )
+  }
+
+  return <LoadingPage />
 }

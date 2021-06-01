@@ -17,14 +17,17 @@ export const useLeads = (authToken) => {
     fetcher
   )
   const [leads, setLeads] = React.useState(data)
-  const [isLoading, setIsLoading] = React.useState(true)
+  const [isNotVerifedByUs, setIsNotVerifiedByUs] = React.useState(false)
 
   React.useEffect(() => {
     if (data) {
-      setLeads(data.reverse())
-      setIsLoading(false)
+      if (data.error) {
+        setIsNotVerifiedByUs(true)
+      } else {
+        setLeads(data.reverse())
+      }
     }
   }, [data])
 
-  return [leads, error, isLoading]
+  return [leads, isNotVerifedByUs]
 }
