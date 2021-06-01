@@ -1,33 +1,25 @@
 import * as React from 'react'
 import Navbar from '~/components/Navbar'
-import { Dashboard } from '~/components/Dashboard'
+import Dashboard from '~/components/Dashboard'
+
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
-import { camelize } from '~/lib/utils'
 import { API_BASE_URL } from '~/constants'
+import { getPageDescription, getPageTitle } from '~/lib/utils'
 
 function HomePage({ cities, resources }) {
   const router = useRouter()
-  const params = router.query
+  const { location, resource } = router.query
 
-  const title = Array.isArray(params)
-    ? params
-        .map((i) => {
-          return i[0].toUpperCase() + i.slice(1)
-        })
-        .join(' - ')
-    : ''
-
-  const resource = typeof params.resource === 'string' ? camelize(params.resource) : null
-  const pageTitle = `Covid.army ${title}`
-  const desc = `Covid Resources Leads${title !== '' ? ` For ${title}` : ''}`
+  const title = getPageTitle(location, resource)
+  const desc = getPageDescription(location, resource)
 
   return (
     <>
       <NextSeo
-        title={pageTitle}
+        title={title}
         openGraph={{
-          title: pageTitle,
+          title: title,
           description: desc,
         }}
       />
