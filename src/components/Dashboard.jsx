@@ -17,7 +17,6 @@ export default function Dashboard({ cities, resources }) {
           {isDesktop && <Footer />}
         </div>
         <div
-          id="tweetcontainer"
           className="lg:overflow-y-auto"
           style={{ height: 'calc(100vh - 100px)' }}
         >
