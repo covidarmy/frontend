@@ -1,11 +1,11 @@
-import { TwitterTweetEmbed } from 'react-twitter-embed'
+import Footer from './Footer'
+import Skeleton from 'react-loading-skeleton'
 import { HiChevronDoubleDown } from 'react-icons/hi'
 import { useTweets } from '~/hooks/useTweets'
-import Skeleton from 'react-loading-skeleton'
 import { useSlug } from '~/context/slug'
 import { useTranslation } from '~/context/translation'
-import Footer from './Footer'
 import { isMobile, isTablet } from 'react-device-detect'
+import { Tweet } from 'react-static-tweets'
 
 const OlaNotice = () => {
   return (
@@ -66,6 +66,8 @@ const TweetsList = () => {
       </div>
     )
 
+  console.log(data)
+
   if (data[0].length > 0) {
     return (
       <div className="flex flex-col">
@@ -74,14 +76,16 @@ const TweetsList = () => {
           {
             // Tweets
             data.map((page) => {
-              return page.map(({ _id: key, tweet_id }) => (
-                <div
-                  key={key}
-                  className="flex flex-col mx-auto space-y-4 w-full"
-                >
-                  <TwitterTweetEmbed tweetId={tweet_id}/>
-                </div>
-              ))
+              return page.map((tweet) => {                
+                return (
+                  <div
+                    key={tweet._id}
+                    className="flex flex-col items-center w-full"
+                  >
+                    <Tweet id={tweet.tweet_id} ast={JSON.parse(tweet.tweetAst)} />
+                  </div>
+                )
+              })
             })
           }
           {!isReachingEnd && (
