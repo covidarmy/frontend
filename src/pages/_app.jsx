@@ -1,6 +1,8 @@
 import * as React from 'react'
 import '~/styles/index.css'
+import '~/styles/custom-scrollbar.css'
 import 'react-static-tweets/styles.css'
+
 
 import NextGA from '~/components/NextGA'
 import { DefaultSeo } from 'next-seo'

@@ -16,7 +16,13 @@ export default function Dashboard({ cities, resources }) {
           <ResourceFilter resources={resources} />
           {isDesktop && <Footer />}
         </div>
-        <TweetsList />
+        <div
+          id="tweetcontainer"
+          className="lg:overflow-y-auto"
+          style={{ height: 'calc(100vh - 100px)' }}
+        >
+          <TweetsList />
+        </div>
       </main>
       {(isMobile || isTablet) && <FABWhatsapp />}
     </>
