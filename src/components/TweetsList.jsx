@@ -77,7 +77,7 @@ const TweetsList = () => {
               return page.map(({ _id: key, tweet_id }) => (
                 <div
                   key={key}
-                  className="flex flex-col mx-auto space-y-4"
+                  className="flex flex-col mx-auto space-y-4 w-full"
                 >
                   <TwitterTweetEmbed tweetId={tweet_id}/>
                 </div>
