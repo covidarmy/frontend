@@ -1,4 +1,4 @@
-import { Tweet } from 'react-static-tweets'
+import { TwitterTweetEmbed } from 'react-twitter-embed'
 import { HiChevronDoubleDown } from 'react-icons/hi'
 import { useTweets } from '~/hooks/useTweets'
 import Skeleton from 'react-loading-skeleton'
@@ -23,20 +23,14 @@ const OlaNotice = () => {
 }
 
 const TweetsList = () => {
+  const { t } = useTranslation()
   const { location, resource } = useSlug()
   const { data, error, size, setSize } = useTweets({ location, resource })
-  const { t } = useTranslation()
 
   const isOxygenConcentratorFromBanglore =
     location === 'bangalore' && resource === 'oxygenconcentrator'
 
-  if (error) return <div>failed to load</div>
-  if (!data)
-    return (
-      <div className="space-y-4 px-0 lg:px-12">
-        <Skeleton count={4} height={340} />
-      </div>
-    )
+  if (error && !data) return <div>failed to load</div>
 
   const showMore = () => {
     setSize(size + 1)
@@ -65,6 +59,13 @@ const TweetsList = () => {
     )
   }
 
+  if (!data)
+    return (
+      <div className="space-y-4 px-0 lg:px-12">
+        <Skeleton count={4} height={340} />
+      </div>
+    )
+
   if (data[0].length > 0) {
     return (
       <div className="flex flex-col">
@@ -76,9 +77,9 @@ const TweetsList = () => {
               return page.map(({ _id: key, tweet_id }) => (
                 <div
                   key={key}
-                  className="flex flex-col items-center justify-center space-y-4 my-2 w-full max-w-full"
+                  className="flex flex-col mx-auto space-y-4 w-full"
                 >
-                  <Tweet id={tweet_id} />
+                  <TwitterTweetEmbed tweetId={tweet_id}/>
                 </div>
               ))
             })
