@@ -5,7 +5,6 @@ import SearchIcon from '../assets/Search.svg'
 import FraudBanner from './FraudBanner'
 
 import { useRouter } from 'next/router'
-import { HiChevronDown as DownArrow } from 'react-icons/hi'
 import { HiChevronUp as UpArrow } from 'react-icons/hi'
 import { useSlug } from '~/context/slug'
 import { useTranslation } from '~/context/translation'
@@ -143,8 +142,7 @@ export default function LocationFilter({ cities }) {
             onClick={() => setShowMore((prev) => !prev)}
           >
             <span>{showMore ? 'Most visited' : 'Show all top locations'}</span>
-            {showMore && <UpArrow />}
-            {!showMore && <DownArrow />}
+            <UpArrow className={`mt-0.5 ml-1 transform ${!showMore && "rotate-180"}`} />
           </button>
         </div>
       </div>
