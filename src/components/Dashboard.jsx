@@ -10,7 +10,7 @@ import { isDesktop, isMobile, isTablet } from 'react-device-detect'
 export default function Dashboard({ cities, resources }) {
   return (
     <>
-      <main className="container mx-auto p-2 grid grid-cols-1 md:grid-cols-2 md:gap-8 lg:mt-4">
+      <main className="container mx-auto p-2 grid grid-cols-1 md:grid-cols-2 md:gap-4 lg:mt-5">
         <div className="flex flex-col">
           <LocationFilter cities={cities} />
           <ResourceFilter resources={resources} />

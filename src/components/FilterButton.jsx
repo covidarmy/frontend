@@ -16,7 +16,7 @@ import Link from 'next/link'
  */
 const FilterButton = React.forwardRef(
   ({ active, href = '', onClick, children, isButton = false }, ref) => {
-    const classes = `px-2 py-1 md:px-3 md:py-2 m-1 text-sm md:text-base rounded transition-colors ${
+    const classes = `px-2 py-1 md:px-3 md:py-2 m-1 text-sm md:text-base rounded transition-colors select-none ${
       active
         ? 'bg-blue-600 text-white'
         : 'bg-gray-200 hover:bg-gray-500 hover:text-white'

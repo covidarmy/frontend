@@ -41,7 +41,7 @@ const TweetsList = () => {
 
   if (!location) {
     return (
-      <div className="hidden lg:flex justify-center items-center border rounded-md shadow-md bg-gray-100 w-full h-52 my-2 p-3 lg:p-6">
+      <div className="hidden lg:flex justify-center items-center border rounded-md shadow-md bg-gray-100 w-full h-52 p-3 lg:p-6">
         <p className="font-semibold text-lg text-gray-600">
           {t('SELECT_LOCATION_RESOURCE')}
         </p>
@@ -51,7 +51,7 @@ const TweetsList = () => {
 
   if (!resource) {
     return (
-      <div className="hidden lg:flex justify-center items-center border rounded-md shadow-md bg-gray-100 w-full h-52 my-2 p-3 lg:p-6">
+      <div className="hidden lg:flex justify-center items-center border rounded-md shadow-md bg-gray-100 w-full h-52 p-3 lg:p-6">
         <p className="font-semibold text-lg text-gray-600">
           {t('SELECT_RESOURCE')}
         </p>
@@ -68,8 +68,8 @@ const TweetsList = () => {
 
   if (data[0].length > 0) {
     return (
-      <div className="flex flex-col">
-        <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col mt-4 md:mt-0">
+        <div className="flex flex-col items-center justify-center gap-4">
           {isOxygenConcentratorFromBanglore ? <OlaNotice /> : ''}
           {
             // Tweets
@@ -109,7 +109,7 @@ const TweetsList = () => {
     //   {location ? " for " + location + (resource ? " & " + resource : "") : ""}. */}
     // </div>
 
-    <div className="flex justify-center items-center border rounded-md shadow-md bg-gray-100 w-full h-52 my-2 p-3 lg:p-6">
+    <div className="flex justify-center items-center border rounded-md shadow-md bg-gray-100 w-full h-52 mt-4 md:mt-0 p-3 lg:p-6">
       <p className="font-semibold text-sm md:text-lg text-gray-600 text-center">
         Sorry, we don't have any data for {location} & {resource}.
       </p>

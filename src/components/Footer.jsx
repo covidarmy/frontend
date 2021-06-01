@@ -22,7 +22,7 @@ const Link = ({ children, link }) => {
 
 const Footer = () => {
   return (
-    <footer className="flex flex-row items-center justify-between mt-2 px-3 lg:px-0 py-2 bg-white dark:bg-gray-800 border-t">
+    <footer className="flex flex-row items-center justify-between mt-4 px-3 lg:px-0 py-2 bg-white dark:bg-gray-800 border-t">
       <div className="flex items-center">
         <Link link="https://github.com/covidarmy/frontend/">
           <AiFillGithub className="text-3xl text-black" />

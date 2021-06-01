@@ -95,7 +95,7 @@ export default function LocationFilter({ cities }) {
 
     return _data.map((item, idx) => {
       const buttonResource = item.replace(/\s+/g, '').toLowerCase()
-      const classes = `cursor-pointer px-2 py-1 md:px-3 md:py-2 m-1 text-sm md:text-base rounded transition-colors ${
+      const classes = `cursor-pointer px-2 py-1 md:px-3 md:py-2 m-1 text-sm md:text-base rounded transition-colors select-none ${
         location === buttonResource
           ? 'bg-blue-600 text-white'
           : 'bg-gray-200 hover:bg-gray-500 hover:text-white'
@@ -113,7 +113,7 @@ export default function LocationFilter({ cities }) {
   }
   if (!cityState)
     return (
-      <div className="shadow-md bg-white box-border h-auto w-full rounded-md my-2 p-3 lg:p-6 border border-gray-200">
+      <div className="shadow-md bg-white box-border h-auto w-full rounded-md p-3 lg:p-6 border border-gray-200">
         <div className="flex items-center">
           <LocationIcon className="h-5 w-5" />
           <p className="text-strong ml-1 font-bold text-sm md:text-base">
@@ -151,7 +151,7 @@ export default function LocationFilter({ cities }) {
     )
 
   return (
-    <div className="shadow-md bg-white box-border h-auto w-full rounded-md my-2 p-3 lg:p-6 border border-gray-200">
+    <div className="shadow-md bg-white box-border h-auto w-full rounded-md p-3 lg:p-6 border border-gray-200">
       <div className="flex ml-1 justify-between">
         <div className="flex items-center">
           <LocationIcon />
