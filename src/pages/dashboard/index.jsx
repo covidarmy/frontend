@@ -329,11 +329,12 @@ const NotYetVerifedByUsUI = () => {
 }
 
 export default function DashboardPage() {
+  const router = useRouter()
   const { authToken, isAuthenticated, loading } = useAuth()
+
   const [leads, isNotVerifedByUs] = useLeads(authToken)
   const [filteredLeads, setFilteredLeads] = React.useState(leads)
   const [searchText, setSearchText] = React.useState('')
-  const router = useRouter()
 
   React.useEffect(() => {
     if (!loading && !isAuthenticated) {
@@ -388,37 +389,29 @@ export default function DashboardPage() {
                 Add a lead
               </button>
               {/* total people */}
-              {leads !== undefined ? (
-                <div className="shadow-lg p-4 bg-white rounded-lg">
-                  <p className="text-gray-400">People helped</p>
-                  <div className="flex items-center mt-3">
-                    <HeartIcon />
-                    <p className="ml-1 text-lg text-blue-600">
-                      {getTotalUsersFromLeads(leads)}
-                    </p>
-                  </div>
+              <div className="shadow-lg p-4 bg-white rounded-lg">
+                <p className="text-gray-400">People helped</p>
+                <div className="flex items-center mt-3">
+                  <HeartIcon />
+                  <p className="ml-1 text-lg text-blue-600">
+                    {getTotalUsersFromLeads(leads)}
+                  </p>
                 </div>
-              ) : (
-                <Skeleton height="6rem" />
-              )}
+              </div>
               {/* total leads */}
-              {leads !== undefined ? (
-                <div className="shadow-lg p-4 bg-white rounded-lg">
-                  <p className="text-gray-400">Leads provided</p>
-                  <div className="flex items-center mt-3">
-                    <AwardIcon />
-                    <p className="ml-1 text-lg text-blue-600">{leads.length}</p>
-                  </div>
+              <div className="shadow-lg p-4 bg-white rounded-lg">
+                <p className="text-gray-400">Leads provided</p>
+                <div className="flex items-center mt-3">
+                  <AwardIcon />
+                  <p className="ml-1 text-lg text-blue-600">{leads.length}</p>
                 </div>
-              ) : (
-                <Skeleton height="6rem" />
-              )}
+              </div>
             </aside>
 
             {/* main content */}
             <main className="w-full">
+              {/* search-bar */}
               <div className="flex gap-4 h-14">
-                {/* search-bar */}
                 <div className="w-full relative" style={{ minWidth: '21rem' }}>
                   <input
                     type="text"
@@ -436,7 +429,7 @@ export default function DashboardPage() {
               </div>
 
               {/* cards */}
-              {filteredLeads !== undefined ? (
+              {filteredLeads !== undefined &&
                 filteredLeads.map((lead) => (
                   <Card
                     key={lead._id}
@@ -453,25 +446,18 @@ export default function DashboardPage() {
                     authToken={authToken}
                     searchText={searchText}
                   />
-                ))
-              ) : (
-                <>
-                  <Skeleton height="14rem" className="mt-5" />
-                  <Skeleton height="14rem" className="mt-5" />
-                  <Skeleton height="14rem" className="mt-5" />
-                </>
-              )}
+                ))}
             </main>
+            {/* floating button */}
+            {isMobile && (
+              <button
+                className="bg-blue-600 p-2 rounded-full shadow-md fixed bottom-6 right-5"
+                onClick={() => router.push('/dashboard/add')}
+              >
+                <PlusIcon />
+              </button>
+            )}
           </section>
-        )}
-        {/* floating button */}
-        {isMobile && (
-          <button
-            className="bg-blue-600 p-2 rounded-full shadow-md fixed bottom-6 right-5"
-            onClick={() => router.push('/dashboard/add')}
-          >
-            <PlusIcon />
-          </button>
         )}
       </div>
     )

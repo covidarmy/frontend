@@ -3,7 +3,6 @@ import * as React from 'react'
 import Fuse from 'fuse.js'
 import BackIcon from '~/assets/arrow-left.svg'
 import LocationIcon from '~/assets/Location.svg'
-import FilterButton from '~/components/FilterButton'
 import SearchIcon from '~/assets/Search.svg'
 
 import AllStates from '~/lib/allStates.json'
@@ -35,7 +34,7 @@ const LocationFilterCustom = ({ nextStep }) => {
     return _data.map((item) => {
       return (
         <button
-          className="w-full flex justify-start py-6 border-b border-gray-300 font-semibold focus:outline-none focus:ring focus:border-blue-300"
+          className="w-full flex justify-start py-6 pl-1 border-b border-gray-300 font-semibold"
           key={item}
           onClick={() => handleStateSubmit(item)}
         >
@@ -64,7 +63,7 @@ const LocationFilterCustom = ({ nextStep }) => {
         />
         <SearchIcon className="absolute top-5 left-4" />
       </div>
-      <div className="mt-2 flex flex-col max-h-96 overflow-y-auto">
+      <div className="mt-2 -mr-2 flex flex-col max-h-96 overflow-y-auto">
         {renderButtons()}
       </div>
     </div>

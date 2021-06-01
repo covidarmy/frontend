@@ -152,7 +152,7 @@ const SubmitForm = ({ user }) => {
               </label>
               <input
                 type="tel"
-                className="border w-50 p-2 mt-1"
+                className="border w-full p-2 mt-1"
                 value={phoneNo}
                 required
                 onChange={(e) => setPhoneNo(e.target.value)}

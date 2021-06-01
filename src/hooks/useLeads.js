@@ -12,7 +12,7 @@ const fetcher = (url, token) => {
 }
 
 export const useLeads = (authToken) => {
-  const { data, error } = useSWR(
+  const { data } = useSWR(
     [`${API_BASE_URL}/volunteer/contacts`, authToken],
     fetcher
   )
