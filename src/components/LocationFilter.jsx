@@ -96,7 +96,7 @@ export default function LocationFilter({ cities }) {
     return _data.map((item, idx) => {
       const buttonResource = item.replace(/\s+/g, '').toLowerCase()
       const classes = `cursor-pointer px-2 py-1 md:px-3 md:py-2 m-1 text-sm md:text-base rounded transition-colors ${
-        location === item.toLowerCase()
+        location === buttonResource
           ? 'bg-blue-600 text-white'
           : 'bg-gray-200 hover:bg-gray-500 hover:text-white'
       }`
