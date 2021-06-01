@@ -367,7 +367,7 @@ export default function DashboardPage() {
   if (loading) return <LoadingPage />
   if (isNotVerifedByUs) return <NotYetVerifedByUsUI />
 
-  if (leads) {
+  if (leads && !leads.error) {
     return (
       <div className="min-h-screen bg-gray-100">
         <Navbar />
