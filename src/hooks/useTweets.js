@@ -15,6 +15,9 @@ export const useTweets = ({ location, resource }) => {
   url += '?'
 
   const getKey = (pageIndex, previousPageData) => {
+    // not send a request if location or resource are not empty
+    if (!location || !resource) return null
+
     const l = 20 * (pageIndex + 1)
     const o = 20 * pageIndex
 

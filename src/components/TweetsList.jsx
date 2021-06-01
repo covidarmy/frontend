@@ -30,13 +30,7 @@ const TweetsList = () => {
   const isOxygenConcentratorFromBanglore =
     location === 'bangalore' && resource === 'oxygenconcentrator'
 
-  if (error) return <div>failed to load</div>
-  if (!data)
-    return (
-      <div className="space-y-4 px-0 lg:px-12">
-        <Skeleton count={4} height={340} />
-      </div>
-    )
+  if (error && !data) return <div>failed to load</div>
 
   const showMore = () => {
     setSize(size + 1)
@@ -64,6 +58,13 @@ const TweetsList = () => {
       </div>
     )
   }
+
+  if (!data)
+    return (
+      <div className="space-y-4 px-0 lg:px-12">
+        <Skeleton count={4} height={340} />
+      </div>
+    )
 
   if (data[0].length > 0) {
     return (
