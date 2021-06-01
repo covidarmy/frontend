@@ -1,4 +1,4 @@
-import { TwitterTweetEmbed } from 'react-twitter-embed'
+import TweetEmbed from 'react-tweet-embed'
 import { HiChevronDoubleDown } from 'react-icons/hi'
 import { useTweets } from '~/hooks/useTweets'
 import Skeleton from 'react-loading-skeleton'
@@ -77,9 +77,12 @@ const TweetsList = () => {
               return page.map(({ _id: key, tweet_id }) => (
                 <div
                   key={key}
-                  className="flex flex-col mx-auto space-y-4 w-full"
+                  className="flex flex-col items-center space-y-4 w-full max-w-full"
                 >
-                  <TwitterTweetEmbed tweetId={tweet_id}/>
+                  <TweetEmbed
+                    id={tweet_id}
+                    placeholder={<Skeleton count={4} height={340} />}
+                  />
                 </div>
               ))
             })
