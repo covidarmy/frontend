@@ -2,7 +2,7 @@ import * as React from 'react'
 import LocationFilter from './LocationFilter'
 import ResourceFilter from './ResourceFilter'
 import TweetsList from './TweetsList'
-import Footer from './Footer'
+import { DesktopFooter } from './Footer'
 
 import { FABWhatsapp } from './FAB'
 import { isDesktop, isMobile, isTablet } from 'react-device-detect'
@@ -14,7 +14,7 @@ export default function Dashboard({ cities, resources }) {
         <div className="flex flex-col">
           <LocationFilter cities={cities} />
           <ResourceFilter resources={resources} />
-          {isDesktop && <Footer />}
+          {isDesktop && <DesktopFooter />}
         </div>
         <div
           className="lg:overflow-y-auto"
