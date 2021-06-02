@@ -3,7 +3,6 @@ import '~/styles/index.css'
 import '~/styles/custom-scrollbar.css'
 import 'react-static-tweets/styles.css'
 
-
 import NextGA from '~/components/NextGA'
 import { DefaultSeo } from 'next-seo'
 import { defaultSeoProps, isProduction } from '~/constants'
@@ -11,6 +10,7 @@ import { defaultSeoProps, isProduction } from '~/constants'
 import SlugProvider from '~/context/slug'
 import TranslationProvider from '~/context/translation'
 import AuthProvider from '~/context/auth'
+import { TwitterContextProvider } from 'react-static-tweets'
 
 function App({ Component, pageProps }) {
   return (
@@ -23,7 +23,15 @@ function App({ Component, pageProps }) {
         <AuthProvider>
           <TranslationProvider>
             <SlugProvider>
-              <Component {...pageProps} />
+              <TwitterContextProvider
+                value={{
+                  swrOptions: {
+                    fetcher: () => null,
+                  },
+                }}
+              >
+                <Component {...pageProps} />
+              </TwitterContextProvider>
             </SlugProvider>
           </TranslationProvider>
         </AuthProvider>
