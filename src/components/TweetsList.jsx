@@ -80,7 +80,7 @@ const TweetsList = () => {
                     key={tweet._id}
                     className="flex flex-col items-center w-full"
                   >
-                    <Tweet id={tweet.tweet_id} ast={JSON.parse(tweet.tweetAst)} />
+                    <Tweet id="a" ast={JSON.parse(tweet.tweetAst)} />
                   </div>
                 )
               })
