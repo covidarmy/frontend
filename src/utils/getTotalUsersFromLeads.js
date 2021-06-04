@@ -1,4 +1,4 @@
-export const getTotalUsersFromLeads = (leads) => {
+const getTotalUsersFromLeads = (leads) => {
   const uniqueUsers = []
   leads.forEach((lead) => {
     if (!uniqueUsers.includes(lead.userId[0])) {
@@ -7,3 +7,5 @@ export const getTotalUsersFromLeads = (leads) => {
   })
   return uniqueUsers.length
 }
+
+export { getTotalUsersFromLeads }

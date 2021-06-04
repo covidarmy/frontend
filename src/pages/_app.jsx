@@ -1,5 +1,5 @@
 import * as React from 'react'
-import '~/styles/index.css'
+import '~/styles/tailwind.css'
 import '~/styles/custom-scrollbar.css'
 import 'react-static-tweets/styles.css'
 

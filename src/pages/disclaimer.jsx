@@ -8,7 +8,7 @@ import { useTranslation } from '~/context/translation'
 const DisclaimerPage = ({ disclaimer }) => {
   const { t } = useTranslation()
   return (
-    <div className="w-screen">
+    <>
       <Navbar />
       <div className="container mx-auto py-10 px-4 lg:px-0">
         <h1 className="font-bold text-5xl mb-6">{t('DISCLAIMER')}</h1>
@@ -19,7 +19,7 @@ const DisclaimerPage = ({ disclaimer }) => {
         ))}
       </div>
       <Footer />
-    </div>
+    </>
   )
 }
 

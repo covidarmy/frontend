@@ -5,7 +5,7 @@ import BackIcon from '~/assets/arrow-left.svg'
 import LocationIcon from '~/assets/Location.svg'
 import SearchIcon from '~/assets/Search.svg'
 
-import AllStates from '~/lib/allStates.json'
+import AllStates from '~/lib/states'
 import { useStore } from '~/lib/StepsStore'
 
 const LocationFilterCustom = ({ nextStep }) => {

@@ -39,7 +39,7 @@ const AuthProvider: React.FC = ({ children }) => {
         user.getIdToken().then((idToken) => {
           setAuthToken(idToken)
           fetch(API_BASE_URL + '/volunteer/auth', {
-            method: 'post',
+            method: 'POST',
             headers: {
               authorization: idToken,
             },

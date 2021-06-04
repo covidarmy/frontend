@@ -5,7 +5,8 @@ import Dashboard from '~/components/Dashboard'
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { API_BASE_URL } from '~/constants'
-import { getPageDescription, getPageTitle } from '~/lib/utils'
+import { getPageTitle } from '~/utils/getPageTitle'
+import { getPageDescription } from '~/utils/getPageDescription'
 
 function HomePage({ cities, resources }) {
   const router = useRouter()

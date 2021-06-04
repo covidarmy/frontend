@@ -1,6 +1,6 @@
-import { Listbox, Transition } from '@headlessui/react'
-import { SelectorIcon, CheckIcon } from '@heroicons/react/outline'
 import * as React from 'react'
+import { Listbox, Transition } from '@headlessui/react'
+import { HiSelector, HiOutlineCheck } from 'react-icons/hi'
 import { useTranslation, SupportedLocales } from '~/context/translation'
 
 const locales: Array<{ name: string; value: SupportedLocales }> = [
@@ -28,7 +28,7 @@ const ChangeLocale = () => {
             <Listbox.Button className="relative w-full w-28 lg:w-32 py-2 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 border border-gray-200">
               <span className="block truncate">{selected.name}</span>
               <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                <SelectorIcon
+                <HiSelector
                   className="w-5 h-5 text-gray-400"
                   aria-hidden="true"
                 />
@@ -74,7 +74,10 @@ const ChangeLocale = () => {
                             }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                           >
-                            <CheckIcon className="w-5 h-5" aria-hidden="true" />
+                            <HiOutlineCheck
+                              className="w-5 h-5"
+                              aria-hidden="true"
+                            />
                           </span>
                         ) : null}
                       </>
