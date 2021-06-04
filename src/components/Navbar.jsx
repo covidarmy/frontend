@@ -7,7 +7,7 @@ import { useTranslation } from '~/context/translation'
 
 import ChangeLocale from './ChangeLocale'
 import Link from 'next/link'
-import Logo from './Logo'
+import Logo from '~/assets/Logo.svg'
 import NavLink from './NavLink'
 
 export default function Navbar() {
