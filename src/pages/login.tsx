@@ -60,11 +60,11 @@ const LoginPage: React.FC = () => {
         </div>
 
         {/* <div className="w-full px-6 py-6 bg-white rounded-lg shadow-md sm:px-10">
-                    <div className="flex items-center justify-between text-blue-500 cursor-pointer hover:underline">
-                        <div>Volunteer FAQs</div>
-                        <RightIcon />
-                    </div>
-                </div> */}
+                <div className="flex items-center justify-between text-blue-500 cursor-pointer hover:underline">
+                <div>Volunteer FAQs</div>
+                <RightIcon />
+            </div>
+        </div> */}
       </main>
     </div>
   )
