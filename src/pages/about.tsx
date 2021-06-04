@@ -109,7 +109,7 @@ const About: React.FC<Props> = (props) => {
                   key={element.id}
                   className="w-full px-2 mb-4 md:w-1/2 lg:w-1/3"
                 >
-                  <div className="flex items-center justify-center">
+                  <div className="mx-8">
                     <div className="px-8 py-12 mx-auto mt-10 text-center bg-white rounded-md shadow-lg md:px-16">
                       <img
                         className="object-cover mx-auto rounded-full shadow-lg w-28 h-28"
@@ -153,7 +153,7 @@ const About: React.FC<Props> = (props) => {
                   key={element.id}
                   className="w-full px-2 mb-4 md:w-1/2 lg:w-1/3"
                 >
-                  <div className="flex items-center justify-center">
+                  <div className="mx-8">
                     <div className="px-8 py-12 mx-auto mt-10 text-center bg-white rounded-md shadow-lg md:px-16">
                       <img
                         className="object-cover mx-auto rounded-full shadow-lg w-28 h-28"
