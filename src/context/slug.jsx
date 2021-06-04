@@ -13,7 +13,7 @@ export default function SlugProvider({ children }) {
 
   React.useEffect(() => {
     const { location, resource } = router.query
-    
+
     if (!location && !resource) {
       setLocation(undefined)
       setResource(undefined)
@@ -27,7 +27,6 @@ export default function SlugProvider({ children }) {
     if (resource) {
       setResource(resource)
     }
-
   }, [router.query])
 
   return (

@@ -74,13 +74,16 @@ const TweetsList = () => {
           {
             // Tweets
             data.map((page) => {
-              return page.map((tweet) => {                
+              return page.map((tweet) => {
                 return (
                   <div
                     key={tweet._id}
                     className="flex flex-col items-center w-full"
                   >
-                    <Tweet id={tweet.tweet_id} ast={JSON.parse(tweet.tweetAst)} />
+                    <Tweet
+                      id={tweet.tweet_id}
+                      ast={JSON.parse(tweet.tweetAst)}
+                    />
                   </div>
                 )
               })

@@ -1,13 +1,14 @@
 import * as React from 'react'
 import { Disclosure, Transition } from '@headlessui/react'
 import { HiOutlineShare } from 'react-icons/hi'
-import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import { MdClose, MdMenu } from 'react-icons/md'
+import { useAuth } from '~/context/auth'
+import { useTranslation } from '~/context/translation'
+
 import ChangeLocale from './ChangeLocale'
 import Link from 'next/link'
 import Logo from './Logo'
 import NavLink from './NavLink'
-import { useAuth } from '~/context/auth'
-import { useTranslation } from '~/context/translation'
 
 export default function Navbar() {
   const [canShare, setCanShare] = React.useState(true)
@@ -28,9 +29,9 @@ export default function Navbar() {
               <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-white">
                 <span className="sr-only">Open main menu</span>
                 {open ? (
-                  <XIcon className="block h-6 w-6" aria-hidden="true" />
+                  <MdClose className="block h-6 w-6" aria-hidden="true" />
                 ) : (
-                  <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+                  <MdMenu className="block h-6 w-6" aria-hidden="true" />
                 )}
               </Disclosure.Button>
             </div>

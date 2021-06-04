@@ -142,7 +142,9 @@ export default function LocationFilter({ cities }) {
             onClick={() => setShowMore((prev) => !prev)}
           >
             <span>{showMore ? 'Most visited' : 'Show all top locations'}</span>
-            <UpArrow className={`mt-0.5 ml-1 transform ${!showMore && "rotate-180"}`} />
+            <UpArrow
+              className={`mt-0.5 ml-1 transform ${!showMore && 'rotate-180'}`}
+            />
           </button>
         </div>
       </div>
