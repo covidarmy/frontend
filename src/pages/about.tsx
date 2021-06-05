@@ -183,8 +183,7 @@ const About: React.FC<Props> = (props) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const partnerData: IPartner[] = await fetch(
-    'https://notion-api.splitbee.io/v1/table/2dbc2f82b58944909448f24756debbef',
-    { method: 'get' }
+    'https://notion-api.splitbee.io/v1/table/2dbc2f82b58944909448f24756debbef'
   )
     .then((res) => res.json())
     .then((res) =>
@@ -192,8 +191,7 @@ export const getStaticProps: GetStaticProps = async () => {
     )
 
   const volunteerData: IVolunteer[] = await fetch(
-    'https://notion-api.splitbee.io/v1/table/16b6dd8733794d7fbd6bfa77f7d361da',
-    { method: 'get' }
+    'https://notion-api.splitbee.io/v1/table/16b6dd8733794d7fbd6bfa77f7d361da'
   ).then((res) => res.json())
 
   return {

@@ -1,11 +1,11 @@
-import { useRouter } from 'next/router'
 import * as React from 'react'
 import Fuse from 'fuse.js'
 import BackIcon from '~/assets/arrow-left.svg'
 import LocationIcon from '~/assets/Location.svg'
 import SearchIcon from '~/assets/Search.svg'
-
 import AllStates from '~/lib/states'
+
+import { useRouter } from 'next/router'
 import { useStore } from '~/lib/StepsStore'
 
 const LocationFilterCustom = ({ nextStep }) => {
