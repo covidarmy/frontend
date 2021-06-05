@@ -1,17 +1,15 @@
-import { useRouter } from 'next/router'
 import * as React from 'react'
 import Fuse from 'fuse.js'
 import BackIcon from '~/assets/arrow-left.svg'
-import { useTranslation } from '~/context/translation'
 import LocationIcon from '~/assets/Location.svg'
 import FilterButton from '~/components/FilterButton'
 import SearchIcon from '~/assets/Search.svg'
 
+import { useTranslation } from '~/context/translation'
 import { useEmptyCities } from '~/hooks/useEmptyCities'
 import { useStore } from '~/lib/StepsStore'
 
 const LocationFilterCustom = ({ nextStep, cities, isLoading }) => {
-  const router = useRouter()
   const { t } = useTranslation()
   const [searchValue, setSearchValue] = React.useState('')
   const { selectCity } = useStore((state) => ({
@@ -83,7 +81,6 @@ const LocationFilterCustom = ({ nextStep, cities, isLoading }) => {
 }
 
 const CitiesStep = () => {
-  const router = useRouter()
   const { cstate, nextStep, previousStep } = useStore((state) => ({
     cstate: state.cstate,
     previousStep: state.actions.previousStep,

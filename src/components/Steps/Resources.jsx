@@ -1,14 +1,12 @@
-import { useRouter } from 'next/router'
 import * as React from 'react'
-import LoadingPage from '~/components/LoadingPage'
-import { useAuth } from '~/context/auth'
 import BackIcon from '~/assets/arrow-left.svg'
-import { useTranslation } from '~/context/translation'
-import { useResources } from '~/hooks/useResources'
 import FilterButton from '~/components/FilterButton'
 import ResourceIcon from '~/assets/Resource.svg'
 import Skeleton from 'react-loading-skeleton'
+
+import { useResources } from '~/hooks/useResources'
 import { useStore } from '~/lib/StepsStore'
+import { useTranslation } from '~/context/translation'
 
 const ResourceFilterCustom = ({ nextStep }) => {
   const { t } = useTranslation()

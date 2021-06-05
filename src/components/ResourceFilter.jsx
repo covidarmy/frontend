@@ -1,5 +1,5 @@
-import ResourceIconDeactivated from '../assets/ResourceDeactivated.svg'
-import ResourceIcon from '../assets/Resource.svg'
+import ResourceIconDeactivated from '~/assets/ResourceDeactivated.svg'
+import ResourceIcon from '~/assets/Resource.svg'
 
 import FraudBanner from './FraudBanner'
 import { useSlug } from '~/context/slug'

@@ -1,12 +1,13 @@
-import { useRouter } from 'next/router'
 import * as React from 'react'
 import Link from 'next/link'
 import Navbar from '~/components/Navbar'
 import BackIcon from '~/assets/arrow-left.svg'
-import { useAuth } from '~/context/auth'
-import { auth, fb as firebase } from '~/lib/firebase'
 import LoadingPage from '~/components/LoadingPage'
 import GoogleIcon from '~/assets/google.svg'
+
+import { useRouter } from 'next/router'
+import { useAuth } from '~/context/auth'
+import { auth, fb as firebase } from '~/lib/firebase'
 
 const LoginPage: React.FC = () => {
   const { isAuthenticated, loading } = useAuth()

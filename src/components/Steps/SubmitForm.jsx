@@ -1,7 +1,8 @@
 import * as React from 'react'
-import { useRouter } from 'next/router'
 import BackIcon from '~/assets/arrow-left.svg'
 import PhoneIcon from '~/assets/phone.svg'
+
+import { useRouter } from 'next/router'
 import { API_BASE_URL } from '~/constants'
 import { useStore } from '~/lib/StepsStore'
 import { isDesktop } from 'react-device-detect'
