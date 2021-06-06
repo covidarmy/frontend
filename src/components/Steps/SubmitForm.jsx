@@ -10,11 +10,20 @@ import { RadioGroup, Switch } from '@headlessui/react'
 
 const SubmitForm = ({ user }) => {
   const router = useRouter()
-  const { city, resource, reset, previousStep } = useStore((state) => ({
+  const {
+    city,
+    resource,
+    reset,
+    previousStep,
+    selectCity,
+    selectResource,
+  } = useStore((state) => ({
     city: state.city,
     resource: state.resource,
     reset: state.actions.reset,
     previousStep: state.actions.previousStep,
+    selectCity: state.actions.selectCity,
+    selectResource: state.actions.selectResource,
   }))
   const [landlineEnabled, setLandlineEnabled] = React.useState(false)
   const [stdCode, setStdCode] = React.useState('')
@@ -22,6 +31,12 @@ const SubmitForm = ({ user }) => {
   const [title, setTitle] = React.useState('')
   const [message, setMessage] = React.useState('')
   const [isVerifed, setIsVerfied] = React.useState('')
+
+  const resetStore = () => {
+    selectCity('')
+    selectResource('')
+    reset()
+  }
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
@@ -48,7 +63,7 @@ const SubmitForm = ({ user }) => {
         .then((res) => res.json())
         .then(() => {
           router.push('/dashboard')
-          reset()
+          setTimeout(() => reset(), 2000)
         })
         .catch((e) => {
           console.log(e)

@@ -12,6 +12,18 @@ const getEmptyCities = (data) => {
   return emptyCities
 }
 
+const getRankedData = (data) => {
+  data.sort((a, b) => {
+    if (a.totalContacts > b.totalContacts) return 1
+    if (a.totalContacts < b.totalContacts) return -1
+
+    if (a.totalRequests > b.totalRequests) return -1
+    if (a.totalRequests < b.totalRequests) return 1
+  })
+
+  return data
+}
+
 export const useEmptyCities = (state) => {
   const { data, error } = useSWR(
     `${API_BASE_URL}/api/emptyCities/${state}`,
@@ -19,14 +31,17 @@ export const useEmptyCities = (state) => {
   )
   const [cities, setCities] = React.useState(data)
   const [isLoading, setIsLoading] = React.useState(true)
+  const [rankedData, setRandkedData] = React.useState(data)
 
   React.useEffect(() => {
     if (data) {
-      console.log(data)
-      setCities(getEmptyCities(data))
       setIsLoading(false)
+    }
+    if (data && data.length > 0) {
+      setRandkedData(getRankedData(data))
+      setCities(getEmptyCities(data))
     }
   }, [data])
 
-  return [data, cities, isLoading]
+  return { rankedData, cities, isLoading }
 }

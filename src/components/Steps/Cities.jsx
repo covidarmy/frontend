@@ -10,15 +10,21 @@ import { useEmptyCities } from '~/hooks/useEmptyCities'
 import { useStore } from '~/lib/StepsStore'
 import { useResources } from '~/hooks/useResources'
 import Skeleton from 'react-loading-skeleton'
+import LoadingPage from '../LoadingPage'
 
-const LocationFilterCustom = ({ cities, isCityLoading }) => {
+const LocationFilterCustom = ({ cities = [] }) => {
   const [resources, error, isLoading] = useResources()
   const [searchValue, setSearchValue] = React.useState('')
-  const { nextStep, selectCity, selectResource } = useStore((state) => ({
-    nextStep: state.actions.nextStep,
-    selectCity: state.actions.selectCity,
-    selectResource: state.actions.selectResource,
-  }))
+
+  const { city, resource, nextStep, selectCity, selectResource } = useStore(
+    (state) => ({
+      city: state.city,
+      resource: state.resource,
+      nextStep: state.actions.nextStep,
+      selectCity: state.actions.selectCity,
+      selectResource: state.actions.selectResource,
+    })
+  )
 
   const handleCitySubmit = (item) => {
     selectCity(item)
@@ -32,7 +38,7 @@ const LocationFilterCustom = ({ cities, isCityLoading }) => {
 
   // we can add better error state later
   if (error) return <div>failed to load</div>
-  if (isLoading || isCityLoading) return <Skeleton height={128} />
+  if (isLoading) return <Skeleton height={128} />
 
   const renderButtons = () => {
     let _data = cities.slice(0, 12)
@@ -53,7 +59,7 @@ const LocationFilterCustom = ({ cities, isCityLoading }) => {
       return (
         <FilterButton
           key={item}
-          active={false}
+          active={city === item}
           onClick={() => handleCitySubmit(item)}
         >
           {item}
@@ -90,7 +96,7 @@ const LocationFilterCustom = ({ cities, isCityLoading }) => {
             return (
               <FilterButton
                 key={item}
-                active={false}
+                active={resource === item}
                 onClick={() => handleResourceSubmit(item)}
               >
                 {item}
@@ -112,12 +118,29 @@ const LocationFilterCustom = ({ cities, isCityLoading }) => {
   )
 }
 
+const getSortedResources = (resources) => {
+  const arrayResources = []
+
+  for (const resource in resources) {
+    arrayResources.push({ resource, count: resources[resource].count })
+  }
+
+  arrayResources.sort((a, b) => {
+    return a.count - b.count
+  })
+
+  console.log(arrayResources)
+
+  return arrayResources
+}
+
 const Card = ({ city, resources }) => {
   const { nextStep, selectCity, selectResource } = useStore((state) => ({
     nextStep: state.actions.nextStep,
     selectCity: state.actions.selectCity,
     selectResource: state.actions.selectResource,
   }))
+  const sortedResource = getSortedResources(resources)
 
   const handleSubmit = (item) => {
     selectCity(city)
@@ -129,14 +152,14 @@ const Card = ({ city, resources }) => {
     <div className="border border-gray-200 rounded-lg px-3 py-4">
       <h2 className="text-lg font-bold">{city}</h2>
       <div className="flex flex-wrap mt-5">
-        {Object.keys(resources).map((item) => {
+        {sortedResource.map((item, idx) => {
           return (
             <FilterButton
-              key={item}
+              key={idx}
               active={false}
-              onClick={() => handleSubmit(item)}
+              onClick={() => handleSubmit(item.resource)}
             >
-              {item}
+              {item.resource}
             </FilterButton>
           )
         })}
@@ -173,12 +196,13 @@ const CityAndResource = ({ data }) => {
 }
 
 const CitiesStep = () => {
-  const { cstate, nextStep, previousStep } = useStore((state) => ({
+  const { cstate, previousStep } = useStore((state) => ({
     cstate: state.cstate,
     previousStep: state.actions.previousStep,
-    nextStep: state.actions.nextStep,
   }))
-  const [data, cities, isLoading] = useEmptyCities(cstate)
+  const { rankedData, cities, isLoading } = useEmptyCities(cstate)
+
+  if (isLoading) return <LoadingPage />
 
   return (
     <main className="flex flex-col items-center justify-center rounded-lg p-4 sm:p-8">
@@ -196,21 +220,26 @@ const CitiesStep = () => {
           </div>
         </div>
         <hr className="my-6" />
-        <div className="mb-5">
-          <p className="text-gray-400">
-            Following cities have urgent need of the following resources.
-          </p>
-          <p>Select a resource for which you will provide a lead</p>
-        </div>
-
-        {data === undefined ? <Skeleton /> : <CityAndResource data={data} />}
+        {cities && rankedData ? (
+          <>
+            <div className="mb-5">
+              <p className="text-gray-400">
+                Following cities have urgent need of the following resources.
+              </p>
+              <p>Select a resource for which you will provide a lead</p>
+            </div>
+            {rankedData === undefined ? (
+              <Skeleton />
+            ) : (
+              <CityAndResource data={rankedData} />
+            )}
+          </>
+        ) : (
+          <div>Sorry, we have no cities available for this state.</div>
+        )}
       </div>
 
-      <LocationFilterCustom
-        nextStep={nextStep}
-        cities={cities}
-        isCityLoading={isLoading}
-      />
+      {cities !== undefined && <LocationFilterCustom cities={cities} />}
     </main>
   )
 }
