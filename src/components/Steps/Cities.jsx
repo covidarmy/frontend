@@ -8,6 +8,7 @@ import { useStore } from '~/lib/StepsStore'
 import { useResources } from '~/hooks/useResources'
 import Skeleton from 'react-loading-skeleton'
 import LoadingPage from '../LoadingPage'
+import { getSortedResources } from '~/utils/getSortedResources'
 
 const LocationFilterCustom = ({ cities }) => {
   const [resources, error, isLoading] = useResources()
@@ -115,20 +116,6 @@ const LocationFilterCustom = ({ cities }) => {
       </div>
     </div>
   )
-}
-
-const getSortedResources = (resources) => {
-  const arrayResources = []
-
-  for (const resource in resources) {
-    arrayResources.push({ resource, count: resources[resource].count })
-  }
-
-  arrayResources.sort((a, b) => {
-    return a.count - b.count
-  })
-
-  return arrayResources
 }
 
 const Card = ({ city, resources }) => {
