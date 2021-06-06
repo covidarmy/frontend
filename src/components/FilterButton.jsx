@@ -23,7 +23,11 @@ const FilterButton = React.forwardRef(
 
     switch (true) {
       case isButton:
-        return <button className={classes} onClick={onClick}></button>
+        return (
+          <button className={classes} onClick={onClick}>
+            {children}
+          </button>
+        )
       default:
         return (
           <Link href={href}>

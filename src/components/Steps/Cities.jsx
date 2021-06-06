@@ -1,11 +1,8 @@
 import * as React from 'react'
 import Fuse from 'fuse.js'
 import BackIcon from '~/assets/arrow-left.svg'
-import LocationIcon from '~/assets/Location.svg'
 import FilterButton from '~/components/FilterButton'
-import SearchIcon from '~/assets/Search.svg'
 
-import { useTranslation } from '~/context/translation'
 import { useEmptyCities } from '~/hooks/useEmptyCities'
 import { useStore } from '~/lib/StepsStore'
 import { useResources } from '~/hooks/useResources'
@@ -55,10 +52,11 @@ const LocationFilterCustom = ({ cities }) => {
         .slice(0, 12)
     }
 
-    return _data.map((item) => {
+    return _data.map((item, idx) => {
       return (
         <FilterButton
-          key={item}
+          isButton
+          key={idx}
           active={city === item}
           onClick={() => handleCitySubmit(item)}
         >
@@ -77,10 +75,10 @@ const LocationFilterCustom = ({ cities }) => {
         <div className="text-gray-400 mt-5">City</div>
         <div className="pt-2 ml-1 flex justify-start relative text-gray-600">
           <input
-            className="border-2 w-full max-w-sm relative w-400 border-gray-200 bg-white h-14 px-4 rounded-lg text-sm transition-all focus:outline-none focus:ring focus:border-blue-300"
+            className="border-2 w-full max-w-sm relative w-400 border-gray-200 bg-white h-12 px-4 rounded-lg text-sm transition-all focus:outline-none focus:ring focus:border-blue-300"
             type="search"
             name="search"
-            placeholder="Start searching any city"
+            placeholder="Start searching empty cities"
             onChange={({ currentTarget }) =>
               setSearchValue(currentTarget.value)
             }
@@ -92,10 +90,11 @@ const LocationFilterCustom = ({ cities }) => {
 
         <p className="text-gray-400 mt-7">Select a resource</p>
         <div className="flex flex-wrap mt-2">
-          {resources.map((item) => {
+          {resources.map((item, idx) => {
             return (
               <FilterButton
-                key={item}
+                isButton
+                key={idx}
                 active={resource === item}
                 onClick={() => handleResourceSubmit(item)}
               >
@@ -128,8 +127,6 @@ const getSortedResources = (resources) => {
   arrayResources.sort((a, b) => {
     return a.count - b.count
   })
-
-  console.log(arrayResources)
 
   return arrayResources
 }
