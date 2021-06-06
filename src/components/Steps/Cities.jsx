@@ -11,24 +11,31 @@ import { useStore } from '~/lib/StepsStore'
 import { useResources } from '~/hooks/useResources'
 import Skeleton from 'react-loading-skeleton'
 
-const LocationFilterCustom = ({ nextStep, cities }) => {
+const LocationFilterCustom = ({ cities, isCityLoading }) => {
   const [resources, error, isLoading] = useResources()
-  const { t } = useTranslation()
   const [searchValue, setSearchValue] = React.useState('')
-  const { selectCity } = useStore((state) => ({
+  const { nextStep, selectCity, selectResource } = useStore((state) => ({
+    nextStep: state.actions.nextStep,
     selectCity: state.actions.selectCity,
+    selectResource: state.actions.selectResource,
   }))
 
   const handleCitySubmit = (item) => {
     selectCity(item)
+  }
+  const handleResourceSubmit = (item) => {
+    selectResource(item)
+  }
+  const handleSubmit = () => {
     nextStep()
   }
+
   // we can add better error state later
   if (error) return <div>failed to load</div>
-  if (isLoading) return <Skeleton height={128} />
+  if (isLoading || isCityLoading) return <Skeleton height={128} />
 
   const renderButtons = () => {
-    let _data = cities
+    let _data = cities.slice(0, 12)
 
     if (searchValue) {
       const fuse = new Fuse(
@@ -73,19 +80,9 @@ const LocationFilterCustom = ({ nextStep, cities }) => {
             }
           />
         </div>
-        {searchValue && (
-          <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
-            {!isLoading ? (
-              cities !== undefined ? (
-                renderButtons()
-              ) : (
-                <div>No empty city found for this state.</div>
-              )
-            ) : (
-              <div>loading..</div>
-            )}
-          </div>
-        )}
+        <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
+          {renderButtons()}
+        </div>
 
         <p className="text-gray-400 mt-7">Select a resource</p>
         <div className="flex flex-wrap mt-2">
@@ -102,23 +99,35 @@ const LocationFilterCustom = ({ nextStep, cities }) => {
           })}
         </div>
       </div>
+
+      <div className="mt-10 rounded-md">
+        <button
+          className="py-2 px-8 w-full md:w-auto bg-blue-600 text-white"
+          onClick={() => handleSubmit()}
+        >
+          Submit
+        </button>
+      </div>
     </div>
   )
 }
 
-const Card = ({ title, resources }) => {
-  const { nextStep } = useStore((state) => ({
+const Card = ({ city, resources }) => {
+  const { nextStep, selectCity, selectResource } = useStore((state) => ({
     nextStep: state.actions.nextStep,
+    selectCity: state.actions.selectCity,
+    selectResource: state.actions.selectResource,
   }))
 
-  const handleSubmit = () => {
-      
+  const handleSubmit = (item) => {
+    selectCity(city)
+    selectResource(item)
     nextStep()
   }
 
   return (
     <div className="border border-gray-200 rounded-lg px-3 py-4">
-      <h2 className="text-lg font-bold">{title}</h2>
+      <h2 className="text-lg font-bold">{city}</h2>
       <div className="flex flex-wrap mt-5">
         {Object.keys(resources).map((item) => {
           return (
@@ -148,7 +157,7 @@ const CityAndResource = ({ data }) => {
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {smallList.map((item) => (
-          <Card title={item.city} resources={item.resourceCount} />
+          <Card city={item.city} resources={item.resourceCount} />
         ))}
       </div>
       {size <= smallList.length && (
@@ -200,7 +209,7 @@ const CitiesStep = () => {
       <LocationFilterCustom
         nextStep={nextStep}
         cities={cities}
-        isLoading={isLoading}
+        isCityLoading={isLoading}
       />
     </main>
   )
