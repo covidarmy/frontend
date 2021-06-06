@@ -12,7 +12,7 @@ import { useResources } from '~/hooks/useResources'
 import Skeleton from 'react-loading-skeleton'
 import LoadingPage from '../LoadingPage'
 
-const LocationFilterCustom = ({ cities = [] }) => {
+const LocationFilterCustom = ({ cities }) => {
   const [resources, error, isLoading] = useResources()
   const [searchValue, setSearchValue] = React.useState('')
 
@@ -178,6 +178,12 @@ const CityAndResource = ({ data }) => {
 
   return (
     <>
+      <div className="mb-5">
+        <p className="text-gray-400">
+          Following cities have urgent need of the following resources.
+        </p>
+        <p>Select a resource for which you will provide a lead</p>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {smallList.map((item) => (
           <Card city={item.city} resources={item.resourceCount} />
@@ -221,21 +227,9 @@ const CitiesStep = () => {
         </div>
         <hr className="my-6" />
         {cities && rankedData ? (
-          <>
-            <div className="mb-5">
-              <p className="text-gray-400">
-                Following cities have urgent need of the following resources.
-              </p>
-              <p>Select a resource for which you will provide a lead</p>
-            </div>
-            {rankedData === undefined ? (
-              <Skeleton />
-            ) : (
-              <CityAndResource data={rankedData} />
-            )}
-          </>
+          <CityAndResource data={rankedData} />
         ) : (
-          <div>Sorry, we have no cities available for this state.</div>
+          <div>Sorry, there are no empty cities available for this state.</div>
         )}
       </div>
 
