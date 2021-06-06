@@ -58,7 +58,7 @@ const LoginPage: React.FC = () => {
           </button>
 
           <div className="mt-12 bg-gray-100 border border-gray-200 rounded-lg p-3">
-            <p className="font-semibold">
+            <p className="font-medium">
               By signing in, I agree that I will use covid.army only to help
               myself and others by providing information true to my knowledge.
             </p>
