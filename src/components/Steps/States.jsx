@@ -55,13 +55,13 @@ const LocationFilterCustom = ({ nextStep }) => {
       {/* search bar */}
       <div className="pt-2 ml-1 flex justify-start relative text-gray-600">
         <input
-          className="border-2 w-full relative w-400 border-gray-300 bg-white h-10 pl-10 pr-4 rounded-lg text-sm transition-all focus:outline-none focus:ring focus:border-blue-300"
+          className="border-2 w-full relative w-400 border-gray-300 bg-white h-10 px-4 rounded-lg text-sm transition-all focus:outline-none focus:ring focus:border-blue-300"
           type="search"
           name="search"
           placeholder="Start searching any state"
           onChange={({ currentTarget }) => setSearchValue(currentTarget.value)}
         />
-        <SearchIcon className="absolute top-5 left-4" />
+        <SearchIcon className="absolute top-5 right-4" />
       </div>
       <div className="mt-2 -mr-2 flex flex-col max-h-96 overflow-y-auto">
         {renderButtons()}

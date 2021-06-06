@@ -8,8 +8,11 @@ import SearchIcon from '~/assets/Search.svg'
 import { useTranslation } from '~/context/translation'
 import { useEmptyCities } from '~/hooks/useEmptyCities'
 import { useStore } from '~/lib/StepsStore'
+import { useResources } from '~/hooks/useResources'
+import Skeleton from 'react-loading-skeleton'
 
-const LocationFilterCustom = ({ nextStep, cities, isLoading }) => {
+const LocationFilterCustom = ({ nextStep, cities }) => {
+  const [resources, error, isLoading] = useResources()
   const { t } = useTranslation()
   const [searchValue, setSearchValue] = React.useState('')
   const { selectCity } = useStore((state) => ({
@@ -20,6 +23,9 @@ const LocationFilterCustom = ({ nextStep, cities, isLoading }) => {
     selectCity(item)
     nextStep()
   }
+  // we can add better error state later
+  if (error) return <div>failed to load</div>
+  if (isLoading) return <Skeleton height={128} />
 
   const renderButtons = () => {
     let _data = cities
@@ -30,7 +36,7 @@ const LocationFilterCustom = ({ nextStep, cities, isLoading }) => {
         { includeScore: true }
       )
 
-      _data = fuse.search(searchValue).map(({ item }) => item)
+      _data = fuse.search(searchValue).map(({ item }) => item).slice(0, 12)
     }
 
     return _data.map((item) => {
@@ -47,35 +53,90 @@ const LocationFilterCustom = ({ nextStep, cities, isLoading }) => {
   }
 
   return (
-    <div className="bg-white h-auto w-full my-2">
-      <div className="flex items-center ml-1 mb-1">
-        <LocationIcon className="h-5 w-5 mt-1" />
-        <p className="text-strong ml-1 mt-0.5 font-bold">
-          {t('CHOOSE_LOCATION')}
-        </p>
-      </div>
-      {/* search bar */}
-      <div className="pt-2 ml-1 flex justify-start relative text-gray-600">
-        <input
-          className="border-2 w-full relative w-400 border-gray-300 bg-white h-10 pl-10 pr-4 rounded-lg text-sm transition-all focus:outline-none focus:ring focus:border-blue-300"
-          type="search"
-          name="search"
-          placeholder="Start searching any city"
-          onChange={({ currentTarget }) => setSearchValue(currentTarget.value)}
-        />
-        <SearchIcon className="absolute top-5 left-4" />
-      </div>
-      <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
-        {!isLoading ? (
-          cities !== undefined ? (
-            renderButtons()
-          ) : (
-            <div>No empty city found for this state.</div>
-          )
-        ) : (
-          <div>loading..</div>
+    <div className="shadow-md bg-white py-6 px-4 sm:px-10 w-full max-w-4xl mt-5">
+      <div className="bg-white h-auto w-full my-2">
+        <p>You can also select city and resources manually here</p>
+
+        {/* search bar */}
+        <div className="text-gray-400 mt-5">City</div>
+        <div className="pt-2 ml-1 flex justify-start relative text-gray-600">
+          <input
+            className="border-2 w-full max-w-sm relative w-400 border-gray-200 bg-white h-14 px-4 rounded-lg text-sm transition-all focus:outline-none focus:ring focus:border-blue-300"
+            type="search"
+            name="search"
+            placeholder="Start searching any city"
+            onChange={({ currentTarget }) =>
+              setSearchValue(currentTarget.value)
+            }
+          />
+        </div>
+        {searchValue && (
+          <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
+            {!isLoading ? (
+              cities !== undefined ? (
+                renderButtons()
+              ) : (
+                <div>No empty city found for this state.</div>
+              )
+            ) : (
+              <div>loading..</div>
+            )}
+          </div>
         )}
+
+        <p className="text-gray-400 mt-7">Select a resource</p>
+        <div className="flex flex-wrap mt-2">
+          {resources.map((item) => {
+            return (
+              <FilterButton
+                key={item}
+                active={false}
+                onClick={() => handleResourceSubmit(item)}
+              >
+                {item}
+              </FilterButton>
+            )
+          })}
+        </div>
       </div>
+    </div>
+  )
+}
+
+const Card = () => {
+  const [resources, error, isLoading] = useResources()
+
+  // we can add better error state later
+  if (error) return <div>failed to load</div>
+  if (isLoading) return <Skeleton height={128} />
+
+  return (
+    <div className="border border-gray-200 rounded-lg px-3 py-4">
+      <h2 className="text-lg font-bold">Mumbai</h2>
+      <div className="flex flex-wrap mt-5">
+        {resources.map((item) => {
+          return (
+            <FilterButton
+              key={item}
+              active={false}
+              onClick={() => handleResourceSubmit(item)}
+            >
+              {item}
+            </FilterButton>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+const CityAndResource = () => {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <Card />
+      <Card />
+      <Card />
+      <Card />
     </div>
   )
 }
@@ -90,7 +151,7 @@ const CitiesStep = () => {
 
   return (
     <main className="flex flex-col items-center justify-center rounded-lg p-4 sm:p-8">
-      <div className="shadow-md bg-white py-6 px-4 sm:px-10 w-full max-w-lg">
+      <div className="shadow-md bg-white py-6 px-4 sm:px-10 w-full max-w-4xl">
         <div className="flex items-center">
           <a
             aria-label="Back Button"
@@ -104,12 +165,24 @@ const CitiesStep = () => {
           </div>
         </div>
         <hr className="my-6" />
-        <LocationFilterCustom
-          nextStep={nextStep}
-          cities={cities}
-          isLoading={isLoading}
-        />
+        <div className="mb-5">
+          <p className="text-gray-400">
+            Following cities have urgent need of the following resources.
+          </p>
+          <p>Select a resource for which you will provide a lead</p>
+        </div>
+
+        <CityAndResource />
+        <button className="mt-5 w-full border border-gray-200 rounded-lg py-3 text-blue-500 hover:bg-gray-100 transition-colors">
+          Load more cities
+        </button>
       </div>
+
+      <LocationFilterCustom
+        nextStep={nextStep}
+        cities={cities}
+        isLoading={isLoading}
+      />
     </main>
   )
 }

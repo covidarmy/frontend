@@ -22,6 +22,7 @@ export const useEmptyCities = (state) => {
 
   React.useEffect(() => {
     if (data) {
+      console.log(data)
       setCities(getEmptyCities(data))
       setIsLoading(false)
     }
