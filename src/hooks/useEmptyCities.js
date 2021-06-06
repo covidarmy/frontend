@@ -28,5 +28,5 @@ export const useEmptyCities = (state) => {
     }
   }, [data])
 
-  return [cities, isLoading]
+  return [data, cities, isLoading]
 }

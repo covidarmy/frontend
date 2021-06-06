@@ -36,7 +36,10 @@ const LocationFilterCustom = ({ nextStep, cities }) => {
         { includeScore: true }
       )
 
-      _data = fuse.search(searchValue).map(({ item }) => item).slice(0, 12)
+      _data = fuse
+        .search(searchValue)
+        .map(({ item }) => item)
+        .slice(0, 12)
     }
 
     return _data.map((item) => {
@@ -103,23 +106,26 @@ const LocationFilterCustom = ({ nextStep, cities }) => {
   )
 }
 
-const Card = () => {
-  const [resources, error, isLoading] = useResources()
+const Card = ({ title, resources }) => {
+  const { nextStep } = useStore((state) => ({
+    nextStep: state.actions.nextStep,
+  }))
 
-  // we can add better error state later
-  if (error) return <div>failed to load</div>
-  if (isLoading) return <Skeleton height={128} />
+  const handleSubmit = () => {
+      
+    nextStep()
+  }
 
   return (
     <div className="border border-gray-200 rounded-lg px-3 py-4">
-      <h2 className="text-lg font-bold">Mumbai</h2>
+      <h2 className="text-lg font-bold">{title}</h2>
       <div className="flex flex-wrap mt-5">
-        {resources.map((item) => {
+        {Object.keys(resources).map((item) => {
           return (
             <FilterButton
               key={item}
               active={false}
-              onClick={() => handleResourceSubmit(item)}
+              onClick={() => handleSubmit(item)}
             >
               {item}
             </FilterButton>
@@ -130,14 +136,30 @@ const Card = () => {
   )
 }
 
-const CityAndResource = () => {
+const CityAndResource = ({ data }) => {
+  const [size, setSize] = React.useState(4)
+  const [smallList, setSmallList] = React.useState(data.slice(0, size))
+
+  React.useEffect(() => {
+    setSmallList(data.slice(0, size))
+  }, [size])
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-    </div>
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {smallList.map((item) => (
+          <Card title={item.city} resources={item.resourceCount} />
+        ))}
+      </div>
+      {size <= smallList.length && (
+        <button
+          className="mt-5 w-full border border-gray-200 rounded-lg py-3 text-blue-500 hover:bg-gray-100 transition-colors"
+          onClick={() => setSize(size + 4)}
+        >
+          Load more cities
+        </button>
+      )}
+    </>
   )
 }
 
@@ -147,7 +169,7 @@ const CitiesStep = () => {
     previousStep: state.actions.previousStep,
     nextStep: state.actions.nextStep,
   }))
-  const [cities, isLoading] = useEmptyCities(cstate)
+  const [data, cities, isLoading] = useEmptyCities(cstate)
 
   return (
     <main className="flex flex-col items-center justify-center rounded-lg p-4 sm:p-8">
@@ -161,7 +183,7 @@ const CitiesStep = () => {
             <BackIcon />
           </a>
           <div className="w-full">
-            <p className="text-sm text-center">Step 2 of 4</p>
+            <p className="text-sm text-center">Step 2 of 3</p>
           </div>
         </div>
         <hr className="my-6" />
@@ -172,10 +194,7 @@ const CitiesStep = () => {
           <p>Select a resource for which you will provide a lead</p>
         </div>
 
-        <CityAndResource />
-        <button className="mt-5 w-full border border-gray-200 rounded-lg py-3 text-blue-500 hover:bg-gray-100 transition-colors">
-          Load more cities
-        </button>
+        {data === undefined ? <Skeleton /> : <CityAndResource data={data} />}
       </div>
 
       <LocationFilterCustom

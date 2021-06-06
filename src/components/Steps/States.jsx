@@ -90,7 +90,7 @@ const StatesStep = () => {
             <BackIcon />
           </a>
           <div className="w-full">
-            <p className="text-sm text-center">Step 1 of 4</p>
+            <p className="text-sm text-center">Step 1 of 3</p>
           </div>
         </div>
         <hr className="my-6" />
