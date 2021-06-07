@@ -26,7 +26,6 @@ const SubmitForm = ({ user }) => {
     selectResource: state.actions.selectResource,
   }))
   const [landlineEnabled, setLandlineEnabled] = React.useState(false)
-  const [stdCode, setStdCode] = React.useState('0')
   const [phoneNo, setPhoneNo] = React.useState('')
   const [title, setTitle] = React.useState('')
   const [message, setMessage] = React.useState('')
@@ -44,7 +43,7 @@ const SubmitForm = ({ user }) => {
     user.getIdToken().then((idToken) => {
       const postRequestBody = {
         city: city.toLowerCase(),
-        phone_no: landlineEnabled ? stdCode + phoneNo : phoneNo,
+        phone_no: landlineEnabled ? '0' + phoneNo : phoneNo,
         title: title,
         description: message,
         resource_type: resource.split(' ').join('').toLowerCase(),
@@ -154,9 +153,9 @@ const SubmitForm = ({ user }) => {
                   <input
                     type="tel"
                     className="border w-20 p-2 mt-1"
-                    value={stdCode}
+                    value="0"
                     required
-                    onChange={(e) => setStdCode(e.target.value)}
+                    readOnly
                   />
                 </div>
                 <div className="mt-4 text-gray-600">—</div>
