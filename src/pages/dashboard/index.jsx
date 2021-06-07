@@ -89,6 +89,7 @@ const FilterButtonGroup = ({ leads, setFilteredLeads }) => {
         <RadioGroup.Option key={filter} value={filter} className="h-full">
           {({ checked }) => (
             <button
+              key={filter}
               onClick={() => handleFilterSelection(filter)}
               className={`${
                 checked ? 'bg-blue-500 text-white' : 'bg-white text-gray-500'
