@@ -31,7 +31,7 @@ function HomePage({ cities, resources }) {
 }
 
 export async function getStaticProps() {
-  const citiesResponse = await fetch(`${API_BASE_URL}/api/cities/?top=true`)
+  const citiesResponse = await fetch(`${API_BASE_URL}/api/cities`)
   const resourcesResponse = await fetch(`${API_BASE_URL}/api/resources`)
 
   const cities = await citiesResponse.json()

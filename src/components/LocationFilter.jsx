@@ -3,6 +3,7 @@ import Fuse from 'fuse.js'
 import LocationIcon from '../assets/Location.svg'
 import SearchIcon from '../assets/Search.svg'
 import FraudBanner from './FraudBanner'
+import Highlighter from 'react-highlight-words'
 
 import { useRouter } from 'next/router'
 import { HiChevronUp as UpArrow } from 'react-icons/hi'
@@ -105,7 +106,11 @@ export default function LocationFilter({ cities }) {
           className={classes}
           onClick={() => handleLocationClick(buttonResource)}
         >
-          {item}
+          <Highlighter
+            searchWords={[searchValue]}
+            autoEscape={true}
+            textToHighlight={item}
+          />
         </a>
       )
     })
