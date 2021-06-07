@@ -1,18 +1,24 @@
 import * as React from 'react'
 import Fuse from 'fuse.js'
 import BackIcon from '~/assets/arrow-left.svg'
+import ResourceIcon from '~/assets/Resource.svg'
+
 import FilterButton from '~/components/FilterButton'
+import Highlighter from 'react-highlight-words'
 
 import { useEmptyCities } from '~/hooks/useEmptyCities'
 import { useStore } from '~/lib/StepsStore'
 import { useResources } from '~/hooks/useResources'
 import Skeleton from 'react-loading-skeleton'
 import LoadingPage from '../LoadingPage'
+
+import { HiChevronUp as UpArrow } from 'react-icons/hi'
 import { getSortedResources } from '~/utils/getSortedResources'
 
 const LocationFilterCustom = ({ cities }) => {
   const [resources, error, isLoading] = useResources()
   const [searchValue, setSearchValue] = React.useState('')
+  const [showAll, setShowAll] = React.useState(false)
 
   const { city, resource, nextStep, selectCity, selectResource } = useStore(
     (state) => ({
@@ -39,7 +45,7 @@ const LocationFilterCustom = ({ cities }) => {
   if (isLoading) return <Skeleton height={128} />
 
   const renderButtons = () => {
-    let _data = cities.slice(0, 12)
+    let _data = showAll ? cities : cities.slice(0, 12)
 
     if (searchValue) {
       const fuse = new Fuse(
@@ -61,7 +67,11 @@ const LocationFilterCustom = ({ cities }) => {
           active={city === item}
           onClick={() => handleCitySubmit(item)}
         >
-          {item}
+          <Highlighter
+            searchWords={[searchValue]}
+            autoEscape={true}
+            textToHighlight={item}
+          />
         </FilterButton>
       )
     })
@@ -76,7 +86,7 @@ const LocationFilterCustom = ({ cities }) => {
         <div className="text-gray-400 mt-5">City</div>
         <div className="pt-2 ml-1 flex justify-start relative text-gray-600">
           <input
-            className="border-2 w-full max-w-sm relative w-400 border-gray-200 bg-white h-12 px-4 rounded-lg text-sm transition-all focus:outline-none focus:ring focus:border-blue-300"
+            className="border-2 w-full max-w-sm relative w-400 border-gray-200 bg-white h-12 px-4 rounded-lg transition-all focus:outline-none focus:ring focus:border-blue-300"
             type="search"
             name="search"
             placeholder="Start searching empty cities"
@@ -87,6 +97,17 @@ const LocationFilterCustom = ({ cities }) => {
         </div>
         <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
           {renderButtons()}
+        </div>
+        <div className="mt-2 ml-1">
+          <button
+            className="hover:underline flex items-center text-indigo-600 focus:outline-none focus:ring focus:border-blue-300"
+            onClick={() => setShowAll((prev) => !prev)}
+          >
+            <span>{showAll ? 'Show Less' : 'Show More'}</span>
+            <UpArrow
+              className={`mt-0.5 ml-1 transform ${!showAll && 'rotate-180'}`}
+            />
+          </button>
         </div>
 
         <p className="text-gray-400 mt-7">Select a resource</p>
@@ -108,7 +129,9 @@ const LocationFilterCustom = ({ cities }) => {
 
       <div className="mt-10 rounded-md">
         <button
-          className="py-2 px-8 w-full md:w-auto bg-blue-600 text-white"
+          className={`py-2 px-8 w-full md:w-auto text-white ${
+            city && resource ? 'bg-blue-600' : 'bg-gray-400 cursor-not-allowed'
+          }`}
           onClick={() => handleSubmit()}
         >
           Submit
@@ -210,6 +233,10 @@ const CitiesStep = () => {
           </div>
         </div>
         <hr className="my-6" />
+        <div className="flex items-center mb-5 text-lg">
+          <ResourceIcon className="h-5 w-5 mt-1" />
+          <p className="text-strong ml-1 mt-0.5 font-bold">Choose a resource</p>
+        </div>
         {cities && rankedData ? (
           <CityAndResource data={rankedData} />
         ) : (
