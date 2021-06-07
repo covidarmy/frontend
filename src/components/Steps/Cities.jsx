@@ -22,10 +22,8 @@ const LocationFilterCustom = ({ cities }) => {
   const [selectedCity, setSelectedCity] = React.useState('')
   const [selectedResource, setSelectedResource] = React.useState('')
 
-  const { city, resource, nextStep, selectCity, selectResource } = useStore(
+  const { nextStep, selectCity, selectResource } = useStore(
     (state) => ({
-      city: state.city,
-      resource: state.resource,
       nextStep: state.actions.nextStep,
       selectCity: state.actions.selectCity,
       selectResource: state.actions.selectResource,
