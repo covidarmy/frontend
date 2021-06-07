@@ -98,17 +98,19 @@ const LocationFilterCustom = ({ cities }) => {
         <div className="mt-2 text-start text-left flex-wrap flex items-center justify-start">
           {renderButtons()}
         </div>
-        <div className="mt-2 ml-1">
-          <button
-            className="hover:underline flex items-center text-indigo-600 focus:outline-none focus:ring focus:border-blue-300"
-            onClick={() => setShowAll((prev) => !prev)}
-          >
-            <span>{showAll ? 'Show Less' : 'Show More'}</span>
-            <UpArrow
-              className={`mt-0.5 ml-1 transform ${!showAll && 'rotate-180'}`}
-            />
-          </button>
-        </div>
+        {cities.length >= 12 && (
+          <div className="mt-2 ml-1">
+            <button
+              className="hover:underline flex items-center text-indigo-600 focus:outline-none focus:ring focus:border-blue-300"
+              onClick={() => setShowAll((prev) => !prev)}
+            >
+              <span>{showAll ? 'Show Less' : 'Show More'}</span>
+              <UpArrow
+                className={`mt-0.5 ml-1 transform ${!showAll && 'rotate-180'}`}
+              />
+            </button>
+          </div>
+        )}
 
         <p className="text-gray-400 mt-7">Select a resource</p>
         <div className="flex flex-wrap mt-2">
