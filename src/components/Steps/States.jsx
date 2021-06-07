@@ -4,6 +4,7 @@ import BackIcon from '~/assets/arrow-left.svg'
 import LocationIcon from '~/assets/Location.svg'
 import SearchIcon from '~/assets/Search.svg'
 import AllStates from '~/lib/states'
+import Highlighter from 'react-highlight-words'
 
 import { useRouter } from 'next/router'
 import { useStore } from '~/lib/StepsStore'
@@ -34,11 +35,15 @@ const LocationFilterCustom = ({ nextStep }) => {
     return _data.map((item) => {
       return (
         <button
-          className="w-full flex justify-start py-6 pl-1 border-b border-gray-300 font-semibold"
+          className="w-full flex justify-start py-6 pl-1 border-b border-gray-300 font-semibold focus:outline-none"
           key={item}
           onClick={() => handleStateSubmit(item)}
         >
-          {item}
+          <Highlighter
+            searchWords={[searchValue]}
+            autoEscape={true}
+            textToHighlight={item}
+          />
         </button>
       )
     })
