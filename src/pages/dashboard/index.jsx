@@ -1,5 +1,4 @@
 import * as React from 'react'
-import Skeleton from 'react-loading-skeleton'
 import LoadingPage from '~/components/LoadingPage'
 import Navbar from '~/components/Navbar'
 import Fuse from 'fuse.js'
@@ -29,9 +28,56 @@ import { API_BASE_URL } from '~/constants'
 import Highlighter from 'react-highlight-words'
 import { mutate } from 'swr'
 
-const FilterButtonGroup = () => {
+const FilterButtonGroup = ({ leads, setFilteredLeads }) => {
   let [selectedFilter, setSelectedFilter] = React.useState()
   const filters = ['week', 'month', '2 months', '6 months']
+
+  const handleFilterSelection = (filter) => {
+    var today = new Date()
+
+    if (filter === 'week') {
+      var weekOldTimeStamp = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate() - 7
+      )
+      setFilteredLeads(
+        leads.filter(({ createdAt }) => new Date(createdAt) > weekOldTimeStamp)
+      )
+    } else if (filter === 'month') {
+      var monthOldTimeStamp = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate() - 30
+      )
+      setFilteredLeads(
+        leads.filter(({ createdAt }) => new Date(createdAt) > monthOldTimeStamp)
+      )
+    } else if (filter === '2 months') {
+      var twoMonthOldTimeStamp = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate() - 60
+      )
+      setFilteredLeads(
+        leads.filter(
+          ({ createdAt }) => new Date(createdAt) > twoMonthOldTimeStamp
+        )
+      )
+    } else if (filter === '6 months') {
+      var sixMonthOldTimeStamp = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate() - 180
+      )
+      setFilteredLeads(
+        leads.filter(
+          ({ createdAt }) => new Date(createdAt) > sixMonthOldTimeStamp
+        )
+      )
+    } else {
+    }
+  }
 
   return (
     <RadioGroup
@@ -43,6 +89,7 @@ const FilterButtonGroup = () => {
         <RadioGroup.Option key={filter} value={filter} className="h-full">
           {({ checked }) => (
             <button
+              onClick={() => handleFilterSelection(filter)}
               className={`${
                 checked ? 'bg-blue-500 text-white' : 'bg-white text-gray-500'
               } justify-center min-w-max h-full items-center px-4 py-2 shadow-md rounded-lg transition-shadow border hover:shadow-sm hover:border-gray-300 focus:outline-none focus:ring focus:border-blue-300`}
@@ -56,6 +103,7 @@ const FilterButtonGroup = () => {
         className="hidden md:block min-w-max h-full px-4 py-2 shadow-md rounded-lg bg-white text-gray-500 transition-shadow border active:bg-blue-500 active:text-white hover:shadow-sm hover:border-gray-300 focus:outline-none focus:ring focus:border-blue-300"
         onClick={() => {
           setSelectedFilter('')
+          setFilteredLeads(leads)
         }}
       >
         Clear Filter
@@ -425,7 +473,10 @@ export default function DashboardPage() {
                   </div>
                 </div>
                 {/* btns */}
-                <FilterButtonGroup />
+                <FilterButtonGroup
+                  leads={leads}
+                  setFilteredLeads={setFilteredLeads}
+                />
               </div>
 
               {/* cards */}
