@@ -7,7 +7,6 @@ import { useStore } from '~/lib/StepsStore'
 
 import StatesStep from '~/components/Steps/States'
 import CitiesStep from '~/components/Steps/Cities'
-import ResourceStep from '~/components/Steps/Resources'
 import SubmitForm from '~/components/Steps/SubmitForm'
 
 export default function AddResourcePage() {
@@ -29,8 +28,7 @@ export default function AddResourcePage() {
       <Navbar />
       {step === 1 && <StatesStep />}
       {step === 2 && <CitiesStep />}
-      {step === 3 && <ResourceStep />}
-      {step === 4 && <SubmitForm user={user} />}
+      {step === 3 && <SubmitForm user={user} />}
     </div>
   )
 }
