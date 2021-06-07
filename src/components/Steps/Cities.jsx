@@ -19,6 +19,8 @@ const LocationFilterCustom = ({ cities }) => {
   const [resources, error, isLoading] = useResources()
   const [searchValue, setSearchValue] = React.useState('')
   const [showAll, setShowAll] = React.useState(false)
+  const [selectedCity, setSelectedCity] = React.useState('')
+  const [selectedResource, setSelectedResource] = React.useState('')
 
   const { city, resource, nextStep, selectCity, selectResource } = useStore(
     (state) => ({
@@ -31,9 +33,11 @@ const LocationFilterCustom = ({ cities }) => {
   )
 
   const handleCitySubmit = (item) => {
+    setSelectedCity(item)
     selectCity(item)
   }
   const handleResourceSubmit = (item) => {
+    setSelectedResource(item)
     selectResource(item)
   }
   const handleSubmit = () => {
@@ -64,7 +68,7 @@ const LocationFilterCustom = ({ cities }) => {
         <FilterButton
           isButton
           key={idx}
-          active={city === item}
+          active={selectedCity === item}
           onClick={() => handleCitySubmit(item)}
         >
           <Highlighter
@@ -119,7 +123,7 @@ const LocationFilterCustom = ({ cities }) => {
               <FilterButton
                 isButton
                 key={idx}
-                active={resource === item}
+                active={selectedResource === item}
                 onClick={() => handleResourceSubmit(item)}
               >
                 {item}
@@ -132,7 +136,9 @@ const LocationFilterCustom = ({ cities }) => {
       <div className="mt-10 rounded-md">
         <button
           className={`py-2 px-8 w-full md:w-auto text-white ${
-            city && resource ? 'bg-blue-600' : 'bg-gray-400 cursor-not-allowed'
+            selectedCity && selectedResource
+              ? 'bg-blue-600'
+              : 'bg-gray-400 cursor-not-allowed'
           }`}
           onClick={() => handleSubmit()}
         >
