@@ -22,13 +22,11 @@ const LocationFilterCustom = ({ cities }) => {
   const [selectedCity, setSelectedCity] = React.useState('')
   const [selectedResource, setSelectedResource] = React.useState('')
 
-  const { nextStep, selectCity, selectResource } = useStore(
-    (state) => ({
-      nextStep: state.actions.nextStep,
-      selectCity: state.actions.selectCity,
-      selectResource: state.actions.selectResource,
-    })
-  )
+  const { nextStep, selectCity, selectResource } = useStore((state) => ({
+    nextStep: state.actions.nextStep,
+    selectCity: state.actions.selectCity,
+    selectResource: state.actions.selectResource,
+  }))
 
   const handleCitySubmit = (item) => {
     setSelectedCity(item)
@@ -133,6 +131,7 @@ const LocationFilterCustom = ({ cities }) => {
 
       <div className="mt-10 rounded-md">
         <button
+          disabled={!selectedCity || !selectedResource}
           className={`py-2 px-8 w-full md:w-auto text-white ${
             selectedCity && selectedResource
               ? 'bg-blue-600'
