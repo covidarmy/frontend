@@ -132,6 +132,7 @@ export default function LocationFilter({ cities }) {
             type="search"
             name="search"
             placeholder="Start searching any city"
+            value={searchValue}
             onChange={({ currentTarget }) =>
               setSearchValue(currentTarget.value)
             }
