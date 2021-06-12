@@ -177,12 +177,12 @@ const EditDropdownMenu = ({ authToken, user }) => {
             leaveTo="transform scale-95 opacity-0"
           >
             <Menu.Items className="absolute right-0 py-2 px-2 rounded-lg shadow-lg bg-white border border-gray-200">
-              <Menu.Item>
+              {/* <Menu.Item>
                 <button className="flex items-center px-4 py-2 w-full transition-colors hover:bg-gray-100">
                   <EditIcon />
                   <p className="ml-2">Edit</p>
                 </button>
-              </Menu.Item>
+              </Menu.Item> */}
               <Menu.Item>
                 <button
                   className="flex items-center px-4 py-2 w-full transition-colors hover:bg-gray-100"
