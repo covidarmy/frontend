@@ -2,7 +2,7 @@ export const isServer = typeof window === 'undefined'
 export const isProduction = process.env.NODE_ENV === 'production'
 
 export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL ?? 'https://covid-army.herokuapp.com'
+  process.env.NEXT_PUBLIC_API_BASE_URL ?? 'https://api.covid.army'
 
 export const APP_BASE_URL =
   process.env.NODE_ENV === 'production'
