@@ -74,7 +74,8 @@ const TweetsList = () => {
           {
             // Tweets
             data.map((page) => {
-              return page.map((tweet) => {
+              const newPage=page.filter((tweet) => !(!tweet.tweetAst || tweet.tweetAst === 'null'));
+              return newPage.map((tweet) => {
                 return (
                   <div
                     key={tweet._id}
